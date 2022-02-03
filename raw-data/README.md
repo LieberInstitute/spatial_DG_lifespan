@@ -12,6 +12,10 @@
 
 
 ```bash
+## Sample 1 (DLPFC_Br2743_ant_manual_alignment)
+mkdir Br2743_ant
+ln -s /dcs04/lieber/lcolladotor/spatialDLPFC_LIBD4035/spatialDLPFC/raw-data/FASTQ/2_DLPFC_Br3942_ant/* Br2743_ant/
+
 ## Pilot (one sample) - calling 'round 0'
 mkdir round0
 ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2021-03-15_KMay022421/Br2743_DLPFC_mid_L00*/* round0/
