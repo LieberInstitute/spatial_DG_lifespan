@@ -2,11 +2,11 @@
 #$ -cwd
 #$ -l bluejay,mem_free=6G,h_vmem=6G,h_fsize=100G
 #$ -pe local 4
-#$ -N spatialDLPFC_rerun_spaceranger
-#$ -o logs/rerun_spaceranger.$TASK_ID.txt
-#$ -e logs/rerun_spaceranger.$TASK_ID.txt
+#$ -N spatial_DG_lifespan_spaceranger
+#$ -o logs/spaceranger.$TASK_ID.txt
+#$ -e logs/spaceranger.$TASK_ID.txt
 #$ -m e
-#$ -t 1-30
+#$ -t 1-4
 #$ -tc 10
 
 echo "**** Job starts ****"
@@ -20,7 +20,7 @@ echo "Hostname: ${HOSTNAME}"
 echo "Task id: ${SGE_TASK_ID}"
 
 ## load SpaceRanger
-module load spaceranger/1.3.0
+module load spaceranger/1.3.1
 
 ## List current modules for reproducibility
 module list
@@ -56,8 +56,8 @@ spaceranger count \
 ## Move output
 echo "Moving results to new location"
 date
-mkdir -p ../../processed-data/rerun_spaceranger/
-mv ${SAMPLE} ../../processed-data/rerun_spaceranger/
+mkdir -p ../../processed-data/01_spaceranger/
+mv ${SAMPLE} ../../processed-data/01_spaceranger/
 
 echo "**** Job ends ****"
 date
