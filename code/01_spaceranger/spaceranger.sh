@@ -1,6 +1,6 @@
 #!/bin/bash
 #$ -cwd
-#$ -l bluejay,mem_free=6G,h_vmem=6G,h_fsize=100G
+#$ -l mem_free=6G,h_vmem=6G,h_fsize=100G
 #$ -pe local 4
 #$ -N spatial_DG_lifespan_spaceranger
 #$ -o logs/spaceranger.$TASK_ID.txt
