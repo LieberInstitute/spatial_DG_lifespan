@@ -4,7 +4,7 @@
 
 ## Round 1
 
-`Visium_LC_061621_Chromium_DLPFFC_Master.xlsx`
+`Visium_HPC_Round1_20220113_Master_ADR`
 
 # FASTQ
 
@@ -12,23 +12,19 @@
 
 
 ```bash
-## Sample 1 (DLPFC_Br2743_ant_manual_alignment)
-mkdir Br2743_ant
-ln -s /dcs04/lieber/lcolladotor/spatialDLPFC_LIBD4035/spatialDLPFC/raw-data/FASTQ/2_DLPFC_Br3942_ant/* Br2743_ant/
+## Br8686 (sample1)
+mkdir Br8686
+ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-02-15_Spag020122/1v_ADR_L00*/* Br8686/
 
-## Pilot (one sample) - calling 'round 0'
-mkdir round0
-ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2021-03-15_KMay022421/Br2743_DLPFC_mid_L00*/* round0/
+## Br2706 (sample2)
+mkdir Br2706
+ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-02-15_Spag020122/2v_ADR_L00*/* Br2706/
 
-## 1c-k
-mkdir 1c-k
-ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2021-05-21_ASpa050421/1c_k_L00*/* 1c-k/
+## Br3942 (sample3)
+mkdir Br3942
+ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-02-15_Spag020122/3v_ADR_L00*/* Br3942/
 
-## 2c-k
-mkdir 2c-k
-ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2021-05-21_ASpa050421/2c_k_L00*/* 2c-k/
-
-## 3c_k
-mkdir 3c-k
-ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2021-05-21_ASpa050421/3c_k_L00*/* 3c-k/
+## Br6023 (sample4)
+mkdir Br6023
+ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-02-15_Spag020122/4v_ADR_L00*/* Br6023/
 ```
