@@ -1,10 +1,10 @@
 #!/bin/bash
 #$ -cwd
-#$ -l mem_free=16G,h_vmem=16G,h_fsize=100G
+#$ -l mem_free=8G,h_vmem=8G,h_fsize=100G
 #$ -pe local 8
-#$ -N spatial_DG_lifespan_spaceranger
-#$ -o logs/spaceranger.$TASK_ID.txt
-#$ -e logs/spaceranger.$TASK_ID.txt
+#$ -N spatial_DG_lifespan_spaceranger_test_NUMBA
+#$ -o logs/spaceranger_test_NUMBA.$TASK_ID.txt
+#$ -e logs/spaceranger_test_NUMBA.$TASK_ID.txt
 #$ -m e
 #$ -t 2
 #$ -tc 10
@@ -40,6 +40,9 @@ date
 ls -lh ${IMAGEPATH}
 ls -lh ${LOUPEPATH}
 
+## Hank from 10x Genomics recommended setting this environment
+export NUMBA_NUM_THREADS=1
+
 ## Run SpaceRanger
 spaceranger count \
     --id=${SAMPLE} \
@@ -51,7 +54,7 @@ spaceranger count \
     --loupe-alignment=${LOUPEPATH} \
     --jobmode=local \
     --localcores=8 \
-    --localmem=128
+    --localmem=64
 
 ## Move output
 echo "Moving results to new location"
