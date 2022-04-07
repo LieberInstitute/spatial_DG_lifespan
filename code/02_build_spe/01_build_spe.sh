@@ -1,9 +1,9 @@
 #!/bin/bash
 #$ -cwd
 #$ -l bluejay,mem_free=8G,h_vmem=8G,h_fsize=100G
-#$ -N VisiumIFAD_build_basic_spe
-#$ -o logs/build_basic_spe.txt
-#$ -e logs/build_basic_spe.txt
+#$ -N spatial_DG_lifespan_spe
+#$ -o logs/build_spe.txt
+#$ -e logs/build_spe.txt
 #$ -m e
 
 echo "**** Job starts ****"
@@ -23,7 +23,7 @@ module load conda_R/devel
 module list
 
 ## Edit with your job command
-Rscript 01_build_basic_spe.R
+Rscript 01_build_spe.R
 
 echo "**** Job ends ****"
 date
