@@ -1,8 +1,8 @@
 
-#cd /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/
+# cd /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/
 suppressPackageStartupMessages(library("here"))
-#remotes::install_github("drighelli/SpatialExperiment")
-#remotes::install_github("LieberInstitute/spatialLIBD")
+# remotes::install_github("drighelli/SpatialExperiment")
+# remotes::install_github("LieberInstitute/spatialLIBD")
 suppressPackageStartupMessages(library("SpatialExperiment"))
 suppressPackageStartupMessages(library("spatialLIBD"))
 suppressPackageStartupMessages(library("rtracklayer"))
@@ -15,30 +15,32 @@ dir.create(dir_rdata, showWarnings = FALSE, recursive = TRUE)
 
 ## Define some info for the samples
 sample_info <- data.frame(
-  sample_id = c(
-    "Br2706", #19-22 change the sample order if needed
-    "Br8686",
-    "Br3942",
-    "Br6023",
-  )
+    sample_id = c(
+        "Br2706", # 19-22 change the sample order if needed
+        "Br8686",
+        "Br3942",
+        "Br6023",
+    )
 )
 sample_info$subject <- sample_info$sample_id
 sample_info$sample_path <-
-  file.path(here::here("processed-data", "01_spaceranger"),
-            sample_info$sample_id,
-            "outs")
-stopifnot(all(file.exists(sample_info$sample_path)))                
+    file.path(
+        here::here("processed-data", "01_spaceranger"),
+        sample_info$sample_id,
+        "outs"
+    )
+stopifnot(all(file.exists(sample_info$sample_path)))
 
 ## Define the donor info using information from
 ## https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/raw-data/sample_info/Visium_HPC_Round1_20220113_Master_ADR.xlsx
 donor_info <- data.frame(
-  subject = c("Br2706", "Br8686", "Br3942","Br6023"),
-  age = c(17.94, 1.05, 47.5, 76.38),
-  sex = "M",
-  race = "EA/CAUC",
-  diagnosis = "Control",
-  rin = c(8.1, 7.1, 27.5, 8.4), #Fix the rin for 3rd one and double check the info with Tony
-  pmi = c(33, 33.5, 7.3, 17.5),
+    subject = c("Br2706", "Br8686", "Br3942", "Br6023"),
+    age = c(17.94, 1.05, 47.5, 76.38),
+    sex = "M",
+    race = "EA/CAUC",
+    diagnosis = "Control",
+    rin = c(8.1, 7.1, 27.5, 8.4), # Fix the rin for 3rd one and double check the info with Tony
+    pmi = c(33, 33.5, 7.3, 17.5),
 )
 
 ## Combine sample info with the donor info
@@ -47,12 +49,12 @@ sample_info <- merge(sample_info, donor_info)
 ## Build basic SPE
 Sys.time()
 spe <- read10xVisiumWrapper(
-  sample_info$sample_path,
-  sample_info$sample_id, #check the unique(sample_info$sample_id), see if this is how ADR wants to plot things
-  type = "sparse",
-  data = "raw",
-  images = c("lowres", "hires", "detected", "aligned"),
-  load = TRUE
+    sample_info$sample_path,
+    sample_info$sample_id, # check the unique(sample_info$sample_id), see if this is how ADR wants to plot things
+    type = "sparse",
+    data = "raw",
+    images = c("lowres", "hires", "detected", "aligned"),
+    load = TRUE
 )
 Sys.time()
 
@@ -67,47 +69,49 @@ Sys.time()
 
 ## Add the study design info
 add_design <- function(spe) {
-  new_col <- merge(colData(spe), sample_info)
-  ## Fix order
-  new_col <- new_col[match(spe$key, new_col$key), ]
-  stopifnot(identical(new_col$key, spe$key))
-  rownames(new_col) <- rownames(colData(spe))
-  colData(spe) <-
-    new_col[, -which(colnames(new_col) == "sample_path")]
-  return(spe)
+    new_col <- merge(colData(spe), sample_info)
+    ## Fix order
+    new_col <- new_col[match(spe$key, new_col$key), ]
+    stopifnot(identical(new_col$key, spe$key))
+    rownames(new_col) <- rownames(colData(spe))
+    colData(spe) <-
+        new_col[, -which(colnames(new_col) == "sample_path")]
+    return(spe)
 }
 spe <- add_design(spe)
 
 ## Read in cell counts and segmentation results
 segmentations_list <-
-  lapply(sample_info$sample_id, function(sampleid) {
-    file <-
-      here(
-        "processed-data",
-        "01_spaceranger",
-        sampleid,
-        "outs",
-        "spatial",
-        "tissue_spot_counts.csv"
-      )
-    if (!file.exists(file))
-      return(NULL)
-    x <- read.csv(file)
-    x$key <- paste0(x$barcode, "_", sampleid)
-    return(x)
-  })
+    lapply(sample_info$sample_id, function(sampleid) {
+        file <-
+            here(
+                "processed-data",
+                "01_spaceranger",
+                sampleid,
+                "outs",
+                "spatial",
+                "tissue_spot_counts.csv"
+            )
+        if (!file.exists(file)) {
+            return(NULL)
+        }
+        x <- read.csv(file)
+        x$key <- paste0(x$barcode, "_", sampleid)
+        return(x)
+    })
 
 ## Merge them (once the these files are done, this could be replaced by an rbind)
 segmentations <-
-  Reduce(function(...)
-    merge(..., all = TRUE), segmentations_list[lengths(segmentations_list) > 0])
+    Reduce(function(...) {
+        merge(..., all = TRUE)
+    }, segmentations_list[lengths(segmentations_list) > 0])
 
 ## Add the information
 segmentation_match <- match(spe$key, segmentations$key)
 segmentation_info <-
-  segmentations[segmentation_match, -which(
-    colnames(segmentations) %in% c("barcode", "tissue", "row", "col", "imagerow", "imagecol", "key")
-  )]
+    segmentations[segmentation_match, -which(
+        colnames(segmentations) %in% c("barcode", "tissue", "row", "col", "imagerow", "imagecol", "key")
+    )]
 colData(spe) <- cbind(colData(spe), segmentation_info)
 
 ## Remove genes with no data
@@ -121,7 +125,7 @@ spe <- spe[-no_expr, ]
 
 ## For visualizing this later with spatialLIBD
 spe$overlaps_tissue <-
-  factor(ifelse(spe$in_tissue, "in", "out"))
+    factor(ifelse(spe$in_tissue, "in", "out"))
 
 ## Save with and without dropping spots outside of the tissue
 spe_raw_wholegenome <- spe
@@ -139,9 +143,9 @@ dim(spe)
 # [1] 27853 38287
 ## Remove spots without counts
 if (any(colSums(counts(spe)) == 0)) {
-  message("removing spots without counts for spe")
-  spe <- spe[, -which(colSums(counts(spe)) == 0)]
-  dim(spe)
+    message("removing spots without counts for spe")
+    spe <- spe[, -which(colSums(counts(spe)) == 0)]
+    dim(spe)
 }
 
 lobstr::obj_size(spe) / 1024^3
