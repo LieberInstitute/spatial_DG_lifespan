@@ -19,7 +19,7 @@ sample_info <- data.frame(
         "Br8686", 
         "Br2706",
         "Br3942",
-        "Br6023",
+        "Br6023"
     )
 )
 sample_info$subject <- sample_info$sample_id
