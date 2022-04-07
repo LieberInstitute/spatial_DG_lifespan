@@ -1,5 +1,5 @@
 
-#cd /dcs04/lieber/lcolladotor/spatialHPC_LIBD4035/spatial_hpc/
+#cd /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/
 suppressPackageStartupMessages(library("here"))
 #remotes::install_github("drighelli/SpatialExperiment")
 #remotes::install_github("LieberInstitute/spatialLIBD")
@@ -11,35 +11,31 @@ suppressPackageStartupMessages(library("sessioninfo"))
 
 ## Define some info for the samples
 sample_info <- data.frame(
-  subject = c("Br6423-O","Br6423-O","Br6423-O","Br6423-O","Br6432-R","Br6432-R","Br2743-Y","Br2743-Y"),
-  slice = c("Br6423-O_1","Br6423-O_1","Br6423-O_2","Br6423-O_2","Br6432-R_1","Br6432-R_1","Br2743-Y_1","Br2743-Y_1"),
+  #subject = c("Br6423-O","Br6423-O","Br6423-O","Br6423-O","Br6432-R","Br6432-R","Br2743-Y","Br2743-Y"),
+  #slice = c("Br6423-O_1","Br6423-O_1","Br6423-O_2","Br6423-O_2","Br6432-R_1","Br6432-R_1","Br2743-Y_1","Br2743-Y_1"),
   sample_id = c(
-    "V10B01-085_A1",
-    "V10B01-085_B1",
-    "V10B01-085_C1",
-    "V10B01-085_D1",
-    "V10B01-086_A1",
-    "V10B01-086_B1",
-    "V10B01-086_C1",
-    "V10B01-086_D1"
+    "Br2706",
+    "Br8686",
+    "Br3942",
+    "Br6023",
   )
 )
 sample_info$sample_path <-
-  file.path(here::here("processed-data", "spaceranger_novaseq"),
+  file.path(here::here("processed-data", "01_spaceranger"),
             sample_info$sample_id,
             "outs")
 stopifnot(all(file.exists(sample_info$sample_path)))                
 
 ## Define the donor info using information from
-## https://github.com/LieberInstitute/spatial_hpc/blob/main/raw-data/sample_info/Visium_HPC_Round1%2B2_110321_Master_SCP.xlsx
+## https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/raw-data/sample_info/Visium_HPC_Round1_20220113_Master_ADR.xlsx
 donor_info <- data.frame(
-  subject = c("Br6423-O", "Br6432-R", "Br2743-Y"),
-  age = c(51.73,48.88,61.54),
-  sex = c("M", "M", "M"),
-  #race = "EA/CAUC",
-  diagnosis = "Control"
-  #rin = c(),
-  #pmi = c(),
+  subject = c("Br2706", "Br8686", "Br3942","Br6023"),
+  age = c(17.94,1.05,47.5,76.38),
+  sex = c("M", "M", "M","M"),
+  race = "CAUC",
+  diagnosis = c("Control","Control","Control","Control"),
+  rin = c(8.1,7.1,27.5,8.4),
+  pmi = c(33,33.5,7.3,17.5),
 )
 
 ## Combine sample info with the donor info
@@ -85,7 +81,7 @@ segmentations_list <-
     file <-
       here(
         "processed-data",
-        "spaceranger_novaseq",
+        "01_spaceranger",
         sampleid,
         "outs",
         "spatial",
@@ -114,7 +110,7 @@ colData(spe) <- cbind(colData(spe), segmentation_info)
 ## basic SPE
 spe_basic = spe
 #dir.create(here::here("processed-data", "pilot_data_checks"), showWarnings = FALSE)
-save(spe_basic,file = here::here("processed-data", "pilot_data_checks", "spe_basic.Rdata"))
+save(spe_basic,file = here::here("processed-data", "02_build_spe", "spe_basic.Rdata"))
 
 ## Size in Gb
 lobstr::obj_size(spe_basic) / 1024 ^ 3
