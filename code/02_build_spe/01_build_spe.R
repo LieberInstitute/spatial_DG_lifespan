@@ -16,8 +16,8 @@ dir.create(dir_rdata, showWarnings = FALSE, recursive = TRUE)
 ## Define some info for the samples
 sample_info <- data.frame(
     sample_id = c(
-        "Br2706", # 19-22 change the sample order if needed
-        "Br8686",
+        "Br8686", 
+        "Br2706",
         "Br3942",
         "Br6023",
     )
@@ -34,13 +34,13 @@ stopifnot(all(file.exists(sample_info$sample_path)))
 ## Define the donor info using information from
 ## https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/raw-data/sample_info/Visium_HPC_Round1_20220113_Master_ADR.xlsx
 donor_info <- data.frame(
-    subject = c("Br2706", "Br8686", "Br3942", "Br6023"),
-    age = c(17.94, 1.05, 47.5, 76.38),
+    subject = c("Br8686", "Br2706", "Br3942", "Br6023"),
+    age = c(1.05, 17.94, 47.5, 76.38),
     sex = "M",
     race = "EA/CAUC",
     diagnosis = "Control",
-    rin = c(8.1, 7.1, 27.5, 8.4), # Fix the rin for 3rd one and double check the info with Tony
-    pmi = c(33, 33.5, 7.3, 17.5),
+    rin = c(7.1, 8.1, 7.3, 8.4),
+    pmi = c(33.5, 33, 27.5, 17.5),
 )
 
 ## Combine sample info with the donor info
@@ -50,7 +50,7 @@ sample_info <- merge(sample_info, donor_info)
 Sys.time()
 spe <- read10xVisiumWrapper(
     sample_info$sample_path,
-    sample_info$sample_id, # check the unique(sample_info$sample_id), see if this is how ADR wants to plot things
+    sample_info$sample_id, 
     type = "sparse",
     data = "raw",
     images = c("lowres", "hires", "detected", "aligned"),
