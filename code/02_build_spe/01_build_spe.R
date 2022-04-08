@@ -128,17 +128,17 @@ spe$overlaps_tissue <-
     factor(ifelse(spe$in_tissue, "in", "out"))
 
 ## Save with and without dropping spots outside of the tissue
-spe_raw_wholegenome <- spe
+spe_raw <- spe
 
-saveRDS(spe_raw_wholegenome, file.path(dir_rdata, "spe_raw_wholegenome.rds"))
+saveRDS(spe_raw, file.path(dir_rdata, "spe_raw.rds"))
 
 ## Size in Gb
-lobstr::obj_size(spe_raw_wholegenome) / 1024^3
+lobstr::obj_size(spe_raw) / 1024^3
 # 1.651702
 
 
 ## Now drop the spots outside the tissue
-spe <- spe_raw_wholegenome[, spe_raw_wholegenome$in_tissue]
+spe <- spe_raw[, spe_raw$in_tissue]
 dim(spe)
 # [1] 27853 38287
 ## Remove spots without counts
