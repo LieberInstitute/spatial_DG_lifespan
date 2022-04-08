@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+
+processed-data/02_build_spe/spe.rds

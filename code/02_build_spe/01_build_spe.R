@@ -54,8 +54,7 @@ spe <- read10xVisiumWrapper(
     type = "sparse",
     data = "raw",
     images = c("lowres", "hires", "detected", "aligned"),
-    load = TRUE,
-    reference_gtf = "/dcs04/lieber/lcolladotor/annotationFiles_LIBD001/10x/refdata-gex-GRCh38-2020-A/genes/genes.gtf"
+    load = TRUE
 )
 Sys.time()
 
