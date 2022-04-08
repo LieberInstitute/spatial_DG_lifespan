@@ -40,7 +40,7 @@ donor_info <- data.frame(
     race = "EA/CAUC",
     diagnosis = "Control",
     rin = c(7.1, 8.1, 7.3, 8.4),
-    pmi = c(33.5, 33, 27.5, 17.5),
+    pmi = c(33.5, 33, 27.5, 17.5)
 )
 
 ## Combine sample info with the donor info
