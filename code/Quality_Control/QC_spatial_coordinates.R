@@ -43,4 +43,9 @@ plotSpots(spe = spe[, colData(spe)$sample_id == "Br6023"],
 
 dev.off()
 
-sessionInfo()
+## Reproducibility information
+print("Reproducibility information:")
+Sys.time()
+proc.time()
+options(width = 120)
+session_info()
