@@ -152,6 +152,10 @@ ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres)) +
         axis.ticks = element_blank())
 dev.off()
 
+# remove combined set of low-quality spots
+spe <- spe[, !colData(spe)$discard]
+dim(spe)
+
 save(spe, file = here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
 ## Reproducibility information
