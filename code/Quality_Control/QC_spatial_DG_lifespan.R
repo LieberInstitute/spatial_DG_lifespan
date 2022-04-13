@@ -100,14 +100,10 @@ thresh_high_subsets_mito_percent  #45.41988
 qcfilter$discard <- (qcfilter$low_lib_size | qcfilter$low_n_features) | qcfilter$high_subsets_Mito_percent
 
 # Add QC metrics to spe object
-spe$scran_low_lib_size <-
-  factor(qcfilter$low_lib_size, levels = c("TRUE", "FALSE"))
-spe$scran_low_n_features <-
-  factor(qcfilter$low_n_features, levels = c("TRUE", "FALSE"))
-spe$scran_high_subsets_Mito_percent <-
-  factor(qcfilter$high_subsets_Mito_percent, levels = c("TRUE", "FALSE"))
-spe$scran_discard <-
-  factor(qcfilter$discard, levels = c("TRUE", "FALSE"))
+colData(spe)$scran_low_lib_size <- as.logical(qcfilter$low_lib_size)
+colData(spe)$scran_low_n_features <- as.logical(qcfilter$low_n_features)
+colData(spe)$scran_high_subsets_Mito_percent <- as.logical(qcfilter$high_subsets_Mito_percent)
+colData(spe)$scran_discard <- as.logical(qcfilter$discard)
 
 # QC plot of thresholds
 pdf(file = here::here("plots", "QC_plots", "QC_thresholds_allSpots.pdf"))
@@ -153,7 +149,7 @@ ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres)) +
 dev.off()
 
 # remove combined set of low-quality spots
-spe <- spe[, !colData(spe)$discard]
+spe <- spe[, !colData(spe)$scran_discard]
 dim(spe)
 
 save(spe, file = here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
