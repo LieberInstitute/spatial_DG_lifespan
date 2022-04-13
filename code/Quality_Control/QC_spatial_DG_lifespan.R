@@ -128,15 +128,15 @@ plotQC(spe,
 dev.off()
 
 # QC plot of tissue spots discarded
-pdf(file = here::here("plots", "QC_plots", "QC_Discarded_Spots.pdf"), width = 7, height = 6.75)
+pdf(file = here::here("plots", "QC_plots", "QC_Discarded_Spots.pdf"))
 df <- cbind.data.frame(colData(spe), spatialCoords(spe))
 ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres)) +
-    facet_wrap(~ sample_id, nrow = 3, scales = "free") +
-    geom_point(aes(color = in_tissue), size = 0.1) +
+    facet_wrap(~ sample_id, nrow = 2, scales = "free") +
+    geom_point(aes(color = in_tissue), size = 1) +
     scale_color_manual(values = "gray85") +
     new_scale_color() +
     geom_point(data = df[df$scran_discard, , drop = FALSE],
-        aes(color = scran_discard), size = 0.1) +
+        aes(color = scran_discard), size = 1) +
     scale_color_manual(values = "red") +
     scale_y_reverse() +
     ggtitle("Spot-level QC") +
@@ -152,7 +152,7 @@ dev.off()
 spe <- spe[, !colData(spe)$scran_discard]
 dim(spe)
 
-save(spe, file = here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
+saveRDS(spe, file = here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
 ## Reproducibility information
 print("Reproducibility information:QC_spatial_DG_lifespan")
