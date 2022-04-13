@@ -131,7 +131,7 @@ dev.off()
 pdf(file = here::here("plots", "QC_plots", "QC_Discarded_Spots.pdf"))
 df <- cbind.data.frame(colData(spe), spatialCoords(spe))
 ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres)) +
-    facet_wrap(~ sample_id, nrow = 2, scales = "free") +
+    facet_wrap(~ sample_id, nrow = 2) +
     geom_point(aes(color = in_tissue), size = 1) +
     scale_color_manual(values = "gray85") +
     new_scale_color() +
