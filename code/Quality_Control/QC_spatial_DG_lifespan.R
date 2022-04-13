@@ -14,6 +14,7 @@ library(ggnewscale)
 library(ggspavis)
 library(scuttle)
 library(scran)
+library(sessioninfo)
 
 # load saved SPE object
 spe <- readRDS(here::here("processed-data", "02_build_spe", "spe.rds"))
@@ -66,7 +67,7 @@ plotSpots(spe = spe[, colData(spe)$sample_id == "Br6023"],
 dev.off()
 
 # plot histograms of QC metrics
-pdf(file = here::here("plots", "QC_plots", "QC_histograms_allSpots.pdf"), width = 8, height = 2.5)
+pdf(file = here::here("plots", "QC_plots", "QC_histograms_allSpots.pdf"), width = 8.5, height = 2.5)
 par(mfrow = c(1, 4))
 hist(colData(spe)$sum_umi, xlab = "sum", main = "UMIs per spot all donors")
 hist(colData(spe)$sum_gene, xlab = "detected", main = "Genes per spot all donors")
@@ -109,7 +110,7 @@ spe$scran_discard <-
   factor(qcfilter$discard, levels = c("TRUE", "FALSE"))
 
 # QC plot of thresholds
-pdf(file = here::here("plots", "QC_plots", "QC_thresholds_allSpots.pdf"), width = 8, height = 2.5)
+pdf(file = here::here("plots", "QC_plots", "QC_thresholds_allSpots.pdf"))
 plotQC(spe,
     type = "scatter",
     metric_x = "segmentation_info",
@@ -154,7 +155,7 @@ dev.off()
 save(spe, file = here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
 ## Reproducibility information
-print("Reproducibility information:")
+print("Reproducibility information:QC_spatial_DG_lifespan")
 Sys.time()
 proc.time()
 options(width = 120)
