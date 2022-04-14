@@ -7,17 +7,7 @@ app_dir <- here::here("code","03_shinyapp")
 ## Here we do this to keep our information hidden.
 load(file.path(app_dir, ".deploy_info.Rdata"), verbose = TRUE)
 
-## Authenticate to shinyapps.io
- # rsconnect::setAccountInfo(
- #     name = deploy_info$name,
- #     token = rsconnect::setAccountInfo(name='libd', token='82689F8C5BB51918D8BF9ED5432FD788', secret='HWc1bsbcJ88HvzGxucEiqcwfGBoTE7ed4x98wC8X'),
- #     secret = deploy_info$secret
- # )
-  rsconnect::setAccountInfo(
-      name='libd',
-      token='82689F8C5BB51918D8BF9ED5432FD788',
-      secret='HWc1bsbcJ88HvzGxucEiqcwfGBoTE7ed4x98wC8X'
-  )
+source(file.path(app_dir,"token.R"))
 
 ## You need this to enable shinyapps to install Bioconductor packages
 options(repos = BiocManager::repositories())
