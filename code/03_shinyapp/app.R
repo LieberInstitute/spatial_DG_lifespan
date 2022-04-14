@@ -8,18 +8,18 @@ options("golem.app.prod" = TRUE)
 options(repos = BiocManager::repositories())
 
 ## Load the data (all paths are relative to this script's location)
-spe_wrapper <- readRDS("spe_wrapper.rds")
-vars <- colnames(colData(spe_wrapper))
+spe <- readRDS("spe.rds")
+spe$CellCount <- spe$segmentation_info
+vars <- colnames(colData(spe))
 
 ## Deploy the website
 run_app(
-    spe_wrapper,
+    spe,
     sce_layer = NULL,
     modeling_results = NULL,
     sig_genes = NULL,
-    title = "spatialLIBD: human lymph node by 10x Genomics",
+    title = "spatial_DG_lifespan",
     spe_discrete_vars = c(vars[grep("10x_", vars)], "ManualAnnotation"),
-    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio"),
-    default_cluster = "10x_graphclust",
-    docs_path = "www"
+    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio","CellCount"),
+    default_cluster = "10x_graphclust"
   )
