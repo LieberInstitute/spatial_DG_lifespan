@@ -1,8 +1,8 @@
-#################################
+##############################################################
 # spatial_DG_lifespan project
-# Script for quality control (QC)
-# Anthony Ramnauth, Apr 12 2022
-#################################
+# Script for quality control (QC) & Normalization (log counts)
+# Anthony Ramnauth, Apr 15 2022
+##############################################################
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
@@ -151,6 +151,12 @@ dev.off()
 # remove combined set of low-quality spots
 spe <- spe[, !colData(spe)$scran_discard]
 dim(spe)
+
+# calculate logcounts (log-transformed normalized counts) and store in object
+spe <- logNormCounts(spe)
+
+# check
+assayNames(spe)
 
 saveRDS(spe, file = here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
