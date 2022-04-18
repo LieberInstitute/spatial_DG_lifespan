@@ -6,7 +6,9 @@
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
+suppressPackageStartupMessages({
 library(SpatialExperiment)
+library(spatialLIBD)
 library(here)
 library(scater)
 library(ggplot2)
@@ -15,6 +17,7 @@ library(ggspavis)
 library(scuttle)
 library(scran)
 library(sessioninfo)
+})
 
 # load saved SPE object
 spe <- readRDS(here::here("processed-data", "02_build_spe", "spe.rds"))
@@ -28,55 +31,28 @@ dim(spe)
 # check SPE object contains only spots over tissue
 table(colData(spe)$in_tissue)
 all(colData(spe)$in_tissue)
-dim(spe)
+
+
+# Plot spatial coordinates & orientation of within tissue spots
+vis_grid_clus(
+  spe = spe,
+  clustervar = "in_tissue",
+  pdf = here::here("plots", "QC_plots", "in_tissue_grid.pdf"),
+  sort_clust = FALSE,
+  colors = c("TRUE" = "green", "FALSE" = "orange"),
+  point_size = 3
+)
 
 # identify mitochondrial genes
 is_mito <- grepl("(^MT-)|(^mt-)", rowData(spe)$gene_name)
 table(is_mito)
 rowData(spe)$gene_name[is_mito]
 
-# Add Mito QC metrics using scater package
-spe <- addPerCellQCMetrics(spe, subsets = list(mito = is_mito))
+# calculate per-spot QC metrics and store in colData
+spe <- addPerCellQC(spe, subsets = list(mito = is_mito))
+head(colData(spe))
 
-# Plot spatial coordinates of within tissue spots
-pdf(file = here::here("plots", "QC_plots", "spe_Spatial_Coordinates.pdf"))
-plotSpots(spe = spe[, colData(spe)$sample_id == "Br8686"],
-    x_coord = "pxl_col_in_fullres",
-    y_coord = "pxl_row_in_fullres",
-    size = 1,
-    in_tissue = "in_tissue") +
-    ggtitle("Br8686")
-plotSpots(spe = spe[, colData(spe)$sample_id == "Br2706"],
-    x_coord = "pxl_col_in_fullres",
-    y_coord = "pxl_row_in_fullres",
-    size = 1,
-    in_tissue = "in_tissue") +
-    ggtitle("Br2706")
-plotSpots(spe = spe[, colData(spe)$sample_id == "Br3942"],
-    x_coord = "pxl_col_in_fullres",
-    y_coord = "pxl_row_in_fullres",
-    size = 1,
-    in_tissue = "in_tissue") +
-    ggtitle("Br3942")
-plotSpots(spe = spe[, colData(spe)$sample_id == "Br6023"],
-    x_coord = "pxl_col_in_fullres",
-    y_coord = "pxl_row_in_fullres",
-    size = 1,
-    in_tissue = "in_tissue") +
-    ggtitle("Br6023")
-dev.off()
-
-# plot histograms of QC metrics
-pdf(file = here::here("plots", "QC_plots", "QC_histograms_allSpots.pdf"), width = 8.5, height = 2.5)
-par(mfrow = c(1, 4))
-hist(colData(spe)$sum_umi, xlab = "sum", main = "UMIs per spot all donors")
-hist(colData(spe)$sum_gene, xlab = "detected", main = "Genes per spot all donors")
-hist(colData(spe)$subsets_mito_percent, xlab = "percent mito", main = "Percent mito UMIs all donors")
-hist(colData(spe)$segmentation_info, xlab = "no. cells", main = "No. cells per spot all donors")
-par(mfrow = c(1, 1))
-dev.off()
-
-# Create additional QC Metrics
+# Create QC Metrics
 qcstats <- perCellQCMetrics(spe, subsets = list(
   Mito = which(seqnames(spe) == "chrM"))
     )
@@ -100,10 +76,24 @@ thresh_high_subsets_mito_percent  #45.41988
 qcfilter$discard <- (qcfilter$low_lib_size | qcfilter$low_n_features) | qcfilter$high_subsets_Mito_percent
 
 # Add QC metrics to spe object
-colData(spe)$scran_low_lib_size <- as.logical(qcfilter$low_lib_size)
-colData(spe)$scran_low_n_features <- as.logical(qcfilter$low_n_features)
-colData(spe)$scran_high_subsets_Mito_percent <- as.logical(qcfilter$high_subsets_Mito_percent)
-colData(spe)$scran_discard <- as.logical(qcfilter$discard)
+spe$scran_discard <-
+        factor(qcfilter$discard, levels = c("TRUE", "FALSE"))
+    spe$scran_low_lib_size <-
+        factor(qcfilter$low_lib_size, levels = c("TRUE", "FALSE"))
+    spe$scran_low_n_features <-
+        factor(qcfilter$low_n_features, levels = c("TRUE", "FALSE"))
+    spe$scran_high_subsets_Mito_percent <-
+        factor(qcfilter$high_subsets_Mito_percent, levels = c("TRUE", "FALSE"))
+
+# plot histograms of QC metrics
+pdf(file = here::here("plots", "QC_plots", "QC_histograms_allSpots.pdf"), width = 8.5, height = 2.5)
+par(mfrow = c(1, 4))
+hist(colData(spe)$sum_umi, xlab = "sum", main = "UMIs per spot all donors")
+hist(colData(spe)$sum_gene, xlab = "detected", main = "Genes per spot all donors")
+hist(colData(spe)$subsets_mito_percent, xlab = "percent mito", main = "Percent mito UMIs all donors")
+hist(colData(spe)$segmentation_info, xlab = "no. cells", main = "No. cells per spot all donors")
+par(mfrow = c(1, 1))
+dev.off()
 
 # QC plot of thresholds
 pdf(file = here::here("plots", "QC_plots", "QC_thresholds_allSpots.pdf"))
@@ -128,25 +118,16 @@ plotQC(spe,
 dev.off()
 
 # QC plot of tissue spots discarded
-pdf(file = here::here("plots", "QC_plots", "QC_Discarded_Spots.pdf"))
-df <- cbind.data.frame(colData(spe), spatialCoords(spe))
-ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres)) +
-    facet_wrap(~ sample_id, nrow = 2) +
-    geom_point(aes(color = in_tissue), size = 1) +
-    scale_color_manual(values = "gray85") +
-    new_scale_color() +
-    geom_point(data = df[df$scran_discard, , drop = FALSE],
-        aes(color = scran_discard), size = 1) +
-    scale_color_manual(values = "red") +
-    scale_y_reverse() +
-    ggtitle("Spot-level QC") +
-    theme_bw() +
-    theme(aspect.ratio = 1,
-        panel.grid = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-dev.off()
+for(i in colnames(qcfilter)) {
+  vis_grid_clus(
+    spe = spe,
+    clustervar = paste0("scran_", i),
+    pdf = here::here("plots", "QC_plots", paste0("scran_", i, ".pdf")),
+    sort_clust = FALSE,
+    colors = c("FALSE" = "grey90", "TRUE" = "orange"),
+    point_size = 3
+  )
+}
 
 # remove combined set of low-quality spots
 spe <- spe[, !colData(spe)$scran_discard]
