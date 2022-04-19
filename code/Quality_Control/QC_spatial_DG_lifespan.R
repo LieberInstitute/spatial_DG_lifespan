@@ -39,7 +39,7 @@ vis_grid_clus(
   clustervar = "in_tissue",
   pdf = here::here("plots", "QC_plots", "in_tissue_grid.pdf"),
   sort_clust = FALSE,
-  colors = c("TRUE" = "green", "FALSE" = "orange"),
+  colors = c("TRUE" = "grey90", "FALSE" = "orange"),
   point_size = 3
 )
 
@@ -58,20 +58,12 @@ qcstats <- perCellQCMetrics(spe, subsets = list(
     )
 
 qcfilter <- DataFrame(
-    low_lib_size = isOutlier(qcstats$sum, type = "lower", log = TRUE),
-    low_n_features = isOutlier(qcstats$detected, type = "lower", log = TRUE),
-    high_subsets_Mito_percent = isOutlier(qcstats$subsets_Mito_percent, type = "higher")
+    low_lib_size = isOutlier(qcstats$sum, type = "lower", log = TRUE, batch = spe$sample_id),
+    low_n_features = isOutlier(qcstats$detected, type = "lower", log = TRUE, batch = spe$sample_id),
+    high_subsets_Mito_percent = isOutlier(qcstats$subsets_Mito_percent, type = "higher", batch = spe$sample_id)
     )
 
 colSums(as.matrix(qcfilter))
-
-# check thresholds
-thresh_low_lib_size <- attr(qcfilter$low_lib_size, "thresholds")["lower"]
-thresh_low_lib_size  #105.2499
-thresh_low_n_features <- attr(qcfilter$low_n_features, "thresholds")["lower"]
-thresh_low_n_features  #78.47502
-thresh_high_subsets_mito_percent <- attr(qcfilter$high_subsets_Mito_percent, "thresholds")["higher"]
-thresh_high_subsets_mito_percent  #45.41988
 
 qcfilter$discard <- (qcfilter$low_lib_size | qcfilter$low_n_features) | qcfilter$high_subsets_Mito_percent
 
@@ -90,31 +82,9 @@ pdf(file = here::here("plots", "QC_plots", "QC_histograms_allSpots.pdf"), width 
 par(mfrow = c(1, 4))
 hist(colData(spe)$sum_umi, xlab = "sum", main = "UMIs per spot all donors")
 hist(colData(spe)$sum_gene, xlab = "detected", main = "Genes per spot all donors")
-hist(colData(spe)$subsets_mito_percent, xlab = "percent mito", main = "Percent mito UMIs all donors")
+hist(colData(spe)$subsets_mito_percent, xlab = "percent mito", main = "Percent mito all donors")
 hist(colData(spe)$segmentation_info, xlab = "no. cells", main = "No. cells per spot all donors")
 par(mfrow = c(1, 1))
-dev.off()
-
-# QC plot of thresholds
-pdf(file = here::here("plots", "QC_plots", "QC_thresholds_allSpots.pdf"))
-plotQC(spe,
-    type = "scatter",
-    metric_x = "segmentation_info",
-    metric_y = "sum_umi",
-    threshold_y = thresh_low_lib_size) +
-    ggtitle("Sum UMI vs. Segmentation Count all donors")
-plotQC(spe,
-    type = "scatter",
-    metric_x = "segmentation_info",
-    metric_y = "sum_gene",
-    threshold_y = thresh_low_n_features) +
-    ggtitle("Sum of Genes vs. Segmentation Count all donors")
-plotQC(spe,
-    type = "scatter",
-    metric_x = "segmentation_info",
-    metric_y = "subsets_mito_percent",
-    threshold_y = thresh_high_subsets_mito_percent) +
-    ggtitle("Mito Percent vs. Segmentation Count all donors")
 dev.off()
 
 # QC plot of tissue spots discarded
