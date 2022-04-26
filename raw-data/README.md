@@ -42,19 +42,19 @@ ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-03-10_Spag0201
 
 
 ```bash
-## Br8195 (sample1)
+## Br8195 (sample5)
 mkdir Br8195
 ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-04-12_SPag033122/5v_ADR_L001*/* Br8195/
 
-## Br1412(sample2)
+## Br1412(sample6)
 mkdir Br1412
 ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-04-12_SPag033122/6v_ADR_L004*/* Br1412/
 
-## Br8667 (sample3)
+## Br8667 (sample7)
 mkdir Br8667
 ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-04-12_SPag033122/7v_ADR_L004*/* Br8667/
 
-## Br5242 (sample4)
+## Br5242 (sample8)
 mkdir Br5242
 ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-04-12_SPag033122/8v_ADR_L004*/* Br5242/
 ```
