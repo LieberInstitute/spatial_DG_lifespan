@@ -37,6 +37,7 @@ stopifnot(all(file.exists(sample_info$sample_path)))
 
 ## Define the donor info using information from
 ## https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/raw-data/sample_info/Visium_HPC_Round1_20220113_Master_ADR.xlsx
+## https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/raw-data/sample_info/Visium_HPC_Round2_20220223_Master_ADR.xlsx
 donor_info <- data.frame(
     subject = c("Br8686", "Br2706", "Br3942", "Br6023", "Br8195", "Br1412", "Br8667", "Br5242"),
     age = c(1.05, 17.94, 47.5, 76.38, 0.31, 15.16, 37.3, 73.9),
