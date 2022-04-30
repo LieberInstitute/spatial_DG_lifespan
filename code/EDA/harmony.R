@@ -83,7 +83,7 @@ pdf(file = here::here("plots", "batch_correction", "DG_tissue_plot_graph_cluster
   ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
                      color = label)) +
     facet_wrap(~ sample_id) +
-    geom_point(size = 1) +
+    geom_point(size = 0.1) +
     scale_y_reverse() +
     ggtitle("graph-based clusters pre-harmony") +
     labs(color = "cluster") +
@@ -163,7 +163,7 @@ pdf(file = here::here("plots", "batch_correction", "DG_tissue_plot_graph_cluster
   ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
                      color = label)) +
     facet_wrap(~ sample_id) +
-    geom_point(size = 1) +
+    geom_point(size = 0.1) +
     scale_y_reverse() +
     ggtitle("graph-based clusters post-harmony") +
     labs(color = "cluster") +

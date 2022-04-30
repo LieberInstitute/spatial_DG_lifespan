@@ -40,7 +40,7 @@ vis_grid_clus(
   pdf = here::here("plots", "QC_plots", "in_tissue_grid.pdf"),
   sort_clust = FALSE,
   colors = c("TRUE" = "grey90", "FALSE" = "orange"),
-  point_size = 3
+  point_size = 2
 )
 
 # identify mitochondrial genes
@@ -95,7 +95,7 @@ for(i in colnames(qcfilter)) {
     pdf = here::here("plots", "QC_plots", paste0("scran_", i, ".pdf")),
     sort_clust = FALSE,
     colors = c("FALSE" = "grey90", "TRUE" = "orange"),
-    point_size = 3
+    point_size = 2
   )
 }
 

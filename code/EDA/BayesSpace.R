@@ -77,8 +77,6 @@ vis_grid_clus(
     sample_order = unique(spe$sample_id)
 )
 
-saveRDS(spe, file = here::here("processed-data", "BayesSpace_processed_spe", "bayes_spe.rds"))
-
 ## Reproducibility information
 print("Reproducibility information:")
 Sys.time()
