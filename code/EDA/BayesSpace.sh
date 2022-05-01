@@ -25,7 +25,7 @@ module load conda_R/devel
 module list
 
 ## Edit with your job command
-Rscript BayesSpace.R
+Rscript 01_BayesSpace.R
 
 echo "**** Job ends ****"
 date
