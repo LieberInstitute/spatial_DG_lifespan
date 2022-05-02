@@ -43,7 +43,7 @@ colData(spe)$col <- colData(spe)$array_col
 message("Running spatialCluster()")
 Sys.time()
 set.seed(12345)
-spe <- spatialCluster(spe, use.dimred = "HARMONY", q = k, platform = "Visium", nrep = 5000)
+spe <- spatialCluster(spe, use.dimred = "HARMONY", q = k, platform = "Visium", nrep = 50000)
 Sys.time()
 
 
