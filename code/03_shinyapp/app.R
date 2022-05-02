@@ -13,7 +13,7 @@ spe$CellCount <- spe$segmentation_info
 vars <- colnames(colData(spe))
 
 ## Deploy the website
-run_app(
+spatialLIBD::run_app(
     spe,
     sce_layer = NULL,
     modeling_results = NULL,
