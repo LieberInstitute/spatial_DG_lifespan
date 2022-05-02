@@ -1,7 +1,7 @@
 ###############################
 # spatial_DG_lifespan project
 # Explore Reduced Dimensions
-# Anthony Ramnauth, Apr 25 2022
+# Anthony Ramnauth, May 02 2022
 ###############################
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
@@ -32,19 +32,23 @@ chosen.elbow <- findElbowPoint(percent.var)
 chosen.elbow
 
 # Elbow plot of PCs & plot Reduced Dimensions
-pdf(file = here::here("plots", "Dimensions_plots", "Dimensions_plot_spe.pdf"))
+pdf(file = here::here("plots", "Dimensions_plots", "Elbow_plot_spe.pdf"))
 plot(percent.var, xlab="PC", ylab="Variance explained (%)")
 abline(v=chosen.elbow, col="red")
+dev.off()
 
+pdf(file = here::here("plots", "Dimensions_plots", "Selected_PCA_plot_spe.pdf"))
 plotReducedDim(spe, dimred = "PCA", ncomponents = 4,
     colour_by="sample_id")
 plotReducedDim(spe, dimred = "PCA", ncomponents = 4,
     colour_by="label")
+dev.off()
+
+pdf(file = here::here("plots", "Dimensions_plots", "Selected_HARMONY_plot_spe.pdf"))
 plotReducedDim(spe, dimred = "HARMONY", ncomponents = 4,
     colour_by="sample_id")
 plotReducedDim(spe, dimred = "HARMONY", ncomponents = 4,
     colour_by="label")
-
 dev.off()
 
 ## Reproducibility information
