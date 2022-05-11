@@ -91,7 +91,19 @@ neurogenesis_markers <-
     "DPYSL5",
     "DPYSL3",
     "KLF7",
-    "BHLHE22"
+    "BHLHE22",
+    "POSTN",
+    "BTBD3",
+    "CD24",
+    "NPDC1",
+    "DNM1",
+    "NCDN",
+    "CAMK2B",
+    "NPTX1",
+    "RFX3",
+    "MALAT1",
+    "GFAP",
+    "APC"
   )
 
 # Locate the neurogenesis genes
