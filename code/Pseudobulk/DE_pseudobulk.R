@@ -11,7 +11,6 @@ suppressPackageStartupMessages({
     library(SingleCellExperiment)
     library(rafalib)
     library(limma)
-    library(sessioninfo)
 })
 
 # Load SPE
