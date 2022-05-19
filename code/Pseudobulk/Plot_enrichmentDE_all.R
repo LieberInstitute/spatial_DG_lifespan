@@ -14,7 +14,6 @@ suppressPackageStartupMessages({
     library(RColorBrewer)
     library(viridis)
     library(dplyr)
-    library(ComplexHeatmap)
     library(sessioninfo)
 })
 
@@ -22,7 +21,7 @@ suppressPackageStartupMessages({
 spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))
 
 # Load modeling results
-load(file = here::here("processed-data","pseudobulk_spe","modeling_results.rds"))
+modeling_results <- readRDS(file = here::here("processed-data","pseudobulk_spe","modeling_results.rds"))
 
 # Get mean expression
 mat <- assays(spe_pseudo)$logcounts
@@ -35,15 +34,21 @@ mat_filter = mat[gIndex, ] #subset matrix on just those genes.  want to remove l
 pvals <- modeling_results$enrichment[,9:16]
 rownames(pvals) = rownames(mat_filter)
 
+# Extract the t-statistics
 t_stat <- modeling_results$enrichment[,1:8]
 rownames(t_stat) = rownames(mat_filter)
 
+#Extract the FDRs
+fdrs <- modeling_results$enrichment[,17:24]
+rownames(fdrs) = rownames(mat_filter)
+
 ### pick top 10 genes per cluster:sample
-cluster_specific_indices = mapply(function(t, p) {
+cluster_specific_indices = mapply(function(t, p, f) {
   oo = order(t, decreasing = TRUE)[1:10]
 },
 as.data.frame(t_stat),
-as.data.frame(pvals))
+as.data.frame(pvals),
+as.data.frame(fdrs))
 cluster_ind = unique(as.numeric(cluster_specific_indices))
 
 # Add logcounts from indexed from top genes
