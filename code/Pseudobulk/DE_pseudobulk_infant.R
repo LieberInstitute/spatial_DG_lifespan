@@ -20,7 +20,6 @@ spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk
 infant_spe_pseudo <- spe_pseudo[, spe_pseudo$age_bin %in% c("Infant")]
 
 # Format spe object for DE models
-
 colData(infant_spe_pseudo) <- colData(infant_spe_pseudo)[, sort(c(
     "age",
     "sample_id",
@@ -46,31 +45,25 @@ imgData(infant_spe_pseudo) <- NULL
 # Extract the data
 mat <- assays(infant_spe_pseudo)$logcounts
 
-# Make mat_formula
-var_i = "BayesSpace"
-covars = c("age")
-mat_formula <- eval(str2expression(paste("~", "0", "+", var_i, "+", paste(covars, collapse = " + "))))
-
 # Matrix for a regression-like model
-mod <- model.matrix(mat_formula, data = colData(infant_spe_pseudo))
+mod <- with(colData(infant_spe_pseudo), model.matrix(~0 + BayesSpace))
 
 # Compute correlation
-corfit <- duplicateCorrelation(mat, mod)
+corfit <- duplicateCorrelation(mat, mod, block = infant_spe_pseudo$sample_id)
 
 ######### ENRICHMENT t-stats ######################
 
-cluster_id <- splitit(colData(infant_spe_pseudo)[,var_i])
+cluster_id <- splitit(infant_spe_pseudo$BayesSpace)
 
 eb0_list <- lapply(cluster_id, function(x) {
   res <- rep(0, ncol(infant_spe_pseudo))
   res[x] <- 1
-  res_formula <- paste("~","res","+",paste(covars, collapse=" + "))
-  m <- with(colData(infant_spe_pseudo),
-            model.matrix(eval(str2expression(res_formula))))
+  m <- model.matrix(~res)
   eBayes(
     lmFit(
       mat,
       design = m,
+      block = infant_spe_pseudo$sample_id,
       correlation = corfit$consensus.correlation
     )
   )
@@ -82,6 +75,7 @@ fit <-
   lmFit(
     mat,
     design = mod,
+    block = infant_spe_pseudo$sample_id,
     correlation = corfit$consensus.correlation
   )
 eb <- eBayes(fit)
@@ -105,18 +99,20 @@ fit_f_model <- function(spe) {
   ## Extract the data
   mat <- assays(spe)$logcounts
 
-  ## For dropping un-used levels
-  colData(spe)[[var_i]] <- as.factor(colData(spe)[[var_i]])
 
   ## Build a group model
+  mod <- with(colData(spe), model.matrix(~BayesSpace))
+  colnames(mod) <- gsub("clusters", "", colnames(mod))
+
   #already made in beginning of script #remember to adjust for age or sex
   corfit <-
-    duplicateCorrelation(mat, mod)
+    duplicateCorrelation(mat, mod, block = spe$sample_id)
   message(paste(Sys.time(), "correlation:", corfit$consensus.correlation))
   fit <-
     lmFit(
       mat,
       design = mod,
+      block = spe$sample_id,
       correlation = corfit$consensus.correlation
     )
   eb <- eBayes(fit)
@@ -132,7 +128,7 @@ f_stats <- do.call(cbind, lapply(names(ebF_list), function(i) {
     top <-
         topTable(
             x,
-            coef = 2:ncol(x$coefficients),
+            coef = 2:8,
             sort.by = "none",
             number = length(x$F)
         )

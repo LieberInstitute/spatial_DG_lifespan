@@ -98,21 +98,21 @@ modeling_results <- list(
 # Save modeling results
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "infant_modeling_results.rds"))
 
-length(which(infant_modeling_results$enrichment$fdr_1 < 0.05))
+length(which(modeling_results$enrichment$fdr_1 < 0.05))
 # 0
-length(which(infant_modeling_results$enrichment$fdr_2 < 0.05))
+length(which(modeling_results$enrichment$fdr_2 < 0.05))
 # 0
-length(which(infant_modeling_results$enrichment$fdr_3 < 0.05))
+length(which(modeling_results$enrichment$fdr_3 < 0.05))
 # 3
-length(which(infant_modeling_results$enrichment$fdr_4 < 0.05))
+length(which(modeling_results$enrichment$fdr_4 < 0.05))
 # 0
-length(which(infant_modeling_results$enrichment$fdr_5 < 0.05))
+length(which(modeling_results$enrichment$fdr_5 < 0.05))
 # 0
-length(which(infant_modeling_results$enrichment$fdr_6 < 0.05))
+length(which(modeling_results$enrichment$fdr_6 < 0.05))
 # 0
-length(which(infant_modeling_results$enrichment$fdr_7 < 0.05))
+length(which(modeling_results$enrichment$fdr_7 < 0.05))
 # 0
-length(which(infant_modeling_results$enrichment$fdr_8 < 0.05))
+length(which(modeling_results$enrichment$fdr_8 < 0.05))
 # 2239
 ## Weird that so many are zero!
 
