@@ -172,6 +172,12 @@ clust_8 = bitr(clust_8, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.d
 # In bitr(clust_8, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db") :
 #   2.48% of input gene IDs are fail to map...
 
+# Make a list for comparing cluster ontologies
+clust_compare <- list(clust_1$ENTREZID, clust_2$ENTREZID, GCL$ENTREZID, SGZ$ENTREZID,
+    CA4$ENTREZID, CA3$ENTREZID, ML$ENTREZID, clust_8$ENTREZID)
+
+names(clust_compare) <- c("clust_1", "clust_2", "GCL", "SGZ", "CA4", "CA3", "ML", "clust_8")
+
 ## GO Gene Over Representation Analysis for enrichment in sub-ontologies
 
 clust_1_CC <- enrichGO(gene = clust_1$ENTREZID,
@@ -390,131 +396,405 @@ clust_8_BP <- enrichGO(gene = clust_8$ENTREZID,
     readable = TRUE,
     )
 
+# Create Comparative Gene Over Representation Analysis for enrichment in sub-ontologies
+
+comp_CC <- compareCluster(clust_compare,
+    OrgDb = org.Hs.eg.db,
+    fun = enrichGO,
+    ont = "CC",
+    pAdjustMethod = "fdr",
+    pvalueCutoff=0.05,
+    qvalueCutoff  = 0.05,
+    readable = TRUE,
+    )
+
+comp_MF <- compareCluster(clust_compare,
+    OrgDb = org.Hs.eg.db,
+    fun = enrichGO,
+    ont = "MF",
+    pAdjustMethod = "fdr",
+    pvalueCutoff=0.05,
+    qvalueCutoff  = 0.05,
+    readable = TRUE,
+    )
+
+comp_BP <- compareCluster(clust_compare,
+    OrgDb = org.Hs.eg.db,
+    fun = enrichGO,
+    ont = "BP",
+    pAdjustMethod = "fdr",
+    pvalueCutoff=0.05,
+    qvalueCutoff  = 0.05,
+    readable = TRUE,
+    )
+
 ## Barplots of subontologies
 
-# For Cluster 1
-pdf(file = here::here("plots","pseudobulked","clust_1_GO.pdf"), width = 10, height = 10)
+options(ggrepel.max.overlaps = Inf)
 
-mutate(clust_1_CC, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+# For Cluster 1
+pdf(file = here::here("plots","pseudobulked","clust_1_GO.pdf"), width = 16, height = 10)
+
+barplot(clust_1_CC, showCategory=20, x= "GeneRatio") +
     ggtitle("cluster_1 Cellular Compartment")
-mutate(clust_1_MF, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(clust_1_MF, showCategory=20, x= "GeneRatio") +
     ggtitle("cluster_1 Molecular Function")
-mutate(clust_1_BP, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(clust_1_BP, showCategory=20, x= "GeneRatio") +
     ggtitle("cluster_1 Biological Process")
 
 clust_1_CCx <- setReadable(clust_1_CC, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(clust_1_CCx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("cluster_1 Cellular Compartment Network") +
-    theme(legend.position="none")
+cnetplot(clust_1_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_1 Cellular Compartment Network")
 clust_1_MFx <- setReadable(clust_1_MF, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(clust_1_MFx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("cluster_1 Molecular Function Network") +
-    theme(legend.position="none")
+cnetplot(clust_1_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_1 Molecular Function Network")
 clust_1_BPx <- setReadable(clust_1_BP, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(clust_1_BPx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("cluster_1 Biological Process Network") +
-    theme(legend.position="none")
+cnetplot(clust_1_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_1 Biological Process Network")
 
 clust_1_CCp <- pairwise_termsim(clust_1_CC)
-emapplot(clust_1_CCp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(clust_1_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("cluster_1 Cellular Compartment Modules")
 clust_1_MFp <- pairwise_termsim(clust_1_MF)
-emapplot(clust_1_MFp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(clust_1_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("cluster_1 Molecular Function Modules")
 clust_1_BPp <- pairwise_termsim(clust_1_BP)
-emapplot(clust_1_BPp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(clust_1_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("cluster_1 Biological Process Modules")
 
 dev.off()
 
 # For Cluster 2
-pdf(file = here::here("plots","pseudobulked","clust_2_GO.pdf"), width = 10, height = 10)
+pdf(file = here::here("plots","pseudobulked","clust_2_GO.pdf"), width = 16, height = 10)
 
-mutate(clust_2_CC, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(clust_2_CC, showCategory=20, x= "GeneRatio") +
     ggtitle("cluster_2 Cellular Compartment")
-mutate(clust_2_MF, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(clust_2_MF, showCategory=20, x= "GeneRatio") +
     ggtitle("cluster_2 Molecular Function")
-mutate(clust_2_BP, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(clust_2_BP, showCategory=20, x= "GeneRatio") +
     ggtitle("cluster_2 Biological Process")
 
 clust_2_CCx <- setReadable(clust_2_CC, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(clust_2_CCx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("cluster_2 Cellular Compartment Network") +
-    theme(legend.position="none")
+cnetplot(clust_2_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_2 Cellular Compartment Network")
 clust_2_MFx <- setReadable(clust_2_MF, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(clust_2_MFx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("cluster_2 Molecular Function Network") +
-    theme(legend.position="none")
+cnetplot(clust_2_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_2 Molecular Function Network")
 clust_2_BPx <- setReadable(clust_2_BP, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(clust_2_BPx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("cluster_2 Biological Process Network") +
-    theme(legend.position="none")
+cnetplot(clust_2_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_2 Biological Process Network")
 
 clust_2_CCp <- pairwise_termsim(clust_2_CC)
-emapplot(clust_2_CCp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(clust_2_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("cluster_2 Cellular Compartment Modules")
 clust_2_MFp <- pairwise_termsim(clust_2_MF)
-emapplot(clust_2_MFp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(clust_2_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("cluster_2 Molecular Function Modules")
 clust_2_BPp <- pairwise_termsim(clust_2_BP)
-emapplot(clust_2_BPp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(clust_2_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("cluster_2 Biological Process Modules")
 
 dev.off()
 
 # For GCL
 
-pdf(file = here::here("plots","pseudobulked","GCL_GO.pdf"), width = 10, height = 10)
+pdf(file = here::here("plots","pseudobulked","GCL_GO.pdf"), width = 16, height = 10)
 
-mutate(GCL_CC, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(GCL_CC, showCategory=20, x= "GeneRatio") +
     ggtitle("GCL Cellular Compartment")
-mutate(GCL_MF, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(GCL_MF, showCategory=20, x= "GeneRatio") +
     ggtitle("GCL Molecular Function")
-mutate(GCL_BP, qscore = -log(p.adjust, base=10)) %>%
-    barplot(x="qscore", showCategory=20) +
+barplot(GCL_BP, showCategory=20, x= "GeneRatio") +
     ggtitle("GCL Biological Process")
 
 GCL_CCx <- setReadable(GCL_CC, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(GCL_CCx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("GCL Cellular Compartment Network") +
-    theme(legend.position="none")
+cnetplot(GCL_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("GCL Cellular Compartment Network")
 GCL_MFx <- setReadable(GCL_MF, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(GCL_MFx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("GCL Molecular Function Network") +
-    theme(legend.position="none")
+cnetplot(GCL_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("GCL Molecular Function Network")
 GCL_BPx <- setReadable(GCL_BP, 'org.Hs.eg.db', 'ENTREZID')
-cnetplot(GCL_BPx, showCategory = 20, colorEdge = TRUE, cex_label_category = 0.5,
-    cex_label_gene = 0.5) +
-    ggtitle("GCL Biological Process Network") +
-    theme(legend.position="none")
+cnetplot(GCL_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("GCL Biological Process Network")
 
 GCL_CCp <- pairwise_termsim(GCL_CC)
-emapplot(GCL_CCp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(GCL_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("GCL Cellular Compartment Modules")
 GCL_MFp <- pairwise_termsim(GCL_MF)
-emapplot(GCL_MFp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(GCL_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("GCL Molecular Function Modules")
 GCL_BPp <- pairwise_termsim(GCL_BP)
-emapplot(GCL_BPp, showCategory = 20, color = "p.adjust", cex_label_category = 0.5) +
+emapplot(GCL_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
     ggtitle("GCL Biological Process Modules")
 
 dev.off()
+
+# For SGZ
+
+pdf(file = here::here("plots","pseudobulked","SGZ_GO.pdf"), width = 16, height = 10)
+
+barplot(SGZ_CC, showCategory=20, x= "GeneRatio") +
+    ggtitle("SGZ Cellular Compartment")
+barplot(SGZ_MF, showCategory=20, x= "GeneRatio") +
+    ggtitle("SGZ Molecular Function")
+barplot(SGZ_BP, showCategory=20, x= "GeneRatio") +
+    ggtitle("SGZ Biological Process")
+
+SGZ_CCx <- setReadable(SGZ_CC, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(SGZ_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("SGZ Cellular Compartment Network")
+SGZ_MFx <- setReadable(SGZ_MF, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(SGZ_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("SGZ Molecular Function Network")
+SGZ_BPx <- setReadable(SGZ_BP, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(SGZ_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("SGZ Biological Process Network")
+
+SGZ_CCp <- pairwise_termsim(SGZ_CC)
+emapplot(SGZ_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("SGZ Cellular Compartment Modules")
+SGZ_MFp <- pairwise_termsim(SGZ_MF)
+emapplot(SGZ_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("SGZ Molecular Function Modules")
+SGZ_BPp <- pairwise_termsim(SGZ_BP)
+emapplot(SGZ_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("SGZ Biological Process Modules")
+
+dev.off()
+
+# For CA4
+
+pdf(file = here::here("plots","pseudobulked","CA4_GO.pdf"), width = 16, height = 10)
+
+barplot(CA4_CC, showCategory=20, x= "GeneRatio") +
+    ggtitle("CA4 Cellular Compartment")
+barplot(CA4_MF, showCategory=20, x= "GeneRatio") +
+    ggtitle("CA4 Molecular Function")
+barplot(CA4_BP, showCategory=20, x= "GeneRatio") +
+    ggtitle("CA4 Biological Process")
+
+CA4_CCx <- setReadable(CA4_CC, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(CA4_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("CA4 Cellular Compartment Network")
+CA4_MFx <- setReadable(CA4_MF, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(CA4_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("CA4 Molecular Function Network")
+CA4_BPx <- setReadable(CA4_BP, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(CA4_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("CA4 Biological Process Network")
+
+CA4_CCp <- pairwise_termsim(CA4_CC)
+emapplot(CA4_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("CA4 Cellular Compartment Modules")
+CA4_MFp <- pairwise_termsim(CA4_MF)
+emapplot(CA4_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("CA4 Molecular Function Modules")
+CA4_BPp <- pairwise_termsim(CA4_BP)
+emapplot(CA4_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("CA4 Biological Process Modules")
+
+dev.off()
+
+# For CA3
+
+pdf(file = here::here("plots","pseudobulked","CA3_GO.pdf"), width = 16, height = 10)
+
+barplot(CA3_CC, showCategory=20, x= "GeneRatio") +
+    ggtitle("CA3 Cellular Compartment")
+barplot(CA3_MF, showCategory=20, x= "GeneRatio") +
+    ggtitle("CA3 Molecular Function")
+barplot(CA3_BP, showCategory=20, x= "GeneRatio") +
+    ggtitle("CA3 Biological Process")
+
+CA3_CCx <- setReadable(CA3_CC, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(CA3_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("CA3 Cellular Compartment Network")
+CA3_MFx <- setReadable(CA3_MF, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(CA3_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("CA3 Molecular Function Network")
+CA3_BPx <- setReadable(CA3_BP, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(CA3_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("CA3 Biological Process Network")
+
+CA3_CCp <- pairwise_termsim(CA3_CC)
+emapplot(CA3_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("CA3 Cellular Compartment Modules")
+CA3_MFp <- pairwise_termsim(CA3_MF)
+emapplot(CA3_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("CA3 Molecular Function Modules")
+CA3_BPp <- pairwise_termsim(CA3_BP)
+emapplot(CA3_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("CA3 Biological Process Modules")
+
+dev.off()
+
+# For Molecular Layer
+
+pdf(file = here::here("plots","pseudobulked","ML_GO.pdf"), width = 16, height = 10)
+
+barplot(ML_CC, showCategory=20, x= "GeneRatio") +
+    ggtitle("ML Cellular Compartment")
+barplot(ML_MF, showCategory=20, x= "GeneRatio") +
+    ggtitle("ML Molecular Function")
+barplot(ML_BP, showCategory=20, x= "GeneRatio") +
+    ggtitle("ML Biological Process")
+
+ML_CCx <- setReadable(ML_CC, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(ML_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("ML Cellular Compartment Network")
+ML_MFx <- setReadable(ML_MF, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(ML_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("ML Molecular Function Network")
+ML_BPx <- setReadable(ML_BP, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(ML_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("ML Biological Process Network")
+
+ML_CCp <- pairwise_termsim(ML_CC)
+emapplot(ML_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("ML Cellular Compartment Modules")
+ML_MFp <- pairwise_termsim(ML_MF)
+emapplot(ML_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("ML Molecular Function Modules")
+ML_BPp <- pairwise_termsim(ML_BP)
+emapplot(ML_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("ML Biological Process Modules")
+
+dev.off()
+
+# For Cluster 8
+
+pdf(file = here::here("plots","pseudobulked","clust_8_GO.pdf"), width = 16, height = 10)
+
+barplot(clust_8_CC, showCategory=20, x= "GeneRatio") +
+    ggtitle("cluster_8 Cellular Compartment")
+barplot(clust_8_MF, showCategory=20, x= "GeneRatio") +
+    ggtitle("cluster_8 Molecular Function")
+barplot(clust_8_BP, showCategory=20, x= "GeneRatio") +
+    ggtitle("cluster_8 Biological Process")
+
+clust_8_CCx <- setReadable(clust_8_CC, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(clust_8_CCx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_8 Cellular Compartment Network")
+clust_8_MFx <- setReadable(clust_8_MF, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(clust_8_MFx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_8 Molecular Function Network")
+clust_8_BPx <- setReadable(clust_8_BP, 'org.Hs.eg.db', 'ENTREZID')
+cnetplot(clust_8_BPx, showCategory = 20, colorEdge = TRUE, cex_category = 0.2,
+    cex_gene = 0.1, cex_label_category = 0.4, cex_label_gene = 0.2,
+    shadow_text = "category", layout = "kk") +
+    ggtitle("cluster_8 Biological Process Network")
+
+clust_8_CCp <- pairwise_termsim(clust_8_CC)
+emapplot(clust_8_CCp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("cluster_8 Cellular Compartment Modules")
+clust_8_MFp <- pairwise_termsim(clust_8_MF)
+emapplot(clust_8_MFp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("cluster_8 Molecular Function Modules")
+clust_8_BPp <- pairwise_termsim(clust_8_BP)
+emapplot(clust_8_BPp, showCategory = 20, color = "p.adjust",
+    cex_label_category = 0.5, layout = "kk") +
+    ggtitle("cluster_8 Biological Process Modules")
+
+dev.off()
+
+# For comparing clusters
+
+pdf(file = here::here("plots","pseudobulked","comparative_GO.pdf"), width = 20, height = 20)
+
+dotplot(comp_CC, showCategory=10) +
+    theme(axis.text.y = element_text(size = 9)) +
+    ggtitle("Comparative GO Cellular Compartment")
+dotplot(comp_MF, showCategory=10) +
+    theme(axis.text.y = element_text(size = 9)) +
+    ggtitle("Comparative GO Molecular Function")
+dotplot(comp_BP, showCategory=10) +
+    theme(axis.text.y = element_text(size = 9)) +
+    ggtitle("Comparative GO Biological Process")
+
+comp_CC <- pairwise_termsim(comp_CC)
+emapplot(comp_CC, showCategory = 20, color = "p.adjust",
+    pie = "count", cex_category = 5, layout = "kk") +
+    ggtitle("Comparative GO Cellular Compartment Modules")
+comp_MF <- pairwise_termsim(comp_MF)
+emapplot(comp_MF, showCategory = 20, color = "p.adjust",
+    pie = "count", cex_category = 5, layout = "kk") +
+    ggtitle("Comparative GO Molecular Function Modules")
+comp_BP <- pairwise_termsim(comp_BP)
+emapplot(comp_BP, showCategory = 20, color = "p.adjust",
+    pie = "count", cex_category = 5, layout = "kk") +
+    ggtitle("Comparative GO Biological Process Modules")
+
+dev.off()
+
 
 ## Reproducibility information
 print("Reproducibility information:")
