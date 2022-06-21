@@ -56,8 +56,8 @@ rownames(exprs_heatmap) <- rowData(spe_pseudo)$gene_name[cluster_ind]
 colnames(exprs_heatmap) = paste("logcount", 1:16, sep = "")
 
 # Add annotations for pheatmap
-cluster_labels <- as.vector(c(rep("Cluster_1", 2), rep("Cluster_2", 2), rep("Cluster_3", 2), rep("Cluster_4", 2),
-    rep("Cluster_5", 2), rep("Cluster_6", 2), rep("Cluster_7", 2), rep("Cluster_8", 2)))
+cluster_labels <- as.vector(c(rep("Cluster_1", 2), rep("Cluster_2", 2), rep("GCL", 2), rep("SGZ", 2),
+    rep("CA4", 2), rep("CA3", 2), rep("ML", 2), rep("Cluster_8", 2)))
 
 annotation_col <- data.frame(BayesSpace = factor(c(cluster_labels)))
 rownames(annotation_col) = colnames(exprs_heatmap)
@@ -68,14 +68,14 @@ names(ann_colors$BayesSpace) <- unique(annotation_col$BayesSpace)
 pdf(file = here::here("plots","pseudobulked","elderly_enrichment_heatmap.pdf"), width = 8, height = 8)
 pheatmap(
     exprs_heatmap,
-    cluster_rows = FALSE,
-    cluster_cols = FALSE,
+    cluster_rows = TRUE,
+    cluster_cols = TRUE,
     show_colnames = FALSE,
     color = inferno(20),
     annotation_col = annotation_col,
     annotation_colors = ann_colors,
     fontsize_row = 9,
-    main = "logcounts for enrichment model of Elderly top 10 genes/cluster",
+    main = "logcounts from enrichment model of Elderly top 10 genes/cluster",
 )
 dev.off()
 

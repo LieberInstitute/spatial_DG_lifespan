@@ -70,7 +70,7 @@ pheatmap(
     annotation_col = annotation_col,
     annotation_colors = ann_colors,
     fontsize_row = 9,
-    main = "logcounts for enrichment model excluding infants with genes for neurogenesis regulation per cluster",
+    main = "logcounts from enrichment model excluding infants with genes for neurogenesis regulation per cluster",
 )
 dev.off()
 
