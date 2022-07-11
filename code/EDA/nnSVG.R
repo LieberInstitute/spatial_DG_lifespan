@@ -1,63 +1,77 @@
 ###################################################
 # spatial_DG_lifespan project
 # nnSVG per Capture Area
-# Anthony Ramnauth, June 29 2022
+# Anthony Ramnauth, July 11 2022
 ###################################################
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
 suppressPackageStartupMessages({
     library(SpatialExperiment)
+    library(spatialLIBD)
+    library(here)
+    library(scater)
     library(scran)
     library(nnSVG)
+    library(dplyr)
+    library(tidyr)
     library(ggplot2)
-    library(here)
     library(sessioninfo)
 })
 
-spe <- readRDS(here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
+spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-## subset spe data based on Capture Area
-Br1412_spe <- spe[, spe$sample_id %in% c("Br1412")]
+# Load BayesSpace clusters onto spe object
+spe <- cluster_import(
+  spe,
+  cluster_dir = here::here("processed-data", "clustering_results"),
+  prefix = ""
+)
 
-# filter low-expressed and mitochondrial genes
-# using default filtering parameters
-Br1412_spe <- filter_genes(Br1412_spe)
+# Create vector of samples for nnSVG on whole tissue
+sample_ids <- c(
+    "Br1412",
+    "Br2706",
+    "Br3942",
+    "Br5242",
+    "Br6023",
+    "Br8195",
+    "Br8667",
+    "Br8686"
+)
 
-# set seed for reproducibility
-set.seed(12345)
+# Run nnSVG once per sample whole tissue and store lists of top SVGs
 
-# using a single thread in this example
-Br1412_spe <- nnSVG(Br1412_spe)
+res_list <- as.list(rep(NA, length(sample_ids)))
+names(res_list) <- sample_ids
 
-# number of significant SVGs
-table(rowData(Br1412_spe)$padj <= 0.05)
+for (s in seq_along(sample_ids)) {
 
-# show results for top n SVGs
-rowData(Br1412_spe)[order(rowData(Br1412_spe)$rank)[1:10], ]
+  # select sample_id
+  ix <- colData(spe)$sample_id == sample_ids[s]
+  spe_sub <- spe[, ix]
 
-# plot spatial expression of top-ranked SVG
-ix <- which(rowData(Br1412_spe)$rank == 1)
+  # run nnSVG filtering for mitochondrial gene and low-expressed genes
+  spe_sub <- filter_genes(spe_sub)
 
-ix_name <- rowData(Br1412_spe)$gene_name[ix]
+  # re-calculate logcounts after filtering
+  spe_sub <- logNormCounts(spe_sub)
 
-ix_name
+  # run nnSVG
+  set.seed(12345)
+  spe_sub <- nnSVG(spe_sub, n_threads = 8)
 
-df <- as.data.frame(
-  cbind(spatialCoords(Br1412_spe),
-        expr = counts(Br1412_spe)[ix, ]))
+  # store whole tissue results
+  res_list[[s]] <- rowData(spe_sub)
+}
 
-ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres, color = expr)) +
-  geom_point(size = 0.8) +
-  coord_fixed() +
-  scale_y_reverse() +
-  scale_color_gradient(low = "gray90", high = "blue", name = "counts") +
-  ggtitle(ix_name) +
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
+# directory to save whole tissue results
+dir_outputs <- here("processed-data", "nnSVG", "whole_tissue")
+
+# save whole tissue nnSVG results
+fn_out <- file.path(dir_outputs, "DG_nnSVG_results")
+saveRDS(res_list, paste0(fn_out, ".rds"))
+save(res_list, file = paste0(fn_out, ".RData"))
 
 
 ## Reproducibility information
