@@ -1,8 +1,8 @@
-###################################################
+################################################################
 # spatial_DG_lifespan project
-# nnSVG per Capture Area
+# nnSVG per Capture Area, Average ranks, & BayesSpace covariates
 # Anthony Ramnauth, July 11 2022
-###################################################
+################################################################
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
@@ -72,6 +72,46 @@ dir_outputs <- here("processed-data", "nnSVG", "whole_tissue")
 fn_out <- file.path(dir_outputs, "DG_nnSVG_results")
 saveRDS(res_list, paste0(fn_out, ".rds"))
 save(res_list, file = paste0(fn_out, ".RData"))
+
+# create model matrix for BayesSpace clusters covariates
+X <- model.matrix(~ colData(spe)$bayesSpace_harmony_8)
+dim(X)
+head(X)
+stopifnot(nrow(X) == ncol(spe))
+
+# Run nnSVG once per sample whole tissue with BayesSpace covariates
+
+bayes_res_list <- as.list(rep(NA, length(sample_ids)))
+names(bayes_res_list) <- sample_ids
+
+for (s in seq_along(sample_ids)) {
+
+  # select sample_id
+  ix <- colData(spe)$sample_id == sample_ids[s]
+  spe_subS <- spe[, ix]
+
+  # run nnSVG filtering for mitochondrial gene and low-expressed genes
+  spe_subS <- filter_genes(spe_subS)
+
+  # re-calculate logcounts after filtering
+  spe_subS <- logNormCounts(spe_subS)
+
+  # run nnSVG
+  set.seed(12345)
+  spe_subS <- nnSVG(spe_subS, X = X, n_threads = 8)
+
+  # store whole tissue results
+  bayes_res_list[[s]] <- rowData(spe_subS)
+}
+
+
+# directory to save bayesspace informed results
+dir_outputs <- here("processed-data", "nnSVG", "BayesSpace")
+
+# save bayesspace nnSVG results
+fn_out <- file.path(dir_outputs, "DG_BayesSpace_nnSVG_results")
+saveRDS(bayes_res_list, paste0(fn_out, ".rds"))
+save(bayes_res_list, file = paste0(fn_out, ".RData"))
 
 
 ## Reproducibility information
