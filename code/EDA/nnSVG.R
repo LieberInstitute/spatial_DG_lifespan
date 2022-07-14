@@ -73,11 +73,6 @@ fn_out <- file.path(dir_outputs, "DG_nnSVG_results")
 saveRDS(res_list, paste0(fn_out, ".rds"))
 save(res_list, file = paste0(fn_out, ".RData"))
 
-# create model matrix for BayesSpace clusters covariates
-X <- model.matrix(~ colData(spe)$bayesSpace_harmony_8)
-dim(X)
-head(X)
-stopifnot(nrow(X) == ncol(spe))
 
 # Run nnSVG once per sample whole tissue with BayesSpace covariates
 
@@ -95,6 +90,12 @@ for (s in seq_along(sample_ids)) {
 
   # re-calculate logcounts after filtering
   spe_subS <- logNormCounts(spe_subS)
+
+  # create model matrix for BayesSpace clusters covariates
+  X <- model.matrix(~ colData(spe_subS)$bayesSpace_harmony_8)
+  dim(X)
+  head(X)
+  stopifnot(nrow(X) == ncol(spe_subS))
 
   # run nnSVG
   set.seed(12345)
