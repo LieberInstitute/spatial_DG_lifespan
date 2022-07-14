@@ -23,6 +23,41 @@ res_list <- readRDS(here::here("processed-data", "nnSVG", "whole_tissue", "DG_nn
 
 names(res_list)
 
+# Number of significant SVGs per capture area
+
+table(res_list$Br1412$padj <= 0.05)
+# FALSE  TRUE
+#  275  4404
+
+table(res_list$Br2706$padj <= 0.05)
+# FALSE  TRUE
+#   111  1358
+
+table(res_list$Br3942$padj <= 0.05)
+# FALSE  TRUE
+#   189  1589
+
+table(res_list$Br5242$padj <= 0.05)
+# FALSE  TRUE
+#   428  2239
+
+table(res_list$Br6023$padj <= 0.05)
+# FALSE  TRUE
+#   297  1997
+
+table(res_list$Br8195$padj <= 0.05)
+# FALSE  TRUE
+#   234  2068
+
+table(res_list$Br8667$padj <= 0.05)
+# FALSE  TRUE
+#   154  1956
+
+table(res_list$Br8686$padj <= 0.05)
+# FALSE  TRUE
+#   165   830
+
+
 # Create vector of samples for nnSVG on whole tissue
 sample_ids <- c(
     "Br1412",
@@ -73,6 +108,13 @@ df_summary <- data.frame(
 )
 
 head(df_summary, 20)
+
+# directory to save whole tissue results
+dir_outputs <- here("processed-data", "nnSVG", "whole_tissue")
+fn_out <- file.path(dir_outputs, "DG_nnSVG_avgrank")
+
+# Export summary as .csv file
+write.csv(df_summary,fn_out, row.names = FALSE)
 
 # Plot top 20 SVGs
 SVGs <- c(
