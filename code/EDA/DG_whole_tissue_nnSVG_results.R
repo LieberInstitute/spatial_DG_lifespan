@@ -85,11 +85,11 @@ rownames(res_ranks) <- rownames(spe)
 colnames(res_ranks) <- sample_ids
 
 for (s in seq_along(sample_ids)) {
-  stopifnot(colnames(res_ranks)[s] == sample_ids[s])
-  stopifnot(colnames(res_ranks)[s] == names(res_list)[s])
+    stopifnot(colnames(res_ranks)[s] == sample_ids[s])
+    stopifnot(colnames(res_ranks)[s] == names(res_list)[s])
 
-  rownames_s <- rownames(res_list[[s]])
-  res_ranks[rownames_s, s] <- res_list[[s]][, "rank"]
+    rownames_s <- rownames(res_list[[s]])
+    res_ranks[rownames_s, s] <- res_list[[s]][, "rank"]
 }
 
 # keep only genes that were not filtered out in all samples
@@ -100,11 +100,11 @@ avg_ranks <- sort(rowMeans(res_ranks))
 
 # summary table
 df_summary <- data.frame(
-  gene_id = names(avg_ranks),
-  gene_name = rowData(spe)[names(avg_ranks), "gene_name"],
-  gene_type = rowData(spe)[names(avg_ranks), "gene_type"],
-  avg_rank = unname(avg_ranks),
-  row.names = names(avg_ranks)
+    gene_id = names(avg_ranks),
+    gene_name = rowData(spe)[names(avg_ranks), "gene_name"],
+    gene_type = rowData(spe)[names(avg_ranks), "gene_type"],
+    avg_rank = unname(avg_ranks),
+    row.names = names(avg_ranks)
 )
 
 head(df_summary, 20)
@@ -114,7 +114,7 @@ dir_outputs <- here("processed-data", "nnSVG", "whole_tissue")
 fn_out <- file.path(dir_outputs, "DG_nnSVG_avgrank")
 
 # Export summary as .csv file
-write.csv(df_summary,fn_out, row.names = FALSE)
+write.csv(df_summary, fn_out, row.names = FALSE)
 
 # Plot top 20 SVGs
 SVGs <- c(
@@ -144,18 +144,20 @@ SVGs <- c(
 SVG_search <- rowData(spe)$gene_search[match(SVGs, rowData(spe)$gene_name)]
 
 for (i in SVG_search) {
-  vis_grid_gene(
-    spe = spe,
-    geneid = i,
-    pdf = here::here("plots", "nnSVG", "whole_tissue", paste0(gsub("; ", "_", i), ".pdf")),
-    assayname = "logcounts",
-    minCount = 0,
-    cont_colors = c("aquamarine4",
-    "springgreen", "goldenrod", "red"),
-    alpha = 0.5,
-    sample_order = unique(spe$sample_id),
-    point_size = 2
-  )
+    vis_grid_gene(
+        spe = spe,
+        geneid = i,
+        pdf = here::here("plots", "nnSVG", "whole_tissue", paste0(gsub("; ", "_", i), ".pdf")),
+        assayname = "logcounts",
+        minCount = 0,
+        cont_colors = c(
+            "aquamarine4",
+            "springgreen", "goldenrod", "red"
+        ),
+        alpha = 0.5,
+        sample_order = unique(spe$sample_id),
+        point_size = 2
+    )
 }
 
 

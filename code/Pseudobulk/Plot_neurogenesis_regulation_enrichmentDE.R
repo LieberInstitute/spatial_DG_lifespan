@@ -26,10 +26,11 @@ spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk
 rownames(spe_pseudo) <- rowData(spe_pseudo)$gene_name
 
 # Load modeling results
-modeling_results <- readRDS(file = here::here("processed-data","pseudobulk_spe","modeling_results.rds"))
+modeling_results <- readRDS(file = here::here("processed-data", "pseudobulk_spe", "modeling_results.rds"))
 
 # Vector of GO "Regulation of Neurogenesis" term genes
-GO_genes = as.character(c("PLXNA4", "SEMA3C", "SEMA5A", "TIAM1", "ULK1", "EPHA7",
+GO_genes <- as.character(c(
+    "PLXNA4", "SEMA3C", "SEMA5A", "TIAM1", "ULK1", "EPHA7",
     "SEMA5B", "CX3CL1", "DBN1", "PARP6", "EFNB3", "BAIAP2", "NPTN", "BDNF", "NUMBL",
     "NDEL1", "MBD1", "XRCC5", "DAB1", "CDK5R1", "SS18L2", "CAMK2B", "PRKCI", "ZFYVE27",
     "HDAC2", "SEMA6C", "NTRK3", "PPP3CA", "SORL1", "NEURL1", "BHLHB9", "SS18L1", "GDI1",
@@ -41,23 +42,26 @@ GO_genes = as.character(c("PLXNA4", "SEMA3C", "SEMA5A", "TIAM1", "ULK1", "EPHA7"
     "NOTCH1", "GPER1", "SERPINF1", "NTRK2", "VEGFA", "SPP1", "LYN", "GJC2", "ETV5",
     "SEMA6A", "NKX6-2", "PTPRD", "TGM2", "HMGB2", "LRP4", "PAX6", "TSPO", "DAAM2",
     "IL6ST", "MAG", "CTDSP1", "OLIG2", "METRN", "SERPINE2", "SOX10", "PTN", "YAP1",
-    "GPR37L1", "SOX8", "B2M", "KIT", "RND2", "BMP7"))
+    "GPR37L1", "SOX8", "B2M", "KIT", "RND2", "BMP7"
+))
 
 # Add logcounts for all clusters from GO term genes
-neurogen_heatmap <- assays(spe_pseudo)[[2]][GO_genes,]
-colnames(neurogen_heatmap) = paste("logcount", 1:64, sep = "")
+neurogen_heatmap <- assays(spe_pseudo)[[2]][GO_genes, ]
+colnames(neurogen_heatmap) <- paste("logcount", 1:64, sep = "")
 
 # Add annotations for pheatmap
-cluster_labels <- as.vector(c(rep("Cluster_1", 8), rep("Cluster_2", 8), rep("GCL", 8), rep("SGZ", 8),
-    rep("CA4", 8), rep("CA3", 8), rep("ML", 8), rep("Cluster_8", 8)))
+cluster_labels <- as.vector(c(
+    rep("Cluster_1", 8), rep("Cluster_2", 8), rep("GCL", 8), rep("SGZ", 8),
+    rep("CA4", 8), rep("CA3", 8), rep("ML", 8), rep("Cluster_8", 8)
+))
 
 annotation_col <- data.frame(BayesSpace = factor(c(cluster_labels)))
-rownames(annotation_col) = colnames(neurogen_heatmap)
-ann_colors = list(BayesSpace = brewer.pal(8, "Set1"))
+rownames(annotation_col) <- colnames(neurogen_heatmap)
+ann_colors <- list(BayesSpace = brewer.pal(8, "Set1"))
 names(ann_colors$BayesSpace) <- unique(annotation_col$BayesSpace)
 
 # Plot heatmap of logcounts for clusters and samples
-pdf(file = here::here("plots","pseudobulked","neurogenesis_regulation_enrichment_heatmap_all.pdf"), width = 12, height = 12)
+pdf(file = here::here("plots", "pseudobulked", "neurogenesis_regulation_enrichment_heatmap_all.pdf"), width = 12, height = 12)
 pheatmap(
     neurogen_heatmap,
     cluster_rows = TRUE,
@@ -77,4 +81,3 @@ Sys.time()
 proc.time()
 options(width = 120)
 session_info()
-

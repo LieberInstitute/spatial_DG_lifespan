@@ -25,9 +25,9 @@ spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_sp
 
 # Load BayesSpace clusters onto spe object
 spe <- cluster_import(
-  spe,
-  cluster_dir = here::here("processed-data", "clustering_results"),
-  prefix = ""
+    spe,
+    cluster_dir = here::here("processed-data", "clustering_results"),
+    prefix = ""
 )
 
 spe$bayesSpace_harmony_8 <- as.factor(spe$bayesSpace_harmony_8)
@@ -159,8 +159,10 @@ infant_spe <- spe[, spe$age_bin %in% c("Infant")]
 # Markers for Infant age bin
 ############################
 
-infant_markers <- findMarkers(infant_spe, groups = infant_spe$bayesSpace_harmony_8,
-    test = "binom", direction = "up")
+infant_markers <- findMarkers(infant_spe,
+    groups = infant_spe$bayesSpace_harmony_8,
+    test = "binom", direction = "up"
+)
 
 # Returns a list with one DataFrame per cluster
 infant_markers
@@ -179,8 +181,10 @@ dev.off()
 infant_top_genes_3 <- head(rownames(infant_interesting_3))
 
 pdf(file = here::here("plots", "top_BayesSpace_genes", "top_genes_for_Infant_cluster3_GCL.pdf"))
-plotExpression(infant_spe, x = "bayesSpace_harmony_8", features = infant_top_genes_3,
-    colour_by = "bayesSpace_harmony_8")
+plotExpression(infant_spe,
+    x = "bayesSpace_harmony_8", features = infant_top_genes_3,
+    colour_by = "bayesSpace_harmony_8"
+)
 dev.off()
 
 
@@ -198,8 +202,10 @@ dev.off()
 infant_top_genes_4 <- head(rownames(infant_interesting_4))
 
 pdf(file = here::here("plots", "top_BayesSpace_genes", "top_genes_for_Infant_cluster4_SGZ.pdf"))
-plotExpression(infant_spe, x = "bayesSpace_harmony_8", features = infant_top_genes_4,
-    colour_by = "bayesSpace_harmony_8")
+plotExpression(infant_spe,
+    x = "bayesSpace_harmony_8", features = infant_top_genes_4,
+    colour_by = "bayesSpace_harmony_8"
+)
 dev.off()
 
 
@@ -217,8 +223,10 @@ dev.off()
 infant_top_genes_5 <- head(rownames(infant_interesting_5))
 
 pdf(file = here::here("plots", "top_BayesSpace_genes", "top_genes_for_Infant_cluster5_CA4.pdf"))
-plotExpression(infant_spe, x = "bayesSpace_harmony_8", features = infant_top_genes_5,
-    colour_by = "bayesSpace_harmony_8")
+plotExpression(infant_spe,
+    x = "bayesSpace_harmony_8", features = infant_top_genes_5,
+    colour_by = "bayesSpace_harmony_8"
+)
 dev.off()
 
 
@@ -236,8 +244,10 @@ dev.off()
 infant_top_genes_7 <- head(rownames(infant_interesting_7))
 
 pdf(file = here::here("plots", "top_BayesSpace_genes", "top_genes_for_Infant_cluster7_ML.pdf"))
-plotExpression(infant_spe, x = "bayesSpace_harmony_8", features = infant_top_genes_7,
-    colour_by = "bayesSpace_harmony_8")
+plotExpression(infant_spe,
+    x = "bayesSpace_harmony_8", features = infant_top_genes_7,
+    colour_by = "bayesSpace_harmony_8"
+)
 dev.off()
 
 # Plot log-fold changes for one cluster over all other clusters
@@ -254,8 +264,10 @@ dev.off()
 infant_top_genes_6 <- head(rownames(infant_interesting_6))
 
 pdf(file = here::here("plots", "top_BayesSpace_genes", "top_genes_for_Infant_cluster6_CA3.pdf"))
-plotExpression(infant_spe, x = "bayesSpace_harmony_8", features = infant_top_genes_6,
-    colour_by = "bayesSpace_harmony_8")
+plotExpression(infant_spe,
+    x = "bayesSpace_harmony_8", features = infant_top_genes_6,
+    colour_by = "bayesSpace_harmony_8"
+)
 dev.off()
 
 

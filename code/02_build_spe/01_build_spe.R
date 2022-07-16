@@ -16,7 +16,7 @@ dir.create(dir_rdata, showWarnings = FALSE, recursive = TRUE)
 ## Define some info for the samples
 sample_info <- data.frame(
     sample_id = c(
-        "Br8686", 
+        "Br8686",
         "Br2706",
         "Br3942",
         "Br6023",
@@ -55,7 +55,7 @@ sample_info <- merge(sample_info, donor_info)
 Sys.time()
 spe <- read10xVisiumWrapper(
     sample_info$sample_path,
-    sample_info$sample_id, 
+    sample_info$sample_id,
     type = "sparse",
     data = "raw",
     images = c("lowres", "hires", "detected", "aligned"),
@@ -138,7 +138,7 @@ spe_raw <- spe
 saveRDS(spe_raw, file.path(dir_rdata, "spe_raw.rds"))
 
 ## Size in Gb
-lobstr::obj_size(spe_raw) 
+lobstr::obj_size(spe_raw)
 # 1.651702
 
 
@@ -153,7 +153,7 @@ if (any(colSums(counts(spe)) == 0)) {
     dim(spe)
 }
 
-lobstr::obj_size(spe) 
+lobstr::obj_size(spe)
 # 1.534376
 
 saveRDS(spe, file.path(dir_rdata, "spe.rds"))

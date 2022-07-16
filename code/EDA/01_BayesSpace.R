@@ -35,7 +35,7 @@ metadata(spe)$BayesSpace.data <- list(platform = "Visium", is.enhanced = FALSE)
 # summary(colData(spe)$array_row)
 # summary(colData(spe)$array_col)
 auto_offset_row <- as.numeric(factor(unique(spe$sample_id))) * 100
-names(auto_offset_row) <-unique(spe$sample_id)
+names(auto_offset_row) <- unique(spe$sample_id)
 colData(spe)$row <- colData(spe)$array_row + auto_offset_row[spe$sample_id]
 colData(spe)$col <- colData(spe)$array_col
 
@@ -47,14 +47,14 @@ spe <- spatialCluster(spe, use.dimred = "HARMONY", q = k, platform = "Visium", n
 Sys.time()
 
 
-spe$bayesSpace_temp<-spe$spatial.cluster
+spe$bayesSpace_temp <- spe$spatial.cluster
 bayesSpace_name <- paste0("bayesSpace_harmony_", k)
 colnames(colData(spe))[ncol(colData(spe))] <- bayesSpace_name
 
 cluster_export(
     spe,
     bayesSpace_name,
-    cluster_dir = here::here("processed-data", "clustering_results" )
+    cluster_dir = here::here("processed-data", "clustering_results")
 )
 
 ## Visualize BayesSpace results
@@ -64,7 +64,7 @@ names(cols) <- sort(unique(spe$spatial.cluster))
 vis_grid_clus(
     spe = spe,
     clustervar = paste0("BayesSpace_harmony_k", k),
-    pdf_file = here("plots", "BayesSpace_plots", paste0("vis_grid_clus_BayesSpace_k",k,".pdf")),
+    pdf_file = here("plots", "BayesSpace_plots", paste0("vis_grid_clus_BayesSpace_k", k, ".pdf")),
     sort_clust = FALSE,
     colors = cols,
     spatial = FALSE,

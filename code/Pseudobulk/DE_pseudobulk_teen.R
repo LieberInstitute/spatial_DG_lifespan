@@ -46,7 +46,7 @@ imgData(teen_spe_pseudo) <- NULL
 mat <- assays(teen_spe_pseudo)$logcounts
 
 # Matrix for a regression-like model
-mod <- with(colData(teen_spe_pseudo), model.matrix(~0 + BayesSpace))
+mod <- with(colData(teen_spe_pseudo), model.matrix(~ 0 + BayesSpace))
 
 # Compute correlation
 corfit <- duplicateCorrelation(mat, mod, block = teen_spe_pseudo$sample_id)
@@ -56,39 +56,39 @@ corfit <- duplicateCorrelation(mat, mod, block = teen_spe_pseudo$sample_id)
 cluster_id <- splitit(teen_spe_pseudo$BayesSpace)
 
 eb0_list <- lapply(cluster_id, function(x) {
-  res <- rep(0, ncol(teen_spe_pseudo))
-  res[x] <- 1
-  m <- model.matrix(~res)
-  eBayes(
-    lmFit(
-      mat,
-      design = m,
-      block = teen_spe_pseudo$sample_id,
-      correlation = corfit$consensus.correlation
+    res <- rep(0, ncol(teen_spe_pseudo))
+    res[x] <- 1
+    m <- model.matrix(~res)
+    eBayes(
+        lmFit(
+            mat,
+            design = m,
+            block = teen_spe_pseudo$sample_id,
+            correlation = corfit$consensus.correlation
+        )
     )
-  )
 })
 
 ######### PAIRWISE t-stats ######################
 
 fit <-
-  lmFit(
-    mat,
-    design = mod,
-    block = teen_spe_pseudo$sample_id,
-    correlation = corfit$consensus.correlation
-  )
+    lmFit(
+        mat,
+        design = mod,
+        block = teen_spe_pseudo$sample_id,
+        correlation = corfit$consensus.correlation
+    )
 eb <- eBayes(fit)
 
 ## Define the contrasts for each group vs another one
 cluster_combs <- combn(colnames(mod), 2)
 cluster_constrats <- apply(cluster_combs, 2, function(x) {
-  z <- paste(x, collapse = "-")
-  makeContrasts(contrasts = z, levels = mod)
+    z <- paste(x, collapse = "-")
+    makeContrasts(contrasts = z, levels = mod)
 })
 rownames(cluster_constrats) <- colnames(mod)
 colnames(cluster_constrats) <-
-  apply(cluster_combs, 2, paste, collapse = "-")
+    apply(cluster_combs, 2, paste, collapse = "-")
 eb_contrasts <- eBayes(contrasts.fit(fit, cluster_constrats))
 
 ######### ANOVA t-stats ######################
@@ -96,31 +96,31 @@ eb_contrasts <- eBayes(contrasts.fit(fit, cluster_constrats))
 ## From layer_specificity.R
 fit_f_model <- function(spe) {
 
-  ## Extract the data
-  mat <- assays(spe)$logcounts
+    ## Extract the data
+    mat <- assays(spe)$logcounts
 
 
-  ## Build a group model
-  mod <- with(colData(spe), model.matrix(~BayesSpace))
-  colnames(mod) <- gsub("clusters", "", colnames(mod))
+    ## Build a group model
+    mod <- with(colData(spe), model.matrix(~BayesSpace))
+    colnames(mod) <- gsub("clusters", "", colnames(mod))
 
-  #already made in beginning of script #remember to adjust for age or sex
-  corfit <-
-    duplicateCorrelation(mat, mod, block = spe$sample_id)
-  message(paste(Sys.time(), "correlation:", corfit$consensus.correlation))
-  fit <-
-    lmFit(
-      mat,
-      design = mod,
-      block = spe$sample_id,
-      correlation = corfit$consensus.correlation
-    )
-  eb <- eBayes(fit)
-  return(eb)
+    # already made in beginning of script #remember to adjust for age or sex
+    corfit <-
+        duplicateCorrelation(mat, mod, block = spe$sample_id)
+    message(paste(Sys.time(), "correlation:", corfit$consensus.correlation))
+    fit <-
+        lmFit(
+            mat,
+            design = mod,
+            block = spe$sample_id,
+            correlation = corfit$consensus.correlation
+        )
+    eb <- eBayes(fit)
+    return(eb)
 }
 
 ebF_list <-
-  lapply(list("full" = teen_spe_pseudo), fit_f_model)
+    lapply(list("full" = teen_spe_pseudo), fit_f_model)
 
 ## Extract F-statistics
 f_stats <- do.call(cbind, lapply(names(ebF_list), function(i) {
@@ -150,7 +150,8 @@ rownames(f_stats) <- NULL
 head(f_stats)
 
 save(f_stats, eb0_list, eb_contrasts,
-    file = here::here("processed-data", "pseudobulk_spe", "teen_bayesspace_cluster_modeling_results.Rdata"))
+    file = here::here("processed-data", "pseudobulk_spe", "teen_bayesspace_cluster_modeling_results.Rdata")
+)
 
 
 ## Reproducibility information

@@ -46,12 +46,14 @@ spe <- runUMAP(spe, dimred = "PCA")
 colnames(reducedDim(spe, "UMAP")) <- c("UMAP1", "UMAP2")
 
 # Plot UMAP before harmony
-pdf(file=here::here("plots", "batch_correction", "DG_UMAP_spe.pdf"))
-ggplot(data.frame(reducedDim(spe, "UMAP")),
-       aes(x = UMAP1, y = UMAP2, color = factor(spe$sample_id), alpha = 0.5)) +
-  geom_point() +
-  labs(color = "Capture Area") +
-  theme_bw()
+pdf(file = here::here("plots", "batch_correction", "DG_UMAP_spe.pdf"))
+ggplot(
+    data.frame(reducedDim(spe, "UMAP")),
+    aes(x = UMAP1, y = UMAP2, color = factor(spe$sample_id), alpha = 0.5)
+) +
+    geom_point() +
+    labs(color = "Capture Area") +
+    theme_bw()
 
 dev.off()
 
@@ -65,33 +67,39 @@ table(clus)
 colLabels(spe) <- factor(clus)
 
 # Plot graph-based clustering
-df <- cbind.data.frame(colData(spe), spatialCoords(spe),
-                       reducedDim(spe, "PCA"), reducedDim(spe, "UMAP"))
+df <- cbind.data.frame(
+    colData(spe), spatialCoords(spe),
+    reducedDim(spe, "PCA"), reducedDim(spe, "UMAP")
+)
 
 pdf(file = here::here("plots", "batch_correction", "DG_graph_clusters_spe.pdf"))
 ggplot(df, aes(x = UMAP1, y = UMAP2, color = label)) +
-  geom_point(size = 0.2, alpha = 0.5) +
-  ggtitle("Graph-based clustering: no batch correction") +
-  guides(color = guide_legend(override.aes = list(size = 2, alpha = 1))) +
-  theme_bw() +
-  theme(panel.grid = element_blank())
+    geom_point(size = 0.2, alpha = 0.5) +
+    ggtitle("Graph-based clustering: no batch correction") +
+    guides(color = guide_legend(override.aes = list(size = 2, alpha = 1))) +
+    theme_bw() +
+    theme(panel.grid = element_blank())
 
 dev.off()
 
 # Plot pre-harmony integrated graph-based clusters onto tissue
 pdf(file = here::here("plots", "batch_correction", "DG_tissue_plot_graph_clusters_spe.pdf"))
-  ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-                     color = label)) +
-    facet_wrap(~ sample_id) +
+ggplot(df, aes(
+    x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+    color = label
+)) +
+    facet_wrap(~sample_id) +
     geom_point(size = 0.1) +
     scale_y_reverse() +
     ggtitle("graph-based clusters pre-harmony") +
     labs(color = "cluster") +
     theme_bw() +
-    theme(panel.grid = element_blank(),
-          axis.title = element_blank(),
-          axis.text = element_blank(),
-          axis.ticks = element_blank())
+    theme(
+        panel.grid = element_blank(),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank()
+    )
 
 dev.off()
 
@@ -104,9 +112,9 @@ stopifnot(nrow(pca_matrix) == length(sample_ids))
 
 set.seed(123)
 harmony_embeddings <- HarmonyMatrix(
-  pca_matrix,
-  meta_data = sample_ids,
-  do_pca = FALSE
+    pca_matrix,
+    meta_data = sample_ids,
+    do_pca = FALSE
 )
 
 colnames(harmony_embeddings) <- paste0("HARMONY", seq_len(ncol(harmony_embeddings)))
@@ -116,22 +124,24 @@ head(harmony_embeddings, 2)
 
 # store in SPE object
 reducedDims(spe) <- list(
-  PCA = reducedDim(spe, "PCA"),
-  UMAP = reducedDim(spe, "UMAP"),
-  HARMONY = harmony_embeddings
+    PCA = reducedDim(spe, "PCA"),
+    UMAP = reducedDim(spe, "UMAP"),
+    HARMONY = harmony_embeddings
 )
 
 # Run UMAP on harmony integrated spe object
 spe <- runUMAP(spe, dimred = "HARMONY", name = "UMAP.HARMONY")
-colnames(reducedDim(spe, "UMAP.HARMONY")) = c("UMAP1", "UMAP2")
+colnames(reducedDim(spe, "UMAP.HARMONY")) <- c("UMAP1", "UMAP2")
 
 # Plot UMAP after harmony
-pdf(file=here::here("plots", "batch_correction", "DG_UMAP_harmony.pdf"))
-ggplot(data.frame(reducedDim(spe, "UMAP.HARMONY")),
-       aes(x = UMAP1, y = UMAP2, color = factor(spe$sample_id), alpha = 0.5)) +
-  geom_point() +
-  labs(color = "Capture Area") +
-  theme_bw()
+pdf(file = here::here("plots", "batch_correction", "DG_UMAP_harmony.pdf"))
+ggplot(
+    data.frame(reducedDim(spe, "UMAP.HARMONY")),
+    aes(x = UMAP1, y = UMAP2, color = factor(spe$sample_id), alpha = 0.5)
+) +
+    geom_point() +
+    labs(color = "Capture Area") +
+    theme_bw()
 
 dev.off()
 
@@ -145,33 +155,39 @@ table(clus)
 colLabels(spe) <- factor(clus)
 
 # Plot graph-based clustering
-df <- cbind.data.frame(colData(spe), spatialCoords(spe),
-                       reducedDim(spe, "HARMONY"), reducedDim(spe, "UMAP.HARMONY"))
+df <- cbind.data.frame(
+    colData(spe), spatialCoords(spe),
+    reducedDim(spe, "HARMONY"), reducedDim(spe, "UMAP.HARMONY")
+)
 
-pdf(file=here::here("plots", "batch_correction", "DG_graph_clusters_harmony.pdf"))
+pdf(file = here::here("plots", "batch_correction", "DG_graph_clusters_harmony.pdf"))
 ggplot(df, aes(x = UMAP1, y = UMAP2, color = label)) +
-  geom_point(size = 0.2, alpha = 0.5) +
-  ggtitle("Graph-based clustering: batch corrected") +
-  guides(color = guide_legend(override.aes = list(size = 2, alpha = 1))) +
-  theme_bw() +
-  theme(panel.grid = element_blank())
+    geom_point(size = 0.2, alpha = 0.5) +
+    ggtitle("Graph-based clustering: batch corrected") +
+    guides(color = guide_legend(override.aes = list(size = 2, alpha = 1))) +
+    theme_bw() +
+    theme(panel.grid = element_blank())
 
 dev.off()
 
 # Plot post-harmony integrated graph-based clusters onto tissue
 pdf(file = here::here("plots", "batch_correction", "DG_tissue_plot_graph_clusters_harmony.pdf"))
-  ggplot(df, aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-                     color = label)) +
-    facet_wrap(~ sample_id) +
+ggplot(df, aes(
+    x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+    color = label
+)) +
+    facet_wrap(~sample_id) +
     geom_point(size = 0.1) +
     scale_y_reverse() +
     ggtitle("graph-based clusters post-harmony") +
     labs(color = "cluster") +
     theme_bw() +
-    theme(panel.grid = element_blank(),
-          axis.title = element_blank(),
-          axis.text = element_blank(),
-          axis.ticks = element_blank())
+    theme(
+        panel.grid = element_blank(),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank()
+    )
 
 dev.off()
 

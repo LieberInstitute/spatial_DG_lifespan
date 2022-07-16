@@ -7,16 +7,16 @@
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
 suppressPackageStartupMessages({
-library(SpatialExperiment)
-library(spatialLIBD)
-library(here)
-library(scater)
-library(ggplot2)
-library(ggnewscale)
-library(ggspavis)
-library(scuttle)
-library(scran)
-library(sessioninfo)
+    library(SpatialExperiment)
+    library(spatialLIBD)
+    library(here)
+    library(scater)
+    library(ggplot2)
+    library(ggnewscale)
+    library(ggspavis)
+    library(scuttle)
+    library(scran)
+    library(sessioninfo)
 })
 
 # load saved SPE object
@@ -35,12 +35,12 @@ all(colData(spe)$in_tissue)
 
 # Plot spatial coordinates & orientation of within tissue spots
 vis_grid_clus(
-  spe = spe,
-  clustervar = "in_tissue",
-  pdf = here::here("plots", "QC_plots", "in_tissue_grid.pdf"),
-  sort_clust = FALSE,
-  colors = c("TRUE" = "grey90", "FALSE" = "orange"),
-  point_size = 2
+    spe = spe,
+    clustervar = "in_tissue",
+    pdf = here::here("plots", "QC_plots", "in_tissue_grid.pdf"),
+    sort_clust = FALSE,
+    colors = c("TRUE" = "grey90", "FALSE" = "orange"),
+    point_size = 2
 )
 
 # identify mitochondrial genes
@@ -54,14 +54,14 @@ head(colData(spe))
 
 # Create QC Metrics
 qcstats <- perCellQCMetrics(spe, subsets = list(
-  Mito = which(seqnames(spe) == "chrM"))
-    )
+    Mito = which(seqnames(spe) == "chrM")
+))
 
 qcfilter <- DataFrame(
     low_lib_size = isOutlier(qcstats$sum, type = "lower", log = TRUE, batch = spe$sample_id),
     low_n_features = isOutlier(qcstats$detected, type = "lower", log = TRUE, batch = spe$sample_id),
     high_subsets_Mito_percent = isOutlier(qcstats$subsets_Mito_percent, type = "higher", batch = spe$sample_id)
-    )
+)
 
 colSums(as.matrix(qcfilter))
 
@@ -69,13 +69,13 @@ qcfilter$discard <- (qcfilter$low_lib_size | qcfilter$low_n_features) | qcfilter
 
 # Add QC metrics to spe object
 spe$scran_discard <-
-        factor(qcfilter$discard, levels = c("TRUE", "FALSE"))
-    spe$scran_low_lib_size <-
-        factor(qcfilter$low_lib_size, levels = c("TRUE", "FALSE"))
-    spe$scran_low_n_features <-
-        factor(qcfilter$low_n_features, levels = c("TRUE", "FALSE"))
-    spe$scran_high_subsets_Mito_percent <-
-        factor(qcfilter$high_subsets_Mito_percent, levels = c("TRUE", "FALSE"))
+    factor(qcfilter$discard, levels = c("TRUE", "FALSE"))
+spe$scran_low_lib_size <-
+    factor(qcfilter$low_lib_size, levels = c("TRUE", "FALSE"))
+spe$scran_low_n_features <-
+    factor(qcfilter$low_n_features, levels = c("TRUE", "FALSE"))
+spe$scran_high_subsets_Mito_percent <-
+    factor(qcfilter$high_subsets_Mito_percent, levels = c("TRUE", "FALSE"))
 
 # plot histograms of QC metrics
 pdf(file = here::here("plots", "QC_plots", "QC_histograms_allSpots.pdf"), width = 8.5, height = 2.5)
@@ -88,15 +88,15 @@ par(mfrow = c(1, 1))
 dev.off()
 
 # QC plot of tissue spots discarded
-for(i in colnames(qcfilter)) {
-  vis_grid_clus(
-    spe = spe,
-    clustervar = paste0("scran_", i),
-    pdf = here::here("plots", "QC_plots", paste0("scran_", i, ".pdf")),
-    sort_clust = FALSE,
-    colors = c("FALSE" = "grey90", "TRUE" = "orange"),
-    point_size = 2
-  )
+for (i in colnames(qcfilter)) {
+    vis_grid_clus(
+        spe = spe,
+        clustervar = paste0("scran_", i),
+        pdf = here::here("plots", "QC_plots", paste0("scran_", i, ".pdf")),
+        sort_clust = FALSE,
+        colors = c("FALSE" = "grey90", "TRUE" = "orange"),
+        point_size = 2
+    )
 }
 
 # remove combined set of low-quality spots

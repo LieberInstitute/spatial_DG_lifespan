@@ -24,52 +24,56 @@ spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk
 spe_pseudo <- spe_pseudo[, !spe_pseudo$age_bin %in% c("Infant")]
 
 # Load modeling results
-modeling_results <- readRDS(file = here::here("processed-data","pseudobulk_spe","NOinfant_modeling_results.rds"))
+modeling_results <- readRDS(file = here::here("processed-data", "pseudobulk_spe", "NOinfant_modeling_results.rds"))
 
 # Get mean expression
 mat <- assays(spe_pseudo)$logcounts
 
 # filter
-gIndex = rowMeans(mat) > 0.2 # find the genes for which the mean expression is greater than 0.2
-mat_filter = mat[gIndex, ] #subset matrix on just those genes.  want to remove lowly expressed genes.
+gIndex <- rowMeans(mat) > 0.2 # find the genes for which the mean expression is greater than 0.2
+mat_filter <- mat[gIndex, ] # subset matrix on just those genes.  want to remove lowly expressed genes.
 
 # Extract the p-values
-pvals <- modeling_results$enrichment[,9:16]
-rownames(pvals) = rownames(mat_filter)
+pvals <- modeling_results$enrichment[, 9:16]
+rownames(pvals) <- rownames(mat_filter)
 
 # Extract the t-statistics
-t_stat <- modeling_results$enrichment[,1:8]
-rownames(t_stat) = rownames(mat_filter)
+t_stat <- modeling_results$enrichment[, 1:8]
+rownames(t_stat) <- rownames(mat_filter)
 
-#Extract the FDRs
-fdrs <- modeling_results$enrichment[,17:24]
-rownames(fdrs) = rownames(mat_filter)
+# Extract the FDRs
+fdrs <- modeling_results$enrichment[, 17:24]
+rownames(fdrs) <- rownames(mat_filter)
 
 ### pick top 10 genes per cluster:sample
-cluster_specific_indices = mapply(function(t, p, f) {
-  oo = order(t, decreasing = TRUE)[1:10]
-},
-as.data.frame(t_stat),
-as.data.frame(pvals),
-as.data.frame(fdrs))
-cluster_ind = unique(as.numeric(cluster_specific_indices))
+cluster_specific_indices <- mapply(
+    function(t, p, f) {
+        oo <- order(t, decreasing = TRUE)[1:10]
+    },
+    as.data.frame(t_stat),
+    as.data.frame(pvals),
+    as.data.frame(fdrs)
+)
+cluster_ind <- unique(as.numeric(cluster_specific_indices))
 
 # Add logcounts from indexed from top genes
-exprs_heatmap <- assays(spe_pseudo)[[2]][cluster_ind,]
+exprs_heatmap <- assays(spe_pseudo)[[2]][cluster_ind, ]
 rownames(exprs_heatmap) <- rowData(spe_pseudo)$gene_name[cluster_ind]
-colnames(exprs_heatmap) = paste("logcount", 1:48, sep = "")
+colnames(exprs_heatmap) <- paste("logcount", 1:48, sep = "")
 
 # Add annotations for pheatmap
-cluster_labels <- as.vector(c(rep("Cluster_1", 6), rep("Cluster_2", 6), rep("Cluster_3", 6), rep("Cluster_4", 6),
-    rep("Cluster_5", 6), rep("Cluster_6", 6), rep("Cluster_7", 6), rep("Cluster_8", 6)))
+cluster_labels <- as.vector(c(
+    rep("Cluster_1", 6), rep("Cluster_2", 6), rep("Cluster_3", 6), rep("Cluster_4", 6),
+    rep("Cluster_5", 6), rep("Cluster_6", 6), rep("Cluster_7", 6), rep("Cluster_8", 6)
+))
 
 annotation_col <- data.frame(BayesSpace = factor(c(cluster_labels)))
-rownames(annotation_col) = colnames(exprs_heatmap)
-ann_colors = list(BayesSpace = brewer.pal(8, "Set1"))
+rownames(annotation_col) <- colnames(exprs_heatmap)
+ann_colors <- list(BayesSpace = brewer.pal(8, "Set1"))
 names(ann_colors$BayesSpace) <- unique(annotation_col$BayesSpace)
 
 # Plot heatmap of logcounts for clusters and samples
-pdf(file = here::here("plots","pseudobulked","NOinfant_enrichment_heatmap_all.pdf"), width = 8, height = 8)
+pdf(file = here::here("plots", "pseudobulked", "NOinfant_enrichment_heatmap_all.pdf"), width = 8, height = 8)
 pheatmap(
     exprs_heatmap,
     cluster_rows = FALSE,

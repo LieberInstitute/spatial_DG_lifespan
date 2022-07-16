@@ -20,6 +20,6 @@ spatialLIBD::run_app(
     sig_genes = NULL,
     title = "spatial_DG_lifespan",
     spe_discrete_vars = c(vars[grep("10x_", vars)], "ManualAnnotation"),
-    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio","CellCount"),
+    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio", "CellCount"),
     default_cluster = "10x_graphclust"
-  )
+)
