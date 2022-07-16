@@ -138,7 +138,7 @@ spe_raw <- spe
 saveRDS(spe_raw, file.path(dir_rdata, "spe_raw.rds"))
 
 ## Size in Gb
-lobstr::obj_size(spe_raw) / 1024^3
+lobstr::obj_size(spe_raw) 
 # 1.651702
 
 
@@ -153,7 +153,7 @@ if (any(colSums(counts(spe)) == 0)) {
     dim(spe)
 }
 
-lobstr::obj_size(spe) / 1024^3
+lobstr::obj_size(spe) 
 # 1.534376
 
 saveRDS(spe, file.path(dir_rdata, "spe.rds"))
