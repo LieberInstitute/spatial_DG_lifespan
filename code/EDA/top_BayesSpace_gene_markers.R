@@ -44,6 +44,164 @@ markers <- findMarkers(spe, groups = spe$bayesSpace_harmony_8, test = "binom", d
 # Returns a list with one DataFrame per cluster
 markers
 
+#################################################
+# Make .csv lists of top markers for each cluster
+#################################################
+
+# Make a data frame summary
+binom_1 <- markers[[1]]
+clust_1_binom_summary <- data.frame(
+    gene_name = rownames(binom_1),
+    rank = binom_1$Top,
+    p_val = binom_1$p.value,
+    FDR = binom_1$FDR
+)
+
+clust_1_binom_summary <- clust_1_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+dir_outputs <- here("processed-data", "BayesSpace")
+fn_out_1 <- file.path(dir_outputs, "Clust_1_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(clust_1_binom_summary,fn_out_1, row.names = FALSE)
+
+# Make a data frame summary
+binom_2 <- markers[[2]]
+clust_2_binom_summary <- data.frame(
+    gene_name = rownames(binom_2),
+    rank = binom_2$Top,
+    p_val = binom_2$p.value,
+    FDR = binom_2$FDR
+)
+
+clust_2_binom_summary <- clust_2_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+fn_out_2 <- file.path(dir_outputs, "Clust_2_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(clust_2_binom_summary,fn_out_2, row.names = FALSE)
+
+# Make a data frame summary
+binom_GCL <- markers[[3]]
+GCL_binom_summary <- data.frame(
+    gene_name = rownames(binom_GCL),
+    rank = binom_GCL$Top,
+    p_val = binom_GCL$p.value,
+    FDR = binom_GCL$FDR
+)
+
+GCL_binom_summary <- GCL_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+fn_out_GCL <- file.path(dir_outputs, "GCL_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(GCL_binom_summary,fn_out_GCL, row.names = FALSE)
+
+# Make a data frame summary
+binom_SGZ <- markers[[4]]
+SGZ_binom_summary <- data.frame(
+    gene_name = rownames(binom_SGZ),
+    rank = binom_SGZ$Top,
+    p_val = binom_SGZ$p.value,
+    FDR = binom_SGZ$FDR
+)
+
+SGZ_binom_summary <- SGZ_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+fn_out_SGZ <- file.path(dir_outputs, "SGZ_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(SGZ_binom_summary,fn_out_SGZ, row.names = FALSE)
+
+# Make a data frame summary
+binom_CA4 <- markers[[5]]
+CA4_binom_summary <- data.frame(
+    gene_name = rownames(binom_CA4),
+    rank = binom_CA4$Top,
+    p_val = binom_CA4$p.value,
+    FDR = binom_CA4$FDR
+)
+
+CA4_binom_summary <- CA4_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+fn_out_CA4 <- file.path(dir_outputs, "CA4_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(CA4_binom_summary,fn_out_CA4, row.names = FALSE)
+
+# Make a data frame summary
+binom_CA3 <- markers[[6]]
+CA3_binom_summary <- data.frame(
+    gene_name = rownames(binom_CA3),
+    rank = binom_CA3$Top,
+    p_val = binom_CA3$p.value,
+    FDR = binom_CA3$FDR
+)
+
+CA3_binom_summary <- CA3_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+fn_out_CA3 <- file.path(dir_outputs, "CA3_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(CA3_binom_summary,fn_out_CA3, row.names = FALSE)
+
+# Make a data frame summary
+binom_ML <- markers[[7]]
+ML_binom_summary <- data.frame(
+    gene_name = rownames(binom_ML),
+    rank = binom_ML$Top,
+    p_val = binom_ML$p.value,
+    FDR = binom_ML$FDR
+)
+
+ML_binom_summary <- ML_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+fn_out_ML <- file.path(dir_outputs, "ML_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(ML_binom_summary,fn_out_ML, row.names = FALSE)
+
+# Make a data frame summary
+binom_8 <- markers[[8]]
+clust_8_binom_summary <- data.frame(
+    gene_name = rownames(binom_8),
+    rank = binom_8$Top,
+    p_val = binom_8$p.value,
+    FDR = binom_8$FDR
+)
+
+clust_8_binom_summary <- clust_8_binom_summary %>%
+    filter(FDR < 0.05) %>%
+    filter(p_val < 0.05)
+
+# directory to save lists
+fn_out_8 <- file.path(dir_outputs, "Clust_8_binomial_test_results")
+
+# Export summary as .csv file
+write.csv(clust_8_binom_summary,fn_out_8, row.names = FALSE)
+
+
 # Plot log-fold changes for one cluster over all other clusters
 # Selecting cluster 3 since BayesSpace tissue plot looks like GCL
 interesting_3 <- markers[[3]]
@@ -51,7 +209,8 @@ best_set_3 <- interesting_3[interesting_3$Top <= 5, ]
 logFCs_3 <- getMarkerEffects(best_set_3)
 
 pdf(file = here::here("plots", "top_BayesSpace_genes", "logFC_for_Cluster3_GCL.pdf"))
-pheatmap(logFCs_3, breaks = seq(-5, 5, length.out = 101), main = "logFC for Cluster 3 (GCL)")
+pheatmap(logFCs_3, cluster_rows = TRUE, cluster_cols = TRUE, breaks = seq(-5, 5, length.out = 101),
+    main = "logFC for Cluster 3 (GCL) from binomial test")
 dev.off()
 
 # Plot log-transformed normalized expression of top genes for GCL cluster
