@@ -23,7 +23,11 @@ sample_info <- data.frame(
         "Br8195",
         "Br1412",
         "Br8667",
-        "Br5242"
+        "Br5242",
+        "Br6129",
+        "Br6299",
+        "Br8851",
+        "Br5699"
     )
 )
 sample_info$subject <- sample_info$sample_id
@@ -39,13 +43,13 @@ stopifnot(all(file.exists(sample_info$sample_path)))
 ## https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/raw-data/sample_info/Visium_HPC_Round1_20220113_Master_ADR.xlsx
 ## https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/raw-data/sample_info/Visium_HPC_Round2_20220223_Master_ADR.xlsx
 donor_info <- data.frame(
-    subject = c("Br8686", "Br2706", "Br3942", "Br6023", "Br8195", "Br1412", "Br8667", "Br5242"),
-    age = c(1.05, 17.94, 47.5, 76.38, 0.31, 15.16, 37.3, 73.9),
-    sex = c("M", "M", "M", "M", "M", "F", "F", "M"),
-    race = c("EA/CAUC", "EA/CAUC", "EA/CAUC", "EA/CAUC", "AA", "EA/CAUC", "EA/CAUC", "EA/CAUC"),
-    diagnosis = "Control",
-    rin = c(7.1, 8.1, 7.3, 8.4, 7, 7.9, 6.9, 7.4),
-    pmi = c(33.5, 33, 27.5, 17.5, 29, 26, 13.5, 21)
+    subject = c("Br8686", "Br2706", "Br3942", "Br6023", "Br8195", "Br1412", "Br8667", "Br5242","Br6129", "Br6299", "Br8851", "Br5699"),
+    age = c(1.05, 17.94, 47.5, 76.38, 0.31, 15.16, 37.3, 73.9, 1.84, 18.41, 42.18, 92.25),
+    sex = c("M", "M", "M", "M", "M", "F", "F", "M", "M", "M", "M", "M"),
+    race = c("EA/CAUC", "EA/CAUC", "EA/CAUC", "EA/CAUC", "AA", "EA/CAUC", "EA/CAUC", "EA/CAUC", "AA", "AA", "EA/CAUC", "AA"),
+    diagnosis = c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Substance", "DepNOS", "Control"),
+    rin = c(7.1, 8.1, 7.3, 8.4, 7, 7.9, 6.9, 7.4, 8.3, 6.7, 8.2, 7.9 ),
+    pmi = c(33.5, 33, 27.5, 17.5, 29, 26, 13.5, 21, 15.5, 29.5, 17.5, 21.5)
 )
 
 ## Combine sample info with the donor info
