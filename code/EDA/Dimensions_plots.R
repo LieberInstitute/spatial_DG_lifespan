@@ -39,23 +39,15 @@ dev.off()
 
 pdf(file = here::here("plots", "Dimensions_plots", "Selected_PCA_plot_spe.pdf"))
 plotReducedDim(spe,
-    dimred = "PCA", ncomponents = 4,
+    dimred = "PCA", ncomponents = 6,
     colour_by = "sample_id", point_size = 0.2, point_alpha = 0.5
-)
-plotReducedDim(spe,
-    dimred = "PCA", ncomponents = 4,
-    colour_by = "label", point_size = 0.2, point_alpha = 0.5
 )
 dev.off()
 
 pdf(file = here::here("plots", "Dimensions_plots", "Selected_HARMONY_plot_spe.pdf"))
 plotReducedDim(spe,
-    dimred = "HARMONY", ncomponents = 4,
+    dimred = "HARMONY", ncomponents = 6,
     colour_by = "sample_id", point_size = 0.2, point_alpha = 0.5
-)
-plotReducedDim(spe,
-    dimred = "HARMONY", ncomponents = 4,
-    colour_by = "label", point_size = 0.2, point_alpha = 0.5
 )
 dev.off()
 

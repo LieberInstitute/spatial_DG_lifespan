@@ -83,7 +83,7 @@ par(mfrow = c(1, 4))
 hist(colData(spe)$sum_umi, xlab = "sum", main = "UMIs per spot all donors")
 hist(colData(spe)$sum_gene, xlab = "detected", main = "Genes per spot all donors")
 hist(colData(spe)$subsets_mito_percent, xlab = "percent mito", main = "Percent mito all donors")
-hist(colData(spe)$segmentation_info, xlab = "no. cells", main = "No. cells per spot all donors")
+hist(colData(spe)$count, xlab = "no. cells", main = "No. cells per spot all donors")
 par(mfrow = c(1, 1))
 dev.off()
 
@@ -105,6 +105,12 @@ spe <- spe[, colData(spe)$scran_discard == FALSE]
 dim(spe)
 
 # calculate logcounts (log-transformed normalized counts) and store in object
+spe$scran_quick_cluster <- quickCluster(spe, block = spe$sample_id)
+spe <- computeSumFactors(spe, clusters = spe$scran_quick_cluster)
+table(spe$scran_quick_cluster)
+summary(sizeFactors(spe))
+hist(sizeFactors(spe), breaks = 20)
+
 spe <- logNormCounts(spe)
 
 # check

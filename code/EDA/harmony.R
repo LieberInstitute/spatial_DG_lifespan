@@ -27,7 +27,7 @@ dir.create(dir_plots, showWarnings = FALSE, recursive = TRUE)
 spe <- readRDS(here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
 # Feature selection
-dec <- modelGeneVar(spe)
+dec <- modelGeneVar(spe, block = spe$sample_id)
 top_hvgs <- getTopHVGs(dec, prop = 0.1)
 length(top_hvgs)
 head(top_hvgs)
