@@ -648,3 +648,14 @@ Running spatialCluster()
 [1] "2022-08-17 21:29:18 EDT"
 Neighbors were identified for 47084 out of 47084 spots.
 Fitting model...
+Calculating labels using iterations 1000 through 50000.
+[1] "2022-08-18 13:51:17 EDT"
+Overwriting 'spe$key'. Set 'overwrite = FALSE' if you do not want to overwrite it.
+Warning message:
+In dir.create(outdir, recursive = TRUE) :
+  '/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/processed-data/clustering_results/bayesSpace_harmony_3' already exists
+Error in `[.data.frame`(d, , clustervar) : undefined columns selected
+Calls: vis_grid_clus ... is_missing -> get_colors -> unique -> [ -> [.data.frame
+Execution halted
+**** Job ends ****
+Thu Aug 18 13:51:33 EDT 2022
