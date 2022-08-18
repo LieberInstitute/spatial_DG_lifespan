@@ -645,3 +645,6 @@ Currently Loaded Modules:
  
 
 Running spatialCluster()
+[1] "2022-08-18 14:02:19 EDT"
+Neighbors were identified for 47084 out of 47084 spots.
+Fitting model...
