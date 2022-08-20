@@ -128,7 +128,7 @@ f_stats <- do.call(cbind, lapply(names(ebF_list), function(i) {
     top <-
         topTable(
             x,
-            coef = 2:8,
+            coef = 2:ncol(x$coefficients),
             sort.by = "none",
             number = length(x$F)
         )

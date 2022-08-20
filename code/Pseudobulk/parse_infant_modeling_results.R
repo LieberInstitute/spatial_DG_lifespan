@@ -99,25 +99,28 @@ modeling_results <- list(
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "infant_modeling_results.rds"))
 
 length(which(modeling_results$enrichment$fdr_1 < 0.05))
-# 0
+# 2
 length(which(modeling_results$enrichment$fdr_2 < 0.05))
 # 0
 length(which(modeling_results$enrichment$fdr_3 < 0.05))
-# 3
+# 0
 length(which(modeling_results$enrichment$fdr_4 < 0.05))
 # 0
 length(which(modeling_results$enrichment$fdr_5 < 0.05))
-# 0
+# 7023
 length(which(modeling_results$enrichment$fdr_6 < 0.05))
-# 0
+# 143
 length(which(modeling_results$enrichment$fdr_7 < 0.05))
 # 0
 length(which(modeling_results$enrichment$fdr_8 < 0.05))
-# 2239
-## Weird that so many are zero!
+# 0
+length(which(modeling_results$enrichment$fdr_9 < 0.05))
+# 1
+length(which(modeling_results$enrichment$fdr_10 < 0.05))
+# 0
 
-cluster <- c(1:8)
-genes <- c(0, 0, 3, 0, 0, 0, 0, 2239)
+cluster <- c(1:10)
+genes <- c(2, 0, 0, 0, 7023, 143, 0, 0, 1, 0)
 df <- data.frame(cluster, genes)
 pdf(file = here::here("plots", "pseudobulked", "plot_infant_enrichment_DEGs.pdf"))
 plot(df$genes ~ df$cluster)
