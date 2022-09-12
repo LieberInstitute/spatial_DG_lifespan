@@ -53,6 +53,9 @@ for (s in seq_along(sample_ids)) {
 
     # run nnSVG filtering for mitochondrial gene and low-expressed genes
     spe_sub <- filter_genes(spe_sub)
+	
+	# re-calculate library size factors
+	spe_sub <- computeLibraryFactors(spe_sub)
 
     # re-calculate logcounts after filtering
     spe_sub <- logNormCounts(spe_sub)
@@ -87,6 +90,9 @@ for (s in seq_along(sample_ids)) {
 
     # run nnSVG filtering for mitochondrial gene and low-expressed genes
     spe_subS <- filter_genes(spe_subS)
+	
+	# re-calculate library size factors
+	spe_sub <- computeLibraryFactors(spe_sub)
 
     # re-calculate logcounts after filtering
     spe_subS <- logNormCounts(spe_subS)
