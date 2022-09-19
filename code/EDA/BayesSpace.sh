@@ -5,7 +5,7 @@
 #$ -o logs/bayesSpace_k_search.$TASK_ID.txt
 #$ -e logs/bayesSpace_k_search.$TASK_ID.txt
 #$ -m e
-#$ -t 2-15
+#$ -t 2-10
 #$ -tc 20
 
 echo "**** Job starts ****"
