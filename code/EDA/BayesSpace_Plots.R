@@ -13,8 +13,8 @@ suppressPackageStartupMessages({
     library(Polychrome)
 })
 
-# Set up SGE array job to run k=2 to k = 15
-# Found in BayesSpaces.sh shell script line -t 2-15
+# Set up SGE array job to run k=2 to k = 10
+# Found in BayesSpaces.sh shell script line -t 2-10
 k <- as.numeric(Sys.getenv("SGE_TASK_ID"))
 
 # Load SPE
