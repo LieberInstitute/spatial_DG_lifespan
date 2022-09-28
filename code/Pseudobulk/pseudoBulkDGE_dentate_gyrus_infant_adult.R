@@ -14,6 +14,7 @@ suppressPackageStartupMessages({
     library(edgeR)
     library(scran)
     library(EnhancedVolcano)
+    library(dplyr)
 })
 
 # Load SPE
@@ -193,6 +194,49 @@ EnhancedVolcano(dentate1adult,
     )
 
 dev.off()
+
+######################################
+# Write csv files for each DE analysis
+######################################
+
+# directory to save whole tissue results
+dir_outputs <- here("processed-data", "pseudobulk_spe", "pseudoBulkDGE_results")
+
+infant_dg0 <- data.frame(
+    gene_id = infant_de_results[[1]]$gene_id,
+    gene_name = infant_de_results[[1]]$gene_name,
+    gene_type = infant_de_results[[1]]$gene_type,
+    pvalue = infant_de_results[[1]]$PValue,
+    FDR = infant_de_results[[1]]$FDR,
+    logFC = infant_de_results[[1]]$logFC
+)
+
+infant_dg0 <- infant_dg0 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out1 <- file.path(dir_outputs, "InfantvsAdult_NonDentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(infant_dg0, fn_out1, row.names = FALSE)
+
+infant_dg1 <- data.frame(
+    gene_id = infant_de_results[[2]]$gene_id,
+    gene_name = infant_de_results[[2]]$gene_name,
+    gene_type = infant_de_results[[2]]$gene_type,
+    pvalue = infant_de_results[[2]]$PValue,
+    FDR = infant_de_results[[2]]$FDR,
+    logFC = infant_de_results[[2]]$logFC
+)
+
+infant_dg1 <- infant_dg1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out2 <- file.path(dir_outputs, "InfantvsAdult_DentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(infant_dg1, fn_out2, row.names = FALSE)
 
 
 

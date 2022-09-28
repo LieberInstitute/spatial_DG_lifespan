@@ -14,6 +14,7 @@ suppressPackageStartupMessages({
     library(edgeR)
     library(scran)
     library(EnhancedVolcano)
+    library(dplyr)
 })
 
 # Load SPE
@@ -313,6 +314,158 @@ EnhancedVolcano(dentate1elderly,
     )
 
 dev.off()
+
+######################################
+# Write csv files for each DE analysis
+######################################
+
+# directory to save whole tissue results
+dir_outputs <- here("processed-data", "pseudobulk_spe", "pseudoBulkDGE_results")
+
+infant_dg0 <- data.frame(
+    gene_id = infant_de_results[[1]]$gene_id,
+    gene_name = infant_de_results[[1]]$gene_name,
+    gene_type = infant_de_results[[1]]$gene_type,
+    pvalue = infant_de_results[[1]]$PValue,
+    FDR = infant_de_results[[1]]$FDR,
+    logFC = infant_de_results[[1]]$logFC
+)
+
+infant_dg0 <- infant_dg0 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out1 <- file.path(dir_outputs, "InfantvsNonInfant_NonDentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(infant_dg0, fn_out1, row.names = FALSE)
+
+infant_dg1 <- data.frame(
+    gene_id = infant_de_results[[2]]$gene_id,
+    gene_name = infant_de_results[[2]]$gene_name,
+    gene_type = infant_de_results[[2]]$gene_type,
+    pvalue = infant_de_results[[2]]$PValue,
+    FDR = infant_de_results[[2]]$FDR,
+    logFC = infant_de_results[[2]]$logFC
+)
+
+infant_dg1 <- infant_dg1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out2 <- file.path(dir_outputs, "InfantvsNonInfant_DentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(infant_dg1, fn_out2, row.names = FALSE)
+
+teen_dg0 <- data.frame(
+    gene_id = teen_de_results[[1]]$gene_id,
+    gene_name = teen_de_results[[1]]$gene_name,
+    gene_type = teen_de_results[[1]]$gene_type,
+    pvalue = teen_de_results[[1]]$PValue,
+    FDR = teen_de_results[[1]]$FDR,
+    logFC = teen_de_results[[1]]$logFC
+)
+
+teen_dg0 <- teen_dg0 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out3 <- file.path(dir_outputs, "TeenvsNonTeen_NonDentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(teen_dg0, fn_out3, row.names = FALSE)
+
+teen_dg1 <- data.frame(
+    gene_id = teen_de_results[[2]]$gene_id,
+    gene_name = teen_de_results[[2]]$gene_name,
+    gene_type = teen_de_results[[2]]$gene_type,
+    pvalue = teen_de_results[[2]]$PValue,
+    FDR = teen_de_results[[2]]$FDR,
+    logFC = teen_de_results[[2]]$logFC
+)
+
+teen_dg1 <- teen_dg1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out4 <- file.path(dir_outputs, "TeenvsNonTeen_DentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(teen_dg1, fn_out4, row.names = FALSE)
+
+adult_dg0 <- data.frame(
+    gene_id = adult_de_results[[1]]$gene_id,
+    gene_name = adult_de_results[[1]]$gene_name,
+    gene_type = adult_de_results[[1]]$gene_type,
+    pvalue = adult_de_results[[1]]$PValue,
+    FDR = adult_de_results[[1]]$FDR,
+    logFC = adult_de_results[[1]]$logFC
+)
+
+adult_dg0 <- adult_dg0 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out5 <- file.path(dir_outputs, "AdultvsNonAdult_NonDentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(adult_dg0, fn_out5, row.names = FALSE)
+
+adult_dg1 <- data.frame(
+    gene_id = adult_de_results[[2]]$gene_id,
+    gene_name = adult_de_results[[2]]$gene_name,
+    gene_type = adult_de_results[[2]]$gene_type,
+    pvalue = adult_de_results[[2]]$PValue,
+    FDR = adult_de_results[[2]]$FDR,
+    logFC = adult_de_results[[2]]$logFC
+)
+
+adult_dg1 <- adult_dg1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out6 <- file.path(dir_outputs, "AdultvsNonAdult_DentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(adult_dg1, fn_out6, row.names = FALSE)
+
+elderly_dg0 <- data.frame(
+    gene_id = elderly_de_results[[1]]$gene_id,
+    gene_name = elderly_de_results[[1]]$gene_name,
+    gene_type = elderly_de_results[[1]]$gene_type,
+    pvalue = elderly_de_results[[1]]$PValue,
+    FDR = elderly_de_results[[1]]$FDR,
+    logFC = elderly_de_results[[1]]$logFC
+)
+
+elderly_dg0 <- elderly_dg0 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out7 <- file.path(dir_outputs, "ElderlyvsNonElderly_NonDentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(elderly_dg0, fn_out7, row.names = FALSE)
+
+elderly_dg1 <- data.frame(
+    gene_id = elderly_de_results[[2]]$gene_id,
+    gene_name = elderly_de_results[[2]]$gene_name,
+    gene_type = elderly_de_results[[2]]$gene_type,
+    pvalue = elderly_de_results[[2]]$PValue,
+    FDR = elderly_de_results[[2]]$FDR,
+    logFC = elderly_de_results[[2]]$logFC
+)
+
+elderly_dg1 <- elderly_dg1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out8 <- file.path(dir_outputs, "ElderlyvsNonElderly_DentateGyrus_DE")
+
+# Export summary as .csv file
+write.csv(elderly_dg1, fn_out8, row.names = FALSE)
+
 
 
 ## Reproducibility information

@@ -14,6 +14,7 @@ suppressPackageStartupMessages({
     library(edgeR)
     library(scran)
     library(EnhancedVolcano)
+    library(dplyr)
 })
 
 # Load SPE
@@ -808,6 +809,590 @@ EnhancedVolcano(bayes8elderly,
     )
 
 dev.off()
+
+######################################
+# Write csv files for each DE analysis
+######################################
+
+# directory to save whole tissue results
+dir_outputs <- here("processed-data", "pseudobulk_spe", "pseudoBulkDGE_results")
+
+infant_bayes1 <- data.frame(
+    gene_id = infant_de_results[[1]]$gene_id,
+    gene_name = infant_de_results[[1]]$gene_name,
+    gene_type = infant_de_results[[1]]$gene_type,
+    pvalue = infant_de_results[[1]]$PValue,
+    FDR = infant_de_results[[1]]$FDR,
+    logFC = infant_de_results[[1]]$logFC
+)
+
+infant_bayes1 <- infant_bayes1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out1 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace1_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes1, fn_out1, row.names = FALSE)
+
+infant_bayes2 <- data.frame(
+    gene_id = infant_de_results[[2]]$gene_id,
+    gene_name = infant_de_results[[2]]$gene_name,
+    gene_type = infant_de_results[[2]]$gene_type,
+    pvalue = infant_de_results[[2]]$PValue,
+    FDR = infant_de_results[[2]]$FDR,
+    logFC = infant_de_results[[2]]$logFC
+)
+
+infant_bayes2 <- infant_bayes2 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out2 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace2_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes2, fn_out2, row.names = FALSE)
+
+infant_bayes3 <- data.frame(
+    gene_id = infant_de_results[[3]]$gene_id,
+    gene_name = infant_de_results[[3]]$gene_name,
+    gene_type = infant_de_results[[3]]$gene_type,
+    pvalue = infant_de_results[[3]]$PValue,
+    FDR = infant_de_results[[3]]$FDR,
+    logFC = infant_de_results[[3]]$logFC
+)
+
+infant_bayes3 <- infant_bayes3 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out3 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace3_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes3, fn_out3, row.names = FALSE)
+
+infant_bayes4 <- data.frame(
+    gene_id = infant_de_results[[4]]$gene_id,
+    gene_name = infant_de_results[[4]]$gene_name,
+    gene_type = infant_de_results[[4]]$gene_type,
+    pvalue = infant_de_results[[4]]$PValue,
+    FDR = infant_de_results[[4]]$FDR,
+    logFC = infant_de_results[[4]]$logFC
+)
+
+infant_bayes4 <- infant_bayes4 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out4 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace4_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes4, fn_out4, row.names = FALSE)
+
+infant_bayes5 <- data.frame(
+    gene_id = infant_de_results[[5]]$gene_id,
+    gene_name = infant_de_results[[5]]$gene_name,
+    gene_type = infant_de_results[[5]]$gene_type,
+    pvalue = infant_de_results[[5]]$PValue,
+    FDR = infant_de_results[[5]]$FDR,
+    logFC = infant_de_results[[5]]$logFC
+)
+
+infant_bayes5 <- infant_bayes5 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out5 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace5_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes5, fn_out5, row.names = FALSE)
+
+infant_bayes6 <- data.frame(
+    gene_id = infant_de_results[[6]]$gene_id,
+    gene_name = infant_de_results[[6]]$gene_name,
+    gene_type = infant_de_results[[6]]$gene_type,
+    pvalue = infant_de_results[[6]]$PValue,
+    FDR = infant_de_results[[6]]$FDR,
+    logFC = infant_de_results[[6]]$logFC
+)
+
+infant_bayes6 <- infant_bayes6 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out6 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace6_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes6, fn_out6, row.names = FALSE)
+
+infant_bayes7 <- data.frame(
+    gene_id = infant_de_results[[7]]$gene_id,
+    gene_name = infant_de_results[[7]]$gene_name,
+    gene_type = infant_de_results[[7]]$gene_type,
+    pvalue = infant_de_results[[7]]$PValue,
+    FDR = infant_de_results[[7]]$FDR,
+    logFC = infant_de_results[[7]]$logFC
+)
+
+infant_bayes7 <- infant_bayes7 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out7 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace7_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes7, fn_out7, row.names = FALSE)
+
+infant_bayes8 <- data.frame(
+    gene_id = infant_de_results[[8]]$gene_id,
+    gene_name = infant_de_results[[8]]$gene_name,
+    gene_type = infant_de_results[[8]]$gene_type,
+    pvalue = infant_de_results[[8]]$PValue,
+    FDR = infant_de_results[[8]]$FDR,
+    logFC = infant_de_results[[8]]$logFC
+)
+
+infant_bayes8 <- infant_bayes8 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out8 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace8_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes8, fn_out8, row.names = FALSE)
+
+teen_bayes1 <- data.frame(
+    gene_id = teen_de_results[[1]]$gene_id,
+    gene_name = teen_de_results[[1]]$gene_name,
+    gene_type = teen_de_results[[1]]$gene_type,
+    pvalue = teen_de_results[[1]]$PValue,
+    FDR = teen_de_results[[1]]$FDR,
+    logFC = teen_de_results[[1]]$logFC
+)
+
+teen_bayes1 <- teen_bayes1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out11 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace1_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes1, fn_out11, row.names = FALSE)
+
+teen_bayes2 <- data.frame(
+    gene_id = teen_de_results[[2]]$gene_id,
+    gene_name = teen_de_results[[2]]$gene_name,
+    gene_type = teen_de_results[[2]]$gene_type,
+    pvalue = teen_de_results[[2]]$PValue,
+    FDR = teen_de_results[[2]]$FDR,
+    logFC = teen_de_results[[2]]$logFC
+)
+
+teen_bayes2 <- teen_bayes2 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out22 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace2_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes2, fn_out22, row.names = FALSE)
+
+teen_bayes3 <- data.frame(
+    gene_id = teen_de_results[[3]]$gene_id,
+    gene_name = teen_de_results[[3]]$gene_name,
+    gene_type = teen_de_results[[3]]$gene_type,
+    pvalue = teen_de_results[[3]]$PValue,
+    FDR = teen_de_results[[3]]$FDR,
+    logFC = teen_de_results[[3]]$logFC
+)
+
+teen_bayes3 <- teen_bayes3 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out33 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace3_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes3, fn_out33, row.names = FALSE)
+
+teen_bayes4 <- data.frame(
+    gene_id = teen_de_results[[4]]$gene_id,
+    gene_name = teen_de_results[[4]]$gene_name,
+    gene_type = teen_de_results[[4]]$gene_type,
+    pvalue = teen_de_results[[4]]$PValue,
+    FDR = teen_de_results[[4]]$FDR,
+    logFC = teen_de_results[[4]]$logFC
+)
+
+teen_bayes4 <- teen_bayes4 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out44 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace4_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes4, fn_out44, row.names = FALSE)
+
+teen_bayes5 <- data.frame(
+    gene_id = teen_de_results[[5]]$gene_id,
+    gene_name = teen_de_results[[5]]$gene_name,
+    gene_type = teen_de_results[[5]]$gene_type,
+    pvalue = teen_de_results[[5]]$PValue,
+    FDR = teen_de_results[[5]]$FDR,
+    logFC = teen_de_results[[5]]$logFC
+)
+
+teen_bayes5 <- teen_bayes5 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out55 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace5_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes5, fn_out55, row.names = FALSE)
+
+teen_bayes6 <- data.frame(
+    gene_id = teen_de_results[[6]]$gene_id,
+    gene_name = teen_de_results[[6]]$gene_name,
+    gene_type = teen_de_results[[6]]$gene_type,
+    pvalue = teen_de_results[[6]]$PValue,
+    FDR = teen_de_results[[6]]$FDR,
+    logFC = teen_de_results[[6]]$logFC
+)
+
+teen_bayes6 <- teen_bayes6 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out66 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace6_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes6, fn_out66, row.names = FALSE)
+
+teen_bayes7 <- data.frame(
+    gene_id = teen_de_results[[7]]$gene_id,
+    gene_name = teen_de_results[[7]]$gene_name,
+    gene_type = teen_de_results[[7]]$gene_type,
+    pvalue = teen_de_results[[7]]$PValue,
+    FDR = teen_de_results[[7]]$FDR,
+    logFC = teen_de_results[[7]]$logFC
+)
+
+teen_bayes7 <- teen_bayes7 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out77 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace7_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes7, fn_out77, row.names = FALSE)
+
+teen_bayes8 <- data.frame(
+    gene_id = teen_de_results[[8]]$gene_id,
+    gene_name = teen_de_results[[8]]$gene_name,
+    gene_type = teen_de_results[[8]]$gene_type,
+    pvalue = teen_de_results[[8]]$PValue,
+    FDR = teen_de_results[[8]]$FDR,
+    logFC = teen_de_results[[8]]$logFC
+)
+
+teen_bayes8 <- teen_bayes8 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out88 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace8_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes8, fn_out88, row.names = FALSE)
+
+adult_bayes1 <- data.frame(
+    gene_id = adult_de_results[[1]]$gene_id,
+    gene_name = adult_de_results[[1]]$gene_name,
+    gene_type = adult_de_results[[1]]$gene_type,
+    pvalue = adult_de_results[[1]]$PValue,
+    FDR = adult_de_results[[1]]$FDR,
+    logFC = adult_de_results[[1]]$logFC
+)
+
+adult_bayes1 <- adult_bayes1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out111 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace1_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes1, fn_out111, row.names = FALSE)
+
+adult_bayes2 <- data.frame(
+    gene_id = adult_de_results[[2]]$gene_id,
+    gene_name = adult_de_results[[2]]$gene_name,
+    gene_type = adult_de_results[[2]]$gene_type,
+    pvalue = adult_de_results[[2]]$PValue,
+    FDR = adult_de_results[[2]]$FDR,
+    logFC = adult_de_results[[2]]$logFC
+)
+
+adult_bayes2 <- adult_bayes2 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out222 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace2_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes2, fn_out222, row.names = FALSE)
+
+adult_bayes3 <- data.frame(
+    gene_id = adult_de_results[[3]]$gene_id,
+    gene_name = adult_de_results[[3]]$gene_name,
+    gene_type = adult_de_results[[3]]$gene_type,
+    pvalue = adult_de_results[[3]]$PValue,
+    FDR = adult_de_results[[3]]$FDR,
+    logFC = adult_de_results[[3]]$logFC
+)
+
+adult_bayes3 <- adult_bayes3 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out333 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace3_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes3, fn_out333, row.names = FALSE)
+
+adult_bayes4 <- data.frame(
+    gene_id = adult_de_results[[4]]$gene_id,
+    gene_name = adult_de_results[[4]]$gene_name,
+    gene_type = adult_de_results[[4]]$gene_type,
+    pvalue = adult_de_results[[4]]$PValue,
+    FDR = adult_de_results[[4]]$FDR,
+    logFC = adult_de_results[[4]]$logFC
+)
+
+adult_bayes4 <- adult_bayes4 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out444 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace4_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes4, fn_out444, row.names = FALSE)
+
+adult_bayes5 <- data.frame(
+    gene_id = adult_de_results[[5]]$gene_id,
+    gene_name = adult_de_results[[5]]$gene_name,
+    gene_type = adult_de_results[[5]]$gene_type,
+    pvalue = adult_de_results[[5]]$PValue,
+    FDR = adult_de_results[[5]]$FDR,
+    logFC = adult_de_results[[5]]$logFC
+)
+
+adult_bayes5 <- adult_bayes5 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out555 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace5_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes5, fn_out555, row.names = FALSE)
+
+adult_bayes6 <- data.frame(
+    gene_id = adult_de_results[[6]]$gene_id,
+    gene_name = adult_de_results[[6]]$gene_name,
+    gene_type = adult_de_results[[6]]$gene_type,
+    pvalue = adult_de_results[[6]]$PValue,
+    FDR = adult_de_results[[6]]$FDR,
+    logFC = adult_de_results[[6]]$logFC
+)
+
+adult_bayes6 <- adult_bayes6 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out666 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace6_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes6, fn_out666, row.names = FALSE)
+
+adult_bayes7 <- data.frame(
+    gene_id = adult_de_results[[7]]$gene_id,
+    gene_name = adult_de_results[[7]]$gene_name,
+    gene_type = adult_de_results[[7]]$gene_type,
+    pvalue = adult_de_results[[7]]$PValue,
+    FDR = adult_de_results[[7]]$FDR,
+    logFC = adult_de_results[[7]]$logFC
+)
+
+adult_bayes7 <- adult_bayes7 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out777 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace7_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes7, fn_out777, row.names = FALSE)
+
+adult_bayes8 <- data.frame(
+    gene_id = adult_de_results[[8]]$gene_id,
+    gene_name = adult_de_results[[8]]$gene_name,
+    gene_type = adult_de_results[[8]]$gene_type,
+    pvalue = adult_de_results[[8]]$PValue,
+    FDR = adult_de_results[[8]]$FDR,
+    logFC = adult_de_results[[8]]$logFC
+)
+
+adult_bayes8 <- adult_bayes8 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out888 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace8_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes8, fn_out888, row.names = FALSE)
+
+elderly_bayes1 <- data.frame(
+    gene_id = elderly_de_results[[1]]$gene_id,
+    gene_name = elderly_de_results[[1]]$gene_name,
+    gene_type = elderly_de_results[[1]]$gene_type,
+    pvalue = elderly_de_results[[1]]$PValue,
+    FDR = elderly_de_results[[1]]$FDR,
+    logFC = elderly_de_results[[1]]$logFC
+)
+
+elderly_bayes1 <- elderly_bayes1 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out1111 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace1_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes1, fn_out1111, row.names = FALSE)
+
+elderly_bayes2 <- data.frame(
+    gene_id = elderly_de_results[[2]]$gene_id,
+    gene_name = elderly_de_results[[2]]$gene_name,
+    gene_type = elderly_de_results[[2]]$gene_type,
+    pvalue = elderly_de_results[[2]]$PValue,
+    FDR = elderly_de_results[[2]]$FDR,
+    logFC = elderly_de_results[[2]]$logFC
+)
+
+elderly_bayes2 <- elderly_bayes2 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out2222 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace2_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes2, fn_out2222, row.names = FALSE)
+
+elderly_bayes3 <- data.frame(
+    gene_id = elderly_de_results[[3]]$gene_id,
+    gene_name = elderly_de_results[[3]]$gene_name,
+    gene_type = elderly_de_results[[3]]$gene_type,
+    pvalue = elderly_de_results[[3]]$PValue,
+    FDR = elderly_de_results[[3]]$FDR,
+    logFC = elderly_de_results[[3]]$logFC
+)
+
+elderly_bayes3 <- elderly_bayes3 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out3333 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace3_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes3, fn_out3333, row.names = FALSE)
+
+elderly_bayes4 <- data.frame(
+    gene_id = elderly_de_results[[4]]$gene_id,
+    gene_name = elderly_de_results[[4]]$gene_name,
+    gene_type = elderly_de_results[[4]]$gene_type,
+    pvalue = elderly_de_results[[4]]$PValue,
+    FDR = elderly_de_results[[4]]$FDR,
+    logFC = elderly_de_results[[4]]$logFC
+)
+
+elderly_bayes4 <- elderly_bayes4 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out4444 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace4_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes4, fn_out4444, row.names = FALSE)
+
+elderly_bayes5 <- data.frame(
+    gene_id = elderly_de_results[[5]]$gene_id,
+    gene_name = elderly_de_results[[5]]$gene_name,
+    gene_type = elderly_de_results[[5]]$gene_type,
+    pvalue = elderly_de_results[[5]]$PValue,
+    FDR = elderly_de_results[[5]]$FDR,
+    logFC = elderly_de_results[[5]]$logFC
+)
+
+elderly_bayes5 <- elderly_bayes5 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out5555 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace5_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes5, fn_out5555, row.names = FALSE)
+
+elderly_bayes6 <- data.frame(
+    gene_id = elderly_de_results[[6]]$gene_id,
+    gene_name = elderly_de_results[[6]]$gene_name,
+    gene_type = elderly_de_results[[6]]$gene_type,
+    pvalue = elderly_de_results[[6]]$PValue,
+    FDR = elderly_de_results[[6]]$FDR,
+    logFC = elderly_de_results[[6]]$logFC
+)
+
+elderly_bayes6 <- elderly_bayes6 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out6666 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace6_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes6, fn_out6666, row.names = FALSE)
+
+elderly_bayes7 <- data.frame(
+    gene_id = elderly_de_results[[7]]$gene_id,
+    gene_name = elderly_de_results[[7]]$gene_name,
+    gene_type = elderly_de_results[[7]]$gene_type,
+    pvalue = elderly_de_results[[7]]$PValue,
+    FDR = elderly_de_results[[7]]$FDR,
+    logFC = elderly_de_results[[7]]$logFC
+)
+
+elderly_bayes7 <- elderly_bayes7 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out7777 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace7_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes7, fn_out7777, row.names = FALSE)
+
+elderly_bayes8 <- data.frame(
+    gene_id = elderly_de_results[[8]]$gene_id,
+    gene_name = elderly_de_results[[8]]$gene_name,
+    gene_type = elderly_de_results[[8]]$gene_type,
+    pvalue = elderly_de_results[[8]]$PValue,
+    FDR = elderly_de_results[[8]]$FDR,
+    logFC = elderly_de_results[[8]]$logFC
+)
+
+elderly_bayes8 <- elderly_bayes8 %>%
+    filter(FDR < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out8888 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace8_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes8, fn_out8888, row.names = FALSE)
+
 
 
 ## Reproducibility information
