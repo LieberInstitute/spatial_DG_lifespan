@@ -34,12 +34,12 @@ rownames(t0_contrasts) <- rownames(eb_contrasts)
 summary(fdrs0_contrasts < 0.05)
 #     1               2               3               4               5               6               7
 # Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical
-# FALSE:13292     FALSE:14409     FALSE:14379     FALSE:14125     FALSE:14406     FALSE:7232      FALSE:14372
-# TRUE :1117                      TRUE :30        TRUE :284       TRUE :3         TRUE :7177      TRUE :37
-#     8               9               10
-# Mode :logical   Mode :logical   Mode :logical
-# FALSE:12890     FALSE:14400     FALSE:14329
-# TRUE :1519      TRUE :9         TRUE :80
+# FALSE:11285     FALSE:8021      FALSE:11218     FALSE:7671      FALSE:5735      FALSE:7677      FALSE:10749
+# TRUE :8         TRUE :3272      TRUE :75        TRUE :3622      TRUE :5558      TRUE :3616      TRUE :544
+#     8
+# Mode :logical
+# FALSE:11261
+# TRUE :32
 
 # Merge statistics
 f_merge <- function(p, fdr, t) {
@@ -112,28 +112,25 @@ modeling_results <- list(
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "modeling_results.rds"))
 
 length(which(modeling_results$enrichment$fdr_1 < 0.05))
-# [1] 1117
+# [1] 8
 length(which(modeling_results$enrichment$fdr_2 < 0.05))
-# [1] 0
+# [1] 3272
 length(which(modeling_results$enrichment$fdr_3 < 0.05))
-# [1] 30
+# [1] 75
 length(which(modeling_results$enrichment$fdr_4 < 0.05))
-# [1] 284
+# [1] 3622
 length(which(modeling_results$enrichment$fdr_5 < 0.05))
-# [1] 3
+# [1] 5558
 length(which(modeling_results$enrichment$fdr_6 < 0.05))
-# [1] 7177
+# [1] 3616
 length(which(modeling_results$enrichment$fdr_7 < 0.05))
-# [1] 37
+# [1] 544
 length(which(modeling_results$enrichment$fdr_8 < 0.05))
-# [1] 1519
-length(which(modeling_results$enrichment$fdr_9 < 0.05))
-# [1] 9
-length(which(modeling_results$enrichment$fdr_10 < 0.05))
-# [1] 80
+# [1] 32
 
-cluster <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-genes <- c(1117, 0, 30, 284, 3, 7177, 37, 1519, 9, 80)
+
+cluster <- c(1, 2, 3, 4, 5, 6, 7, 8)
+genes <- c(8, 3272, 75, 3622, 5558, 3616, 544, 32)
 df <- data.frame(cluster, genes)
 pdf(file = here::here("plots", "pseudobulked", "plot_enrichment_DEGs.pdf"))
 plot(df$genes ~ df$cluster)

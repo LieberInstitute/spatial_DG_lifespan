@@ -1,8 +1,8 @@
-####################################
+###################################
 # spatial_DG_lifespan project
-# Pseudo-bulking BayesSpace clusters
-# Anthony Ramnauth, May 10 2022
-####################################
+# Pseudo-bulking Manual Annotations
+# Anthony Ramnauth, Oct 11 2022
+###################################
 
 suppressPackageStartupMessages({
     library(SpatialExperiment)
@@ -28,13 +28,6 @@ dir.create(dir_plots, showWarnings = FALSE, recursive = TRUE)
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-# Load BayesSpace clusters onto spe object
-spe <- cluster_import(
-    spe,
-    cluster_dir = here::here("processed-data", "clustering_results"),
-    prefix = ""
-)
-
 # Add variable of age_bin to colData(spe)
 age_df <- data.frame(spe$key, spe$sample_id, spe$age)
 age_df <- age_df %>%
@@ -51,21 +44,21 @@ age_df <- age_df %>%
 
 colData(spe)$age_bin <- factor(age_df$age_bin, levels = c("Infant", "Teen", "Adult", "Elderly"))
 
-## Pseudo-bulk for BayesSpace k = 8 results
+## Pseudo-bulk for Manual Annotations
 spe_pseudo <- aggregateAcrossCells(
     spe,
     DataFrame(
-        BayesSpace = spe$bayesSpace_harmony_8,
+        ManualAnnotation = spe$ManualAnnotation,
         sample_id = spe$sample_id
     )
 )
 
-spe_pseudo$BayesSpace <- factor(spe_pseudo$BayesSpace)
+spe_pseudo$ManualAnnotation <- factor(spe_pseudo$ManualAnnotation)
 
 # find a good expression cutoff using edgeR::filterByExpr
 rowData(spe_pseudo)$high_expr <- filterByExpr(spe_pseudo)
 rowData(spe_pseudo)$high_expr_group_sample_id <- filterByExpr(spe_pseudo, group = spe_pseudo$sample_id)
-rowData(spe_pseudo)$high_expr_group_cluster <- filterByExpr(spe_pseudo, group = spe_pseudo$bayesSpace_harmony_8)
+rowData(spe_pseudo)$high_expr_group_cluster <- filterByExpr(spe_pseudo, group = spe_pseudo$ManualAnnotation)
 
 summary(rowData(spe_pseudo)$high_expr)
 summary(rowData(spe_pseudo)$high_expr_group_sample_id)
@@ -92,19 +85,19 @@ dim(spe_pseudo)
 # run PCA
 pca <- prcomp(t(assays(spe_pseudo)$logcounts))
 jaffelab::getPcaVars(pca)[seq_len(50)]
-# [1] 22.700  8.810  6.620  5.440  4.980  4.200  3.950  3.370  3.300  2.890  2.650  2.520  2.310  2.040  1.870  1.650
-#[17]  1.500  1.400  1.220  1.090  0.891  0.797  0.751  0.678  0.666  0.628  0.601  0.557  0.549  0.525  0.500  0.460
-#[33]  0.447  0.437  0.409  0.404  0.392  0.378  0.358  0.342  0.333  0.327  0.310  0.291  0.279  0.270  0.261  0.237
-#[49]  0.221  0.215
+#[1] 13.800 11.700  6.070  5.040  4.310  3.870  3.310  3.030  2.680  2.300  2.150  2.010  1.900  1.800  1.710  1.610
+#[17]  1.550  1.430  1.380  1.290  1.210  1.120  1.050  0.967  0.901  0.891  0.851  0.743  0.706  0.685  0.667  0.664
+#[33]  0.617  0.613  0.610  0.592  0.581  0.565  0.555  0.541  0.522  0.487  0.479  0.454  0.442  0.432  0.410  0.402
+#[49]  0.401  0.393
 
 pca_pseudo <- pca$x[, seq_len(50)]
 reducedDims(spe_pseudo) <- list(PCA = pca_pseudo)
 
 # Plot PCA
-pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA.pdf"), width = 14, height = 14)
+pdf(file = here::here("plots", "pseudobulked", "pseudobulked_Manual_Annotated_PCA.pdf"), width = 14, height = 14)
 plotPCA(spe_pseudo, colour_by = "sex", ncomponents = 12, point_size = 1)
 plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 12, point_size = 1)
-plotPCA(spe_pseudo, colour_by = "BayesSpace", ncomponents = 12, point_size = 1)
+plotPCA(spe_pseudo, colour_by = "ManualAnnotation", ncomponents = 12, point_size = 1)
 plotPCA(spe_pseudo, colour_by = "sample_id", ncomponents = 12, point_size = 1)
 dev.off()
 
@@ -112,23 +105,23 @@ dev.off()
 
 # uses linear regression model
 vars <- getVarianceExplained(spe_pseudo,
-    variables = c("sex", "age_bin", "BayesSpace", "sample_id")
+    variables = c("sex", "age_bin", "ManualAnnotation", "sample_id")
 )
 head(vars)
-#                       sex   age_bin BayesSpace sample_id
-#ENSG00000228794 0.02447535  3.669668   41.22758  7.803956
-#ENSG00000188976 1.72967711 12.459186   51.33415 13.380178
-#ENSG00000188290 0.02718252  3.095280   41.84710 33.058147
-#ENSG00000187608 0.73643273 16.397670   26.07864 50.631397
-#ENSG00000188157 3.75328432  4.023631   25.99233 23.633593
-#ENSG00000131591 1.17400898 22.869309   19.61353 29.150242
+#                      sex    age_bin ManualAnnotation sample_id
+#ENSG00000237491 0.3670081  2.7720179         23.41876  9.382267
+#ENSG00000228794 2.2702344  7.2479361         47.10084 16.217047
+#ENSG00000225880 3.7682041  0.6288228         26.50485  7.568232
+#ENSG00000187634 7.9641812 10.5727159         35.02832 15.797241
+#ENSG00000188976 4.9468022 21.0766644         40.48412 25.275481
+#ENSG00000187961 2.6804164  5.8721646         30.36934 15.001371
 
-pdf(file = here::here("plots", "pseudobulked", "plot_explanatory_vars.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "plot__manual_annotated_explanatory_vars.pdf"))
 plotExplanatoryVariables(vars)
 dev.off()
 
 # save RDS file
-saveRDS(spe_pseudo, file = here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))
+saveRDS(spe_pseudo, file = here::here("processed-data", "pseudobulk_spe", "manual_annotated_pseudobulk_spe.rds"))
 
 
 ## Reproducibility information

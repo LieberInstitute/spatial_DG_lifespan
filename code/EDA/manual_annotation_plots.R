@@ -37,7 +37,7 @@ names(man_colors$ManualAnnotation) <- unique(spe$ManualAnnotation)
 # Not working so manually assigning names to the colors
 man_colors
 man_colors <- c("SLM" = "#5A5156", "ML" = "#E4E1E3", "SO" = "#F6222E", "SR" = "#FE00FA",
-    "PCL-CA1" = "#16FF32", "PCL-CA3" = "#3283FE", "CA4" = "#FEAF16", "GCL" = "#B00068",
+    "PCL_CA1" = "#16FF32", "PCL_CA3" = "#3283FE", "CA4" = "#FEAF16", "GCL" = "#B00068",
     "SGZ" = "#1CFFCE", "SL" = "#90AD1C", "WM" = "#2ED9FF", "CP" = "#DEA0FD", "SUB" = "#AA0DFE")
 
 pdf(file = here("plots", "QC_plots", "ManualAnnotations.pdf"), width = 8, height = 6)
