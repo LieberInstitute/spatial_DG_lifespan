@@ -67,7 +67,7 @@ for (i in human_markers_search) {
         pdf = here::here("plots", "marker_genes", paste0(gsub("; ", "_", i), ".pdf")),
         assayname = "logcounts",
         minCount = 0,
-        viridis = TRUE,
+        viridis = FALSE,
         alpha = 0.5,
         sample_order = unique(spe$sample_id),
         point_size = 2
@@ -117,7 +117,7 @@ for (i in neurogenesis_markers_search) {
         pdf = here::here("plots", "marker_genes", paste0(gsub("; ", "_", i), ".pdf")),
         assayname = "logcounts",
         minCount = 0,
-        viridis = TRUE,
+        viridis = FALSE,
         alpha = 0.5,
         sample_order = unique(spe$sample_id),
         point_size = 2
