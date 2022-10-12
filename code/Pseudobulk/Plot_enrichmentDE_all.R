@@ -14,6 +14,7 @@ suppressPackageStartupMessages({
     library(RColorBrewer)
     library(viridis)
     library(dplyr)
+    library(ComplexHeatmap)
     library(sessioninfo)
 })
 
@@ -71,7 +72,7 @@ fn_out_2 <- file.path(dir_outputs, "Clust_2_enriched_results")
 write.csv(clust_2_enriched_summary,fn_out_2, row.names = FALSE)
 
 # Make a data frame summary
-GCL_enriched_summary <- data.frame(
+cluster_3_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_3,
@@ -79,20 +80,20 @@ GCL_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_3
 )
 
-GCL_enriched_summary <- GCL_enriched_summary %>%
+cluster_3_enriched_summary <- cluster_3_enriched_summary %>%
     filter(FDR < 0.05) %>%
     filter(p_val < 0.05)
 
-GCL_enriched_summary <- arrange(GCL_enriched_summary, desc(t_stat))
+cluster_3_enriched_summary <- arrange(cluster_3_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_GCL<- file.path(dir_outputs, "GCL_enriched_results")
+fn_out_3<- file.path(dir_outputs, "cluster_3_enriched_results")
 
 # Export summary as .csv file
-write.csv(GCL_enriched_summary,fn_out_GCL, row.names = FALSE)
+write.csv(cluster_3_enriched_summary,fn_out_3, row.names = FALSE)
 
 # Make a data frame summary
-SGZ_enriched_summary <- data.frame(
+cluster_4_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_4,
@@ -100,20 +101,20 @@ SGZ_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_4
 )
 
-SGZ_enriched_summary <- SGZ_enriched_summary %>%
+cluster_4_enriched_summary <- cluster_4_enriched_summary %>%
     filter(FDR < 0.05) %>%
     filter(p_val < 0.05)
 
-SGZ_enriched_summary <- arrange(SGZ_enriched_summary, desc(t_stat))
+cluster_4_enriched_summary <- arrange(cluster_4_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_SGZ<- file.path(dir_outputs, "SGZ_enriched_results")
+fn_out_4<- file.path(dir_outputs, "cluster_4_enriched_results")
 
 # Export summary as .csv file
-write.csv(SGZ_enriched_summary,fn_out_SGZ, row.names = FALSE)
+write.csv(cluster_4_enriched_summary,fn_out_4, row.names = FALSE)
 
 # Make a data frame summary
-CA4_enriched_summary <- data.frame(
+cluster_5_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_5,
@@ -121,20 +122,20 @@ CA4_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_5
 )
 
-CA4_enriched_summary <- CA4_enriched_summary %>%
+cluster_5_enriched_summary <- cluster_5_enriched_summary %>%
     filter(FDR < 0.05) %>%
     filter(p_val < 0.05)
 
-CA4_enriched_summary <- arrange(CA4_enriched_summary, desc(t_stat))
+cluster_5_enriched_summary <- arrange(cluster_5_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_CA4<- file.path(dir_outputs, "CA4_enriched_results")
+fn_out_5<- file.path(dir_outputs, "cluster_5_enriched_results")
 
 # Export summary as .csv file
-write.csv(CA4_enriched_summary,fn_out_CA4, row.names = FALSE)
+write.csv(cluster_5_enriched_summary,fn_out_5, row.names = FALSE)
 
 # Make a data frame summary
-CA3_enriched_summary <- data.frame(
+cluster_6_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_6,
@@ -142,20 +143,20 @@ CA3_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_6
 )
 
-CA3_enriched_summary <- CA3_enriched_summary %>%
+cluster_6_enriched_summary <- cluster_6_enriched_summary %>%
     filter(FDR < 0.05) %>%
     filter(p_val < 0.05)
 
-CA3_enriched_summary <- arrange(CA3_enriched_summary, desc(t_stat))
+cluster_6_enriched_summary <- arrange(cluster_6_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_CA3<- file.path(dir_outputs, "CA3_enriched_results")
+fn_out_6<- file.path(dir_outputs, "cluster_6_enriched_results")
 
 # Export summary as .csv file
-write.csv(CA3_enriched_summary,fn_out_CA3, row.names = FALSE)
+write.csv(cluster_6_enriched_summary,fn_out_6, row.names = FALSE)
 
 # Make a data frame summary
-ML_enriched_summary <- data.frame(
+cluster_7_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_7,
@@ -163,17 +164,17 @@ ML_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_7
 )
 
-ML_enriched_summary <- ML_enriched_summary %>%
+cluster_7_enriched_summary <- cluster_7_enriched_summary %>%
     filter(FDR < 0.05) %>%
     filter(p_val < 0.05)
 
-ML_enriched_summary <- arrange(ML_enriched_summary, desc(t_stat))
+cluster_7_enriched_summary <- arrange(cluster_7_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_ML<- file.path(dir_outputs, "ML_enriched_results")
+fn_out_7<- file.path(dir_outputs, "cluster_7_enriched_results")
 
 # Export summary as .csv file
-write.csv(ML_enriched_summary,fn_out_ML, row.names = FALSE)
+write.csv(cluster_7_enriched_summary,fn_out_7, row.names = FALSE)
 
 # Make a data frame summary
 clust_8_enriched_summary <- data.frame(
@@ -235,30 +236,21 @@ exprs_heatmap <- assays(spe_pseudo)[[2]][cluster_ind, ]
 rownames(exprs_heatmap) <- rowData(spe_pseudo)$gene_name[cluster_ind]
 colnames(exprs_heatmap) <- paste("logcount", 1:64, sep = "")
 
-# Add annotations for pheatmap
-cluster_labels <- as.vector(c(
-    rep("Cluster_1", 8), rep("Cluster_2", 8), rep("GCL", 8), rep("SGZ", 8),
-    rep("CA4", 8), rep("CA3", 8), rep("ML", 8), rep("Cluster_8", 8)
-))
-
-annotation_col <- data.frame(BayesSpace = factor(c(cluster_labels)))
-rownames(annotation_col) <- colnames(exprs_heatmap)
-ann_colors <- list(BayesSpace = brewer.pal(8, "Set1"))
-names(ann_colors$BayesSpace) <- unique(annotation_col$BayesSpace)
-
 # Plot heatmap of logcounts for clusters and samples
-pdf(file = here::here("plots", "pseudobulked", "enrichment_heatmap_all.pdf"), width = 8, height = 8)
-pheatmap(
-    exprs_heatmap,
-    cluster_rows = TRUE,
-    cluster_cols = TRUE,
-    show_colnames = FALSE,
-    color = inferno(20),
-    annotation_col = annotation_col,
-    annotation_colors = ann_colors,
-    fontsize_row = 9,
-    main = "logcounts from enrichment model top 10 genes per cluster",
-)
+pdf(file = here::here("plots", "pseudobulked", "enrichment_heatmap_all.pdf"), width = 12, height = 8)
+Heatmap(exprs_heatmap,
+    name = "logcounts",
+    top_annotation = HeatmapAnnotation(BayesSpace_cluster = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen"),
+        BayesSpace_cluster = c("1" = "orangered", "2" = "orange", "3" = "cyan", "4" = "springgreen3",
+            "5" = "brown", "6" = "pink", "7" = "yellow", "8" = "slategrey"))),
+    column_title = "logcounts of top 10 transcripts from Differential Enrichment of BayesSpace Clusters",
+    show_column_names = FALSE,
+    column_split = 13,
+    row_split = 29,
+    row_title = NULL,
+    row_names_gp = gpar(fontsize = 7)
+    )
 dev.off()
 
 
