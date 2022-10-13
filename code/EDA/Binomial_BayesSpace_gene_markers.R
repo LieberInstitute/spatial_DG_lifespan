@@ -203,25 +203,6 @@ fn_out_8 <- file.path(dir_outputs, "Clust_8_binomial_test_results")
 # Export summary as .csv file
 write.csv(clust_8_binom_summary,fn_out_8, row.names = FALSE)
 
-
-# Plot log-fold changes for one cluster over all other clusters
-# Selecting cluster 3 since BayesSpace tissue plot looks like GCL
-interesting_3 <- markers[[3]]
-best_set_3 <- interesting_3[interesting_3$Top <= 5, ]
-logFCs_3 <- getMarkerEffects(best_set_3)
-
-pdf(file = here::here("plots", "top_BayesSpace_genes", "logFC_for_Cluster3_GCL.pdf"))
-pheatmap(logFCs_3, cluster_rows = TRUE, cluster_cols = TRUE, breaks = seq(-5, 5, length.out = 101),
-    main = "logFC for Cluster 3 (GCL) from binomial test")
-dev.off()
-
-# Plot log-transformed normalized expression of top genes for GCL cluster
-top_genes_3 <- head(rownames(interesting_3))
-
-pdf(file = here::here("plots", "top_BayesSpace_genes", "top_genes_for_cluster3_GCL.pdf"))
-plotExpression(spe, x = "bayesSpace_harmony_8", features = top_genes_3, colour_by = "bayesSpace_harmony_8")
-dev.off()
-
 ###########################################################
 # Plot log-fold changes for one cluster over other clusters
 ###########################################################

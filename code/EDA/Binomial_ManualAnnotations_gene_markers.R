@@ -14,6 +14,8 @@ suppressPackageStartupMessages({
     library(scater)
     library(dplyr)
     library(pheatmap)
+    library(ComplexHeatmap)
+    library(circlize)
 })
 
 # Create directory for Top Marker Genes plots
@@ -120,6 +122,8 @@ write.csv(CA4_binom_summary,fn_out_CA4, row.names = FALSE)
 # Plot log-fold changes for one cluster over all other clusters
 ###############################################################
 
+f1 = colorRamp2(c(-5, 0, 5), c("blue", "#EEEEEE", "red"))
+
 # Plot heatmap of GCL top markers
 interesting_GCL <- markers[["GCL"]]
 best_set_GCL <- interesting_GCL[interesting_GCL$Top <= 5, ]
@@ -127,11 +131,10 @@ logFCs_GCL <- getMarkerEffects(best_set_GCL)
 
 pdf(file = here::here("plots", "manual_annotations", "Binomial_ManualAnnotations_genes",
     "binomial_for_GCL.pdf"))
-pheatmap(logFCs_GCL,
-    cluster_rows = TRUE,
-    cluster_cols = TRUE,
-    breaks = seq(-5, 5, length.out = 101),
-    main = "logFC for GCL from binomial test")
+Heatmap(logFCs_GCL,
+    name = "logFC",
+    col = f1,
+    column_title = "logFC for GCL from binomial test")
 dev.off()
 
 # Plot log-transformed normalized expression of top genes for GCL
@@ -155,9 +158,8 @@ logFCs_ML <- getMarkerEffects(best_set_ML)
 pdf(file = here::here("plots", "manual_annotations", "Binomial_ManualAnnotations_genes",
     "binomial_for_ML.pdf"))
 pheatmap(logFCs_ML,
-    cluster_rows = TRUE,
-    cluster_cols = TRUE,
-    breaks = seq(-5, 5, length.out = 101),
+    name = "logFC",
+    col = f1,
     main = "logFC for ML from binomial test")
 dev.off()
 
@@ -182,9 +184,8 @@ logFCs_SGZ <- getMarkerEffects(best_set_SGZ)
 pdf(file = here::here("plots", "manual_annotations", "Binomial_ManualAnnotations_genes",
     "binomial_for_SGZ.pdf"))
 pheatmap(logFCs_SGZ,
-    cluster_rows = TRUE,
-    cluster_cols = TRUE,
-    breaks = seq(-5, 5, length.out = 101),
+    name = "logFC",
+    col = f1,
     main = "logFC for SGZ from binomial test")
 dev.off()
 
@@ -209,9 +210,8 @@ logFCs_CA4 <- getMarkerEffects(best_set_CA4)
 pdf(file = here::here("plots", "manual_annotations", "Binomial_ManualAnnotations_genes",
     "binomial_for_CA4.pdf"))
 pheatmap(logFCs_CA4,
-    cluster_rows = TRUE,
-    cluster_cols = TRUE,
-    breaks = seq(-5, 5, length.out = 101),
+    name = "logFC",
+    col = f1,
     main = "logFC for CA4 from binomial test")
 dev.off()
 
