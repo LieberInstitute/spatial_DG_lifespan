@@ -1,1 +1,3 @@
-"gene_id","gene_name","gene_type","pvalue","FDR","logFC"
+"gene_id","gene_name","gene_type","pvalue","adj.P.Val","logFC"
+"ENSG00000203930","LINC00632","lncRNA",4.1530190615802e-06,0.021616464215525,-2.86126120355472
+"ENSG00000282885","AL627171.2","lncRNA",9.64102829854805e-06,0.0250907761469713,-2.87592745298439
