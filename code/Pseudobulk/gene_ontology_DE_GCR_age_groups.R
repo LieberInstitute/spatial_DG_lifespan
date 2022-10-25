@@ -146,14 +146,22 @@ comp_BP <- compareCluster(clust_compare,
 
 # Plots for comparing age groups
 
-pdf(file = here::here("plots", "pseudobulked", "age_group_GCR_GO.pdf"), width = 18, height = 14)
+pdf(file = here::here("plots", "pseudobulked", "Age_group_GCR_GO.pdf"), width = 26, height = 16)
 
-dotplot(comp_CC, showCategory = 5, label_format = 60) +
-    ggtitle("Top 5 GO Cellular Compartment for Age groups in Granular Cell Region")
-dotplot(comp_MF, showCategory = 5, label_format = 60) +
-    ggtitle("Top 5 GO Molecular Function for Age groups in Granular Cell Region")
-dotplot(comp_BP, showCategory = 5, label_format = 60) +
-    ggtitle("Top 5 GO Biological Process for Age groups in Granular Cell Region")
+dotplot(comp_CC, showCategory = 5, label_format = 90, font.size = 26) +
+    ggtitle("Top 5 GO Cellular Compartment for Age groups in Granular Cell Region") +
+    theme(plot.title = element_text(size = 26),
+        axis.text.x = element_text(angle = -45))
+
+dotplot(comp_MF, showCategory = 5, label_format = 90, font.size = 26) +
+    ggtitle("Top 5 GO Molecular Function for Age groups in Granular Cell Region") +
+    theme(plot.title = element_text(size = 26),
+        axis.text.x = element_text(angle = -45))
+
+dotplot(comp_BP, showCategory = 5, label_format = 90, font.size = 26) +
+    ggtitle("Top 5 GO Biological Process for Age groups in Granular Cell Region")+
+    theme(plot.title = element_text(size = 26),
+        axis.text.x = element_text(angle = -45))
 
 comp_CC <- pairwise_termsim(comp_CC)
 emapplot(comp_CC,

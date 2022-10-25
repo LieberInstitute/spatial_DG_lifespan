@@ -59,8 +59,7 @@ cell_colors <- c("Oligo" = "plum3", "Micro" = "tan2", "OPC" = "goldenrod", "Inhi
     "Excit_A" = "blue2", "Inhib_D" = "green4", "Excit_E" = "blue4",
     "Excit_D" = "midnightblue")
 
-pdf(file = here::here("Github", "spatial_DG_lifespan", "plots", "Cell_Type_Deconvolution",
-    "Scatterpie_plots.pdf"))
+pdf(file = here::here("plots", "Cell_Type_Deconvolution", "Scatterpie_plots.pdf"), width = 12, height = 8)
 plotSpatialScatterpie(
     x = Br1412,
     y = Br1412y,
