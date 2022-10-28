@@ -1,6 +1,6 @@
 #######################################################
 # spatial_DG_lifespan project
-# GO enrichment & plotting from DE of age groups of GCR
+# GO enrichment & plotting from DE of age groups of DG
 # Anthony Ramnauth, Oct 28 2022
 #######################################################
 
@@ -21,23 +21,23 @@ suppressPackageStartupMessages({
 
 # Load .csv files with the list of DE genes
 
-Infant_GCR_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
-    "pseudoBulkDGE_results", "InfantvsNonInfant_GCR_DE.csv"))
+Infant_DG_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
+    "pseudoBulkDGE_results", "InfantvsNonInfant_DentateGyrus_DE.csv"))
 
-Teen_GCR_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
-    "pseudoBulkDGE_results", "TeenvsNonTeen_GCR_DE.csv"))
+Teen_DG_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
+    "pseudoBulkDGE_results", "TeenvsNonTeen_DentateGyrus_DE.csv"))
 
-Adult_GCR_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
-    "pseudoBulkDGE_results", "AdultvsNonAdult_GCR_DE.csv"))
+Adult_DG_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
+    "pseudoBulkDGE_results", "AdultvsNonAdult_DentateGyrus_DE.csv"))
 
-Elderly_GCR_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
-    "pseudoBulkDGE_results", "ElderlyvsNonElderly_GCR_DE.csv"))
+Elderly_DG_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
+    "pseudoBulkDGE_results", "ElderlyvsNonElderly_DentateGyrus_DE.csv"))
 
 ############################################################
 # Make dataframes of ENTREZIDs and logFCs for each age group
 ############################################################
 
-infant <- Infant_GCR_DE_age_results %>%
+infant <- Infant_DG_DE_age_results %>%
     dplyr::arrange(desc(logFC)) %>%
     dplyr::select(gene_name, logFC)
 
@@ -55,7 +55,7 @@ infant <- data.frame(
 up_infant <- infant[infant$logFC > 0, ]
 down_infant <- infant[infant$logFC < 0, ]
 
-teen <- Teen_GCR_DE_age_results %>%
+teen <- Teen_DG_DE_age_results %>%
     dplyr::arrange(desc(logFC)) %>%
     dplyr::select(gene_name, logFC)
 
@@ -73,7 +73,7 @@ teen <- data.frame(
 up_teen <- teen[teen$logFC > 0, ]
 down_teen <- teen[teen$logFC < 0, ]
 
-adult <- Adult_GCR_DE_age_results %>%
+adult <- Adult_DG_DE_age_results %>%
     dplyr::arrange(desc(logFC)) %>%
     dplyr::select(gene_name, logFC)
 
@@ -91,7 +91,7 @@ adult <- data.frame(
 up_adult <- adult[adult$logFC > 0, ]
 down_adult <- adult[adult$logFC < 0, ]
 
-elderly <- Elderly_GCR_DE_age_results %>%
+elderly <- Elderly_DG_DE_age_results %>%
     dplyr::arrange(desc(logFC)) %>%
     dplyr::select(gene_name, logFC)
 
@@ -150,26 +150,26 @@ comp_BP <- compareCluster(clust_compare,
 )
 
 save(comp_CC, comp_MF, comp_BP,
-    file = here::here("processed-data", "pseudobulk_spe", "gene_ontologies", "GCR_comp_enrichedGO.Rdata"))
+    file = here::here("processed-data", "pseudobulk_spe", "gene_ontologies", "DG_comp_enrichedGO.Rdata"))
 
 ##############################################
 # Plot GO comparisons for comparing age groups
 ##############################################
 
-pdf(file = here::here("plots", "pseudobulked", "Age_group_GCR_GO.pdf"), width = 26, height = 16)
+pdf(file = here::here("plots", "pseudobulked", "Age_group_DG_GO.pdf"), width = 26, height = 16)
 
 dotplot(comp_CC, showCategory = 5, label_format = 90, font.size = 26) +
-    ggtitle("Top 5 GO Cellular Compartment for Age groups in Granular Cell Region") +
+    ggtitle("Top 5 GO Cellular Compartment for Age groups in Dentate Gyrus") +
     theme(plot.title = element_text(size = 26),
         axis.text.x = element_text(angle = -45))
 
 dotplot(comp_MF, showCategory = 5, label_format = 90, font.size = 26) +
-    ggtitle("Top 5 GO Molecular Function for Age groups in Granular Cell Region") +
+    ggtitle("Top 5 GO Molecular Function for Age groups in Dentate Gyrus") +
     theme(plot.title = element_text(size = 26),
         axis.text.x = element_text(angle = -45))
 
 dotplot(comp_BP, showCategory = 5, label_format = 90, font.size = 26) +
-    ggtitle("Top 5 GO Biological Process for Age groups in Granular Cell Region")+
+    ggtitle("Top 5 GO Biological Process for Age groups in Dentate Gyrus")+
     theme(plot.title = element_text(size = 26),
         axis.text.x = element_text(angle = -45))
 
@@ -178,19 +178,19 @@ emapplot(comp_CC,
     showCategory = 5, color = "p.adjust",
     pie = "count", cex_category = 3, label_format = 20
 ) +
-    ggtitle("Top 5 GO Cellular Compartment for Age groups in Granular Cell Region")
+    ggtitle("Top 5 GO Cellular Compartment for Age groups in Dentate Gyrus")
 comp_MF <- pairwise_termsim(comp_MF)
 emapplot(comp_MF,
     showCategory = 5, color = "p.adjust",
     pie = "count", cex_category = 3, label_format = 20
 ) +
-    ggtitle("Top 5 GO Molecular Function for Age groups in Granular Cell Region")
+    ggtitle("Top 5 GO Molecular Function for Age groups in Dentate Gyrus")
 comp_BP <- pairwise_termsim(comp_BP)
 emapplot(comp_BP,
     showCategory = 5, color = "p.adjust",
     pie = "count", cex_category = 3, label_format = 20
 ) +
-    ggtitle("Top 5 GO Biological Process for Age groups in Granular Cell Region")
+    ggtitle("Top 5 GO Biological Process for Age groups in Dentate Gyrus")
 
 dev.off()
 
@@ -259,7 +259,7 @@ BP_reduced <- reduceSimMatrix(
 # Plot SimMatrices & Reduced Terms
 ##################################
 
-pdf(file = here::here("plots", "pseudobulked", "GCR_age_groups_GO_reduction_all.pdf"), width = 20, height = 14)
+pdf(file = here::here("plots", "pseudobulked", "DG_age_groups_GO_reduction_all.pdf"), width = 20, height = 14)
 
 heatmapPlot(CC_simMatrix,
             CC_reduced,
@@ -277,7 +277,7 @@ heatmapPlot(BP_simMatrix,
             BP_reduced,
             annotateParent=TRUE,
             annotationLabel="parentTerm",
-            fontsize=10)
+            fontsize=9)
 
 scatterPlot(CC_simMatrix, CC_reduced)
 
@@ -315,7 +315,8 @@ BP_parent_GO <- data.frame(
 BP_parent_GO <- unique(BP_parent_GO)
 
 save(CC_parent_GO, MF_parent_GO, BP_parent_GO,
-    file = here::here("processed-data", "pseudobulk_spe", "gene_ontologies", "GCR_comp_parentGOdfs.Rdata"))
+    file = here::here("processed-data", "pseudobulk_spe", "gene_ontologies", "DG_comp_parentGOdfs.Rdata"))
+
 
 
 ## Reproducibility information
