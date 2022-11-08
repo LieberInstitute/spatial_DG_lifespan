@@ -43,21 +43,21 @@ CC_list <- CC_parent_GO$parent_term
 MF_list <- MF_parent_GO$parent_term
 BP_list <- BP_parent_GO$parent_term
 
-pdf(file = here::here("plots", "pseudobulked", "Age_group_GCR_parent_GO.pdf"), width = 29, height = 26)
+pdf(file = here::here("plots", "pseudobulked", "Age_group_GCR_parent_GO.pdf"), width = 14, height = 12)
 
-dotplot(comp_CC, showCategory = CC_list, label_format = 90, font.size = 26) +
-    ggtitle("Parent GO terms for Cellular Compartment for Age groups in Granular Cell Region") +
-    theme(plot.title = element_text(size = 26),
+dotplot(comp_CC, showCategory = CC_list, label_format = 30, font.size = 20, includeAll = TRUE) +
+    ggtitle("Parent GO terms for Cellular Compartment") +
+    theme(plot.title = element_text(size = 20),
         axis.text.x = element_text(angle = -45))
 
-dotplot(comp_MF, showCategory = MF_list, label_format = 90, font.size = 26) +
-    ggtitle("Parent GO terms for Molecular Function for Age groups in Granular Cell Region") +
-    theme(plot.title = element_text(size = 26),
+dotplot(comp_MF, showCategory = MF_list, label_format = 30, font.size = 20, includeAll = TRUE) +
+    ggtitle("Parent GO terms for Molecular Function") +
+    theme(plot.title = element_text(size = 20),
         axis.text.x = element_text(angle = -45))
 
-dotplot(comp_BP, showCategory = BP_list, label_format = 90, font.size = 26) +
-    ggtitle("Parent GO terms for Biological Process for Age groups in Granular Cell Region")+
-    theme(plot.title = element_text(size = 26),
+dotplot(comp_BP, showCategory = BP_list, label_format = 90, font.size = 14, includeAll = TRUE) +
+    ggtitle("Parent GO terms for Biological Process")+
+    theme(plot.title = element_text(size = 20),
         axis.text.x = element_text(angle = -45))
 
 comp_CC <- pairwise_termsim(comp_CC)

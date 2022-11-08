@@ -51,13 +51,9 @@ colData(spe)$age_bin <- factor(age_df$age_bin, levels = c("Infant", "Teen", "Adu
 
 # All Visium spots
 
-spe_cells <- as.data.frame(colData(spe)[, c(44:66)])
+spe_cells <- as.data.frame(colData(spe)[, c(68:97)])
 
 #reorder correlation by column index
-spe_cells <- spe_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
 
 ####################################################
 # Run Multi-dimensional scaling for all Visium spots
@@ -142,13 +138,13 @@ elderly_cell_sim$type <- factor(rownames(elderly_cell_sim), levels = unique(rown
 # Plot for All Visium Spots
 ###########################
 
-cell_colors <- c("Oligo" = "plum3", "Micro" = "tan2", "OPC" = "goldenrod", "Inhib_A" = "green",
-    "Astro_A" = "yellow2", "Excit_B" = "dodgerblue", "Astro_B" = "yellow", "Excit_C" = "dodgerblue1",
-    "Tcell"= "darkred", "drop.doublet" = "black", "Inhib_B" = "green2", "Excit_H" = "dodgerblue2",
-    "drop.lowNTx_B" = "grey", "drop.lowNTx_A" = "darkgray", "Excit_G" = "dodgerblue3",
-    "Mural" = "brown", "Excit_F" = "dodgerblue4", "OPC_COP" = "goldenrod4", "Inhib_C" = "green3",
-    "Excit_A" = "blue2", "Inhib_D" = "green4", "Excit_E" = "blue4",
-    "Excit_D" = "midnightblue")
+cell_colors <- c("Oligo_1" = "plum3", "Oligo_2" = "plum4", "Microglia" = "tan2", "Macrocyte" = "tan1",
+    "OPC_1" = "goldenrod", "OPC_2" = "goldenrod3", "InN_LAMP5" = "green", "InN_VIP" = "green1",
+    "InN_SST" = "green2", "InN_PV" = "green3", "InN_NR2F2" = "green4", "InN_LHX6" = "lawngreen",
+    "InN_MEIS2" = "mediumseagreen", "Cajal_Ret" = "black", "Vasc_LM" = "red", "Artl_S_Muscle" = "red1",
+    "Pericyte" = "red2", "Endoth" = "red3", "Vasc_S_Muscle" = "red4", "T_cell" = "tan3",
+    "Myeloid" = "tan4", "COP" = "goldenrod4", "GC" = "blue", "CA3_N" = "dodgerblue", "EC_N" = "blue1",
+    "Mossy" = "blue4", "CA1_N" = "blue2", "SUB_N" = "blue3", "Astro_1" = "yellow2", "Astro_2" = "yellow")
 
 pdf(file = here::here("plots", "Cell_Type_Deconvolution", "cell_type_MDS_spots.pdf"), width = 12,
     height = 8)

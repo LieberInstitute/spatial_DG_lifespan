@@ -236,17 +236,31 @@ exprs_heatmap <- assays(spe_pseudo)[[2]][cluster_ind, ]
 rownames(exprs_heatmap) <- rowData(spe_pseudo)$gene_name[cluster_ind]
 colnames(exprs_heatmap) <- paste("logcount", 1:64, sep = "")
 
+# Configure column order to match age groups per BayesSpace cluster
+Bayes_age_order <- c(
+6, 8, 1, 2, 7, 3, 4, 5,
+14, 16, 9, 10, 15, 11, 12, 13,
+22, 24, 17, 18, 23, 19, 20, 21,
+30, 32, 25, 26, 31, 27, 28, 29,
+38, 40, 33, 34, 39, 35, 36, 37,
+46, 48, 41, 42, 47, 43, 44, 45,
+54, 56, 49, 50, 55, 51, 52, 53,
+62, 64, 57, 58, 63, 59, 60, 61
+    )
+
 # Plot heatmap of logcounts for clusters and samples
 pdf(file = here::here("plots", "pseudobulked", "enrichment_heatmap_all.pdf"), width = 12, height = 8)
 Heatmap(exprs_heatmap,
-    name = "logcounts",
+    name = "mean\nlogcounts",
     top_annotation = HeatmapAnnotation(BayesSpace_cluster = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
     col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen"),
         BayesSpace_cluster = c("1" = "orangered", "2" = "orange", "3" = "cyan", "4" = "springgreen3",
             "5" = "brown", "6" = "pink", "7" = "yellow", "8" = "slategrey"))),
     column_title = "logcounts of top 10 transcripts from Differential Enrichment of BayesSpace Clusters",
     show_column_names = FALSE,
-    column_split = 13,
+    cluster_columns = FALSE,
+    column_order = Bayes_age_order,
+    column_split = spe_pseudo$BayesSpace,
     row_split = 29,
     row_title = NULL,
     row_names_gp = gpar(fontsize = 7)
