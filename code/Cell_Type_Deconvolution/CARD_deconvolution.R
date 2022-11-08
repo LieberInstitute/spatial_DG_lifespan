@@ -22,7 +22,7 @@ suppressPackageStartupMessages({
 
 
 # Load SCE
-sce <- load(file = here::here("processed-data", "SCE_HPC-n3_tran_etal.rda"))
+sce <- readRDS(file = here::here("processed-data", "sce_sestan_DG.rds"))
 
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
@@ -51,17 +51,20 @@ CARD_obj <- createCARDObject(
     sc_meta = colData(sce),
     spatial_count = spatial_cou,
     spatial_location = spatial_loc,
-    ct.varname = "cellType",
-    ct.select = unique(sce$cellType),
-    sample.varname = "donor",
+    ct.varname = "Cell_Type",
+    ct.select = unique(sce$Cell_Type),
+    sample.varname = "sample_name",
     minCountGene = 100,
     minCountSpot = 5)
 
 # Run CARD deconvolution
 
+# If starting from here load CARD object
+CARD_obj <- readRDS(file = here::here("processed-data", "CARD_obj_sestan.rds"))
+
 CARD_obj <- CARD_deconvolution(CARD_obj)
 
-saveRDS(CARD_obj, file = here::here("CARD_obj.rds"))
+saveRDS(CARD_obj, file = here::here("CARD_obj_sestan.rds"))
 
 dim(CARD_obj@Proportion_CARD)
 dim(spe)
@@ -70,7 +73,7 @@ setdiff(rownames(spatial_loc), rownames(CARD_obj@Proportion_CARD))
 
 # There are 9 Visium spots missing, fill in those blanks!
 
-emptyNaDF <- data.frame(matrix(NA,nrow = 9, ncol = 23))
+emptyNaDF <- data.frame(matrix(NA,nrow = 9, ncol = 30))
 rownames(emptyNaDF) <- setdiff(rownames(spatial_loc), rownames(CARD_obj@Proportion_CARD))
 colnames(emptyNaDF) <- colnames(CARD_obj@Proportion_CARD)
 
@@ -98,7 +101,7 @@ p <- cell_props %>%
  rowwise() %>%
  mutate(row_max = names(.)[which.max(c_across(everything()))])
 
-colData(spe)$dominant_cell_type <- p$row_max
+colData(spe)$dominant_cell_types <- p$row_max
 
 saveRDS(spe, file = here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
