@@ -215,7 +215,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = GC_1), size = 0.09) +
+        color = GC), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "GC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -598,9 +598,9 @@ pdf(file = here::here("plots", "Cell_Type_Deconvolution", "Cell_type_relative_sc
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Oligo), size = 0.09) +
+        color = CA3_N), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Oligo_cell_type__proportions") +
+    labs(title = "CA3_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -613,9 +613,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Micro), size = 0.09) +
+        color = EC_N), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Micro_cell_type__proportions") +
+    labs(title = "EC_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -628,9 +628,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = OPC), size = 0.09) +
+        color = Mossy), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "OPC_cell_type__proportions") +
+    labs(title = "Mossy_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -643,9 +643,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Inhib_A), size = 0.09) +
+        color = CA1_N), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Inhib_A_cell_type__proportions") +
+    labs(title = "CA1_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -658,9 +658,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Astro_A), size = 0.09) +
+        color = SUB_N), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Astro_A_cell_type__proportions") +
+    labs(title = "SUB_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -673,9 +673,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_B), size = 0.09) +
+        color = GC), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_B_cell_type__proportions") +
+    labs(title = "GC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -688,9 +688,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Astro_B), size = 0.09) +
+        color = InN_LAMP5), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Astro_B_cell_type__proportions") +
+    labs(title = "InN_LAMP5_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -703,9 +703,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_C), size = 0.09) +
+        color = InN_VIP), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_C_cell_type__proportions") +
+    labs(title = "InN_VIP_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -718,9 +718,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Tcell), size = 0.09) +
+        color = InN_SST), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Tcell_cell_type__proportions") +
+    labs(title = "InN_SST_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -733,9 +733,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = drop.doublet), size = 0.09) +
+        color = InN_PV), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "drop.doublet__proportions") +
+    labs(title = "InN_PV_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -748,9 +748,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Inhib_B), size = 0.09) +
+        color = InN_NR2F2), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Inhib_B_cell_type__proportions") +
+    labs(title = "InN_NR2F2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -763,9 +763,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_H), size = 0.09) +
+        color = InN_LHX6), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_H_cell_type__proportions") +
+    labs(title = "InN_LHX6_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -778,9 +778,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = drop.lowNTx_B), size = 0.09) +
+        color = InN_MEIS2), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "drop.lowNTx_B__proportions") +
+    labs(title = "InN_MEIS2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -793,9 +793,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = drop.lowNTx_A), size = 0.09) +
+        color = Cajal_Ret), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "drop.lowNTx_A__proportions") +
+    labs(title = "Cajal_Ret_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -808,9 +808,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_G), size = 0.09) +
+        color = Vasc_LM), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_G_cell_type__proportions") +
+    labs(title = "Vasc_LM_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -823,9 +823,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Mural), size = 0.09) +
+        color = OPC_1), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Mural_cell_type__proportions") +
+    labs(title = "OPC_1_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -838,9 +838,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_F), size = 0.09) +
+        color = Artl_S_Muscle), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_F_cell_type__proportions") +
+    labs(title = "Artl_S_Muscle_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -853,9 +853,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = OPC_COP), size = 0.09) +
+        color = Oligo_1), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "OPC_COP_cell_type__proportions") +
+    labs(title = "Oligo_1_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -868,9 +868,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Inhib_C), size = 0.09) +
+        color = Oligo_2), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Inhib_C_cell_type__proportions") +
+    labs(title = "Oligo_2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -883,9 +883,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_A), size = 0.09) +
+        color = Microglia), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_A_cell_type__proportions") +
+    labs(title = "Microglia_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -898,9 +898,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Inhib_D), size = 0.09) +
+        color = Pericyte), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Inhib_D_cell_type__proportions") +
+    labs(title = "Pericyte_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -913,9 +913,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_E), size = 0.09) +
+        color = Endoth), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_E_cell_type__proportions") +
+    labs(title = "Endoth_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -928,9 +928,114 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Excit_D), size = 0.09) +
+        color = Vasc_S_Muscle), size = 0.09) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Excit_D_cell_type__proportions") +
+    labs(title = "Vasc_S_Muscle_cell_type__proportions") +
+    facet_wrap(vars(sample_id)) +
+    coord_fixed() +
+    scale_y_reverse() +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_line(color = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(spe_cells) +
+    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+        color = OPC_2), size = 0.09) +
+    scale_color_viridis(option = "turbo", name = "proportion") +
+    labs(title = "OPC_2_cell_type__proportions") +
+    facet_wrap(vars(sample_id)) +
+    coord_fixed() +
+    scale_y_reverse() +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_line(color = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(spe_cells) +
+    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+        color = Macrocyte), size = 0.09) +
+    scale_color_viridis(option = "turbo", name = "proportion") +
+    labs(title = "Macrocyte_cell_type__proportions") +
+    facet_wrap(vars(sample_id)) +
+    coord_fixed() +
+    scale_y_reverse() +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_line(color = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(spe_cells) +
+    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+        color = COP), size = 0.09) +
+    scale_color_viridis(option = "turbo", name = "proportion") +
+    labs(title = "COP_cell_type__proportions") +
+    facet_wrap(vars(sample_id)) +
+    coord_fixed() +
+    scale_y_reverse() +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_line(color = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(spe_cells) +
+    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+        color = T_cell), size = 0.09) +
+    scale_color_viridis(option = "turbo", name = "proportion") +
+    labs(title = "T_cell_type__proportions") +
+    facet_wrap(vars(sample_id)) +
+    coord_fixed() +
+    scale_y_reverse() +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_line(color = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(spe_cells) +
+    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+        color = Myeloid), size = 0.09) +
+    scale_color_viridis(option = "turbo", name = "proportion") +
+    labs(title = "Myeloid_cell_type__proportions") +
+    facet_wrap(vars(sample_id)) +
+    coord_fixed() +
+    scale_y_reverse() +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_line(color = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(spe_cells) +
+    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+        color = Astro_1), size = 0.09) +
+    scale_color_viridis(option = "turbo", name = "proportion") +
+    labs(title = "Astro_1_cell_type__proportions") +
+    facet_wrap(vars(sample_id)) +
+    coord_fixed() +
+    scale_y_reverse() +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_line(color = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggplot(spe_cells) +
+    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
+        color = Astro_2), size = 0.09) +
+    scale_color_viridis(option = "turbo", name = "proportion") +
+    labs(title = "Astro_2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
