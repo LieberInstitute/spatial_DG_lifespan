@@ -143,13 +143,13 @@ rownames(dat) <- rowData(sce)$SYMBOL
 hm_mat <- t(do.call(cbind, lapply(cell_idx, function(i) rowMeans(dat[markers, i]))))
 
 # convert to z-scores
-scale_columns = function(x){
-    m = apply(x, 2, mean, na.rm = T)
-    s = apply(x, 2, sd, na.rm = T)
+scale_rows = function(x){
+    m = apply(x, 1, mean, na.rm = T)
+    s = apply(x, 1, sd, na.rm = T)
     return((x - m) / s)
 }
 
-hm_mat <- scale_columns(hm_mat)
+hm_mat <- t(scale_rows(t(hm_mat)))
 
 # column annotation
 col_ha <- columnAnnotation(
