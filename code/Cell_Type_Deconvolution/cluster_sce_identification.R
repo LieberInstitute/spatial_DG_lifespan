@@ -142,6 +142,15 @@ rownames(dat) <- rowData(sce)$SYMBOL
 
 hm_mat <- t(do.call(cbind, lapply(cell_idx, function(i) rowMeans(dat[markers, i]))))
 
+# convert to z-scores
+scale_columns = function(x){
+    m = apply(x, 2, mean, na.rm = T)
+    s = apply(x, 2, sd, na.rm = T)
+    return((x - m) / s)
+}
+
+hm_mat <- scale_columns(hm_mat)
+
 # column annotation
 col_ha <- columnAnnotation(
   marker = marker_labels,
@@ -154,7 +163,7 @@ pdf(file = here::here("plots", "sce_plots", "Heatmap_markers_sce.pdf"), width = 
 
 Heatmap(
   hm_mat,
-  name = "mean\nlogcounts",
+  name = "z-score",
   column_title = "DG clusters mean marker expression",
   column_title_gp = gpar(fontface = "bold"),
   bottom_annotation = col_ha,
