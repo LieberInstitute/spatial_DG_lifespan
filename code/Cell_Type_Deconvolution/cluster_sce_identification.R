@@ -177,6 +177,89 @@ Heatmap(
 
 dev.off()
 
+######
+# UMAP
+######
+
+# cluster labels
+cluster_pops <- list(
+  ExctN = c(33, 20, 11, 28, 32, 14),
+  GCs = c(36, 16, 34),
+  CA3 = c(7),
+  CA2 = c(40),
+  CA1 = c(1),
+  Sub = c(9),
+  InhbN = c(35, 2, 12, 8),
+  Astro = c(29, 18, 30),
+  Oligo = c(24, 15),
+  Macro_Micro = c(31, 26),
+  OPCs = c(19, 3),
+  COP = c(41),
+  Endo_Mural = c(38),
+  T_cells = c(42),
+  Progen = c(4, 5, 22),
+  Unknown = c(6, 10, 13, 17, 21, 23, 25, 27, 37, 39)
+    )
+
+label_merged <- fct_collapse(colData(sce)$label,
+  ExctN = as.character(cluster_pops[[1]]),
+  GCs = as.character(cluster_pops[[2]]),
+  CA3 = as.character(cluster_pops[[3]]),
+  CA2 = as.character(cluster_pops[[4]]),
+  CA1 = as.character(cluster_pops[[5]]),
+  Sub = as.character(cluster_pops[[6]]),
+  InhbN = as.character(cluster_pops[[7]]),
+  Astro = as.character(cluster_pops[[8]]),
+  Oligo = as.character(cluster_pops[[9]]),
+  Macro_Micro = as.character(cluster_pops[[10]]),
+  OPCs = as.character(cluster_pops[[11]]),
+  COP = as.character(cluster_pops[[12]]),
+  Endo_Mural = as.character(cluster_pops[[13]]),
+  T_cells = as.character(cluster_pops[[14]]),
+  Progen = as.character(cluster_pops[[15]]),
+  Unknown = as.character(cluster_pops[[16]])
+    )
+
+label_merged <- fct_relevel(label_merged,
+  c("ExctN", "GCs", "CA3", "CA2", "CA1", "Sub", "InhbN", "Astro", "Oligo", "Macro_Micro",
+      "OPCs", "COP", "Endo_Mural", "T_cells", "Progen", "Unknown"))
+
+table(label_merged)
+#label_merged
+#ExctN         GCs         CA3         CA2         CA1         Sub       InhbN       Astro       Oligo Macro_Micro
+#26300       10826        5025          72        8709        7273       20166       22642        7292       13631
+#OPCs         COP  Endo_Mural     T_cells      Progen     Unknown
+#12732         190        2180          99       10762       61376
+
+colData(sce)$label_merged <- label_merged
+
+colors_clusters <- list(population = c(
+  ExctN = "blue",
+  GCs = "purple",
+  CA3 = "dodgerblue",
+  CA2 = "dodgerblue3",
+  CA1 = "blue3",
+  Sub = "blue4",
+  InhbN = "green",
+  Astro = "yellow",
+  Oligo = "plum3",
+  Macro_Micro = "tan",
+  OPCs = "goldenrod",
+  COP = "goldenrod4",
+  Endo_Mural = "red3",
+  T_cells = "tan3",
+  Progen = "cyan",
+  Unknown = "black"))
+
+pdf(file = here::here("plots", "sce_plots", "Merged_cluster_plot_sce.pdf"))
+plotReducedDim(sce, dimred = "UMAP.HARMONY", colour_by = "label_merged") +
+  scale_color_manual(values = colors_clusters[[1]], name = "clusters (merged)") +
+  theme_classic() +
+  ggtitle("Combined HPC snRNAseq datasets clustering")
+dev.off()
+
+saveRDS(sce, file = here::here("processed-data", "sce", "sce_clustered.rds"))
+
 
 ## Reproducibility information
 print("Reproducibility information:")
