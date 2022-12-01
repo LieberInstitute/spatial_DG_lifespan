@@ -248,15 +248,24 @@ Bayes_age_order <- c(
 62, 64, 57, 58, 63, 59, 60, 61
     )
 
+# convert to z-scores
+scale_rows = function(x){
+    m = apply(x, 1, mean, na.rm = T)
+    s = apply(x, 1, sd, na.rm = T)
+    return((x - m) / s)
+}
+
+exprs_heatmap <- scale_rows(exprs_heatmap)
+
 # Plot heatmap of logcounts for clusters and samples
 pdf(file = here::here("plots", "pseudobulked", "enrichment_heatmap_all.pdf"), width = 12, height = 8)
 Heatmap(exprs_heatmap,
-    name = "mean\nlogcounts",
+    name = "z-score",
     top_annotation = HeatmapAnnotation(BayesSpace_cluster = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
     col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen"),
         BayesSpace_cluster = c("1" = "orangered", "2" = "orange", "3" = "cyan", "4" = "springgreen3",
             "5" = "brown", "6" = "pink", "7" = "yellow", "8" = "slategrey"))),
-    column_title = "logcounts of top 10 transcripts from Differential Enrichment of BayesSpace Clusters",
+    column_title = "Top 10 transcripts from Differential Enrichment of BayesSpace Clusters",
     show_column_names = FALSE,
     cluster_columns = FALSE,
     column_order = Bayes_age_order,
