@@ -76,16 +76,29 @@ clus <- clusterCells(
   sce,
   use.dimred = "HARMONY",
   BLUSPARAM = TwoStepParam(
-    first = KmeansParam(centers = 1200),
-    second = NNGraphParam(k = 11, cluster.fun = "leiden")
+    first = KmeansParam(centers = 2000),
+    second = NNGraphParam(k = 20, cluster.fun = "leiden")
   )
 )
 
 table(clus)
+#clus
+#    1     2     3     4     5     6     7     8     9
+#10500   412  2625  3269  1768  3307  1528   647    34
 
 colLabels(sce) <- clus
 
 table(colLabels(sce), colData(sce)$Dataset)
+#    Franjic_etal_2022 Zhong_etal_2020 Zhou_etal_2022
+#  1               272            5790           4438
+#  2                 0             412              0
+#  3               960             169           1496
+#  4                 8            3258              3
+#  5              1449              24            295
+#  6               903             221           2183
+#  7                20               0           1508
+#  8                 0             647              0
+#  9                34               0              0
 
 # Check marker genes violin plots
 
@@ -108,7 +121,8 @@ dev.off()
 
 # Create heatmap for markers of mean expresion with z-scores
 markers <- c("GAD1", "GAD2", "SST", "KIT", "CALB1", "CALB2", "TAC1","CNR1",
-    "PVALB", "CORT", "VIP", "NPY", "CRHBP", "CCK", "HTR3A", "NR2F2", "LAMP5", "MEIS2")
+    "PVALB", "CORT", "VIP", "NPY", "CRHBP", "CCK", "HTR3A", "NR2F2", "LAMP5",
+    "MEIS2", "DCX", "BHLHE22", "STMN1", "PAX6", "EOMES")
 
 # using 'splitit' function from rafalib package
 # code from Matthew N Tran
