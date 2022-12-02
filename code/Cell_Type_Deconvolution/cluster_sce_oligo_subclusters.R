@@ -1,8 +1,8 @@
-#############################################
+###################################################
 # spatial_DG_lifespan project
-# Sub-clustering of sce object for astrocytes
+# Sub-clustering of sce object for oligodendrocytes
 # Anthony Ramnauth, Dec 01 2022
-#############################################
+###################################################
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
@@ -24,13 +24,13 @@ suppressPackageStartupMessages({
 
 sce <- readRDS(here::here("processed-data", "sce", "sce_clustered.rds"))
 
-# Subset for astrocytes
+# Subset for oligodendrocytes
 
 sce_full <- sce
 
-# select astrocyte clusters
+# select oligo clusters
 # (identified based on marker expression heatmap from previous script)
-clus_select <- c("Astro")
+clus_select <- c("Oligo")
 
 ix_select <- sce$label_merged %in% clus_select
 table(ix_select)
@@ -66,7 +66,7 @@ set.seed(123)
 sce <- runUMAP(sce, dimred = "HARMONY", name = "UMAP.HARMONY")
 colnames(reducedDim(sce, "UMAP.HARMONY")) <- c("UMAP1", "UMAP2")
 
-# secondary clustering of astrocytes
+# secondary clustering of oligos
 
 # clustering algorithm and parameters from OSCA
 # two-stage clustering algorithm using high-resolution k-means and Leiden clustering
@@ -83,42 +83,40 @@ clus <- clusterCells(
 
 table(clus)
 #clus
-#    1     2     3     4     5     6
-#14187  2405  2639  6856   717   805
+#    1     2     3     4
+#47255 13154  3673  5686
 
 colLabels(sce) <- clus
 
 table(colLabels(sce), colData(sce)$Dataset)
 #    Franjic_etal_2022 Zhong_etal_2020 Zhou_etal_2022
-#  1              6791            1663           5733
-#  2                38               0           2367
-#  3              2441             192              6
-#  4              3049             123           3684
-#  5               717               0              0
-#  6                 5              16            784
+#  1             17794             970          28491
+#  2             12302             779             73
+#  3              3515               0            158
+#  4              5281              51            354
 
 # Check marker genes violin plots
 
-pdf(file = here::here("plots", "sce_plots", "Astro_cluster_markers_sce.pdf"))
+pdf(file = here::here("plots", "sce_plots", "Oligo_cluster_markers_sce.pdf"))
 
-plotExpression(sce, features=c("AQP4", "GFAP", "CHRDL1", "GLUL", "GRM3", "SLC1A3",
-    "TSHZ2", "TNC", "SLC1A2", "SLC38A3", "ALDH1L1", "FAM107A", "SOX2", "PAX6", "EOMES"),
+plotExpression(sce, features=c("MOBP", "OLIG1", "OLIG2", "SOX10", "MOG", "CNP",
+    "CLDN11", "SOX2", "PAX6", "HOPX", "EOMES"),
     x="label", colour_by="label")
 
 dev.off()
 
 # Plot UMAP after clustering
-pdf(file = here::here("plots", "sce_plots", "DG_UMAP_Astro_clusters_sce.pdf"))
+pdf(file = here::here("plots", "sce_plots", "DG_UMAP_Oligo_clusters_sce.pdf"))
 
 plotReducedDim(sce, dimred = "UMAP.HARMONY", colour_by = "label",
     point_alpha = 0.3, point_size = 0.5) +
-  ggtitle("Unsupervised clustering of Astro clusters")
+  ggtitle("Unsupervised clustering of Oligo clusters")
 
 dev.off()
 
 # Create heatmap for markers of mean expresion with z-scores
-markers <- c("AQP4", "GFAP", "CHRDL1", "GLUL", "GRM3", "SLC1A3", "TSHZ2", "TNC",
-    "SLC1A2", "SLC38A3", "ALDH1L1", "FAM107A", "SOX2", "PAX6", "EOMES")
+markers <- c("MOBP", "OLIG1", "OLIG2", "SOX10", "MOG", "CNP",
+    "CLDN11", "SOX2", "PAX6", "HOPX", "EOMES")
 
 # using 'splitit' function from rafalib package
 # code from Matthew N Tran
@@ -139,12 +137,12 @@ scale_rows = function(x){
 
 hm_mat <- t(scale_rows(t(hm_mat)))
 
-pdf(file = here::here("plots", "sce_plots", "Heatmap_Astro_markers_sce.pdf"), width = 12, height = 8)
+pdf(file = here::here("plots", "sce_plots", "Heatmap_Oligo_markers_sce.pdf"), width = 12, height = 8)
 
 Heatmap(
   hm_mat,
   name = "z-score",
-  column_title = "Astro markers",
+  column_title = "Oligo markers",
   column_title_gp = gpar(fontface = "bold"),
   cluster_rows = TRUE,
   cluster_columns = FALSE,
@@ -167,16 +165,16 @@ table(duplicated(colnames(sce_full)))
 table(colnames(sce) %in% colnames(sce_full))
 
 # match and store cluster labels
-clus_astro <- rep(NA, ncol(sce_full))
-names(clus_astro) <- colnames(sce_full)
-clus_astro[colnames(sce)] <- colData(sce)$label
+clus_oligo <- rep(NA, ncol(sce_full))
+names(clus_oligo) <- colnames(sce_full)
+clus_oligo[colnames(sce)] <- colData(sce)$label
 
-colData(sce_full)$label_astro <- clus_astro
+colData(sce_full)$label_oligo <- clus_oligo
 
 # check
 table(colData(sce_full)$label)
-table(colData(sce_full)$label_astro)
-table(colData(sce_full)$label_astro, useNA = "always")
+table(colData(sce_full)$label_oligo)
+table(colData(sce_full)$label_oligo, useNA = "always")
 
 
 # Save new sce object

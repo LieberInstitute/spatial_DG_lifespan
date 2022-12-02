@@ -28,7 +28,7 @@ sce <- readRDS(here::here("processed-data", "sce", "sce_clustered.rds"))
 
 sce_full <- sce
 
-# select inhibitory neuron clusters
+# select excitatory neuron clusters
 # (identified based on marker expression heatmap from previous script)
 clus_select <- c("ExctN")
 

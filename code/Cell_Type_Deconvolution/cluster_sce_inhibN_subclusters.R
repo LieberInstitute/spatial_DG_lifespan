@@ -66,7 +66,7 @@ set.seed(123)
 sce <- runUMAP(sce, dimred = "HARMONY", name = "UMAP.HARMONY")
 colnames(reducedDim(sce, "UMAP.HARMONY")) <- c("UMAP1", "UMAP2")
 
-# secondary clustering of excitatory neurons
+# secondary clustering of inhibitory neurons
 
 # clustering algorithm and parameters from OSCA
 # two-stage clustering algorithm using high-resolution k-means and Leiden clustering

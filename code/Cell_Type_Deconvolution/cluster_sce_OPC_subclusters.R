@@ -1,8 +1,8 @@
-#############################################
+#######################################
 # spatial_DG_lifespan project
-# Sub-clustering of sce object for astrocytes
+# Sub-clustering of sce object for OPCs
 # Anthony Ramnauth, Dec 01 2022
-#############################################
+#######################################
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
@@ -24,13 +24,13 @@ suppressPackageStartupMessages({
 
 sce <- readRDS(here::here("processed-data", "sce", "sce_clustered.rds"))
 
-# Subset for astrocytes
+# Subset for OPCs
 
 sce_full <- sce
 
-# select astrocyte clusters
+# select OPCs clusters
 # (identified based on marker expression heatmap from previous script)
-clus_select <- c("Astro")
+clus_select <- c("OPCs")
 
 ix_select <- sce$label_merged %in% clus_select
 table(ix_select)
@@ -66,7 +66,7 @@ set.seed(123)
 sce <- runUMAP(sce, dimred = "HARMONY", name = "UMAP.HARMONY")
 colnames(reducedDim(sce, "UMAP.HARMONY")) <- c("UMAP1", "UMAP2")
 
-# secondary clustering of astrocytes
+# secondary clustering of OPCs
 
 # clustering algorithm and parameters from OSCA
 # two-stage clustering algorithm using high-resolution k-means and Leiden clustering
@@ -76,49 +76,48 @@ clus <- clusterCells(
   sce,
   use.dimred = "HARMONY",
   BLUSPARAM = TwoStepParam(
-    first = KmeansParam(centers = 1000),
+    first = KmeansParam(centers = 2000),
     second = NNGraphParam(k = 20, cluster.fun = "leiden")
   )
 )
 
 table(clus)
 #clus
-#    1     2     3     4     5     6
-#14187  2405  2639  6856   717   805
+#   1    2    3    4    5
+#8010 3411  560  100  651
 
 colLabels(sce) <- clus
 
 table(colLabels(sce), colData(sce)$Dataset)
 #    Franjic_etal_2022 Zhong_etal_2020 Zhou_etal_2022
-#  1              6791            1663           5733
-#  2                38               0           2367
-#  3              2441             192              6
-#  4              3049             123           3684
-#  5               717               0              0
-#  6                 5              16            784
+#  1              2246             202           5562
+#  2              1956              16           1439
+#  3                38               1            521
+#  4                 5               0             95
+#  5               647               4              0
 
 # Check marker genes violin plots
 
-pdf(file = here::here("plots", "sce_plots", "Astro_cluster_markers_sce.pdf"))
+pdf(file = here::here("plots", "sce_plots", "OPC_cluster_markers_sce.pdf"))
 
-plotExpression(sce, features=c("AQP4", "GFAP", "CHRDL1", "GLUL", "GRM3", "SLC1A3",
-    "TSHZ2", "TNC", "SLC1A2", "SLC38A3", "ALDH1L1", "FAM107A", "SOX2", "PAX6", "EOMES"),
+plotExpression(sce, features=c("PDGFRA", "VCAN", "GPR17", "ADAM33",
+    "PAX6", "HOPX", "EOMES"),
     x="label", colour_by="label")
 
 dev.off()
 
 # Plot UMAP after clustering
-pdf(file = here::here("plots", "sce_plots", "DG_UMAP_Astro_clusters_sce.pdf"))
+pdf(file = here::here("plots", "sce_plots", "DG_UMAP_OPC_clusters_sce.pdf"))
 
 plotReducedDim(sce, dimred = "UMAP.HARMONY", colour_by = "label",
     point_alpha = 0.3, point_size = 0.5) +
-  ggtitle("Unsupervised clustering of Astro clusters")
+  ggtitle("Unsupervised clustering of OPC clusters")
 
 dev.off()
 
 # Create heatmap for markers of mean expresion with z-scores
-markers <- c("AQP4", "GFAP", "CHRDL1", "GLUL", "GRM3", "SLC1A3", "TSHZ2", "TNC",
-    "SLC1A2", "SLC38A3", "ALDH1L1", "FAM107A", "SOX2", "PAX6", "EOMES")
+markers <- c("PDGFRA", "VCAN", "GPR17", "ADAM33",
+    "PAX6", "HOPX", "EOMES")
 
 # using 'splitit' function from rafalib package
 # code from Matthew N Tran
@@ -139,13 +138,38 @@ scale_rows = function(x){
 
 hm_mat <- t(scale_rows(t(hm_mat)))
 
-pdf(file = here::here("plots", "sce_plots", "Heatmap_Astro_markers_sce.pdf"), width = 12, height = 8)
+# marker labels
+marker_labels <- c(
+  rep("OPCs", 2),
+  rep("COP", 2),
+  rep("Progenitors", 3))
+
+marker_labels <-
+  factor(marker_labels, levels = unique(marker_labels))
+
+# colors
+colors_markers <- list(marker = c(
+  OPCs = "goldenrod",
+  COP = "goldenrod4",
+  Progenitors = "cyan"
+    ))
+
+# column annotation
+col_ha <- columnAnnotation(
+  marker = marker_labels,
+  show_annotation_name = FALSE,
+  show_legend = TRUE,
+  col = colors_markers
+  )
+
+pdf(file = here::here("plots", "sce_plots", "Heatmap_OPC_markers_sce.pdf"), width = 12, height = 8)
 
 Heatmap(
   hm_mat,
   name = "z-score",
-  column_title = "Astro markers",
+  column_title = "OPC markers",
   column_title_gp = gpar(fontface = "bold"),
+  bottom_annotation = col_ha,
   cluster_rows = TRUE,
   cluster_columns = FALSE,
   row_title = NULL,
@@ -167,16 +191,16 @@ table(duplicated(colnames(sce_full)))
 table(colnames(sce) %in% colnames(sce_full))
 
 # match and store cluster labels
-clus_astro <- rep(NA, ncol(sce_full))
-names(clus_astro) <- colnames(sce_full)
-clus_astro[colnames(sce)] <- colData(sce)$label
+clus_OPCs <- rep(NA, ncol(sce_full))
+names(clus_OPCs) <- colnames(sce_full)
+clus_OPCs[colnames(sce)] <- colData(sce)$label
 
-colData(sce_full)$label_astro <- clus_astro
+colData(sce_full)$label_OPCs <- clus_OPCs
 
 # check
 table(colData(sce_full)$label)
-table(colData(sce_full)$label_astro)
-table(colData(sce_full)$label_astro, useNA = "always")
+table(colData(sce_full)$label_OPCs)
+table(colData(sce_full)$label_OPCs, useNA = "always")
 
 
 # Save new sce object
