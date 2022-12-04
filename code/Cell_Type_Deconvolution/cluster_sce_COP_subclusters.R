@@ -1,8 +1,8 @@
-#####################################################
+#######################################
 # spatial_DG_lifespan project
-# Sub-clustering of sce object for inhibitory neurons
-# Anthony Ramnauth, Nov 28 2022
-#####################################################
+# Sub-clustering of sce object for COPs
+# Anthony Ramnauth, Dec 01 2022
+#######################################
 
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
@@ -24,13 +24,13 @@ suppressPackageStartupMessages({
 
 sce <- readRDS(here::here("processed-data", "sce", "sce_clustered.rds"))
 
-# Subset for Inhibitory Neurons
+# Subset for COPs
 
 sce_full <- sce
 
-# select inhibitory neuron clusters
+# select OPCs clusters
 # (identified based on marker expression heatmap from previous script)
-clus_select <- c("InhbN")
+clus_select <- c("COP")
 
 ix_select <- sce$label_merged %in% clus_select
 table(ix_select)
@@ -66,7 +66,7 @@ set.seed(123)
 sce <- runUMAP(sce, dimred = "HARMONY", name = "UMAP.HARMONY")
 colnames(reducedDim(sce, "UMAP.HARMONY")) <- c("UMAP1", "UMAP2")
 
-# secondary clustering of inhibitory neurons
+# secondary clustering of COP
 
 # clustering algorithm and parameters from OSCA
 # two-stage clustering algorithm using high-resolution k-means and Leiden clustering
@@ -75,52 +75,42 @@ set.seed(12345)
 clus <- clusterCells(
   sce,
   use.dimred = "HARMONY",
-  BLUSPARAM = TwoStepParam(
-    first = KmeansParam(centers = 2000),
-    second = NNGraphParam(k = 20, cluster.fun = "leiden")
-  )
+  BLUSPARAM = NNGraphParam(k = 20, cluster.fun = "leiden")
 )
 
 table(clus)
 #clus
-#    1     2     3     4     5     6     7
-#10484  3268  2663  1517  3281   665   410
+#  1
+#560
 
 colLabels(sce) <- clus
 
 table(colLabels(sce), colData(sce)$Dataset)
 #    Franjic_etal_2022 Zhong_etal_2020 Zhou_etal_2022
-#  1               263            5791           4430
-#  2                11            3238             19
-#  3               964             160           1539
-#  4                20               2           1495
-#  5               905             231           2145
-#  6                 0             665              0
-#  7                 0             410              0
+#  1                38               1            521
 
 # Check marker genes violin plots
 
-pdf(file = here::here("plots", "sce_plots", "InhbN_cluster_markers_sce.pdf"))
+pdf(file = here::here("plots", "sce_plots", "COP_cluster_markers_sce.pdf"))
 
-plotExpression(sce, features=c("GAD1", "GAD2", "SST", "KIT", "CALB1", "CALB2", "TAC1",
-    "CNR1", "PVALB", "CORT", "VIP", "NPY", "CRHBP", "CCK", "HTR3A", "NR2F2", "LAMP5", "MEIS2"),
+plotExpression(sce, features=c("PDGFRA", "VCAN", "GPR17", "ADAM33",
+    "PAX6", "HOPX", "EOMES"),
     x="label", colour_by="label")
 
 dev.off()
 
 # Plot UMAP after clustering
-pdf(file = here::here("plots", "sce_plots", "DG_UMAP_InhbN_clusters_sce.pdf"))
+pdf(file = here::here("plots", "sce_plots", "DG_UMAP_COP_clusters_sce.pdf"))
 
 plotReducedDim(sce, dimred = "UMAP.HARMONY", colour_by = "label",
     point_alpha = 0.3, point_size = 0.5) +
-  ggtitle("Unsupervised clustering of InhbN clusters")
+  ggtitle("Unsupervised clustering of OPC clusters")
 
 dev.off()
 
 # Create heatmap for markers of mean expresion with z-scores
-markers <- c("GAD1", "GAD2", "SST", "KIT", "CALB1", "CALB2", "TAC1","CNR1",
-    "PVALB", "CORT", "VIP", "NPY", "CRHBP", "CCK", "HTR3A", "NR2F2", "LAMP5",
-    "MEIS2", "DCX", "BHLHE22", "STMN1", "PAX6", "EOMES")
+markers <- c("PDGFRA", "VCAN", "GPR17", "ADAM33",
+    "PAX6", "HOPX", "EOMES")
 
 # using 'splitit' function from rafalib package
 # code from Matthew N Tran
@@ -141,13 +131,38 @@ scale_rows = function(x){
 
 hm_mat <- t(scale_rows(t(hm_mat)))
 
-pdf(file = here::here("plots", "sce_plots", "Heatmap_InhbN_markers_sce.pdf"), width = 12, height = 8)
+# marker labels
+marker_labels <- c(
+  rep("OPCs", 2),
+  rep("COP", 2),
+  rep("Progenitors", 3))
+
+marker_labels <-
+  factor(marker_labels, levels = unique(marker_labels))
+
+# colors
+colors_markers <- list(marker = c(
+  OPCs = "goldenrod",
+  COP = "goldenrod4",
+  Progenitors = "cyan"
+    ))
+
+# column annotation
+col_ha <- columnAnnotation(
+  marker = marker_labels,
+  show_annotation_name = FALSE,
+  show_legend = TRUE,
+  col = colors_markers
+  )
+
+pdf(file = here::here("plots", "sce_plots", "Heatmap_COP_markers_sce.pdf"), width = 12, height = 8)
 
 Heatmap(
   hm_mat,
   name = "z-score",
-  column_title = "InhbN markers",
+  column_title = "COP markers",
   column_title_gp = gpar(fontface = "bold"),
+  bottom_annotation = col_ha,
   cluster_rows = TRUE,
   cluster_columns = FALSE,
   row_title = NULL,
@@ -169,16 +184,16 @@ table(duplicated(colnames(sce_full)))
 table(colnames(sce) %in% colnames(sce_full))
 
 # match and store cluster labels
-clus_inhibitory <- rep(NA, ncol(sce_full))
-names(clus_inhibitory) <- colnames(sce_full)
-clus_inhibitory[colnames(sce)] <- colData(sce)$label
+clus_COP <- rep(NA, ncol(sce_full))
+names(clus_COP) <- colnames(sce_full)
+clus_COP[colnames(sce)] <- colData(sce)$label
 
-colData(sce_full)$label_inhibitory <- clus_inhibitory
+colData(sce_full)$label_COP <- clus_COP
 
 # check
 table(colData(sce_full)$label)
-table(colData(sce_full)$label_inhibitory)
-table(colData(sce_full)$label_inhibitory, useNA = "always")
+table(colData(sce_full)$label_COP)
+table(colData(sce_full)$label_COP, useNA = "always")
 
 
 # Save new sce object

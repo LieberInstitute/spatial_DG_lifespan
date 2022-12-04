@@ -76,25 +76,21 @@ clus <- clusterCells(
   sce,
   use.dimred = "HARMONY",
   BLUSPARAM = TwoStepParam(
-    first = KmeansParam(centers = 2000),
-    second = NNGraphParam(k = 20, cluster.fun = "leiden")
+    first = KmeansParam(centers = 1000),
+    second = NNGraphParam(k = 30, cluster.fun = "leiden")
   )
 )
 
 table(clus)
 #clus
-#   1    2    3    4    5
-#8010 3411  560  100  651
+#    1
+#12172
 
 colLabels(sce) <- clus
 
 table(colLabels(sce), colData(sce)$Dataset)
 #    Franjic_etal_2022 Zhong_etal_2020 Zhou_etal_2022
-#  1              2246             202           5562
-#  2              1956              16           1439
-#  3                38               1            521
-#  4                 5               0             95
-#  5               647               4              0
+#  1              4854             222           7096
 
 # Check marker genes violin plots
 

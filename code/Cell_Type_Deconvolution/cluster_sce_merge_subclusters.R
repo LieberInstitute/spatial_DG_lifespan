@@ -1,6 +1,6 @@
 #####################################################
 # spatial_DG_lifespan project
-# Sub-clustering of sce object for excitatory neurons
+# Sub-clustering of sce object for cells
 # Anthony Ramnauth, Nov 28 2022
 #####################################################
 
@@ -14,10 +14,13 @@ suppressPackageStartupMessages({
     library(bluster)
     library(ggplot2)
     library(viridisLite)
+    library(forcats)
+    library(RColorBrewer)
     library(dplyr)
     library(tidyr)
     library(harmony)
     library(ComplexHeatmap)
+    library(sessioninfo)
 })
 
 # load saved sce object
@@ -38,6 +41,7 @@ colData(sce)$label_oligo <-
 colData(sce)$label_immune <-
     sub("^", "Immun", colData(sce)$label_immune)
 colData(sce)$label_OPCs <- sub("^", "OPC", colData(sce)$label_OPCs)
+colData(sce)$label_COP <- sub("^", "COP", colData(sce)$label_COP)
 colData(sce)$label_Endo_Mural <-
     sub("^", "Endo_Mur", colData(sce)$label_Endo_Mural)
 
@@ -50,6 +54,7 @@ dfc <- data.frame(
     label_oligo = colData(sce)$label_oligo,
     label_immune = colData(sce)$label_immune,
     label_OPCs = colData(sce)$label_OPCs,
+    label_COP = colData(sce)$label_COP,
     label_Endo_Mural = colData(sce)$label_Endo_Mural
 )
 
@@ -62,6 +67,7 @@ dfc <- dfc %>%
             label_oligo,
             label_immune,
             label_OPCs,
+            label_COP,
             label_Endo_Mural
         )
     )
@@ -231,6 +237,17 @@ col_ha <- columnAnnotation(
     col = colors_markers
 )
 
+# set the row order for subclusters
+roword <- c("ExctN1", "ExctN2", "ExctN3", "ExctN4", "ExctN5", "ExctN6", "ExctN7",
+    "ExctN8", "ExctN9",
+    "IntN1", "IntN2", "IntN3", "IntN4", "IntN5", "IntN6", "IntN7",
+    "Astro1", "Astro2", "Astro3", "Astro4", "Astro5", "Astro6",
+    "Oligo1", "Oligo2", "Oligo3", "Oligo4",
+    "Immun1", "Immun2", "Immun3", "Immun4", "Immun5",
+    "OPC1",
+    "COP1",
+    "Endo_Mur1", "Endo_Mur2")
+
 pdf(
     file = here::here("plots", "sce_plots", "Heatmap_markers_sce.pdf"),
     width = 12,
@@ -240,11 +257,12 @@ pdf(
 Heatmap(
     hm_mat,
     name = "z-score",
-    column_title = "DG clusters mean marker expression",
+    column_title = "DG clusters markers",
     column_title_gp = gpar(fontface = "bold"),
     bottom_annotation = col_ha,
-    cluster_rows = TRUE,
+    cluster_rows = FALSE,
     cluster_columns = FALSE,
+    row_order = roword,
     row_title = NULL,
     column_split = marker_labels,
     column_names_gp = gpar(fontface = "italic"),
@@ -253,66 +271,75 @@ Heatmap(
 
 dev.off()
 
+
+
 ######
 # UMAP
 ######
 
-colors_clusters <- list(
-    population = c(
-        ExctN1 = "dodgerblue",
-        ExctN2 = "blue",
-        ExctN3 = "dodgerblue1",
-        ExctN4 = "blue1",
-        ExctN5 = "dodgerblue2",
-        ExctN6 = "blue2",
-        ExctN7 = "dodgerblue3",
-        ExctN8 = "blue3",
-        ExctN9 = "dodgerblue4",
-        ExctN10 = "blue4",
-        IntN1 = "green",
-        IntN2 = "seagreen",
-        IntN3 = "green1",
-        IntN4 = "seagreen1",
-        IntN5 = "green2",
-        IntN6 = "seagreen2",
-        IntN7 = "green3",
-        IntN8 = "seagreen3",
-        IntN9 = "green4",
-        Astro1 = "yellow",
-        Astro2 = "gold",
-        Astro3 = "yellow1",
-        Astro4 = "gold1",
-        Astro5 = "yellow2",
-        Astro6 = "gold2",
-        Oligo1 = "plum",
-        Oligo2 = "plum1",
-        Oligo3 = "plum2",
-        Oligo4 = "plum3",
-        Immun1 = "tan",
-        Immun2 = "tan1",
-        Immun3 = "tan2",
-        Immun4 = "tan3",
-        Immun5 = "tan4",
-        OPC1 = "purple",
-        OPC2 = "purple1",
-        OPC3 = "purple2",
-        OPC4 = "purple3",
-        OPC5 = "purple4",
-        Endo_Mur1 = "red",
-        Endo_Mur2 = "red1",
-        Endo_Mur3 = "red2"
+# cluster labels
+cluster_pops <- list(
+  ExctN = c("ExctN1", "ExctN2", "ExctN3", "ExctN4", "ExctN5", "ExctN6", "ExctN7",
+    "ExctN8", "ExctN9"),
+  IntN = c("IntN1", "IntN2", "IntN3", "IntN4", "IntN5", "IntN6", "IntN7"),
+  Astro = c("Astro1", "Astro2", "Astro3", "Astro4", "Astro5", "Astro6"),
+  Oligo = c("Oligo1", "Oligo2", "Oligo3", "Oligo4"),
+  Immune = c("Immun1", "Immun2", "Immun3", "Immun4", "Immun5"),
+  OPCs = c("OPC1"),
+  COP = c("COP1"),
+  Endo_Mural = c("Endo_Mur1", "Endo_Mur2")
     )
-)
 
-pdf(file = here::here("plots", "sce_plots", "Temp_celltype_cluster_plot_sce.pdf"))
+label_merged <- fct_collapse(colData(sce)$cell_type,
+  ExctN = as.character(cluster_pops[[1]]),
+  IntN = as.character(cluster_pops[[2]]),
+  Astro = as.character(cluster_pops[[3]]),
+  Oligo = as.character(cluster_pops[[4]]),
+  Immune = as.character(cluster_pops[[5]]),
+  OPCs = as.character(cluster_pops[[6]]),
+  COP = as.character(cluster_pops[[7]]),
+  Endo_Mural = as.character(cluster_pops[[8]])
+    )
 
-plotReducedDim(sce, dimred = "UMAP.HARMONY", colour_by = "cell_type") +
-    scale_color_manual(values = colors_clusters[[1]], name = "clusters") +
-    theme_classic() +
-    ggtitle("Combined HPC snRNAseq datasets intermediate cell-type clustering")
+label_merged <- fct_relevel(label_merged,
+  c("ExctN", "IntN", "Astro", "Oligo", "Immune",
+      "OPCs", "COP", "Endo_Mural"))
+
+table(label_merged)
+#label_merged
+#     ExctN      IntN      Astro      Oligo     Immune       OPCs        COP
+#     60407      22288      27609      69768      13613      12172        560
+#Endo_Mural
+#      2858
+
+colData(sce)$label_merged <- label_merged
+
+colors_clusters <- list(population = c(
+  ExctN = "blue",
+  IntN = "green",
+  Astro = "yellow",
+  Oligo = "plum3",
+  Immune = "tan",
+  OPCs = "goldenrod",
+  COP = "khaki",
+  Endo_Mural = "red3")
+    )
+
+pdf(file = here::here("plots", "sce_plots", "Merged_cluster_plot_sce.pdf"))
+
+plotReducedDim(sce, dimred = "UMAP.HARMONY", colour_by = "label_merged") +
+  scale_color_manual(values = colors_clusters[[1]], name = "clusters (merged)") +
+  theme_classic() +
+  ggtitle("Combined HPC snRNAseq datasets clustering")
 
 dev.off()
 
-# Save new sce object
-saveRDS(sce,
-    file = here::here("processed-data", "sce", "sce_clustered.rds"))
+saveRDS(sce, file = here::here("processed-data", "sce", "sce_clustered.rds"))
+
+
+## Reproducibility information
+print("Reproducibility information:")
+Sys.time()
+proc.time()
+options(width = 120)
+session_info()
