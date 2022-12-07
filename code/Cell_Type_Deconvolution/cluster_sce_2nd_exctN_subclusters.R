@@ -84,21 +84,21 @@ clus <- clusterCells(
 table(clus)
 #clus
 #    1     2     3     4     5     6     7     8     9
-# 3760  4483 14792  5638  4665  1309  3641  1481  1429
+# 1480 15598  5278 10518  4758  6506  5637  3158  1493
 
 colLabels(sce) <- clus
 
 table(colLabels(sce), colData(sce)$Dataset)
 #    Franjic_etal_2022 Zhong_etal_2020 Zhou_etal_2022
-#  1                 4               0           3756
-#  2               200               0           4283
-#  3              6054              59           8679
-#  4              5447             189              2
-#  5               823               0           3842
-#  6                 0               0           1309
-#  7              3621              10             10
-#  8                 0               0           1481
-#  9                23               0           1406
+#  1                23               0           1457
+#  2              8686              24           6888
+#  3                 5               0           5273
+#  4              3795               1           6722
+#  5               206               0           4552
+#  6              1184              47           5275
+#  7              5447             187              3
+#  8                 1               0           3157
+#  9                 0               0           1493
 
 # Check marker genes violin plots
 
@@ -207,6 +207,9 @@ Heatmap(
 
 dev.off()
 
+# 1 = NPC, 2 = Mixed, 3 = Mossy, 4 = Mixed, 5 = Mossy, 6 = Mixed,
+# 7 = Mixed, 8 = Sub, 9 = Mixed
+
 ######################
 # Store cluster labels
 ######################
@@ -235,7 +238,7 @@ table(colData(sce_full)$label_excitatory, useNA = "always")
 colData(sce_full)$label_excitatory <-
     sub("^", "ExctN", colData(sce_full)$label_excitatory)
 
-sce_full$label_merged[sce_full$label_merged == "ExctN"] <- NA
+sce_full$label_merged[sce_full$label_merged == "Mixed"] <- NA
 
 dfc <- data.frame(
     label_merged = colData(sce_full)$label_merged,
@@ -248,9 +251,9 @@ dfc <- dfc %>%
             label_excitatory))
 
 dfc <- dfc %>%
-    mutate(cell_type = recode(cell_type, ExctN1 = "Mossy", ExctN2 = "Mixed",
-        ExctN3 =  "Mixed", ExctN4 = "Mixed", ExctN5 = "Mixed", ExctN6 = "Mixed",
-        ExctN7 = "Mixed", ExctN8 = "Mixed", ExctN9 = "NPC"))
+    mutate(cell_type = recode(cell_type, ExctN1 = "NPC", ExctN2 = "Mixed",
+        ExctN3 =  "Mossy", ExctN4 = "Mixed", ExctN5 = "Mossy", ExctN6 = "Mixed",
+        ExctN7 = "Mixed", ExctN8 = "Sub", ExctN9 = "Mixed"))
 
 sce_full$label_merged <- dfc$cell_type
 

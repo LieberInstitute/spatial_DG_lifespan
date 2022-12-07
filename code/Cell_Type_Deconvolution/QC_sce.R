@@ -1,6 +1,6 @@
 ###############################
 # spatial_DG_lifespan project
-# QC summed sce object
+# QC  sce object
 # Anthony Ramnauth, Nov 05 2022
 ###############################
 

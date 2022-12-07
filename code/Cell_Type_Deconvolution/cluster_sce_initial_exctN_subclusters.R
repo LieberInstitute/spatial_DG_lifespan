@@ -205,8 +205,8 @@ Heatmap(
 
 dev.off()
 
-# 1 = Sub, 2 = Progen, 3 = Mixed, 4 = Mixed, 5 = Mixed, 6 = Mixed, 7 = Mixed
-# Sub & Progen are the only obvious clusters
+# 1 = Mixed, 2 = NPC, 3 = Mixed, 4 = Mixed, 5 = Mixed, 6 = Mixed, 7 = Mixed
+# Progen are the only obvious clusters
 
 ######################
 # Store cluster labels
@@ -249,7 +249,7 @@ dfc <- dfc %>%
             label_excitatory))
 
 dfc <- dfc %>%
-    mutate(cell_type = recode(cell_type, ExctN1 = "Sub", ExctN2 = "NPC",
+    mutate(cell_type = recode(cell_type, ExctN1 = "Mixed", ExctN2 = "NPC",
         ExctN3 =  "Mixed", ExctN4 = "Mixed", ExctN5 = "Mixed", ExctN6 = "Mixed",
         ExctN7 = "Mixed"))
 
