@@ -4,6 +4,8 @@
 # Anthony Ramnauth, Nov 05 2022
 ###############################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(SingleCellExperiment)
     library(scuttle)
@@ -17,7 +19,7 @@ suppressPackageStartupMessages({
 
 # load saved sce object
 
-sce <- readRDS(here::here("processed-data", "build_sce", "sce_sum.rds"))
+sce <- readRDS(here::here("processed-data", "sce", "sce_sestan_DG.rds"))
 
 dir_plots <- here("sce_plots")
 
@@ -29,10 +31,10 @@ dir_plots <- here("sce_plots")
 
 # note: no random seed required
 
-sce <- scDblFinder(sce, samples = "Dataset")
+sce <- scDblFinder(sce, samples = "sample_ID")
 
 # number of doublets per sample
-table(colData(sce)$Dataset, colData(sce)$scDblFinder.class)
+table(colData(sce)$sample_ID, colData(sce)$scDblFinder.class)
 
 # remove doublets
 
@@ -40,15 +42,15 @@ dim(sce)
 
 # Violin Plots of doublets AFTER QC metrics to have y-axis be sum (UMIs)
 pdf(
-    file = here::here(
+    file = here::here("plots",
         "sce_plots",
-        "doublets_sce_sum.pdf"
+        "doublets_sce_sestan_DG.pdf"
     )
 )
 
 plotColData(sce,
-    x = "Dataset",
-    y = "sum",
+    x = "sample_ID",
+    y = "sum_umi",
     colour_by = "scDblFinder.class") +
     scale_y_log10() +
     ggtitle("doublets of cells")
@@ -61,6 +63,8 @@ table(ix_dbl)
 sce <- sce[, !ix_dbl]
 
 dim(sce)
+
+rowData(sce)$SYMBOL <- rownames(sce)
 
 # ----------
 # QC metrics
@@ -87,9 +91,9 @@ qcstats$sum[is.na(qcstats$sum)] = 0
 qcstats$detected[is.na(qcstats$detected)] = 0
 
 qcfilter <- DataFrame(
-    low_lib_size = isOutlier(qcstats$sum, type = "lower", log = TRUE, batch = sce$Dataset),
-    low_n_features = isOutlier(qcstats$detected, type = "lower", log = TRUE, batch = sce$Dataset),
-    high_subsets_Mito_percent = isOutlier(qcstats$subsets_mito_percent, type = "higher", batch = sce$Dataset)
+    low_lib_size = isOutlier(qcstats$sum, type = "lower", log = TRUE, batch = sce$sample_ID),
+    low_n_features = isOutlier(qcstats$detected, type = "lower", log = TRUE, batch = sce$sample_ID),
+    high_subsets_Mito_percent = isOutlier(qcstats$subsets_mito_percent, type = "higher", batch = sce$sample_ID)
 )
 
 colSums(as.matrix(qcfilter))
@@ -109,9 +113,9 @@ sce$scran_high_subsets_Mito_percent <-
 
 # plot histograms of QC metrics
 pdf(
-    file = here::here(
+    file = here::here("plots",
         "sce_plots",
-        "histograms_sce_sum.pdf"
+        "histograms_sce_sestan_DG.pdf"
     ),
     width = 5,
     height = 2
@@ -132,21 +136,21 @@ dev.off()
 
 # Violin Plots of QC metrics
 pdf(
-    file = here::here(
+    file = here::here("plots",
         "sce_plots",
-        "violinplots_sce_sum.pdf"
+        "violinplots_sce_sestan_DG.pdf"
     )
 )
 ## Mito rate
 plotColData(sce,
-    x = "Dataset",
+    x = "sample_ID",
     y = "subsets_mito_percent",
     colour_by = "scran_high_subsets_Mito_percent") +
     ggtitle("Mito Precent by cell")
 
 ## low sum
 plotColData(sce,
-    x = "Dataset",
+    x = "sample_ID",
     y = "sum",
     colour_by = "scran_low_lib_size") +
     scale_y_log10() +
@@ -154,7 +158,7 @@ plotColData(sce,
 
 ## low detected
 plotColData(sce,
-    x = "Dataset",
+    x = "sample_ID",
     y = "detected",
     colour_by = "scran_low_n_features") +
     scale_y_log10() +
@@ -180,18 +184,17 @@ sce <- sce[, colData(sce)$scran_discard == FALSE]
 dim(sce)
 
 # calculate logcounts (log-transformed normalized counts) and store in object
-sce$scran_quick_cluster <- quickCluster(sce, block = sce$Dataset)
+sce$scran_quick_cluster <- quickCluster(sce, block = sce$sample_ID)
 sce <- computeSumFactors(sce, clusters = sce$scran_quick_cluster)
 table(sce$scran_quick_cluster)
 summary(sizeFactors(sce))
-hist(sizeFactors(sce), breaks = 40)
 
 sce <- logNormCounts(sce)
 
 # check
 assayNames(sce)
 
-saveRDS(sce, file = here::here("sce_objects", "QCed_sce_sum.rds"))
+saveRDS(sce, file = here::here("processed-data", "sce", "QCed_sce_sestan_DG.rds"))
 
 
 ## Reproducibility information

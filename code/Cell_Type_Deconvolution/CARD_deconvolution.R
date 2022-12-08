@@ -22,14 +22,13 @@ suppressPackageStartupMessages({
 
 
 # Load SCE
-sce <- readRDS(file = here::here("processed-data", "sce_sestan_DG.rds"))
+sce <- readRDS(file = here::here("processed-data", "sce", "sce_sestan_DG_final.rds"))
 
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
 # Set gene names as row names for easier plotting
 rownames(spe) <- rowData(spe)$gene_name
-
 
 # Create martix and df for createCARDObject arguments
 
@@ -53,14 +52,14 @@ CARD_obj <- createCARDObject(
     spatial_location = spatial_loc,
     ct.varname = "Cell_Type",
     ct.select = unique(sce$Cell_Type),
-    sample.varname = "sample_name",
+    sample.varname = "sample_ID",
     minCountGene = 100,
     minCountSpot = 5)
 
 # Run CARD deconvolution
 
 # If starting from here load CARD object
-CARD_obj <- readRDS(file = here::here("processed-data", "CARD_obj_sestan.rds"))
+CARD_obj <- readRDS(file = here::here("processed-data", "Cell_Type_Deconvolution", "CARD_obj_sestan.rds"))
 
 CARD_obj <- CARD_deconvolution(CARD_obj)
 

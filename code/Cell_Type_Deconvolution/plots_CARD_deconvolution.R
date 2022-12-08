@@ -23,7 +23,6 @@ suppressPackageStartupMessages({
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-colnames(colData(spe))[colnames(colData(spe)) == 'GC_1'] <- 'GC'
 
 #############################################################
 # Scatterpie plots for deconvoluted cell types of Visium data
@@ -53,7 +52,7 @@ Br8667y <- as.matrix(colData(Br8667)[, c(68:97)])
 Br8686 <- spe[, spe$sample_id == "Br8686"]
 Br8686y <- as.matrix(colData(Br8686)[, c(68:97)])
 
-cell_colors <- c("Oligo_1" = "plum3", "Oligo_2" = "plum4", "Microglia" = "tan2", "Macrocyte" = "tan1",
+cell_colors <- c("Oligo_1" = "plum3", "Oligo_2" = "plum4", "Microglia" = "tan2", "Macrophage" = "tan1",
     "OPC_1" = "goldenrod", "OPC_2" = "goldenrod3", "InN_LAMP5" = "green", "InN_VIP" = "green1",
     "InN_SST" = "green2", "InN_PV" = "green3", "InN_NR2F2" = "green4", "InN_LHX6" = "lawngreen",
     "InN_MEIS2" = "mediumseagreen", "Cajal_Ret" = "black", "Vasc_LM" = "red", "Artl_S_Muscle" = "red1",
