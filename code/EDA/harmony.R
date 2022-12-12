@@ -83,6 +83,7 @@ reducedDims(spe) <- list(
 )
 
 # Run UMAP on harmony integrated spe object
+set.seed(12345)
 spe <- runUMAP(spe, dimred = "HARMONY", name = "UMAP.HARMONY")
 colnames(reducedDim(spe, "UMAP.HARMONY")) <- c("UMAP1", "UMAP2")
 
