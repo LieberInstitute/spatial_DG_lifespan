@@ -89,14 +89,35 @@ dev.off()
 
 # Make function for heatmaps of all GO terms
 
+# Configure column order to match age groups per BayesSpace cluster
+Bayes_age_order <- c(
+    6, 14, 22,
+    8, 16, 24,
+    1, 9, 17,
+    2, 10, 18,
+    7, 15, 23,
+    3, 11, 19,
+    4, 12, 20,
+    5, 13, 21)
+
 heat<- function(x, y){
 
+    # convert to z-scores
+    scale_rows = function(x){
+        m = apply(x, 1, mean, na.rm = T)
+        s = apply(x, 1, sd, na.rm = T)
+        return((x - m) / s)
+    }
+
+    x <- scale_rows(x)
+
 Heatmap(x,
-    name = "logcounts",
+    name = "z-score",
     top_annotation = HeatmapAnnotation(age = spe_pseudo$age_bin, cluster = spe_pseudo$BayesSpace,
     col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen"),
         cluster = c("1" = "red4", "4" = "cyan", "8" = "springgreen3"))),
     column_title = y,
+    column_order = Bayes_age_order,
     show_column_names = FALSE,
     show_row_names = TRUE
     )
