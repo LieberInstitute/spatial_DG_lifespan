@@ -32,14 +32,10 @@ t0_contrasts <- sapply(eb0_list, function(x) {
 })
 rownames(t0_contrasts) <- rownames(eb_contrasts)
 summary(fdrs0_contrasts < 0.05)
-#     1               2               3               4               5               6               7
+#     1               2               3               4               6               7               8
 # Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical
-# FALSE:11285     FALSE:8021      FALSE:11218     FALSE:7671      FALSE:5735      FALSE:7677      FALSE:10749
-# TRUE :8         TRUE :3272      TRUE :75        TRUE :3622      TRUE :5558      TRUE :3616      TRUE :544
-#     8
-# Mode :logical
-# FALSE:11261
-# TRUE :32
+# FALSE:11528     FALSE:7878      FALSE:10316     FALSE:7266      FALSE:6002      FALSE:10784     FALSE:11531
+# TRUE :75        TRUE :3725      TRUE :1287      TRUE :4337      TRUE :5601      TRUE :819       TRUE :72
 
 # Merge statistics
 f_merge <- function(p, fdr, t) {
@@ -63,7 +59,7 @@ head(results_specificity)
 pvals_contrasts <- eb_contrasts$p.value
 fdrs_contrasts <- apply(pvals_contrasts, 2, p.adjust, "fdr")
 dim(pvals_contrasts)
-# [1] 14409    66
+# [1] 11603    36
 summary(fdrs_contrasts < 0.05)
 
 results_pairwise <-
@@ -94,13 +90,13 @@ results_anova <-
         f_rename(f_stats, "f", "f_stat"), "p_value"
     ), "fdr"), "Amean")
 head(results_anova)
-#  f_stat_full p_value_full     fdr_full full_AveExpr         ensembl       gene
-#1    19.08982 6.517947e-22 8.839257e-22     2.579431 ENSG00000237491  LINC01409
-#2    34.93502 6.524805e-33 1.531453e-32     4.084420 ENSG00000228794  LINC01128
-#3    47.26826 3.483369e-39 1.245147e-38     5.043462 ENSG00000188976      NOC2L
-#4    20.79932 2.471934e-23 3.561809e-23     2.776608 ENSG00000187961     KLHL17
-#5    11.27791 2.593258e-14 2.771361e-14     1.735252 ENSG00000272512 AL645608.7
-#6    44.25629 8.827304e-38 2.862120e-37     5.494125 ENSG00000188290       HES4
+#  f_stat_full p_value_full     fdr_full full_AveExpr         ensembl      gene
+#1    14.46728 9.274405e-11 9.400797e-11     2.437106 ENSG00000237491 LINC01409
+#2    81.20002 2.697810e-26 3.827202e-26     4.161927 ENSG00000228794 LINC01128
+#3   332.83319 3.220475e-41 8.858979e-41     5.359479 ENSG00000188976     NOC2L
+#4    20.15705 2.546744e-13 2.643102e-13     2.726867 ENSG00000187961    KLHL17
+#5   267.80964 7.221771e-39 1.695553e-38     5.620692 ENSG00000188290      HES4
+#6   143.60117 3.267569e-32 5.572252e-32     5.485435 ENSG00000187608     ISG15
 
 modeling_results <- list(
     "anova" = results_anova,
@@ -112,25 +108,23 @@ modeling_results <- list(
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "modeling_results.rds"))
 
 length(which(modeling_results$enrichment$fdr_1 < 0.05))
-# [1] 8
-length(which(modeling_results$enrichment$fdr_2 < 0.05))
-# [1] 3272
-length(which(modeling_results$enrichment$fdr_3 < 0.05))
 # [1] 75
+length(which(modeling_results$enrichment$fdr_2 < 0.05))
+# [1] 3725
+length(which(modeling_results$enrichment$fdr_3 < 0.05))
+# [1] 1287
 length(which(modeling_results$enrichment$fdr_4 < 0.05))
-# [1] 3622
-length(which(modeling_results$enrichment$fdr_5 < 0.05))
-# [1] 5558
+# [1] 4337
 length(which(modeling_results$enrichment$fdr_6 < 0.05))
-# [1] 3616
+# [1] 5601
 length(which(modeling_results$enrichment$fdr_7 < 0.05))
-# [1] 544
+# [1] 819
 length(which(modeling_results$enrichment$fdr_8 < 0.05))
-# [1] 32
+# [1] 72
 
 
-cluster <- c(1, 2, 3, 4, 5, 6, 7, 8)
-genes <- c(8, 3272, 75, 3622, 5558, 3616, 544, 32)
+cluster <- c(1, 2, 3, 4, 6, 7, 8)
+genes <- c(75, 3725, 1287, 4337, 5601, 819, 72)
 df <- data.frame(cluster, genes)
 pdf(file = here::here("plots", "pseudobulked", "plot_enrichment_DEGs.pdf"))
 plot(df$genes ~ df$cluster)

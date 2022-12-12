@@ -114,27 +114,6 @@ fn_out_4<- file.path(dir_outputs, "cluster_4_enriched_results")
 write.csv(cluster_4_enriched_summary,fn_out_4, row.names = FALSE)
 
 # Make a data frame summary
-cluster_5_enriched_summary <- data.frame(
-    gene_id = modeling_results$enrichment$ensembl,
-    gene_name = modeling_results$enrichment$gene,
-    t_stat = modeling_results$enrichment$t_stat_5,
-    p_val = modeling_results$enrichment$p_value_5,
-    FDR = modeling_results$enrichment$fdr_5
-)
-
-cluster_5_enriched_summary <- cluster_5_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-cluster_5_enriched_summary <- arrange(cluster_5_enriched_summary, desc(t_stat))
-
-# directory to save lists
-fn_out_5<- file.path(dir_outputs, "cluster_5_enriched_results")
-
-# Export summary as .csv file
-write.csv(cluster_5_enriched_summary,fn_out_5, row.names = FALSE)
-
-# Make a data frame summary
 cluster_6_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
@@ -209,15 +188,15 @@ gIndex <- rowMeans(mat) > 0.2 # find the genes for which the mean expression is 
 mat_filter <- mat[gIndex, ] # subset matrix on just those genes.  want to remove lowly expressed genes.
 
 # Extract the p-values
-pvals <- modeling_results$enrichment[, 9:16]
+pvals <- modeling_results$enrichment[, 8:14]
 rownames(pvals) <- rownames(mat_filter)
 
 # Extract the t-statistics
-t_stat <- modeling_results$enrichment[, 1:8]
+t_stat <- modeling_results$enrichment[, 1:7]
 rownames(t_stat) <- rownames(mat_filter)
 
 # Extract the FDRs
-fdrs <- modeling_results$enrichment[, 17:24]
+fdrs <- modeling_results$enrichment[, 15:21]
 rownames(fdrs) <- rownames(mat_filter)
 
 ### pick top 10 genes per cluster:sample
@@ -234,7 +213,7 @@ cluster_ind <- unique(as.numeric(cluster_specific_indices))
 # Add logcounts from indexed from top genes
 exprs_heatmap <- assays(spe_pseudo)[[2]][cluster_ind, ]
 rownames(exprs_heatmap) <- rowData(spe_pseudo)$gene_name[cluster_ind]
-colnames(exprs_heatmap) <- paste("logcount", 1:64, sep = "")
+colnames(exprs_heatmap) <- paste("logcount", 1:56, sep = "")
 
 # Configure column order to match age groups per BayesSpace cluster
 Bayes_age_order <- c(
@@ -244,8 +223,7 @@ Bayes_age_order <- c(
 30, 32, 25, 26, 31, 27, 28, 29,
 38, 40, 33, 34, 39, 35, 36, 37,
 46, 48, 41, 42, 47, 43, 44, 45,
-54, 56, 49, 50, 55, 51, 52, 53,
-62, 64, 57, 58, 63, 59, 60, 61
+54, 56, 49, 50, 55, 51, 52, 53
     )
 
 # convert to z-scores
