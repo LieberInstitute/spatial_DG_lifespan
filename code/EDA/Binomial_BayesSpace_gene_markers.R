@@ -32,6 +32,8 @@ spe <- cluster_import(
     prefix = ""
 )
 
+spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
+
 spe$bayesSpace_harmony_8 <- as.factor(spe$bayesSpace_harmony_8)
 
 # Set gene names as row names for easier plotting
@@ -128,26 +130,7 @@ fn_out_4 <- file.path(dir_outputs, "cluster_4_binomial_test_results")
 write.csv(cluster_4_binom_summary,fn_out_4, row.names = FALSE)
 
 # Make a data frame summary
-binom_5 <- markers[[5]]
-cluster_5_binom_summary <- data.frame(
-    gene_name = rownames(binom_5),
-    rank = binom_5$Top,
-    p_val = binom_5$p.value,
-    FDR = binom_5$FDR
-)
-
-cluster_5_binom_summary <- cluster_5_binom_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-# directory to save lists
-fn_out_5 <- file.path(dir_outputs, "cluster_5_binomial_test_results")
-
-# Export summary as .csv file
-write.csv(cluster_5_binom_summary,fn_out_5, row.names = FALSE)
-
-# Make a data frame summary
-binom_6 <- markers[[6]]
+binom_6 <- markers[[5]]
 cluster_6_binom_summary <- data.frame(
     gene_name = rownames(binom_6),
     rank = binom_6$Top,
@@ -166,7 +149,7 @@ fn_out_6 <- file.path(dir_outputs, "cluster_6_binomial_test_results")
 write.csv(cluster_6_binom_summary,fn_out_6, row.names = FALSE)
 
 # Make a data frame summary
-binom_7 <- markers[[7]]
+binom_7 <- markers[[6]]
 cluster_7_binom_summary <- data.frame(
     gene_name = rownames(binom_7),
     rank = binom_7$Top,
@@ -185,7 +168,7 @@ fn_out_7 <- file.path(dir_outputs, "cluster_7_binomial_test_results")
 write.csv(cluster_7_binom_summary,fn_out_7, row.names = FALSE)
 
 # Make a data frame summary
-binom_8 <- markers[[8]]
+binom_8 <- markers[[7]]
 clust_8_binom_summary <- data.frame(
     gene_name = rownames(binom_8),
     rank = binom_8$Top,
@@ -249,7 +232,7 @@ Heatmap(logFCs_4,
 dev.off()
 
 # Selecting cluster 8 since BayesSpace tissue plot looks like SGZ
-interesting_8 <- markers[[8]]
+interesting_8 <- markers[[7]]
 best_set_8 <- interesting_8[interesting_2$Top <= 5, ]
 logFCs_8 <- getMarkerEffects(best_set_8)
 
@@ -296,7 +279,7 @@ age_markers
 
 # directory to save lists
 dir_outputs2 <- here("processed-data", "binomial_test_age_bins")
-dir.create(dir_plots2, showWarnings = FALSE, recursive = TRUE)
+dir.create(dir_outputs2, showWarnings = FALSE, recursive = TRUE)
 
 # Make a data frame summary
 binom_infant <- age_markers[["Infant"]]
