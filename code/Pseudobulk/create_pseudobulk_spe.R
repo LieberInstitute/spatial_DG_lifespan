@@ -35,6 +35,7 @@ spe <- cluster_import(
     prefix = ""
 )
 
+# Remove CP cluster
 spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
 
 # Add variable of age_bin to colData(spe)

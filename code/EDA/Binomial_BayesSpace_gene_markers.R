@@ -32,6 +32,7 @@ spe <- cluster_import(
     prefix = ""
 )
 
+# Remove CP cluster
 spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
 
 spe$bayesSpace_harmony_8 <- as.factor(spe$bayesSpace_harmony_8)

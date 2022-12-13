@@ -28,6 +28,9 @@ spe <- cluster_import(
     prefix = ""
 )
 
+# Remove CP cluster
+spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
+
 # Create vector of samples for nnSVG on whole tissue
 sample_ids <- c(
     "Br1412",
@@ -62,7 +65,7 @@ for (s in seq_along(sample_ids)) {
 
     # run nnSVG
     set.seed(12345)
-    spe_sub <- nnSVG(spe_sub, n_threads = 8)
+    spe_sub <- nnSVG(spe_sub, n_threads = 4)
 
     # store whole tissue results
     res_list[[s]] <- rowData(spe_sub)
@@ -105,7 +108,7 @@ for (s in seq_along(sample_ids)) {
 
     # run nnSVG
     set.seed(12345)
-    spe_subS <- nnSVG(spe_subS, X = X, n_threads = 8)
+    spe_subS <- nnSVG(spe_subS, X = X, n_threads = 4)
 
     # store whole tissue results
     bayes_res_list[[s]] <- rowData(spe_subS)
