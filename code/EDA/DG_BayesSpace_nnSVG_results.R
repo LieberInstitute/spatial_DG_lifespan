@@ -26,36 +26,36 @@ names(res_list)
 # Number of significant SVGs per capture area
 
 table(res_list$Br1412$padj <= 0.05)
-# FALSE  TRUE
-#  483  4196
+#FALSE  TRUE
+#  556  4119
 
 table(res_list$Br2706$padj <= 0.05)
-# FALSE  TRUE
-#   150  1319
+#FALSE  TRUE
+#  235  1202
 
 table(res_list$Br3942$padj <= 0.05)
-# FALSE  TRUE
-#   263  1515
+#FALSE  TRUE
+#  313  1400
 
 table(res_list$Br5242$padj <= 0.05)
-# FALSE  TRUE
-#   735  1932
+#FALSE  TRUE
+#  613  1986
 
 table(res_list$Br6023$padj <= 0.05)
-# FALSE  TRUE
-#   493  1801
+#FALSE  TRUE
+#  549  1809
 
 table(res_list$Br8195$padj <= 0.05)
-# FALSE  TRUE
-#   305  1997
+#FALSE  TRUE
+#  569  1759
 
 table(res_list$Br8667$padj <= 0.05)
-# FALSE  TRUE
-#   253  1857
+#FALSE  TRUE
+#  423  1683
 
 table(res_list$Br8686$padj <= 0.05)
-# FALSE  TRUE
-#   223   772
+#FALSE  TRUE
+#  327   681
 
 
 # Create vector of samples for nnSVG on whole tissue
@@ -117,28 +117,7 @@ fn_out <- file.path(dir_outputs, "DG_BayesSpace_nnSVG_avgrank")
 write.csv(df_summary, fn_out, row.names = FALSE)
 
 # Plot top 20 SVGs
-SVGs <- c(
-    "MBP",
-    "PLP1",
-    "GFAP",
-    "MTRNR2L12",
-    "TTR",
-    "SNAP25",
-    "SLC17A7",
-    "UCHL1",
-    "NPTXR",
-    "NPTX1",
-    "HPCA",
-    "THY1",
-    "ENC1",
-    "CHN1",
-    "NCDN",
-    "CST3",
-    "CRYAB",
-    "NNAT",
-    "OLFM1",
-    "NRGN"
-)
+SVGs <- head(df_summary$gene_name, 20)
 
 # Locate the marker genes
 SVG_search <- rowData(spe)$gene_search[match(SVGs, rowData(spe)$gene_name)]

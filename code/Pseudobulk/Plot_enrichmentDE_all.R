@@ -248,7 +248,7 @@ Heatmap(exprs_heatmap,
     cluster_columns = FALSE,
     column_order = Bayes_age_order,
     column_split = spe_pseudo$BayesSpace,
-    row_split = 29,
+    row_split = 10,
     row_title = NULL,
     row_names_gp = gpar(fontsize = 7)
     )
