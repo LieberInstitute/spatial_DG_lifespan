@@ -58,9 +58,6 @@ CARD_obj <- createCARDObject(
 
 # Run CARD deconvolution
 
-# If starting from here load CARD object
-CARD_obj <- readRDS(file = here::here("processed-data", "Cell_Type_Deconvolution", "CARD_obj_sestan.rds"))
-
 CARD_obj <- CARD_deconvolution(CARD_obj)
 
 saveRDS(CARD_obj, file = here::here("CARD_obj_sestan.rds"))
