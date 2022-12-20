@@ -10,6 +10,7 @@ rm(list=ls())
 
 suppressPackageStartupMessages({
     library(SingleCellExperiment)
+	library(spatialLIBD)
     library(pbmcapply)
     library(CARD)
     library(here)
@@ -26,6 +27,16 @@ sce <- readRDS(file = here::here("processed-data", "sce", "sce_sestan_DG_final.r
 
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
+
+# Load BayesSpace clusters onto spe object
+spe <- cluster_import(
+    spe,
+    cluster_dir = here::here("processed-data", "clustering_results"),
+    prefix = ""
+)
+
+# Remove CP cluster
+spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
 
 # Set gene names as row names for easier plotting
 rownames(spe) <- rowData(spe)$gene_name

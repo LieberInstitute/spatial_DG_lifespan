@@ -23,42 +23,42 @@ suppressPackageStartupMessages({
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-
 #############################################################
 # Scatterpie plots for deconvoluted cell types of Visium data
 #############################################################
 
 Br1412 <- spe[, spe$sample_id == "Br1412"]
-Br1412y <- as.matrix(colData(Br1412)[, c(68:97)])
+Br1412y <- as.matrix(colData(Br1412)[, c(44:74)])
 
 Br2706 <- spe[, spe$sample_id == "Br2706"]
-Br2706y <- as.matrix(colData(Br2706)[, c(68:97)])
+Br2706y <- as.matrix(colData(Br2706)[, c(44:74)])
 
 Br3942 <- spe[, spe$sample_id == "Br3942"]
-Br3942y <- as.matrix(colData(Br3942)[, c(68:97)])
+Br3942y <- as.matrix(colData(Br3942)[, c(44:74)])
 
 Br5242 <- spe[, spe$sample_id == "Br5242"]
-Br5242y <- as.matrix(colData(Br5242)[, c(68:97)])
+Br5242y <- as.matrix(colData(Br5242)[, c(44:74)])
 
 Br6023 <- spe[, spe$sample_id == "Br6023"]
-Br6023y <- as.matrix(colData(Br6023)[, c(68:97)])
+Br6023y <- as.matrix(colData(Br6023)[, c(44:74)])
 
 Br8195 <- spe[, spe$sample_id == "Br8195"]
-Br8195y <- as.matrix(colData(Br8195)[, c(68:97)])
+Br8195y <- as.matrix(colData(Br8195)[, c(44:74)])
 
 Br8667 <- spe[, spe$sample_id == "Br8667"]
-Br8667y <- as.matrix(colData(Br8667)[, c(68:97)])
+Br8667y <- as.matrix(colData(Br8667)[, c(44:74)])
 
 Br8686 <- spe[, spe$sample_id == "Br8686"]
-Br8686y <- as.matrix(colData(Br8686)[, c(68:97)])
+Br8686y <- as.matrix(colData(Br8686)[, c(44:74)])
 
-cell_colors <- c("Oligo_1" = "plum3", "Oligo_2" = "plum4", "Microglia" = "tan2", "Macrophage" = "tan1",
-    "OPC_1" = "goldenrod", "OPC_2" = "goldenrod3", "InN_LAMP5" = "green", "InN_VIP" = "green1",
-    "InN_SST" = "green2", "InN_PV" = "green3", "InN_NR2F2" = "green4", "InN_LHX6" = "lawngreen",
-    "InN_MEIS2" = "mediumseagreen", "Cajal_Ret" = "black", "Vasc_LM" = "red", "Artl_S_Muscle" = "red1",
-    "Pericyte" = "red2", "Endoth" = "red3", "Vasc_S_Muscle" = "red4", "T_cell" = "tan3",
-    "Myeloid" = "tan4", "COP" = "goldenrod4", "GC" = "blue", "CA3_N" = "dodgerblue", "EC_N" = "blue1",
-    "Mossy" = "blue4", "CA1_N" = "blue2", "SUB_N" = "blue3", "Astro_1" = "yellow2", "Astro_2" = "yellow")
+cell_colors <- c("Oligo_1" = "plum", "Oligo_2" = "plum4", "Microglia" = "tan3", "Macrophage" = "tan4",
+    "OPC_1" = "goldenrod", "OPC_2" = "goldenrod3", "InN_LAMP5" = "springgreen", "InN_VIP" = "green1",
+    "InN_SST" = "springgreen2", "InN_PV" = "green", "InN_NR2F2" = "green2", "InN_LHX6" = "springgreen",
+    "InN_MEIS2" = "springgreen3", "InN_NPY" = "green3", "Cajal_Ret" = "black", "Vasc_LM" = "firebrick1",
+    "Artl_S_Muscle" = "red1","Pericyte" = "red2", "Endoth" = "red", "Vasc_S_Muscle" = "firebrick",
+    "T_cell" = "brown1", "Myeloid" = "tan", "COP" = "goldenrod4", "GC_1" = "blue2", "GC_2" = "deepskyblue3",
+    "CA3_N" = "deepskyblue", "Mossy" = "blue1", "CA1_d_N" = "blue", "CA1_v_N" = "deepskyblue1",
+    "SUB_N" = "blue3", "CA2_N" = "deepskyblue2", "Astro_1" = "yellow", "Astro_2" = "yellow3")
 
 
 pdf(file = here::here("plots", "Cell_Type_Deconvolution", "Scatterpie_plots.pdf"), width = 12, height = 8)
