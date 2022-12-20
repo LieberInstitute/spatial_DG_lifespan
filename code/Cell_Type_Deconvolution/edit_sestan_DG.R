@@ -41,25 +41,30 @@ df <- df %>%
     grepl("InN LHX6", cluster) ~ "InN_LHX6",
     grepl("InN MEIS2", cluster) ~ "InN_MEIS2",
     grepl("CR RELN NDNF", cluster) ~ "Cajal_Ret",
-    grepl("VLMC", cluster) ~ "Vasc_LM",
+    grepl("VLMC", cluster) ~ "Mural",
     grepl("GRIA4", cluster) ~ "OPC_1",
     grepl("EGR1", cluster) ~ "OPC_2",
-    grepl("aSMC", cluster) ~ "Artl_S_Muscle",
+    grepl("aSMC", cluster) ~ "Mural",
     grepl("CPXM2", cluster) ~ "Oligo_2",
     grepl("OPALIN", cluster) ~ "Oligo_1",
     grepl("Micro", cluster) ~ "Microglia",
-    grepl("PC CLDN5", cluster) ~ "Pericyte",
+    grepl("PC CLDN5", cluster) ~ "Mural",
     grepl("Endo", cluster) ~ "Endoth",
-    grepl("vSMC", cluster) ~ "Vasc_S_Muscle",
-    grepl("Macro", cluster) ~ "Macrophage",
+    grepl("vSMC", cluster) ~ "Mural",
+    grepl("Macro", cluster) ~ "Immune",
     grepl("aEndo", cluster) ~ "Endo",
     grepl("COP GPR17", cluster) ~ "COP",
-    grepl("T SKAP1", cluster) ~ "T_cell",
+    grepl("T SKAP1", cluster) ~ "Immune",
     grepl("GFAP", cluster) ~ "Astro_1",
     grepl("CHRDL1", cluster) ~ "Astro_2",
-    grepl("Myeloid", cluster) ~ "Myeloid",
+    grepl("Myeloid", cluster) ~ "Immune",
   ))
 
 colData(sce)$Cell_Type <- df$Cell_Type
 
-saveRDS(sce, file = here::here("processed-data","sce", "sce_sestan_DG_final.rds"))
+# Remove cell types not in DG
+sce <- sce[, !sce$Cell_Type %in% c("CA1_d_N")]
+sce <- sce[, !sce$Cell_Type %in% c("CA1_v_N")]
+sce <- sce[, !sce$Cell_Type %in% c("CA2_N")]
+
+saveRDS(sce, file = here::here("processed-data","sce", "sce_sestan_DG_final2.rds"))

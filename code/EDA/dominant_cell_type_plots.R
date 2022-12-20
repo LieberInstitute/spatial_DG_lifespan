@@ -15,16 +15,17 @@ suppressPackageStartupMessages({
 })
 
 # Load SPE
-spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
+spe <- readRDS(here::here("processed-data", "Cell_Type_Deconvolution", "harmony_spe_CARD.rds"))
 
 # Set Manual colors
-man_colors <- c("Oligo_1" = "plum3", "Oligo_2" = "plum4", "Microglia" = "tan2", "Macrocyte" = "tan1",
-    "OPC_1" = "goldenrod", "OPC_2" = "goldenrod3", "InN_LAMP5" = "green", "InN_VIP" = "green1",
-    "InN_SST" = "green2", "InN_PV" = "green3", "InN_NR2F2" = "green4", "InN_LHX6" = "lawngreen",
-    "InN_MEIS2" = "mediumseagreen", "Cajal_Ret" = "black", "Vasc_LM" = "red", "Artl_S_Muscle" = "red1",
-    "Pericyte" = "red2", "Endoth" = "red3", "Vasc_S_Muscle" = "red4", "T_cell" = "tan3",
-    "Myeloid" = "tan4", "COP" = "goldenrod4", "GC" = "blue", "CA3_N" = "dodgerblue", "EC_N" = "blue1",
-    "Mossy" = "blue4", "CA1_N" = "blue2", "SUB_N" = "blue3", "Astro_1" = "magenta", "Astro_2" = "yellow")
+man_colors <- c("Oligo_1" = "plum", "Oligo_2" = "plum4", "Microglia" = "tan3", "Macrophage" = "tan4",
+    "OPC_1" = "goldenrod", "OPC_2" = "goldenrod3", "InN_LAMP5" = "springgreen", "InN_VIP" = "green1",
+    "InN_SST" = "springgreen2", "InN_PV" = "green", "InN_NR2F2" = "green2", "InN_LHX6" = "springgreen",
+    "InN_MEIS2" = "springgreen3", "InN_NPY" = "green3", "Cajal_Ret" = "black", "Vasc_LM" = "firebrick1",
+    "Artl_S_Muscle" = "red1","Pericyte" = "red2", "Endoth" = "red", "Vasc_S_Muscle" = "firebrick",
+    "T_cell" = "brown1", "Myeloid" = "tan", "COP" = "goldenrod4", "GC_1" = "blue2", "GC_2" = "deepskyblue3",
+    "CA3_N" = "deepskyblue", "Mossy" = "blue1", "CA1_d_N" = "blue", "CA1_v_N" = "deepskyblue1",
+    "SUB_N" = "blue3", "CA2_N" = "deepskyblue2", "Astro_1" = "yellow", "Astro_2" = "yellow3")
 
 pdf(file = here("plots", "Cell_Type_Deconvolution", "Dominant_cell_types_CARD.pdf"), width = 12, height = 8)
 vis_clus(
