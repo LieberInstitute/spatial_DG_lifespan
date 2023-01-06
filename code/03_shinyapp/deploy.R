@@ -5,7 +5,7 @@ app_dir <- here::here("code", "03_shinyapp")
 
 ## Or you can go to your shinyapps.io account and copy this
 ## Here we do this to keep our information hidden.
-load(file.path(app_dir, ".deploy_info.Rdata"), verbose = TRUE)
+#load(file.path(app_dir, ".deploy_info.Rdata"), verbose = TRUE)
 
 source(file.path(app_dir, "token.R"))
 
@@ -20,7 +20,7 @@ rsconnect::deployApp(
     appDir = app_dir,
     appFiles = c(
         "app.R",
-        "spe.rds"
+        "QCed_firsttwo_slides_spe.rds"
     ),
     appName = "lifespanDG_Ramnauth_2022",
     account = "libd",
