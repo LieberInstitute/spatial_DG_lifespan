@@ -23,7 +23,7 @@ suppressPackageStartupMessages({
 
 
 # Load SCE
-sce <- readRDS(file = here::here("processed-data", "sce", "sce_sestan_DG_final.rds"))
+sce <- readRDS(file = here::here("processed-data", "sce", "sce_sestan_DG_final2.rds"))
 
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
@@ -71,7 +71,7 @@ CARD_obj <- createCARDObject(
 
 CARD_obj <- CARD_deconvolution(CARD_obj)
 
-saveRDS(CARD_obj, file = here::here("CARD_obj_sestan.rds"))
+saveRDS(CARD_obj, file = here::here("processed-data", "Cell_Type_Deconvolution", "CARD_obj_sestan2.rds"))
 
 ## Reproducibility information
 print("Reproducibility information:")
