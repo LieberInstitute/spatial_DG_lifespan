@@ -1,0 +1,40 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Wed Feb 22 11:01:11 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2981856
+Job name: VNS.sh
+Hostname: compute-093.cm.cluster
+Task id: undefined
+****
+Sample id: 
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+Importing capture area
+{Error using imread>get_full_filename (line 566)
+File "" does not exist.
+
+Error in imread (line 375)
+    fullname = get_full_filename(filename);
+
+Error in VNS (line 6)
+Img1 = imread(fname); %import image
+} 
+>> **** Job ends ****
+Wed Feb 22 11:01:22 EST 2023

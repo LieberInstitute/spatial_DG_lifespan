@@ -1,0 +1,80 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Feb 21 17:23:54 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2981386
+Job name: VNS.sh
+Hostname: compute-093.cm.cluster
+Task id: 4
+****
+Sample id: /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/raw-data/Images/CS2/round4/CES037_V12D05-281_04_10x_BF_D1.tif
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+Importing capture area
+Elapsed time is 15.455950 seconds.
+Performing smoothing and contrast adjustment
+Elapsed time is 50.228813 seconds.
+Performing rgb to Lab color space conversion
+Elapsed time is 58.414491 seconds.
+Applying Kmeans
+Elapsed time is 372.811968 seconds.
+saving outputs
+Elapsed time is 107.240051 seconds.
+>> **** Job ends ****
+Tue Feb 21 17:34:20 EST 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Wed Feb 22 14:39:31 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2982032
+Job name: VNS.sh
+Hostname: compute-093.cm.cluster
+Task id: 4
+****
+Sample id: /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/raw-data/Images/CS2/round4/CES037_V12D05-281_04_10x_BF_D1.tif
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+Importing capture area
+Elapsed time is 16.128146 seconds.
+Performing smoothing and contrast adjustment
+Elapsed time is 47.351366 seconds.
+Performing rgb to Lab color space conversion
+Elapsed time is 57.797147 seconds.
+Applying Kmeans
+Elapsed time is 360.849997 seconds.
+saving outputs
+Elapsed time is 106.443898 seconds.
+>> **** Job ends ****
+Wed Feb 22 14:49:33 EST 2023

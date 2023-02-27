@@ -1,0 +1,92 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Fri Feb 24 00:08:21 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2990041
+Job name: spatial_hpc
+Hostname: compute-093.cm.cluster
+Task id: 7
+****
+Sample id: /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/processed-data/01_spaceranger/Br6299_new/outs/spatial/tissue_positions.csv
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+loading data
+4992 Visium spots detected
+Building spot grid
+1853 BW ROIS detected
+counting dots per Visium spot
+100 spots finished in time 108.4738s
+200 spots finished in time 216.4776s
+300 spots finished in time 324.8237s
+400 spots finished in time 432.5307s
+500 spots finished in time 539.9948s
+600 spots finished in time 647.7442s
+700 spots finished in time 755.6311s
+800 spots finished in time 863.0131s
+900 spots finished in time 970.9541s
+1000 spots finished in time 1078.7107s
+1100 spots finished in time 1185.2401s
+1200 spots finished in time 1287.2364s
+1300 spots finished in time 1389.1182s
+1400 spots finished in time 1491.0437s
+1500 spots finished in time 1593.0979s
+1600 spots finished in time 1695.2917s
+1700 spots finished in time 1798.8181s
+1800 spots finished in time 1902.7467s
+1900 spots finished in time 2006.2942s
+2000 spots finished in time 2109.9586s
+2100 spots finished in time 2214.2305s
+2200 spots finished in time 2318.0885s
+2300 spots finished in time 2421.5368s
+2400 spots finished in time 2525.2454s
+2500 spots finished in time 2628.822s
+2600 spots finished in time 2732.4285s
+2700 spots finished in time 2835.9938s
+2800 spots finished in time 2937.8459s
+2900 spots finished in time 3039.9546s
+3000 spots finished in time 3132.6821s
+3100 spots finished in time 3221.8749s
+3200 spots finished in time 3321.1575s
+3300 spots finished in time 3424.3874s
+3400 spots finished in time 3527.6371s
+3500 spots finished in time 3630.9096s
+3600 spots finished in time 3734.02s
+3700 spots finished in time 3837.2208s
+3800 spots finished in time 3939.1856s
+3900 spots finished in time 4041.7737s
+4000 spots finished in time 4144.8516s
+4100 spots finished in time 4245.3275s
+4200 spots finished in time 4348.5528s
+4300 spots finished in time 4450.0271s
+4400 spots finished in time 4552.7812s
+4500 spots finished in time 4655.6452s
+4600 spots finished in time 4756.6739s
+4700 spots finished in time 4859.7526s
+4800 spots finished in time 4962.6031s
+4900 spots finished in time 5065.4727s
+writing table
+
+ans = 
+
+  struct with fields:
+
+    BW: [4992x1 double]
+
+>> **** Job ends ****
+Fri Feb 24 01:34:37 EST 2023

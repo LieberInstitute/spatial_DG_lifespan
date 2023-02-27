@@ -1,0 +1,120 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Feb 21 16:55:08 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2981386
+Job name: VNS.sh
+Hostname: compute-099.cm.cluster
+Task id: 1
+****
+Sample id: /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/raw-data/Images/CS2/round4/CES037_V12D05-281_01_10x_BF_A1.tif
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+Importing capture area
+Elapsed time is 19.427210 seconds.
+Performing smoothing and contrast adjustment
+Elapsed time is 57.648684 seconds.
+Performing rgb to Lab color space conversion
+Elapsed time is 64.328186 seconds.
+Applying Kmeans
+Elapsed time is 446.688181 seconds.
+saving outputs
+Elapsed time is 236.763197 seconds.
+>> **** Job ends ****
+Tue Feb 21 17:09:15 EST 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Wed Feb 22 14:13:43 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2982032
+Job name: VNS.sh
+Hostname: compute-093.cm.cluster
+Task id: 1
+****
+Sample id: /dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/raw-data/Images/CS2/round4/CES037_V12D05-281_01_10x_BF_A1.tif
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+Importing capture area
+Elapsed time is 16.429335 seconds.
+Performing smoothing and contrast adjustment
+Elapsed time is 49.410095 seconds.
+Performing rgb to Lab color space conversion
+Elapsed time is 57.698995 seconds.
+Applying Kmeans
+Elapsed time is 453.649205 seconds.
+saving outputs
+Elapsed time is 195.800279 seconds.
+>> **** Job ends ****
+Wed Feb 22 14:26:54 EST 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Sat Feb 25 07:49:09 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3010290
+Job name: VNS.sh
+Hostname: compute-093.cm.cluster
+Task id: 1
+****
+Sample id: V12N09-083_11_29_22_HRD_C1
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+Importing capture area
+Elapsed time is 76.114442 seconds.
+Performing smoothing and contrast adjustment
+Elapsed time is 183.882338 seconds.
+Performing rgb to Lab color space conversion
+Elapsed time is 154.953287 seconds.
+Applying Kmeans
+Elapsed time is 7201.468966 seconds.
+saving outputs
+Elapsed time is 665.589828 seconds.
+>> **** Job ends ****
+Sat Feb 25 10:08:00 EST 2023

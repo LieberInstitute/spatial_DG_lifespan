@@ -1,0 +1,75 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Wed Feb 22 16:41:09 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2982674s
+Job name: refineVNS.sh
+Hostname: compute-099.cm.cluster
+Task id: 6
+****
+Sample id: 3
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+loading data
+{Error using load
+Unable to read file
+'/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/raw-data/Images/CS2/round4/CES037_V12D05-406_02_10x_BF_B1_mask.mat'.
+No such file or directory.
+
+Error in refineVNS (line 6)
+load(mask_name)
+} 
+>> **** Job ends ****
+Wed Feb 22 16:41:16 EST 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Wed Feb 22 17:37:46 EST 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 2982850s
+Job name: refineVNS.sh
+Hostname: compute-099.cm.cluster
+Task id: 6
+****
+Sample id: 3
+****
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+                  R2019a (9.6.0.1072779) 64-bit (glnxa64)
+                               March 8, 2019
+
+ 
+For online documentation, see https://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+loading data
+Elapsed time is 14.646328 seconds.
+refining segmentations
+Elapsed time is 122.305405 seconds.
+saving final segmentations
+Elapsed time is 5.664019 seconds.
+>> **** Job ends ****
+Wed Feb 22 17:40:36 EST 2023
