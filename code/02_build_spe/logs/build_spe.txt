@@ -1191,3 +1191,106 @@ removing spots without counts for spe
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
 Fri Sep 16 11:47:25 EDT 2022
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Feb 28 17:35:55 EST 2023
+**** JHPCE info ****
+User: hdivecha
+Job id: 3019891
+Job name: spatial_DG_lifespan_spe
+Hostname: compute-098.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Error: all(file.exists(sample_info$sample_path)) is not TRUE
+Execution halted
+**** Job ends ****
+Tue Feb 28 17:36:41 EST 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Feb 28 17:56:10 EST 2023
+**** JHPCE info ****
+User: hdivecha
+Job id: 3019906
+Job name: spatial_DG_lifespan_spe
+Hostname: compute-098.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+[1] "2023-02-28 17:56:38 EST"
+2023-02-28 17:56:39 SpatialExperiment::read10xVisium: reading basic data from SpaceRanger
+Error in file(file, "rt") : cannot open the connection
+Calls: read10xVisiumWrapper ... .read_xyz -> lapply -> FUN -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/processed-data/01_spaceranger/Br2720/outs/spatial/tissue_positions_list.csv': No such file or directory
+Execution halted
+**** Job ends ****
+Tue Feb 28 17:58:12 EST 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Wed Mar  1 10:59:21 EST 2023
+**** JHPCE info ****
+User: hdivecha
+Job id: 3021696
+Job name: spatial_DG_lifespan_spe
+Hostname: compute-097.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+[1] "2023-03-01 11:00:19 EST"
+2023-03-01 11:00:20 SpatialExperiment::read10xVisium: reading basic data from SpaceRanger
+Error in `spatialCoords<-`(`*tmp*`, value = as.matrix(colData(spe)[i])) : 
+  is.numeric(value) is not TRUE
+Calls: read10xVisiumWrapper ... .sce_to_spe -> spatialCoords<- -> spatialCoords<- -> stopifnot
+Execution halted
+**** Job ends ****
+Wed Mar  1 11:02:06 EST 2023
