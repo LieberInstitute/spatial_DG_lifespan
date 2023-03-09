@@ -1,0 +1,636 @@
+{
+    "count": 3404,
+    "size": 28324060724,
+    "timestamp": "2022-04-26 13:17:58",
+    "paths": [
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/CLOUPE_PREPROCESS/fork0/chnk0-u9fa368272f/files/output_for_cloupe.cloupe",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/CLOUPE_PREPROCESS/fork0/chnk0-u9fa368272f/files/gem_group_index_json.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/CLOUPE_TILE_IMAGES/fork0/join-u9fa368194c/tmp/tmpbe8dmsa3",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/CLOUPE_TILE_IMAGES/fork0/join-u9fa368194c/files/dzi_info.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/CLOUPE_TILE_IMAGES/fork0/join-u9fa368194c/files/dzi_tiles_paths",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPACERANGER_PREFLIGHT/fork0/join-u9fa36818e3/tmp/tmpkiusvy3e",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPACERANGER_PREFLIGHT_LOCAL/fork0/chnk0-u9fa36818e3/tmp/tmphah2v_jn",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk00-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk01-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk02-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk03-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk04-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk05-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk06-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk07-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk08-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk09-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk10-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk11-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk12-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk13-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk14-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk15-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk16-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk17-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/chnk18-u9fa368255a/files/chunked_spatial_enrichment_files.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/0_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/0_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/10000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/10000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/12000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/12000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/14000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/14000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/16000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/16000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/18000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/18000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/20000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/20000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/2000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/2000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/22000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/22000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/24000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/24000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/26000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/26000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/28000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/28000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/30000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/30000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/32000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/32000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/34000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/34000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/36000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/36000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/4000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/4000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/6000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/6000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/8000_spatial_feature_def.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/8000_spatial_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/split-u9fa36824cf/files/weight_matrix.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/RUN_SPATIAL_ENRICHMENT/fork0/join-u9fa36824cf/files/spatial_enrichment_json.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_REPORTER/fork0/chnk0-u9fa3682705/tmp/tmp_jr2rdjf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/COMBINE_CLUSTERING/fork0/chnk0-u9fa3682634/files/clustering_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/COMBINE_CLUSTERING/fork0/chnk0-u9fa3682634/files/clustering_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/MERGE_CLUSTERS/fork0/join-u9fa368261b/files/clusters_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/MERGE_CLUSTERS/fork0/join-u9fa368261b/files/clusters_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/PREPROCESS_MATRIX/fork0/join-u9fa36824fc/files/cloupe_matrix_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/PREPROCESS_MATRIX/fork0/join-u9fa36824fc/files/preprocessed_matrix_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk00-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk00-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk01-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk01-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk02-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk02-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk03-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk03-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk04-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk04-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk05-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk05-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk06-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk06-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk07-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk07-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk08-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk08-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk09-u9fa3682653/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/chnk09-u9fa3682653/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/join-u9fa368263c/files/diffexp_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_DIFFERENTIAL_EXPRESSION/fork0/join-u9fa368263c/files/diffexp_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/chnk0-u9fa36825f3/files/chunked_neighbors.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/join-u9fa36825ea/files/clusters_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/join-u9fa36825ea/files/louvain.out",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/join-u9fa36825ea/files/matrix.bin",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/split-u9fa36825ea/files/0_submatrix.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/split-u9fa36825ea/files/neighbor_index.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/split-u9fa36825ea/files/use_bcs.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_GRAPH_CLUSTERING/fork0/join-u9fa36825ea/files/clusters_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk0-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk0-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk1-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk1-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk2-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk2-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk3-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk3-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk4-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk4-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk5-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk5-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk6-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk6-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk7-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk7-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk8-u9fa36825f3/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/chnk8-u9fa36825f3/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/join-u9fa36825ef/files/kmeans_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_KMEANS/fork0/join-u9fa36825ef/files/kmeans_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_PCA/fork0/chnk0-u9fa3682562/files/pca_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_PCA/fork0/chnk0-u9fa3682562/files/pca_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_PCA/fork0/join-u9fa368254f/files/pca_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_PCA/fork0/join-u9fa368254f/files/pca_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_TSNE/fork0/chnk0-u9fa3682601/files/tsne_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_TSNE/fork0/chnk0-u9fa3682601/files/tsne_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_TSNE/fork0/join-u9fa36825ef/files/tsne_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_TSNE/fork0/join-u9fa36825ef/files/tsne_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_UMAP/fork0/chnk0-u9fa36825f3/files/umap_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_UMAP/fork0/chnk0-u9fa36825f3/files/umap_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_UMAP/fork0/join-u9fa36825ea/files/umap_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/RUN_UMAP/fork0/join-u9fa36825ea/files/umap_h5.h5",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/SUMMARIZE_ANALYSIS/fork0/chnk0-u9fa36826d6/files/analysis",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/SUMMARIZE_ANALYSIS/fork0/chnk0-u9fa36826d6/files/analysis_csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/SUMMARIZE_ANALYSIS/fork0/join-u9fa36826c9/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/SPATIAL_RNA_ANALYZER/SUMMARIZE_ANALYSIS/fork0/join-u9fa36826c9/files/analysis",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/WRITE_GENE_INDEX/fork0/chnk0-u9fa368194c/files/gene_index.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/FILTER_BARCODES/fork0/join-u9fa368242d/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/FILTER_BARCODES/fork0/join-u9fa368242d/files/filtered_barcodes.csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/MERGE_METRICS/fork0/chnk0-u9fa36825e9/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/WRITE_POS_BAM/fork0/chnk0-u9fa368241c/files/pos_sortednon_multiplexed.bam",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/WRITE_POS_BAM/fork0/chnk1-u9fa368241c/files/pos_sortednon_multiplexed.bam",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/WRITE_POS_BAM/fork0/chnk2-u9fa368241c/files/pos_sortednon_multiplexed.bam",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/WRITE_POS_BAM/fork0/chnk3-u9fa368241c/files/pos_sortednon_multiplexed.bam",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/WRITE_POS_BAM/fork0/chnk4-u9fa368241c/files/pos_sortednon_multiplexed.bam",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_CELLS_REPORTER/SUBSAMPLE_READS/fork0/chnk0-u9fa3682512/files/metrics.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_CELLS_REPORTER/SUBSAMPLE_READS/fork0/chnk1-u9fa3682519/files/metrics.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_CELLS_REPORTER/SUBSAMPLE_READS/fork0/join-u9fa36824fc/files/merged_metrics.pickle",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_CELLS_REPORTER/SUBSAMPLE_READS/fork0/join-u9fa36824fc/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_CELLS_REPORTER/SUMMARIZE_BASIC_REPORTS/fork0/join-u9fa36825c2/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_CELLS_REPORTER/WRITE_MOLECULE_INFO/fork0/chnk0-u9fa36824d5/files/non_multiplexed_summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk0-u9fa3681bf7/files/bam_header",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk0-u9fa3681bf7/files/barcode_summary.bsf.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk0-u9fa3681bf7/files/feature_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk1-u9fa3681bf7/files/bam_header",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk1-u9fa3681bf7/files/barcode_summary.bsf.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk1-u9fa3681bf7/files/feature_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk2-u9fa3681bf7/files/bam_header",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk2-u9fa3681bf7/files/barcode_summary.bsf.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk2-u9fa3681bf7/files/feature_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk3-u9fa3681bf7/files/bam_header",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk3-u9fa3681bf7/files/barcode_summary.bsf.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk3-u9fa3681bf7/files/feature_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk4-u9fa3681bf7/files/bam_header",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk4-u9fa3681bf7/files/barcode_summary.bsf.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk4-u9fa3681bf7/files/feature_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk0-u9fa3681bf7/files/bc_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk1-u9fa3681bf7/files/bc_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk2-u9fa3681bf7/files/bc_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk3-u9fa3681bf7/files/bc_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk4-u9fa3681bf7/files/bc_sort.csf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk0-u9fa3681bf7/files/metrics_shard.bmsf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk1-u9fa3681bf7/files/metrics_shard.bmsf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk2-u9fa3681bf7/files/metrics_shard.bmsf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk3-u9fa3681bf7/files/metrics_shard.bmsf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk4-u9fa3681bf7/files/metrics_shard.bmsf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/join-u9fa3681bf3/files/barcode_summary.csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk0-u9fa3681bf7/files/bc_umi_info.bui",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk1-u9fa3681bf7/files/bc_umi_info.bui",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk2-u9fa3681bf7/files/bc_umi_info.bui",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk3-u9fa3681bf7/files/bc_umi_info.bui",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk4-u9fa3681bf7/files/bc_umi_info.bui",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk0-u9fa3681bf7/files/pos_sorted.asf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk1-u9fa3681bf7/files/pos_sorted.asf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk2-u9fa3681bf7/files/pos_sorted.asf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk3-u9fa3681bf7/files/pos_sorted.asf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/chnk4-u9fa3681bf7/files/pos_sorted.asf",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/ALIGN_AND_COUNT/fork0/join-u9fa3681bf3/files/bam_header",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk00-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk00-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk00-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk01-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk01-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk01-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk02-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk02-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk02-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk03-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk03-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk03-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk04-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk04-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk04-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk05-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk05-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk05-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk06-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk06-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk06-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk07-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk07-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk07-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk08-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk08-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk08-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk09-u9fa3681ba5/files/chunk_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk09-u9fa3681ba5/files/corrected_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk09-u9fa3681ba5/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/join-u9fa3681ba4/files/correct_barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk00-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk00-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk01-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk01-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk02-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk02-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk03-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk03-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk04-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk04-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk05-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk05-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk06-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk06-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk07-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk07-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk08-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk08-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk09-u9fa3681ba5/files/invalid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/chnk09-u9fa3681ba5/files/valid_shard.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/join-u9fa3681ba4/files/total_barcode_counts.tbcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/BARCODE_CORRECTION/fork0/join-u9fa3681ba4/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/COLLATE_METRICS/fork0/chnk0-u9fa3682421/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/COLLATE_METRICS/fork0/chnk0-u9fa3682421/files/per_barcode_metrics.csv",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/chnk0-u9fa3681a13/files/bc_correct_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/chnk0-u9fa3681a13/files/chunk_hist.msh.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/chnk0-u9fa3681a13/files/chunk_summary.msm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/chnk0-u9fa3681a13/files/feature_counts.fbc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/join-u9fa36819f5/files/sequencing_metrics.smf.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/chnk0-u9fa3681a13/files/invalid.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/join-u9fa36819f5/files/barcode_counts.bcc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/join-u9fa36819f5/files/barcode_segment_counts.bsc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/join-u9fa36819f5/files/bc_correct_summary.bcm.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/chnk0-u9fa3681a13/files/valid.shard",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/join-u9fa36819f5/files/feature_counts.fbc.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/join-u9fa36819f5/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MAKE_SHARD/fork0/split-u9fa36819f5/files/feature_reference.frf.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/MERGE_METRICS/fork0/chnk0-u9fa36824ac/files/summary.json",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/WRITE_BARCODE_INDEX/fork0/chnk0-u9fa3681bf3/files/barcode_index.bi.bincode",
+        "/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/code/01_spaceranger/Br1412/SPATIAL_RNA_COUNTER_CS/SPATIAL_RNA_COUNTER/_BASIC_SPATIAL_RNA_COUNTER/_MATRIX_COMPUTER/WRITE_BARCODE_SUMMARY/fork0/chnk0-u9fa368241c/files/barcode_summary.h5"
+    ],
+    "errors": null,
+    "events": [
+        {
+            "Timestamp": "2022-04-26T12:08:03-04:00",
+            "DeltaBytes": 1121375
+        },
+        {
+            "Timestamp": "2022-04-26T12:08:29-04:00",
+            "DeltaBytes": 1103726
+        },
+        {
+            "Timestamp": "2022-04-26T12:09:10.827765736-04:00",
+            "DeltaBytes": -1073297
+        },
+        {
+            "Timestamp": "2022-04-26T12:09:40.552286439-04:00",
+            "DeltaBytes": -1073297
+        },
+        {
+            "Timestamp": "2022-04-26T12:09:48-04:00",
+            "DeltaBytes": 158830727
+        },
+        {
+            "Timestamp": "2022-04-26T12:10:28-04:00",
+            "DeltaBytes": 1266032323
+        },
+        {
+            "Timestamp": "2022-04-26T12:11:09-04:00",
+            "DeltaBytes": 8601
+        },
+        {
+            "Timestamp": "2022-04-26T12:12:11-04:00",
+            "DeltaBytes": 13845
+        },
+        {
+            "Timestamp": "2022-04-26T12:12:32-04:00",
+            "DeltaBytes": 8683
+        },
+        {
+            "Timestamp": "2022-04-26T12:12:37.911202392-04:00",
+            "DeltaBytes": -158736187
+        },
+        {
+            "Timestamp": "2022-04-26T12:12:38-04:00",
+            "DeltaBytes": 5100741
+        },
+        {
+            "Timestamp": "2022-04-26T12:13:07-04:00",
+            "DeltaBytes": 8850599675
+        },
+        {
+            "Timestamp": "2022-04-26T12:13:41-04:00",
+            "DeltaBytes": 2482480
+        },
+        {
+            "Timestamp": "2022-04-26T12:19:48-04:00",
+            "DeltaBytes": 655617
+        },
+        {
+            "Timestamp": "2022-04-26T12:19:48.795083161-04:00",
+            "DeltaBytes": -628496
+        },
+        {
+            "Timestamp": "2022-04-26T12:20:56-04:00",
+            "DeltaBytes": 560058114
+        },
+        {
+            "Timestamp": "2022-04-26T12:21:03-04:00",
+            "DeltaBytes": 380873
+        },
+        {
+            "Timestamp": "2022-04-26T12:21:04.011005966-04:00",
+            "DeltaBytes": -586876588
+        },
+        {
+            "Timestamp": "2022-04-26T12:21:07-04:00",
+            "DeltaBytes": 323133
+        },
+        {
+            "Timestamp": "2022-04-26T12:21:07.166767872-04:00",
+            "DeltaBytes": -1175276
+        },
+        {
+            "Timestamp": "2022-04-26T12:21:11-04:00",
+            "DeltaBytes": 17147
+        },
+        {
+            "Timestamp": "2022-04-26T12:46:37-04:00",
+            "DeltaBytes": 9171547525
+        },
+        {
+            "Timestamp": "2022-04-26T12:46:52.130836038-04:00",
+            "DeltaBytes": -2
+        },
+        {
+            "Timestamp": "2022-04-26T12:55:42-04:00",
+            "DeltaBytes": 313298
+        },
+        {
+            "Timestamp": "2022-04-26T12:55:46.846863364-04:00",
+            "DeltaBytes": -8261677525
+        },
+        {
+            "Timestamp": "2022-04-26T12:55:48.304148754-04:00",
+            "DeltaBytes": -451447
+        },
+        {
+            "Timestamp": "2022-04-26T12:55:51.365125426-04:00",
+            "DeltaBytes": -559114162
+        },
+        {
+            "Timestamp": "2022-04-26T12:55:56-04:00",
+            "DeltaBytes": 45753754
+        },
+        {
+            "Timestamp": "2022-04-26T12:56:13.871728182-04:00",
+            "DeltaBytes": -45494521
+        },
+        {
+            "Timestamp": "2022-04-26T12:57:16-04:00",
+            "DeltaBytes": 5086437486
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:02-04:00",
+            "DeltaBytes": 579723
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:07-04:00",
+            "DeltaBytes": 9010
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:14-04:00",
+            "DeltaBytes": 43696451
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:20-04:00",
+            "DeltaBytes": 12133
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:20.17524194-04:00",
+            "DeltaBytes": -1392426
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:23.975119737-04:00",
+            "DeltaBytes": -165
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:24.045363525-04:00",
+            "DeltaBytes": -4625
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:49-04:00",
+            "DeltaBytes": 5089644370
+        },
+        {
+            "Timestamp": "2022-04-26T12:58:55.285029309-04:00",
+            "DeltaBytes": -269073
+        },
+        {
+            "Timestamp": "2022-04-26T12:59:01-04:00",
+            "DeltaBytes": 1489478804
+        },
+        {
+            "Timestamp": "2022-04-26T12:59:40-04:00",
+            "DeltaBytes": 8900
+        },
+        {
+            "Timestamp": "2022-04-26T12:59:40.41958615-04:00",
+            "DeltaBytes": -173650078
+        },
+        {
+            "Timestamp": "2022-04-26T12:59:48-04:00",
+            "DeltaBytes": 43352
+        },
+        {
+            "Timestamp": "2022-04-26T12:59:51.526729281-04:00",
+            "DeltaBytes": -5086200705
+        },
+        {
+            "Timestamp": "2022-04-26T12:59:59.041877879-04:00",
+            "DeltaBytes": -8954978284
+        },
+        {
+            "Timestamp": "2022-04-26T13:00:09-04:00",
+            "DeltaBytes": 67215927
+        },
+        {
+            "Timestamp": "2022-04-26T13:01:03.791455983-04:00",
+            "DeltaBytes": -12193503
+        },
+        {
+            "Timestamp": "2022-04-26T13:01:04-04:00",
+            "DeltaBytes": 13031
+        },
+        {
+            "Timestamp": "2022-04-26T13:02:23-04:00",
+            "DeltaBytes": 12601021
+        },
+        {
+            "Timestamp": "2022-04-26T13:02:31-04:00",
+            "DeltaBytes": 21706589
+        },
+        {
+            "Timestamp": "2022-04-26T13:02:58-04:00",
+            "DeltaBytes": 2530284
+        },
+        {
+            "Timestamp": "2022-04-26T13:02:58.666891442-04:00",
+            "DeltaBytes": -64888692
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:04-04:00",
+            "DeltaBytes": 11244
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:05-04:00",
+            "DeltaBytes": 9239216
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:10-04:00",
+            "DeltaBytes": 48504
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:32.903106987-04:00",
+            "DeltaBytes": -1413758636
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:37-04:00",
+            "DeltaBytes": 9277768
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:37.439184023-04:00",
+            "DeltaBytes": -9821779
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:38.137241663-04:00",
+            "DeltaBytes": -9263913
+        },
+        {
+            "Timestamp": "2022-04-26T13:03:43-04:00",
+            "DeltaBytes": 896385
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:00-04:00",
+            "DeltaBytes": 25834694
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:04-04:00",
+            "DeltaBytes": 371173
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:13-04:00",
+            "DeltaBytes": 6620610
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:22-04:00",
+            "DeltaBytes": 245012
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:22.642394023-04:00",
+            "DeltaBytes": -1046676
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:27-04:00",
+            "DeltaBytes": 9271
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:27.479850376-04:00",
+            "DeltaBytes": -30878127
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:30-04:00",
+            "DeltaBytes": 361034
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:30.41180591-04:00",
+            "DeltaBytes": -236172
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:34-04:00",
+            "DeltaBytes": 9703
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:34.549285787-04:00",
+            "DeltaBytes": -353513
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:40-04:00",
+            "DeltaBytes": 127655
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:52-04:00",
+            "DeltaBytes": 1116305
+        },
+        {
+            "Timestamp": "2022-04-26T13:04:52.250114137-04:00",
+            "DeltaBytes": -13294
+        },
+        {
+            "Timestamp": "2022-04-26T13:05:00-04:00",
+            "DeltaBytes": 14970
+        },
+        {
+            "Timestamp": "2022-04-26T13:05:00.204834526-04:00",
+            "DeltaBytes": -1113640
+        },
+        {
+            "Timestamp": "2022-04-26T13:05:51-04:00",
+            "DeltaBytes": 103575584
+        },
+        {
+            "Timestamp": "2022-04-26T13:06:51-04:00",
+            "DeltaBytes": 103457836
+        },
+        {
+            "Timestamp": "2022-04-26T13:07:21-04:00",
+            "DeltaBytes": 13551
+        },
+        {
+            "Timestamp": "2022-04-26T13:07:21.791226257-04:00",
+            "DeltaBytes": -103306740
+        },
+        {
+            "Timestamp": "2022-04-26T13:07:34-04:00",
+            "DeltaBytes": 125980320
+        },
+        {
+            "Timestamp": "2022-04-26T13:07:45-04:00",
+            "DeltaBytes": 125990935
+        },
+        {
+            "Timestamp": "2022-04-26T13:08:05.877757227-04:00",
+            "DeltaBytes": -353049
+        },
+        {
+            "Timestamp": "2022-04-26T13:08:13.006859992-04:00",
+            "DeltaBytes": -242369212
+        },
+        {
+            "Timestamp": "2022-04-26T13:08:21-04:00",
+            "DeltaBytes": 18481341
+        },
+        {
+            "Timestamp": "2022-04-26T13:08:49.352980644-04:00",
+            "DeltaBytes": -295757
+        },
+        {
+            "Timestamp": "2022-04-26T13:08:57-04:00",
+            "DeltaBytes": 10881
+        },
+        {
+            "Timestamp": "2022-04-26T13:09:03-04:00",
+            "DeltaBytes": 1307100526
+        },
+        {
+            "Timestamp": "2022-04-26T13:09:42-04:00",
+            "DeltaBytes": 1307070891
+        },
+        {
+            "Timestamp": "2022-04-26T13:10:08-04:00",
+            "DeltaBytes": -1307051580
+        },
+        {
+            "Timestamp": "2022-04-26T13:17:55.252203217-04:00",
+            "DeltaBytes": -1294320287
+        }
+    ]
+}
