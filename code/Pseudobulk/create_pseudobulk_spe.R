@@ -104,11 +104,19 @@ pca_pseudo <- pca$x[, seq_len(50)]
 reducedDims(spe_pseudo) <- list(PCA = pca_pseudo)
 
 # Plot PCA
-pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA.pdf"), width = 14, height = 14)
-plotPCA(spe_pseudo, colour_by = "sex", ncomponents = 12, point_size = 1)
-plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 12, point_size = 1)
-plotPCA(spe_pseudo, colour_by = "BayesSpace", ncomponents = 12, point_size = 1)
-plotPCA(spe_pseudo, colour_by = "sample_id", ncomponents = 12, point_size = 1)
+pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA.pdf"))
+plotPCA(spe_pseudo, colour_by = "sex", ncomponents = 6)
+plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 6)
+plotPCA(spe_pseudo, colour_by = "BayesSpace", ncomponents = 6)
+plotPCA(spe_pseudo, colour_by = "sample_id", ncomponents = 6)
+dev.off()
+
+pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA2vs1.pdf"))
+plotPCA(spe_pseudo, colour_by = "sex", ncomponents = 2, point_size = 10)
+plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 2, point_size = 10)
+plotPCA(spe_pseudo, colour_by = "age", ncomponents = 2, point_size = 10)
+plotPCA(spe_pseudo, colour_by = "BayesSpace", ncomponents = 2, point_size = 10)
+plotPCA(spe_pseudo, colour_by = "sample_id", ncomponents = 2, point_size = 10)
 dev.off()
 
 #### plot explanatory variables ####
