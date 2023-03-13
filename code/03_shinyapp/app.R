@@ -8,8 +8,8 @@ options("golem.app.prod" = TRUE)
 options(repos = BiocManager::repositories())
 
 ## Load the data (all paths are relative to this script's location)
-spe <- readRDS("QCed_firsttwo_slides_spe.rds")
-spe$CellCount <- spe$segmentation_info
+spe <- readRDS("QCed_spe.rds")
+spe$CellCount <- spe$NBW
 vars <- colnames(colData(spe))
 
 ## Deploy the website
@@ -20,6 +20,6 @@ spatialLIBD::run_app(
     sig_genes = NULL,
     title = "spatial_DG_lifespan, Visium",
     spe_discrete_vars = c(vars[grep("10x_", vars)], "ManualAnnotation"),
-    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio", "NBW"),
+    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio", "CellCount"),
     default_cluster = "10x_graphclust"
 )
