@@ -8,7 +8,7 @@ options("golem.app.prod" = TRUE)
 options(repos = BiocManager::repositories())
 
 ## Load the data (all paths are relative to this script's location)
-spe <- readRDS("QCed_firsttwo_slides_spe.rds")
+spe <- readRDS("QCed_spe.rds")
 spe$CellCount <- spe$segmentation_info
 vars <- colnames(colData(spe))
 
