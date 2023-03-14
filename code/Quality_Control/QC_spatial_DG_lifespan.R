@@ -166,6 +166,53 @@ assayNames(spe)
 dir_rdata <- here::here("processed-data", "QC_processed_spe")
 dir.create(dir_rdata, showWarnings = FALSE, recursive = TRUE)
 
+# Check spatial orientation of Br8533 with spatialLIBD
+vis_gene(
+    spe = spe,
+    sampleid = "Br8533",
+    geneid = rownames(spe)[which(rowData(spe)$gene_name == "TNNT2")],
+    assayname = "counts",
+    minCount = 0,
+    viridis = FALSE,
+    alpha = 0.5,
+    point_size = 2
+)
+
+vis_clus(
+    spe = spe,
+    sampleid = "Br8533",
+    clustervar = "10x_kmeans_3_clusters",
+    minCount = 0,
+    alpha = 0.5,
+    point_size = 2
+)
+
+## Image transformations
+
+spe <- rotateImg(spe, sample_id = "Br8533", degrees = 90)
+spe <- mirrorImg(spe, sample_id = "Br8533", axis = "v")
+
+# Check spatial orientation of Br8533 with spatialLIBD
+vis_gene(
+    spe = spe,
+    sampleid = "Br8533",
+    geneid = rownames(spe)[which(rowData(spe)$gene_name == "TNNT2")],
+    assayname = "counts",
+    minCount = 0,
+    viridis = FALSE,
+    alpha = 0.5,
+    point_size = 2
+)
+
+vis_clus(
+    spe = spe,
+    sampleid = "Br8533",
+    clustervar = "10x_kmeans_3_clusters",
+    minCount = 0,
+    alpha = 0.5,
+    point_size = 2
+)
+
 saveRDS(spe, file = here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
 ## Reproducibility information

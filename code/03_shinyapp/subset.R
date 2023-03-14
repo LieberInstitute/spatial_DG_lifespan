@@ -18,9 +18,10 @@ lobstr::obj_size(spe)
 ## to run every time someone accesses the shiny app.
 imgData(spe) <-
     imgData(spe)[!imgData(spe)$image_id %in% c("hires", "detected", "aligned"), ]
+assays(spe)$counts <- NULL
 lobstr::obj_size(spe)
-# 3.62 GB
-## Ok, I hope this is reasonable.
+# 1.86 GB
+## Ok, this is reasonable.
 
 ## Save the reduced version of the spe object in the shiny app directory
 ## instead of using soft links.
