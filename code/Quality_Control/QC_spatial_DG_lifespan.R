@@ -40,7 +40,8 @@ vis_grid_clus(
     pdf = here::here("plots", "QC_plots", "in_tissue_grid.pdf"),
     sort_clust = FALSE,
     colors = c("TRUE" = "grey90", "FALSE" = "orange"),
-    point_size = 2
+    point_size = 2,
+    alpha = 0.5
 )
 
 # identify mitochondrial genes
@@ -65,7 +66,8 @@ qcfilter <- DataFrame(
 
 colSums(as.matrix(qcfilter))
 
-qcfilter$discard <- (qcfilter$low_lib_size | qcfilter$low_n_features) | qcfilter$high_subsets_Mito_percent
+qcfilter$discard <- qcfilter$low_lib_size | qcfilter$low_n_features |
+    qcfilter$high_subsets_Mito_percent
 
 # Add QC metrics to spe object
 spe$scran_discard <-
@@ -83,8 +85,51 @@ par(mfrow = c(1, 4))
 hist(colData(spe)$sum_umi, xlab = "sum", main = "UMIs per spot all donors")
 hist(colData(spe)$sum_gene, xlab = "detected", main = "Genes per spot all donors")
 hist(colData(spe)$subsets_mito_percent, xlab = "percent mito", main = "Percent mito all donors")
-hist(colData(spe)$count, xlab = "no. cells", main = "No. cells per spot all donors")
+hist(colData(spe)$NBW, xlab = "no. cells", main = "No. cells per spot all donors")
 par(mfrow = c(1, 1))
+dev.off()
+
+# Violin Plots of QC metrics
+pdf(
+    here(
+        "plots",
+        "QC_plots",
+        "QC_Violinplots_capture_area.pdf"
+    ), width = 15)
+
+## Mito rate
+plotColData(spe,
+    x = "sample_id",
+    y = "subsets_mito_percent",
+    colour_by = "scran_high_subsets_Mito_percent") +
+    ggtitle("Mito Precent by capture area")
+
+## low sum
+plotColData(spe,
+    x = "sample_id",
+    y = "sum",
+    colour_by = "scran_low_lib_size") +
+    scale_y_log10() +
+    ggtitle("Total UMI count by capture area")
+
+## low detected
+plotColData(spe,
+    x = "sample_id",
+    y = "detected",
+    colour_by = "scran_low_n_features") +
+    scale_y_log10() +
+    ggtitle("# detected genes by capture area")
+
+# Mito rate vs n detected features
+plotColData(spe,
+    x = "detected",
+    y = "subsets_mito_percent",
+    colour_by = "scran_discard",
+    point_size = 2.5,
+    point_alpha = 0.5
+) +
+    ggtitle("Mito Precent by detected genes")
+
 dev.off()
 
 # QC plot of tissue spots discarded
@@ -95,7 +140,8 @@ for (i in colnames(qcfilter)) {
         pdf = here::here("plots", "QC_plots", paste0("scran_", i, ".pdf")),
         sort_clust = FALSE,
         colors = c("FALSE" = "grey90", "TRUE" = "orange"),
-        point_size = 2
+        point_size = 2,
+        alpha = 0.5
     )
 }
 
