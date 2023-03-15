@@ -84,3 +84,21 @@ ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-07-31_SPag0715
 mkdir Br5699
 ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2022-07-31_SPag071522/12v-ADR_S23_L00* Br5699/
 ```
+# FASTQ
+
+## Round 4 
+
+
+```bash
+## Br6299_new
+mkdir Br6299_new
+ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2023-03-10_Transfer10x_SPage/Transfer_to_LIBDrerun/LIBD_20230214-rerun/1432367/fastqs/1432367_1474389_0_1_HMYT2DSX5/bamtofastq_S1_L00* Br6299_new/
+
+## Br6129_new 
+mkdir Br6129_new 
+ln -s /dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2023-03-10_Transfer10x_SPage/Transfer_to_LIBDrerun/LIBD_20230214-rerun/1432369/fastqs/1432369_1474391_0_1_HMYT2DSX5/bamtofastq_S1_L00* Br6129_new/
+
+## Br8181
+mkdir Br8181
+ln -s //dcs04/lieber/lcolladotor/rawDataTDSC_LIBD001/raw-data/2023-03-10_Transfer10x_SPage/Transfer_to_LIBDrerun/LIBD_20230214-rerun/1432370/fastqs/1432370_1474392_0_1_HMYT2DSX5/bamtofastq_S1_L00* Br8181/
+```
