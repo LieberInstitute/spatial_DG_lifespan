@@ -1165,3 +1165,7 @@ Running spatialCluster()
 [1] "2023-03-13 20:29:39 EDT"
 Neighbors were identified for 72813 out of 72824 spots.
 Fitting model...
+Error: cannot allocate vector of size 27.1 Gb
+Execution halted
+**** Job ends ****
+Tue Mar 14 23:20:09 EDT 2023
