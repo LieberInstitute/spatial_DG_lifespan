@@ -1,0 +1,2447 @@
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Thu Mar 30 21:50:56 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3085254
+Job name: PRECAST_k5-15
+Hostname: compute-093.cm.cluster
+Task id: 12
+Unloading conda_R/4.2
+Loading conda_R/4.2.x
+
+The following have been reloaded with a version change:
+  1) conda_R/4.2 => conda_R/4.2.x
+
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2.x
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Fatal error: cannot open file '01_PRECAST_run.R': No such file or directory
+**** Job ends ****
+Thu Mar 30 21:50:58 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Thu Mar 30 23:45:09 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3085528
+Job name: PRECAST_k5-15
+Hostname: compute-093.cm.cluster
+Task id: 12
+Unloading conda_R/4.2
+Loading conda_R/4.2.x
+
+The following have been reloaded with a version change:
+  1) conda_R/4.2 => conda_R/4.2.x
+
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2.x
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Error in library("Seurat") : there is no package called ‘Seurat’
+Calls: suppressPackageStartupMessages -> withCallingHandlers -> library
+Execution halted
+**** Job ends ****
+Thu Mar 30 23:45:12 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Fri Mar 31 09:25:46 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3085633
+Job name: PRECAST_k5-15
+Hostname: compute-098.cm.cluster
+Task id: 12
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Error in gzfile(file, "rb") : cannot open the connection
+Calls: readRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, "rb") :
+  cannot open compressed file '/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/processed-data/Seurat/DG_seuList.rds', probable reason 'No such file or directory'
+Execution halted
+**** Job ends ****
+Fri Mar 31 09:26:07 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Fri Mar 31 09:31:14 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3085639
+Job name: PRECAST_k5-15
+Hostname: compute-098.cm.cluster
+Task id: 12
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Error in readRDS(seuList, file = here("processed-data", "Seurat", "seuList.rds")) : 
+  object 'seuList' not found
+Execution halted
+**** Job ends ****
+Fri Mar 31 09:31:35 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Fri Mar 31 23:43:12 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3086741
+Job name: PRECAST_k5-15
+Hostname: compute-098.cm.cluster
+Task id: 12
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Filter spots and features from Raw count data...
+ 
+ 
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4770
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 3434
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4727
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 3774
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4563
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 3847
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 3414
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4865
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4920
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4975
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4255
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 3787
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4868
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4594
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 3215
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Find the spatially variables genes by SPARK-X...
+
+## ===== SPARK-X INPUT INFORMATION ====
+## number of total samples: 4677
+## number of total genes: 5000
+## Running with single core, may take some time 
+
+## Testing With Projection Kernel
+## Testing With Gaussian Kernel 1
+## Testing With Gaussian Kernel 2
+## Testing With Gaussian Kernel 3
+## Testing With Gaussian Kernel 4
+## Testing With Gaussian Kernel 5
+## Testing With Cosine Kernel 1
+## Testing With Cosine Kernel 2
+## Testing With Cosine Kernel 3
+## Testing With Cosine Kernel 4
+## Testing With Cosine Kernel 5
+Select common top variable genes  for multiple samples...
+Filter spots and features from SVGs(HVGs) count data...
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Warning messages:
+1: In FUN(newX[, i], ...) : There are p-values that are exactly 1!
+2: In FUN(newX[, i], ...) : There are p-values that are exactly 1!
+3: In FUN(newX[, i], ...) : There are p-values that are exactly 1!
+4: In FUN(newX[, i], ...) : There are p-values that are exactly 1!
+[[1]]
+An object of class Seurat 
+2000 features across 4770 samples within 1 assay 
+Active assay: RNA (2000 features, 1209 variable features)
+
+[[2]]
+An object of class Seurat 
+2000 features across 3434 samples within 1 assay 
+Active assay: RNA (2000 features, 873 variable features)
+
+[[3]]
+An object of class Seurat 
+2000 features across 4727 samples within 1 assay 
+Active assay: RNA (2000 features, 1338 variable features)
+
+[[4]]
+An object of class Seurat 
+2000 features across 3774 samples within 1 assay 
+Active assay: RNA (2000 features, 1010 variable features)
+
+[[5]]
+An object of class Seurat 
+2000 features across 4563 samples within 1 assay 
+Active assay: RNA (2000 features, 1375 variable features)
+
+[[6]]
+An object of class Seurat 
+2000 features across 3847 samples within 1 assay 
+Active assay: RNA (2000 features, 1392 variable features)
+
+[[7]]
+An object of class Seurat 
+2000 features across 3414 samples within 1 assay 
+Active assay: RNA (2000 features, 1137 variable features)
+
+[[8]]
+An object of class Seurat 
+2000 features across 4865 samples within 1 assay 
+Active assay: RNA (2000 features, 1275 variable features)
+
+[[9]]
+An object of class Seurat 
+2000 features across 4920 samples within 1 assay 
+Active assay: RNA (2000 features, 1412 variable features)
+
+[[10]]
+An object of class Seurat 
+2000 features across 4975 samples within 1 assay 
+Active assay: RNA (2000 features, 1378 variable features)
+
+[[11]]
+An object of class Seurat 
+2000 features across 4255 samples within 1 assay 
+Active assay: RNA (2000 features, 1408 variable features)
+
+[[12]]
+An object of class Seurat 
+2000 features across 3783 samples within 1 assay 
+Active assay: RNA (2000 features, 1236 variable features)
+
+[[13]]
+An object of class Seurat 
+2000 features across 4868 samples within 1 assay 
+Active assay: RNA (2000 features, 1273 variable features)
+
+[[14]]
+An object of class Seurat 
+2000 features across 4594 samples within 1 assay 
+Active assay: RNA (2000 features, 1422 variable features)
+
+[[15]]
+An object of class Seurat 
+2000 features across 3212 samples within 1 assay 
+Active assay: RNA (2000 features, 989 variable features)
+
+[[16]]
+An object of class Seurat 
+2000 features across 4677 samples within 1 assay 
+Active assay: RNA (2000 features, 352 variable features)
+
+Neighbors were identified for 4770 out of 4770 spots.
+Neighbors were identified for 3434 out of 3434 spots.
+Neighbors were identified for 4727 out of 4727 spots.
+Neighbors were identified for 3774 out of 3774 spots.
+Neighbors were identified for 4563 out of 4563 spots.
+Neighbors were identified for 3846 out of 3847 spots.
+Neighbors were identified for 3414 out of 3414 spots.
+Neighbors were identified for 4865 out of 4865 spots.
+Neighbors were identified for 4918 out of 4920 spots.
+Neighbors were identified for 4975 out of 4975 spots.
+Neighbors were identified for 4253 out of 4255 spots.
+Neighbors were identified for 3783 out of 3783 spots.
+Neighbors were identified for 4868 out of 4868 spots.
+Neighbors were identified for 4594 out of 4594 spots.
+Neighbors were identified for 3212 out of 3212 spots.
+Neighbors were identified for 4677 out of 4677 spots.
+Intergrative data info.: 16 samples, 2000 genes X 68678 spots------
+PRECAST model setting: error_heter=TRUE, Sigma_equal=FALSE, Sigma_diag=TRUE, mix_prop_heter=TRUE
+Start computing intial values... 
+
+fitting ...
+  |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%
+----Fitting PRECAST model----------------
+
+variable initialize finish! 
+predict Y and V! 
+diff Energy = 6.263373 
+diff Energy = 1.455826 
+diff Energy = 33.799225 
+diff Energy = 4.493756 
+diff Energy = 11.961262 
+diff Energy = 8.649555 
+diff Energy = 17.152519 
+Finish ICM step! 
+iter = 2, loglik= -42797496.000000, dloglik=0.980071 
+predict Y and V! 
+diff Energy = 2.475209 
+diff Energy = 12.371472 
+diff Energy = 25.778784 
+diff Energy = 3.990853 
+diff Energy = 8.249840 
+diff Energy = 0.098701 
+diff Energy = 5.313151 
+diff Energy = 2.333934 
+diff Energy = 12.952971 
+diff Energy = 4.897971 
+diff Energy = 0.173630 
+diff Energy = 10.688599 
+diff Energy = 11.257147 
+diff Energy = 0.934173 
+diff Energy = 1.951162 
+Finish ICM step! 
+iter = 3, loglik= -42373484.000000, dloglik=0.009907 
+predict Y and V! 
+diff Energy = 21.680317 
+diff Energy = 28.175207 
+diff Energy = 24.735150 
+diff Energy = 62.281633 
+diff Energy = 15.841955 
+diff Energy = 25.991614 
+diff Energy = 17.141471 
+diff Energy = 16.543487 
+diff Energy = 10.291505 
+diff Energy = 15.139529 
+diff Energy = 14.335692 
+diff Energy = 39.924898 
+diff Energy = 3.700347 
+diff Energy = 3.155069 
+diff Energy = 32.775552 
+Finish ICM step! 
+iter = 4, loglik= -42212416.000000, dloglik=0.003801 
+predict Y and V! 
+diff Energy = 9.880321 
+diff Energy = 29.433583 
+diff Energy = 1.785204 
+diff Energy = 17.679276 
+diff Energy = 37.471619 
+diff Energy = 13.944174 
+diff Energy = 5.047338 
+diff Energy = 4.341969 
+diff Energy = 10.239883 
+diff Energy = 24.221241 
+diff Energy = 19.184713 
+diff Energy = 15.043436 
+diff Energy = 30.644720 
+diff Energy = 0.279805 
+diff Energy = 18.855601 
+diff Energy = 17.181070 
+Finish ICM step! 
+iter = 5, loglik= -42126040.000000, dloglik=0.002046 
+predict Y and V! 
+diff Energy = 21.842430 
+diff Energy = 21.819444 
+diff Energy = 12.349497 
+diff Energy = 5.885379 
+diff Energy = 39.433821 
+diff Energy = 15.842723 
+diff Energy = 0.780718 
+diff Energy = 6.697958 
+diff Energy = 11.804950 
+diff Energy = 10.380128 
+diff Energy = 3.339880 
+diff Energy = 17.399414 
+diff Energy = 11.906438 
+diff Energy = 7.661814 
+diff Energy = 5.764011 
+diff Energy = 12.615523 
+Finish ICM step! 
+iter = 6, loglik= -42074020.000000, dloglik=0.001235 
+predict Y and V! 
+diff Energy = 18.561798 
+diff Energy = 12.525716 
+diff Energy = 3.413573 
+diff Energy = 2.038274 
+diff Energy = 28.040895 
+diff Energy = 17.035313 
+diff Energy = 19.727910 
+diff Energy = 5.865866 
+diff Energy = 16.631164 
+diff Energy = 1.371712 
+diff Energy = 2.235532 
+diff Energy = 25.082526 
+diff Energy = 5.036344 
+diff Energy = 19.627903 
+diff Energy = 0.738678 
+diff Energy = 16.595697 
+Finish ICM step! 
+iter = 7, loglik= -42040344.000000, dloglik=0.000800 
+predict Y and V! 
+diff Energy = 4.787200 
+diff Energy = 9.994243 
+diff Energy = 1.103852 
+diff Energy = 4.826457 
+diff Energy = 26.576598 
+diff Energy = 22.432288 
+diff Energy = 3.016049 
+diff Energy = 2.414996 
+diff Energy = 19.101989 
+diff Energy = 15.132419 
+diff Energy = 4.138901 
+diff Energy = 11.676730 
+diff Energy = 4.451015 
+diff Energy = 5.538020 
+diff Energy = 3.923834 
+diff Energy = 3.602950 
+Finish ICM step! 
+iter = 8, loglik= -42016868.000000, dloglik=0.000558 
+predict Y and V! 
+diff Energy = 1.859468 
+diff Energy = 4.999336 
+diff Energy = 1.582626 
+diff Energy = 23.310600 
+diff Energy = 21.477604 
+diff Energy = 0.236015 
+diff Energy = 3.419058 
+diff Energy = 3.987159 
+diff Energy = 1.204476 
+diff Energy = 11.768854 
+diff Energy = 23.512620 
+diff Energy = 1.465773 
+diff Energy = 6.055501 
+diff Energy = 1.728104 
+diff Energy = 3.723795 
+Finish ICM step! 
+iter = 9, loglik= -42000184.000000, dloglik=0.000397 
+predict Y and V! 
+diff Energy = 1.707285 
+diff Energy = 5.536378 
+diff Energy = 1.234785 
+diff Energy = 0.506893 
+diff Energy = 7.766553 
+diff Energy = 10.247262 
+diff Energy = 2.099762 
+diff Energy = 5.600517 
+diff Energy = 3.978246 
+diff Energy = 0.859381 
+diff Energy = 0.236823 
+diff Energy = 8.335795 
+diff Energy = 11.679040 
+diff Energy = 7.055819 
+diff Energy = 1.339341 
+diff Energy = 1.877185 
+Finish ICM step! 
+iter = 10, loglik= -41987452.000000, dloglik=0.000303 
+predict Y and V! 
+diff Energy = 1.813288 
+diff Energy = 2.476433 
+diff Energy = 2.955154 
+diff Energy = 0.541546 
+diff Energy = 0.424166 
+diff Energy = 0.223928 
+diff Energy = 3.895001 
+diff Energy = 7.417359 
+diff Energy = 1.985988 
+diff Energy = 0.621018 
+diff Energy = 2.117541 
+diff Energy = 4.199474 
+diff Energy = 6.151101 
+diff Energy = 15.859312 
+diff Energy = 0.014252 
+diff Energy = 6.811007 
+Finish ICM step! 
+iter = 11, loglik= -41977612.000000, dloglik=0.000234 
+predict Y and V! 
+diff Energy = 1.372913 
+diff Energy = 2.122704 
+diff Energy = 5.170783 
+diff Energy = 10.123530 
+diff Energy = 1.205310 
+diff Energy = 7.997779 
+diff Energy = 8.771298 
+diff Energy = 5.420188 
+diff Energy = 7.521603 
+diff Energy = 5.785089 
+diff Energy = 4.031651 
+diff Energy = 14.263444 
+diff Energy = 2.319704 
+diff Energy = 1.478963 
+Finish ICM step! 
+iter = 12, loglik= -41969792.000000, dloglik=0.000186 
+predict Y and V! 
+diff Energy = 1.014711 
+diff Energy = 3.278571 
+diff Energy = 1.681004 
+diff Energy = 8.538610 
+diff Energy = 3.469753 
+diff Energy = 3.115593 
+diff Energy = 6.475090 
+diff Energy = 7.347507 
+diff Energy = 1.683918 
+diff Energy = 0.620301 
+diff Energy = 0.870373 
+diff Energy = 8.109060 
+diff Energy = 3.567276 
+diff Energy = 3.192481 
+diff Energy = 2.047433 
+diff Energy = 6.009528 
+Finish ICM step! 
+iter = 13, loglik= -41963384.000000, dloglik=0.000153 
+predict Y and V! 
+diff Energy = 2.342528 
+diff Energy = 2.603428 
+diff Energy = 0.826921 
+diff Energy = 0.503364 
+diff Energy = 12.721560 
+diff Energy = 1.948501 
+diff Energy = 0.868376 
+diff Energy = 9.653973 
+diff Energy = 9.095704 
+diff Energy = 2.337563 
+diff Energy = 10.688907 
+diff Energy = 3.076337 
+diff Energy = 4.549552 
+diff Energy = 1.266327 
+diff Energy = 4.438491 
+Finish ICM step! 
+iter = 14, loglik= -41958128.000000, dloglik=0.000125 
+predict Y and V! 
+diff Energy = 0.798488 
+diff Energy = 0.492976 
+diff Energy = 0.848245 
+diff Energy = 2.023966 
+diff Energy = 1.334912 
+diff Energy = 1.306636 
+diff Energy = 2.613255 
+diff Energy = 6.476813 
+diff Energy = 6.513807 
+diff Energy = 2.279011 
+diff Energy = 5.127726 
+diff Energy = 8.287274 
+diff Energy = 13.869894 
+diff Energy = 7.314542 
+diff Energy = 3.938666 
+diff Energy = 1.195095 
+Finish ICM step! 
+iter = 15, loglik= -41953760.000000, dloglik=0.000104 
+predict Y and V! 
+diff Energy = 1.544606 
+diff Energy = 0.634788 
+diff Energy = 5.936094 
+diff Energy = 5.743985 
+diff Energy = 2.076195 
+diff Energy = 2.831882 
+diff Energy = 8.700600 
+diff Energy = 11.350959 
+diff Energy = 5.715773 
+diff Energy = 0.545826 
+diff Energy = 1.653286 
+diff Energy = 0.355823 
+diff Energy = 0.225013 
+diff Energy = 2.294929 
+diff Energy = 4.293103 
+Finish ICM step! 
+iter = 16, loglik= -41949764.000000, dloglik=0.000095 
+predict Y and V! 
+diff Energy = 0.817118 
+diff Energy = 3.543175 
+diff Energy = 0.785188 
+diff Energy = 1.257966 
+diff Energy = 4.423052 
+diff Energy = 0.734266 
+diff Energy = 2.316206 
+diff Energy = 4.258139 
+diff Energy = 7.044589 
+diff Energy = 8.057394 
+diff Energy = 4.963308 
+diff Energy = 1.944281 
+diff Energy = 2.860232 
+diff Energy = 2.911367 
+diff Energy = 2.086889 
+Finish ICM step! 
+iter = 17, loglik= -41946348.000000, dloglik=0.000081 
+predict Y and V! 
+diff Energy = 2.538987 
+diff Energy = 0.569101 
+diff Energy = 1.978160 
+diff Energy = 2.830572 
+diff Energy = 0.695569 
+diff Energy = 0.460242 
+diff Energy = 7.015870 
+diff Energy = 1.310874 
+diff Energy = 2.837858 
+diff Energy = 7.132270 
+diff Energy = 1.631741 
+diff Energy = 0.332062 
+diff Energy = 4.043980 
+diff Energy = 4.812188 
+Finish ICM step! 
+iter = 18, loglik= -41943264.000000, dloglik=0.000074 
+predict Y and V! 
+diff Energy = 3.922367 
+diff Energy = 3.289150 
+diff Energy = 1.670925 
+diff Energy = 4.419584 
+diff Energy = 9.829373 
+diff Energy = 0.430057 
+diff Energy = 0.270466 
+diff Energy = 0.618089 
+diff Energy = 4.351042 
+diff Energy = 3.410748 
+diff Energy = 5.136069 
+diff Energy = 1.908225 
+diff Energy = 3.187324 
+diff Energy = 5.199550 
+diff Energy = 3.207672 
+Finish ICM step! 
+iter = 19, loglik= -41940456.000000, dloglik=0.000067 
+predict Y and V! 
+diff Energy = 2.155169 
+diff Energy = 0.263576 
+diff Energy = 1.034784 
+diff Energy = 0.074010 
+diff Energy = 12.703737 
+diff Energy = 0.707941 
+diff Energy = 6.989693 
+diff Energy = 1.885415 
+diff Energy = 6.589409 
+diff Energy = 3.614971 
+diff Energy = 3.261342 
+diff Energy = 2.841924 
+diff Energy = 1.892980 
+diff Energy = 2.849435 
+diff Energy = 1.130108 
+diff Energy = 2.384766 
+Finish ICM step! 
+iter = 20, loglik= -41937776.000000, dloglik=0.000064 
+predict Y and V! 
+diff Energy = 0.423677 
+diff Energy = 8.822045 
+diff Energy = 1.627829 
+diff Energy = 0.615709 
+diff Energy = 7.474245 
+diff Energy = 3.135933 
+diff Energy = 2.349967 
+diff Energy = 7.056098 
+diff Energy = 5.874393 
+diff Energy = 8.144503 
+diff Energy = 1.045170 
+diff Energy = 0.593741 
+diff Energy = 1.833653 
+diff Energy = 1.030801 
+diff Energy = 1.056448 
+Finish ICM step! 
+iter = 21, loglik= -41935284.000000, dloglik=0.000059 
+predict Y and V! 
+diff Energy = 2.587284 
+diff Energy = 0.248619 
+diff Energy = 0.846535 
+diff Energy = 0.783543 
+diff Energy = 6.771632 
+diff Energy = 1.727211 
+diff Energy = 2.201462 
+diff Energy = 7.562367 
+diff Energy = 4.514354 
+diff Energy = 7.049932 
+diff Energy = 2.008846 
+diff Energy = 7.358434 
+diff Energy = 3.596463 
+diff Energy = 0.759473 
+diff Energy = 2.007785 
+diff Energy = 2.255331 
+Finish ICM step! 
+iter = 22, loglik= -41932976.000000, dloglik=0.000055 
+predict Y and V! 
+diff Energy = 0.873377 
+diff Energy = 2.846371 
+diff Energy = 1.418450 
+diff Energy = 1.094313 
+diff Energy = 9.043285 
+diff Energy = 1.360348 
+diff Energy = 0.742257 
+diff Energy = 5.964058 
+diff Energy = 3.427201 
+diff Energy = 2.231703 
+diff Energy = 6.188931 
+diff Energy = 1.860072 
+diff Energy = 1.229171 
+diff Energy = 2.946531 
+diff Energy = 1.400534 
+Finish ICM step! 
+iter = 23, loglik= -41930644.000000, dloglik=0.000056 
+predict Y and V! 
+diff Energy = 1.957582 
+diff Energy = 3.191780 
+diff Energy = 2.615726 
+diff Energy = 1.032125 
+diff Energy = 5.676256 
+diff Energy = 1.989213 
+diff Energy = 4.657598 
+diff Energy = 1.109198 
+diff Energy = 6.015766 
+diff Energy = 0.853155 
+diff Energy = 9.423061 
+diff Energy = 9.218479 
+diff Energy = 3.306413 
+diff Energy = 3.249643 
+diff Energy = 0.138554 
+diff Energy = 0.532529 
+Finish ICM step! 
+iter = 24, loglik= -41928380.000000, dloglik=0.000054 
+predict Y and V! 
+diff Energy = 10.971968 
+diff Energy = 0.883084 
+diff Energy = 21.673587 
+diff Energy = 0.669517 
+diff Energy = 1.622638 
+diff Energy = 6.671608 
+diff Energy = 11.589549 
+diff Energy = 4.829800 
+diff Energy = 2.549970 
+diff Energy = 4.952381 
+diff Energy = 1.841743 
+diff Energy = 2.765345 
+diff Energy = 2.760270 
+diff Energy = 1.956463 
+Finish ICM step! 
+iter = 25, loglik= -41926128.000000, dloglik=0.000054 
+predict Y and V! 
+diff Energy = 0.159585 
+diff Energy = 0.010886 
+diff Energy = 5.411616 
+diff Energy = 0.066603 
+diff Energy = 1.297493 
+diff Energy = 5.679052 
+diff Energy = 5.142801 
+diff Energy = 3.825755 
+diff Energy = 2.695608 
+diff Energy = 4.409997 
+diff Energy = 1.833830 
+diff Energy = 1.979165 
+diff Energy = 2.512181 
+Finish ICM step! 
+iter = 26, loglik= -41923888.000000, dloglik=0.000053 
+predict Y and V! 
+diff Energy = 3.064601 
+diff Energy = 2.728083 
+diff Energy = 5.376223 
+diff Energy = 9.225309 
+diff Energy = 4.676522 
+diff Energy = 8.380279 
+diff Energy = 2.898831 
+diff Energy = 2.856471 
+diff Energy = 10.060958 
+diff Energy = 1.829010 
+diff Energy = 0.200185 
+diff Energy = 2.010129 
+diff Energy = 1.188678 
+Finish ICM step! 
+iter = 27, loglik= -41921628.000000, dloglik=0.000054 
+predict Y and V! 
+diff Energy = 5.448988 
+diff Energy = 2.715277 
+diff Energy = 0.983792 
+diff Energy = 3.289337 
+diff Energy = 1.968620 
+diff Energy = 4.960376 
+diff Energy = 2.108252 
+diff Energy = 11.074853 
+diff Energy = 3.537162 
+diff Energy = 6.506937 
+diff Energy = 2.107337 
+diff Energy = 0.657636 
+diff Energy = 0.722531 
+diff Energy = 0.978434 
+diff Energy = 7.109095 
+Finish ICM step! 
+iter = 28, loglik= -41919108.000000, dloglik=0.000060 
+predict Y and V! 
+diff Energy = 5.879995 
+diff Energy = 3.098834 
+diff Energy = 1.271430 
+diff Energy = 2.386154 
+diff Energy = 4.027773 
+diff Energy = 0.353946 
+diff Energy = 2.406867 
+diff Energy = 5.355301 
+diff Energy = 0.544733 
+diff Energy = 2.405221 
+diff Energy = 3.981017 
+diff Energy = 0.738437 
+diff Energy = 1.784616 
+diff Energy = 10.006039 
+diff Energy = 3.235623 
+Finish ICM step! 
+iter = 29, loglik= -41916388.000000, dloglik=0.000065 
+predict Y and V! 
+diff Energy = 3.694876 
+diff Energy = 5.256168 
+diff Energy = 5.629076 
+diff Energy = 0.095701 
+diff Energy = 4.155104 
+diff Energy = 0.978586 
+diff Energy = 9.201277 
+diff Energy = 3.667751 
+diff Energy = 4.165795 
+diff Energy = 2.499955 
+diff Energy = 1.664424 
+diff Energy = 5.037296 
+diff Energy = 2.089465 
+diff Energy = 5.476160 
+Finish ICM step! 
+iter = 30, loglik= -41913596.000000, dloglik=0.000067 
+6589.448 sec elapsed
+[1] "Reproducibility information:"
+[1] "2023-04-01 02:03:31 EDT"
+    user   system  elapsed 
+6516.566  663.975 8327.680 
+─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.2.1 Patched (2022-08-30 r82775)
+ os       CentOS Linux 7 (Core)
+ system   x86_64, linux-gnu
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       US/Eastern
+ date     2023-04-01
+ pandoc   2.19.2 @ /jhpce/shared/jhpce/core/conda/miniconda3-4.11.0/envs/svnR-4.2/bin/pandoc
+
+─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+ package              * version  date (UTC) lib source
+ abind                  1.4-5    2016-07-21 [2] CRAN (R 4.2.1)
+ assertthat             0.2.1    2019-03-21 [2] CRAN (R 4.2.1)
+ beachmat               2.12.0   2022-04-26 [2] Bioconductor
+ beeswarm               0.4.0    2021-06-01 [2] CRAN (R 4.2.1)
+ Biobase              * 2.56.0   2022-04-26 [2] Bioconductor
+ BiocGenerics         * 0.42.0   2022-04-26 [2] Bioconductor
+ BiocNeighbors          1.14.0   2022-04-26 [2] Bioconductor
+ BiocParallel           1.30.3   2022-06-05 [2] Bioconductor
+ BiocSingular           1.12.0   2022-04-26 [2] Bioconductor
+ bitops                 1.0-7    2021-04-24 [2] CRAN (R 4.2.1)
+ cli                    3.4.1    2022-09-23 [1] CRAN (R 4.2.1)
+ cluster                2.1.4    2022-08-22 [3] CRAN (R 4.2.1)
+ codetools              0.2-18   2020-11-04 [3] CRAN (R 4.2.1)
+ colorspace             2.0-3    2022-02-21 [2] CRAN (R 4.2.1)
+ CompQuadForm           1.4.3    2017-04-12 [1] CRAN (R 4.2.1)
+ cowplot                1.1.1    2020-12-30 [2] CRAN (R 4.2.1)
+ data.table             1.14.2   2021-09-27 [2] CRAN (R 4.2.1)
+ DBI                    1.1.3    2022-06-18 [2] CRAN (R 4.2.1)
+ DelayedArray           0.22.0   2022-04-26 [2] Bioconductor
+ DelayedMatrixStats     1.18.0   2022-04-26 [2] Bioconductor
+ deldir                 1.0-6    2021-10-23 [2] CRAN (R 4.2.1)
+ digest                 0.6.30   2022-10-18 [1] CRAN (R 4.2.1)
+ dplyr                * 1.0.10   2022-09-01 [1] CRAN (R 4.2.1)
+ dqrng                  0.3.0    2021-05-01 [2] CRAN (R 4.2.1)
+ DR.SC                  3.0      2022-11-15 [1] CRAN (R 4.2.1)
+ DropletUtils           1.16.0   2022-04-26 [2] Bioconductor
+ edgeR                  3.38.4   2022-08-07 [2] Bioconductor
+ ellipsis               0.3.2    2021-04-29 [2] CRAN (R 4.2.1)
+ fansi                  1.0.3    2022-03-24 [2] CRAN (R 4.2.1)
+ fastmap                1.1.0    2021-01-25 [2] CRAN (R 4.2.1)
+ fitdistrplus           1.1-8    2022-03-10 [1] CRAN (R 4.2.1)
+ future                 1.29.0   2022-11-06 [1] CRAN (R 4.2.1)
+ future.apply           1.10.0   2022-11-05 [1] CRAN (R 4.2.1)
+ generics               0.1.3    2022-07-05 [2] CRAN (R 4.2.1)
+ GenomeInfoDb         * 1.32.3   2022-08-09 [2] Bioconductor
+ GenomeInfoDbData       1.2.8    2022-08-30 [2] Bioconductor
+ GenomicRanges        * 1.48.0   2022-04-26 [2] Bioconductor
+ ggbeeswarm             0.6.0    2017-08-07 [2] CRAN (R 4.2.1)
+ ggplot2                3.4.0    2022-11-04 [1] CRAN (R 4.2.1)
+ ggrepel                0.9.1    2021-01-15 [2] CRAN (R 4.2.1)
+ ggridges               0.5.3    2021-01-08 [2] CRAN (R 4.2.1)
+ ggthemes               4.2.4    2021-01-20 [1] CRAN (R 4.2.1)
+ GiRaF                  1.0.1    2020-10-14 [1] CRAN (R 4.2.1)
+ globals                0.16.1   2022-08-28 [2] CRAN (R 4.2.1)
+ glue                   1.6.2    2022-02-24 [2] CRAN (R 4.2.1)
+ goftest                1.2-3    2021-10-07 [1] CRAN (R 4.2.1)
+ gridExtra              2.3      2017-09-09 [2] CRAN (R 4.2.1)
+ gtable                 0.3.1    2022-09-01 [1] CRAN (R 4.2.1)
+ gtools               * 3.9.3    2022-07-11 [2] CRAN (R 4.2.1)
+ HDF5Array              1.24.2   2022-08-02 [2] Bioconductor
+ here                 * 1.0.1    2020-12-13 [2] CRAN (R 4.2.1)
+ htmltools              0.5.3    2022-07-18 [2] CRAN (R 4.2.1)
+ htmlwidgets            1.5.4    2021-09-08 [2] CRAN (R 4.2.1)
+ httpuv                 1.6.5    2022-01-05 [2] CRAN (R 4.2.1)
+ httr                   1.4.4    2022-08-17 [2] CRAN (R 4.2.1)
+ ica                    1.0-3    2022-07-08 [1] CRAN (R 4.2.1)
+ igraph                 1.3.4    2022-07-19 [2] CRAN (R 4.2.1)
+ IRanges              * 2.30.1   2022-08-18 [2] Bioconductor
+ irlba                  2.3.5    2021-12-06 [2] CRAN (R 4.2.1)
+ jsonlite               1.8.3    2022-10-21 [1] CRAN (R 4.2.1)
+ KernSmooth             2.23-20  2021-05-03 [3] CRAN (R 4.2.1)
+ later                  1.3.0    2021-08-18 [2] CRAN (R 4.2.1)
+ lattice                0.20-45  2021-09-22 [3] CRAN (R 4.2.1)
+ lazyeval               0.2.2    2019-03-15 [2] CRAN (R 4.2.1)
+ leiden                 0.4.3    2022-09-10 [1] CRAN (R 4.2.1)
+ lifecycle              1.0.3    2022-10-07 [1] CRAN (R 4.2.1)
+ limma                  3.52.2   2022-06-19 [2] Bioconductor
+ listenv                0.8.0    2019-12-05 [2] CRAN (R 4.2.1)
+ lmtest                 0.9-40   2022-03-21 [2] CRAN (R 4.2.1)
+ locfit                 1.5-9.6  2022-07-11 [2] CRAN (R 4.2.1)
+ magick                 2.7.3    2021-08-18 [2] CRAN (R 4.2.1)
+ magrittr               2.0.3    2022-03-30 [2] CRAN (R 4.2.1)
+ MASS                   7.3-58.1 2022-08-03 [3] CRAN (R 4.2.1)
+ Matrix                 1.5-1    2022-09-13 [1] CRAN (R 4.2.1)
+ MatrixGenerics       * 1.8.1    2022-06-26 [2] Bioconductor
+ matrixStats          * 0.62.0   2022-04-19 [2] CRAN (R 4.2.1)
+ mclust                 5.4.10   2022-05-20 [2] CRAN (R 4.2.1)
+ mime                   0.12     2021-09-28 [2] CRAN (R 4.2.1)
+ miniUI                 0.1.1.1  2018-05-18 [2] CRAN (R 4.2.1)
+ munsell                0.5.0    2018-06-12 [2] CRAN (R 4.2.1)
+ nlme                   3.1-158  2022-06-15 [3] CRAN (R 4.2.1)
+ parallelly             1.32.1   2022-07-21 [2] CRAN (R 4.2.1)
+ patchwork              1.1.2    2022-08-19 [2] CRAN (R 4.2.1)
+ pbapply                1.5-0    2021-09-16 [2] CRAN (R 4.2.1)
+ pillar                 1.8.1    2022-08-19 [2] CRAN (R 4.2.1)
+ pkgconfig              2.0.3    2019-09-22 [2] CRAN (R 4.2.1)
+ plotly                 4.10.0   2021-10-09 [2] CRAN (R 4.2.1)
+ plyr                   1.8.7    2022-03-24 [2] CRAN (R 4.2.1)
+ png                    0.1-7    2013-12-03 [2] CRAN (R 4.2.1)
+ polyclip               1.10-4   2022-10-20 [1] CRAN (R 4.2.1)
+ PRECAST              * 1.3      2022-12-12 [1] Github (feiyoung/PRECAST@9611dcf)
+ progressr              0.11.0   2022-09-02 [1] CRAN (R 4.2.1)
+ promises               1.2.0.1  2021-02-11 [2] CRAN (R 4.2.1)
+ purrr                * 0.3.5    2022-10-06 [1] CRAN (R 4.2.1)
+ R.methodsS3            1.8.2    2022-06-13 [2] CRAN (R 4.2.1)
+ R.oo                   1.25.0   2022-06-12 [2] CRAN (R 4.2.1)
+ R.utils                2.12.0   2022-06-28 [2] CRAN (R 4.2.1)
+ R6                     2.5.1    2021-08-19 [2] CRAN (R 4.2.1)
+ RANN                   2.6.1    2019-01-08 [2] CRAN (R 4.2.1)
+ RColorBrewer           1.1-3    2022-04-03 [2] CRAN (R 4.2.1)
+ Rcpp                   1.0.9    2022-07-08 [2] CRAN (R 4.2.1)
+ RcppAnnoy              0.0.19   2021-07-30 [2] CRAN (R 4.2.1)
+ RCurl                  1.98-1.8 2022-07-30 [2] CRAN (R 4.2.1)
+ reshape2               1.4.4    2020-04-09 [2] CRAN (R 4.2.1)
+ reticulate             1.25     2022-05-11 [2] CRAN (R 4.2.1)
+ rhdf5                  2.40.0   2022-04-26 [2] Bioconductor
+ rhdf5filters           1.8.0    2022-04-26 [2] Bioconductor
+ Rhdf5lib               1.18.2   2022-05-15 [2] Bioconductor
+ rjson                  0.2.21   2022-01-09 [2] CRAN (R 4.2.1)
+ rlang                  1.0.6    2022-09-24 [1] CRAN (R 4.2.1)
+ ROCR                   1.0-11   2020-05-02 [2] CRAN (R 4.2.1)
+ rprojroot              2.0.3    2022-04-02 [2] CRAN (R 4.2.1)
+ rsvd                   1.0.5    2021-04-16 [2] CRAN (R 4.2.1)
+ Rtsne                  0.16     2022-04-17 [2] CRAN (R 4.2.1)
+ S4Vectors            * 0.34.0   2022-04-26 [2] Bioconductor
+ ScaledMatrix           1.4.0    2022-04-26 [2] Bioconductor
+ scales                 1.2.1    2022-08-20 [2] CRAN (R 4.2.1)
+ scater                 1.24.0   2022-04-26 [2] Bioconductor
+ scattermore            0.8      2022-02-14 [1] CRAN (R 4.2.1)
+ sctransform            0.3.5    2022-09-21 [1] CRAN (R 4.2.1)
+ scuttle                1.6.3    2022-08-23 [2] Bioconductor
+ sessioninfo          * 1.2.2    2021-12-06 [2] CRAN (R 4.2.1)
+ Seurat               * 4.3.0    2022-11-18 [1] CRAN (R 4.2.1)
+ SeuratObject         * 4.1.3    2022-11-07 [1] CRAN (R 4.2.1)
+ shiny                  1.7.2    2022-07-19 [2] CRAN (R 4.2.1)
+ SingleCellExperiment * 1.18.0   2022-04-26 [2] Bioconductor
+ sp                     1.5-1    2022-11-07 [1] CRAN (R 4.2.1)
+ sparseMatrixStats      1.8.0    2022-04-26 [2] Bioconductor
+ SpatialExperiment    * 1.6.1    2022-08-09 [2] Bioconductor
+ spatstat.data          3.0-0    2022-10-21 [1] CRAN (R 4.2.1)
+ spatstat.explore       3.0-5    2022-11-10 [1] CRAN (R 4.2.1)
+ spatstat.geom          3.0-3    2022-10-25 [1] CRAN (R 4.2.1)
+ spatstat.random        3.0-1    2022-11-03 [1] CRAN (R 4.2.1)
+ spatstat.sparse        3.0-0    2022-10-21 [1] CRAN (R 4.2.1)
+ spatstat.utils         3.0-1    2022-10-19 [1] CRAN (R 4.2.1)
+ stringi                1.7.8    2022-07-11 [2] CRAN (R 4.2.1)
+ stringr                1.4.1    2022-08-20 [2] CRAN (R 4.2.1)
+ SummarizedExperiment * 1.26.1   2022-04-29 [2] Bioconductor
+ survival               3.4-0    2022-08-09 [3] CRAN (R 4.2.1)
+ tensor                 1.5      2012-05-05 [1] CRAN (R 4.2.1)
+ tibble                 3.1.8    2022-07-22 [2] CRAN (R 4.2.1)
+ tictoc               * 1.1      2022-09-03 [1] CRAN (R 4.2.1)
+ tidyr                  1.2.1    2022-09-08 [1] CRAN (R 4.2.1)
+ tidyselect             1.2.0    2022-10-10 [1] CRAN (R 4.2.1)
+ utf8                   1.2.2    2021-07-24 [2] CRAN (R 4.2.1)
+ uwot                   0.1.14   2022-08-22 [2] CRAN (R 4.2.1)
+ vctrs                  0.5.0    2022-10-22 [1] CRAN (R 4.2.1)
+ vipor                  0.4.5    2017-03-22 [2] CRAN (R 4.2.1)
+ viridis                0.6.2    2021-10-13 [2] CRAN (R 4.2.1)
+ viridisLite            0.4.1    2022-08-22 [2] CRAN (R 4.2.1)
+ xtable                 1.8-4    2019-04-21 [2] CRAN (R 4.2.1)
+ XVector                0.36.0   2022-04-26 [2] Bioconductor
+ zlibbioc               1.42.0   2022-04-26 [2] Bioconductor
+ zoo                    1.8-10   2022-04-15 [2] CRAN (R 4.2.1)
+
+ [1] /users/aramnaut/R/4.2
+ [2] /jhpce/shared/jhpce/core/conda/miniconda3-4.11.0/envs/svnR-4.2/R/4.2/lib64/R/site-library
+ [3] /jhpce/shared/jhpce/core/conda/miniconda3-4.11.0/envs/svnR-4.2/R/4.2/lib64/R/library
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+**** Job ends ****
+Sat Apr  1 02:07:06 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Sun Apr  2 23:22:23 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3092213
+Job name: PRECAST_k5-15
+Hostname: compute-093.cm.cluster
+Task id: 12
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Filter spots and features from Raw count data...
+ 
+ 
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Select common top variable genes  for multiple samples...
+Filter spots and features from SVGs(HVGs) count data...
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+[[1]]
+An object of class Seurat 
+2000 features across 4770 samples within 1 assay 
+Active assay: RNA (2000 features, 851 variable features)
+
+[[2]]
+An object of class Seurat 
+2000 features across 3434 samples within 1 assay 
+Active assay: RNA (2000 features, 529 variable features)
+
+[[3]]
+An object of class Seurat 
+2000 features across 4727 samples within 1 assay 
+Active assay: RNA (2000 features, 1094 variable features)
+
+[[4]]
+An object of class Seurat 
+2000 features across 3774 samples within 1 assay 
+Active assay: RNA (2000 features, 654 variable features)
+
+[[5]]
+An object of class Seurat 
+2000 features across 4563 samples within 1 assay 
+Active assay: RNA (2000 features, 1032 variable features)
+
+[[6]]
+An object of class Seurat 
+2000 features across 3847 samples within 1 assay 
+Active assay: RNA (2000 features, 1076 variable features)
+
+[[7]]
+An object of class Seurat 
+2000 features across 3414 samples within 1 assay 
+Active assay: RNA (2000 features, 690 variable features)
+
+[[8]]
+An object of class Seurat 
+2000 features across 4865 samples within 1 assay 
+Active assay: RNA (2000 features, 1152 variable features)
+
+[[9]]
+An object of class Seurat 
+2000 features across 4920 samples within 1 assay 
+Active assay: RNA (2000 features, 1139 variable features)
+
+[[10]]
+An object of class Seurat 
+2000 features across 4975 samples within 1 assay 
+Active assay: RNA (2000 features, 1259 variable features)
+
+[[11]]
+An object of class Seurat 
+2000 features across 4254 samples within 1 assay 
+Active assay: RNA (2000 features, 1043 variable features)
+
+[[12]]
+An object of class Seurat 
+2000 features across 3784 samples within 1 assay 
+Active assay: RNA (2000 features, 907 variable features)
+
+[[13]]
+An object of class Seurat 
+2000 features across 4868 samples within 1 assay 
+Active assay: RNA (2000 features, 1070 variable features)
+
+[[14]]
+An object of class Seurat 
+2000 features across 4594 samples within 1 assay 
+Active assay: RNA (2000 features, 1066 variable features)
+
+[[15]]
+An object of class Seurat 
+2000 features across 3208 samples within 1 assay 
+Active assay: RNA (2000 features, 500 variable features)
+
+[[16]]
+An object of class Seurat 
+2000 features across 4677 samples within 1 assay 
+Active assay: RNA (2000 features, 676 variable features)
+
+Neighbors were identified for 4770 out of 4770 spots.
+Neighbors were identified for 3434 out of 3434 spots.
+Neighbors were identified for 4727 out of 4727 spots.
+Neighbors were identified for 3774 out of 3774 spots.
+Neighbors were identified for 4563 out of 4563 spots.
+Neighbors were identified for 3846 out of 3847 spots.
+Neighbors were identified for 3414 out of 3414 spots.
+Neighbors were identified for 4865 out of 4865 spots.
+Neighbors were identified for 4918 out of 4920 spots.
+Neighbors were identified for 4975 out of 4975 spots.
+Neighbors were identified for 4252 out of 4254 spots.
+Neighbors were identified for 3784 out of 3784 spots.
+Neighbors were identified for 4868 out of 4868 spots.
+Neighbors were identified for 4594 out of 4594 spots.
+Neighbors were identified for 3208 out of 3208 spots.
+Neighbors were identified for 4677 out of 4677 spots.
+Intergrative data info.: 16 samples, 2000 genes X 68674 spots------
+PRECAST model setting: error_heter=TRUE, Sigma_equal=FALSE, Sigma_diag=TRUE, mix_prop_heter=TRUE
+Start computing intial values... 
+
+fitting ...
+  |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%
+----Fitting PRECAST model----------------
+
+variable initialize finish! 
+predict Y and V! 
+diff Energy = 25.224437 
+diff Energy = 5.814302 
+diff Energy = 10.951749 
+diff Energy = 6.075174 
+diff Energy = 3.052149 
+diff Energy = 7.070783 
+diff Energy = 22.888837 
+Finish ICM step! 
+iter = 2, loglik= 6746500.000000, dloglik=1.003142 
+predict Y and V! 
+diff Energy = 50.440418 
+diff Energy = 2.169430 
+diff Energy = 8.046591 
+diff Energy = 4.558320 
+diff Energy = 4.113940 
+diff Energy = 18.275187 
+diff Energy = 4.303709 
+diff Energy = 4.240543 
+diff Energy = 5.494047 
+diff Energy = 11.132984 
+diff Energy = 0.908030 
+diff Energy = 0.365780 
+diff Energy = 3.406013 
+diff Energy = 1.126035 
+Finish ICM step! 
+iter = 3, loglik= 7386156.500000, dloglik=0.094813 
+predict Y and V! 
+diff Energy = 46.388323 
+diff Energy = 30.161198 
+diff Energy = 1.920701 
+diff Energy = 13.699154 
+diff Energy = 7.550602 
+diff Energy = 9.865703 
+diff Energy = 27.457246 
+diff Energy = 16.354359 
+diff Energy = 32.735670 
+diff Energy = 31.105514 
+diff Energy = 33.437571 
+diff Energy = 11.549487 
+diff Energy = 19.277671 
+diff Energy = 16.396770 
+diff Energy = 35.549546 
+diff Energy = 9.263704 
+Finish ICM step! 
+iter = 4, loglik= 7586091.000000, dloglik=0.027069 
+predict Y and V! 
+diff Energy = 38.356066 
+diff Energy = 13.301620 
+diff Energy = 12.997883 
+diff Energy = 2.511177 
+diff Energy = 5.401603 
+diff Energy = 6.814481 
+diff Energy = 33.238318 
+diff Energy = 0.743785 
+diff Energy = 22.413690 
+diff Energy = 25.173056 
+diff Energy = 26.746187 
+diff Energy = 15.373659 
+diff Energy = 8.904701 
+diff Energy = 31.371239 
+diff Energy = 1.097441 
+diff Energy = 10.125481 
+Finish ICM step! 
+iter = 5, loglik= 7694456.500000, dloglik=0.014285 
+predict Y and V! 
+diff Energy = 35.012360 
+diff Energy = 9.011962 
+diff Energy = 4.748399 
+diff Energy = 10.493714 
+diff Energy = 11.555300 
+diff Energy = 15.396972 
+diff Energy = 23.597797 
+diff Energy = 8.776829 
+diff Energy = 26.748252 
+diff Energy = 1.226403 
+diff Energy = 11.070638 
+diff Energy = 4.868498 
+diff Energy = 15.133202 
+diff Energy = 7.628561 
+Finish ICM step! 
+iter = 6, loglik= 7761380.000000, dloglik=0.008698 
+predict Y and V! 
+diff Energy = 18.010997 
+diff Energy = 0.861080 
+diff Energy = 5.274058 
+diff Energy = 2.498598 
+diff Energy = 5.471117 
+diff Energy = 2.792748 
+diff Energy = 2.016061 
+diff Energy = 0.192220 
+diff Energy = 26.340580 
+diff Energy = 1.658728 
+diff Energy = 1.522368 
+diff Energy = 6.009480 
+diff Energy = 0.858926 
+diff Energy = 3.948496 
+diff Energy = 7.640148 
+diff Energy = 2.679008 
+Finish ICM step! 
+iter = 7, loglik= 7805878.500000, dloglik=0.005733 
+predict Y and V! 
+diff Energy = 8.269936 
+diff Energy = 16.156185 
+diff Energy = 1.460415 
+diff Energy = 9.517450 
+diff Energy = 6.233932 
+diff Energy = 2.553830 
+diff Energy = 0.097525 
+diff Energy = 11.845934 
+diff Energy = 2.966593 
+diff Energy = 0.026831 
+diff Energy = 6.119502 
+diff Energy = 3.377631 
+diff Energy = 2.976728 
+diff Energy = 4.411715 
+diff Energy = 3.464364 
+Finish ICM step! 
+iter = 8, loglik= 7836387.500000, dloglik=0.003908 
+predict Y and V! 
+diff Energy = 2.750116 
+diff Energy = 12.468564 
+diff Energy = 0.579198 
+diff Energy = 0.683418 
+diff Energy = 4.317147 
+diff Energy = 21.810591 
+diff Energy = 8.748192 
+diff Energy = 2.088548 
+diff Energy = 0.076037 
+diff Energy = 11.370030 
+diff Energy = 17.142357 
+diff Energy = 7.573617 
+diff Energy = 6.417752 
+diff Energy = 16.686784 
+Finish ICM step! 
+iter = 9, loglik= 7858646.500000, dloglik=0.002840 
+predict Y and V! 
+diff Energy = 1.514574 
+diff Energy = 0.065463 
+diff Energy = 0.333264 
+diff Energy = 2.166599 
+diff Energy = 13.856683 
+diff Energy = 12.618477 
+diff Energy = 14.699868 
+diff Energy = 0.749690 
+diff Energy = 4.097355 
+diff Energy = 3.196195 
+diff Energy = 0.758951 
+diff Energy = 20.149626 
+diff Energy = 4.729293 
+diff Energy = 28.925997 
+diff Energy = 4.110964 
+diff Energy = 2.415179 
+Finish ICM step! 
+iter = 10, loglik= 7875593.000000, dloglik=0.002156 
+predict Y and V! 
+diff Energy = 10.060942 
+diff Energy = 8.793140 
+diff Energy = 0.308054 
+diff Energy = 9.793095 
+diff Energy = 1.763221 
+diff Energy = 1.092539 
+diff Energy = 7.740967 
+diff Energy = 1.964501 
+diff Energy = 5.821454 
+diff Energy = 0.769808 
+diff Energy = 4.130145 
+diff Energy = 2.300130 
+diff Energy = 2.893936 
+diff Energy = 3.177298 
+diff Energy = 8.193507 
+diff Energy = 2.383989 
+Finish ICM step! 
+iter = 11, loglik= 7888687.500000, dloglik=0.001663 
+predict Y and V! 
+diff Energy = 0.748460 
+diff Energy = 0.343971 
+diff Energy = 0.251335 
+diff Energy = 3.745008 
+diff Energy = 2.548356 
+diff Energy = 6.122927 
+diff Energy = 1.547792 
+diff Energy = 5.226410 
+diff Energy = 3.947536 
+diff Energy = 11.486192 
+diff Energy = 7.755263 
+diff Energy = 6.588327 
+diff Energy = 6.029883 
+Finish ICM step! 
+iter = 12, loglik= 7899084.000000, dloglik=0.001318 
+predict Y and V! 
+diff Energy = 1.777659 
+diff Energy = 2.585225 
+diff Energy = 9.350388 
+diff Energy = 4.698532 
+diff Energy = 3.692776 
+diff Energy = 4.180892 
+diff Energy = 11.346650 
+diff Energy = 0.334644 
+diff Energy = 4.636355 
+diff Energy = 4.904100 
+diff Energy = 13.860312 
+diff Energy = 3.405899 
+diff Energy = 2.465216 
+Finish ICM step! 
+iter = 13, loglik= 7907588.000000, dloglik=0.001077 
+predict Y and V! 
+diff Energy = 1.794718 
+diff Energy = 0.132666 
+diff Energy = 0.339332 
+diff Energy = 24.563560 
+diff Energy = 6.265333 
+diff Energy = 17.287534 
+diff Energy = 7.468919 
+diff Energy = 23.321311 
+diff Energy = 3.203423 
+diff Energy = 9.934592 
+diff Energy = 6.854597 
+diff Energy = 2.128690 
+diff Energy = 1.446108 
+diff Energy = 2.414770 
+Finish ICM step! 
+iter = 14, loglik= 7914595.000000, dloglik=0.000886 
+predict Y and V! 
+diff Energy = 6.099653 
+diff Energy = 3.589070 
+diff Energy = 0.446389 
+diff Energy = 3.868420 
+diff Energy = 4.896934 
+diff Energy = 5.393882 
+diff Energy = 15.391793 
+diff Energy = 0.790950 
+diff Energy = 0.336059 
+diff Energy = 0.974698 
+diff Energy = 3.735866 
+diff Energy = 1.285519 
+diff Energy = 9.228973 
+Finish ICM step! 
+iter = 15, loglik= 7920506.500000, dloglik=0.000747 
+predict Y and V! 
+diff Energy = 0.798984 
+diff Energy = 0.332521 
+diff Energy = 3.852000 
+diff Energy = 2.661885 
+diff Energy = 4.078243 
+diff Energy = 17.202277 
+diff Energy = 0.205845 
+diff Energy = 3.048928 
+diff Energy = 2.418542 
+diff Energy = 7.404976 
+diff Energy = 4.634104 
+diff Energy = 10.941833 
+diff Energy = 0.961966 
+diff Energy = 1.821772 
+Finish ICM step! 
+iter = 16, loglik= 7925645.500000, dloglik=0.000649 
+predict Y and V! 
+diff Energy = 15.095059 
+diff Energy = 3.547401 
+diff Energy = 3.816600 
+diff Energy = 5.530739 
+diff Energy = 0.803384 
+diff Energy = 17.193517 
+diff Energy = 3.953449 
+diff Energy = 3.396893 
+diff Energy = 5.276609 
+diff Energy = 1.421234 
+diff Energy = 5.041395 
+diff Energy = 4.548657 
+diff Energy = 3.493943 
+diff Energy = 0.087514 
+Finish ICM step! 
+iter = 17, loglik= 7929950.000000, dloglik=0.000543 
+predict Y and V! 
+diff Energy = 0.519544 
+diff Energy = 0.615007 
+diff Energy = 2.714223 
+diff Energy = 9.783131 
+diff Energy = 1.170732 
+diff Energy = 13.882840 
+diff Energy = 1.073176 
+diff Energy = 1.049939 
+diff Energy = 4.757988 
+diff Energy = 16.931623 
+diff Energy = 3.637062 
+diff Energy = 3.515000 
+diff Energy = 8.272134 
+Finish ICM step! 
+iter = 18, loglik= 7933722.000000, dloglik=0.000476 
+predict Y and V! 
+diff Energy = 0.403056 
+diff Energy = 1.139855 
+diff Energy = 1.875511 
+diff Energy = 9.385280 
+diff Energy = 1.854190 
+diff Energy = 13.514068 
+diff Energy = 1.743165 
+diff Energy = 2.399570 
+diff Energy = 0.986832 
+diff Energy = 3.443063 
+diff Energy = 7.615893 
+diff Energy = 0.054530 
+diff Energy = 1.732704 
+Finish ICM step! 
+iter = 19, loglik= 7937169.500000, dloglik=0.000435 
+predict Y and V! 
+diff Energy = 2.707632 
+diff Energy = 3.043791 
+diff Energy = 0.858663 
+diff Energy = 0.580678 
+diff Energy = 1.508407 
+diff Energy = 11.252606 
+diff Energy = 1.322870 
+diff Energy = 1.625387 
+diff Energy = 6.368006 
+diff Energy = 0.439941 
+diff Energy = 4.138133 
+diff Energy = 4.823758 
+diff Energy = 3.405961 
+diff Energy = 2.276626 
+Finish ICM step! 
+iter = 20, loglik= 7940343.000000, dloglik=0.000400 
+predict Y and V! 
+diff Energy = 0.517693 
+diff Energy = 2.289705 
+diff Energy = 0.374812 
+diff Energy = 4.789758 
+diff Energy = 6.013106 
+diff Energy = 8.639079 
+diff Energy = 5.669018 
+diff Energy = 0.871694 
+diff Energy = 1.634885 
+diff Energy = 4.926037 
+diff Energy = 4.236686 
+diff Energy = 3.498531 
+diff Energy = 0.384361 
+Finish ICM step! 
+iter = 21, loglik= 7943302.500000, dloglik=0.000373 
+predict Y and V! 
+diff Energy = 0.832789 
+diff Energy = 0.135975 
+diff Energy = 1.772600 
+diff Energy = 0.379077 
+diff Energy = 1.736150 
+diff Energy = 9.111731 
+diff Energy = 0.881629 
+diff Energy = 0.819693 
+diff Energy = 4.198884 
+diff Energy = 16.586265 
+diff Energy = 2.289277 
+diff Energy = 4.397068 
+diff Energy = 2.272906 
+Finish ICM step! 
+iter = 22, loglik= 7945932.000000, dloglik=0.000331 
+predict Y and V! 
+diff Energy = 2.958871 
+diff Energy = 5.100471 
+diff Energy = 2.395401 
+diff Energy = 1.072276 
+diff Energy = 2.149993 
+diff Energy = 6.573507 
+diff Energy = 1.200852 
+diff Energy = 6.168086 
+diff Energy = 0.772227 
+diff Energy = 0.676059 
+diff Energy = 2.222293 
+diff Energy = 10.088508 
+diff Energy = 0.011228 
+diff Energy = 1.618742 
+diff Energy = 1.005029 
+Finish ICM step! 
+iter = 23, loglik= 7948386.000000, dloglik=0.000309 
+predict Y and V! 
+diff Energy = 3.645235 
+diff Energy = 1.403745 
+diff Energy = 5.225439 
+diff Energy = 2.494413 
+diff Energy = 2.059946 
+diff Energy = 10.701877 
+diff Energy = 3.583224 
+diff Energy = 1.476887 
+diff Energy = 3.701828 
+diff Energy = 19.380946 
+diff Energy = 3.045598 
+Finish ICM step! 
+iter = 24, loglik= 7950742.000000, dloglik=0.000296 
+predict Y and V! 
+diff Energy = 4.085693 
+diff Energy = 2.450905 
+diff Energy = 3.796833 
+diff Energy = 0.612128 
+diff Energy = 4.567813 
+diff Energy = 5.502335 
+diff Energy = 2.541035 
+diff Energy = 0.419339 
+diff Energy = 2.291842 
+diff Energy = 6.931994 
+diff Energy = 2.093494 
+diff Energy = 3.698793 
+diff Energy = 1.376730 
+Finish ICM step! 
+iter = 25, loglik= 7952938.000000, dloglik=0.000276 
+predict Y and V! 
+diff Energy = 1.631499 
+diff Energy = 1.348932 
+diff Energy = 1.378465 
+diff Energy = 1.601288 
+diff Energy = 4.356168 
+diff Energy = 0.751835 
+diff Energy = 2.259262 
+diff Energy = 5.564218 
+diff Energy = 2.763123 
+diff Energy = 2.933134 
+Finish ICM step! 
+iter = 26, loglik= 7955263.000000, dloglik=0.000292 
+predict Y and V! 
+diff Energy = 1.091466 
+diff Energy = 9.501129 
+diff Energy = 4.092682 
+diff Energy = 3.996268 
+diff Energy = 7.884398 
+diff Energy = 0.511242 
+diff Energy = 0.792455 
+diff Energy = 0.614700 
+diff Energy = 2.000922 
+diff Energy = 6.663827 
+diff Energy = 0.561310 
+diff Energy = 1.673048 
+diff Energy = 1.401774 
+Finish ICM step! 
+iter = 27, loglik= 7957441.500000, dloglik=0.000274 
+predict Y and V! 
+diff Energy = 2.049343 
+diff Energy = 2.082791 
+diff Energy = 0.806091 
+diff Energy = 0.426159 
+diff Energy = 8.053618 
+diff Energy = 11.185530 
+diff Energy = 0.758113 
+diff Energy = 0.592976 
+diff Energy = 3.174530 
+diff Energy = 1.713831 
+diff Energy = 7.960267 
+diff Energy = 8.892221 
+diff Energy = 4.003989 
+diff Energy = 1.536903 
+Finish ICM step! 
+iter = 28, loglik= 7959707.000000, dloglik=0.000285 
+predict Y and V! 
+diff Energy = 2.327644 
+diff Energy = 5.993399 
+diff Energy = 0.848539 
+diff Energy = 0.569361 
+diff Energy = 8.547208 
+diff Energy = 2.644834 
+diff Energy = 1.280103 
+diff Energy = 0.957101 
+diff Energy = 2.125901 
+diff Energy = 9.976375 
+diff Energy = 0.310920 
+Finish ICM step! 
+iter = 29, loglik= 7962085.500000, dloglik=0.000299 
+predict Y and V! 
+diff Energy = 0.055197 
+diff Energy = 0.662570 
+diff Energy = 0.857836 
+diff Energy = 1.993079 
+diff Energy = 2.300053 
+diff Energy = 4.207401 
+diff Energy = 0.709189 
+diff Energy = 0.206226 
+diff Energy = 1.625811 
+diff Energy = 4.041967 
+diff Energy = 1.445083 
+diff Energy = 4.992267 
+diff Energy = 3.270815 
+Finish ICM step! 
+iter = 30, loglik= 7964471.000000, dloglik=0.000300 
+6714.898 sec elapsed
+[1] "Reproducibility information:"
+[1] "2023-04-03 01:19:39 EDT"
+    user   system  elapsed 
+5521.466 1491.300 7032.350 
+─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.2.1 Patched (2022-08-30 r82775)
+ os       CentOS Linux 7 (Core)
+ system   x86_64, linux-gnu
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       US/Eastern
+ date     2023-04-03
+ pandoc   2.19.2 @ /jhpce/shared/jhpce/core/conda/miniconda3-4.11.0/envs/svnR-4.2/bin/pandoc
+
+─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+ package              * version  date (UTC) lib source
+ abind                  1.4-5    2016-07-21 [2] CRAN (R 4.2.1)
+ assertthat             0.2.1    2019-03-21 [2] CRAN (R 4.2.1)
+ beachmat               2.12.0   2022-04-26 [2] Bioconductor
+ beeswarm               0.4.0    2021-06-01 [2] CRAN (R 4.2.1)
+ Biobase              * 2.56.0   2022-04-26 [2] Bioconductor
+ BiocGenerics         * 0.42.0   2022-04-26 [2] Bioconductor
+ BiocNeighbors          1.14.0   2022-04-26 [2] Bioconductor
+ BiocParallel           1.30.3   2022-06-05 [2] Bioconductor
+ BiocSingular           1.12.0   2022-04-26 [2] Bioconductor
+ bitops                 1.0-7    2021-04-24 [2] CRAN (R 4.2.1)
+ cli                    3.4.1    2022-09-23 [1] CRAN (R 4.2.1)
+ cluster                2.1.4    2022-08-22 [3] CRAN (R 4.2.1)
+ codetools              0.2-18   2020-11-04 [3] CRAN (R 4.2.1)
+ colorspace             2.0-3    2022-02-21 [2] CRAN (R 4.2.1)
+ CompQuadForm           1.4.3    2017-04-12 [1] CRAN (R 4.2.1)
+ cowplot                1.1.1    2020-12-30 [2] CRAN (R 4.2.1)
+ data.table             1.14.2   2021-09-27 [2] CRAN (R 4.2.1)
+ DBI                    1.1.3    2022-06-18 [2] CRAN (R 4.2.1)
+ DelayedArray           0.22.0   2022-04-26 [2] Bioconductor
+ DelayedMatrixStats     1.18.0   2022-04-26 [2] Bioconductor
+ deldir                 1.0-6    2021-10-23 [2] CRAN (R 4.2.1)
+ digest                 0.6.30   2022-10-18 [1] CRAN (R 4.2.1)
+ dplyr                * 1.0.10   2022-09-01 [1] CRAN (R 4.2.1)
+ dqrng                  0.3.0    2021-05-01 [2] CRAN (R 4.2.1)
+ DR.SC                  3.0      2022-11-15 [1] CRAN (R 4.2.1)
+ DropletUtils           1.16.0   2022-04-26 [2] Bioconductor
+ edgeR                  3.38.4   2022-08-07 [2] Bioconductor
+ ellipsis               0.3.2    2021-04-29 [2] CRAN (R 4.2.1)
+ fansi                  1.0.3    2022-03-24 [2] CRAN (R 4.2.1)
+ fastmap                1.1.0    2021-01-25 [2] CRAN (R 4.2.1)
+ fitdistrplus           1.1-8    2022-03-10 [1] CRAN (R 4.2.1)
+ future                 1.29.0   2022-11-06 [1] CRAN (R 4.2.1)
+ future.apply           1.10.0   2022-11-05 [1] CRAN (R 4.2.1)
+ generics               0.1.3    2022-07-05 [2] CRAN (R 4.2.1)
+ GenomeInfoDb         * 1.32.3   2022-08-09 [2] Bioconductor
+ GenomeInfoDbData       1.2.8    2022-08-30 [2] Bioconductor
+ GenomicRanges        * 1.48.0   2022-04-26 [2] Bioconductor
+ ggbeeswarm             0.6.0    2017-08-07 [2] CRAN (R 4.2.1)
+ ggplot2                3.4.0    2022-11-04 [1] CRAN (R 4.2.1)
+ ggrepel                0.9.1    2021-01-15 [2] CRAN (R 4.2.1)
+ ggridges               0.5.3    2021-01-08 [2] CRAN (R 4.2.1)
+ ggthemes               4.2.4    2021-01-20 [1] CRAN (R 4.2.1)
+ GiRaF                  1.0.1    2020-10-14 [1] CRAN (R 4.2.1)
+ globals                0.16.1   2022-08-28 [2] CRAN (R 4.2.1)
+ glue                   1.6.2    2022-02-24 [2] CRAN (R 4.2.1)
+ goftest                1.2-3    2021-10-07 [1] CRAN (R 4.2.1)
+ gridExtra              2.3      2017-09-09 [2] CRAN (R 4.2.1)
+ gtable                 0.3.1    2022-09-01 [1] CRAN (R 4.2.1)
+ gtools               * 3.9.3    2022-07-11 [2] CRAN (R 4.2.1)
+ HDF5Array              1.24.2   2022-08-02 [2] Bioconductor
+ here                 * 1.0.1    2020-12-13 [2] CRAN (R 4.2.1)
+ htmltools              0.5.3    2022-07-18 [2] CRAN (R 4.2.1)
+ htmlwidgets            1.5.4    2021-09-08 [2] CRAN (R 4.2.1)
+ httpuv                 1.6.5    2022-01-05 [2] CRAN (R 4.2.1)
+ httr                   1.4.4    2022-08-17 [2] CRAN (R 4.2.1)
+ ica                    1.0-3    2022-07-08 [1] CRAN (R 4.2.1)
+ igraph                 1.3.4    2022-07-19 [2] CRAN (R 4.2.1)
+ IRanges              * 2.30.1   2022-08-18 [2] Bioconductor
+ irlba                  2.3.5    2021-12-06 [2] CRAN (R 4.2.1)
+ jsonlite               1.8.3    2022-10-21 [1] CRAN (R 4.2.1)
+ KernSmooth             2.23-20  2021-05-03 [3] CRAN (R 4.2.1)
+ later                  1.3.0    2021-08-18 [2] CRAN (R 4.2.1)
+ lattice                0.20-45  2021-09-22 [3] CRAN (R 4.2.1)
+ lazyeval               0.2.2    2019-03-15 [2] CRAN (R 4.2.1)
+ leiden                 0.4.3    2022-09-10 [1] CRAN (R 4.2.1)
+ lifecycle              1.0.3    2022-10-07 [1] CRAN (R 4.2.1)
+ limma                  3.52.2   2022-06-19 [2] Bioconductor
+ listenv                0.8.0    2019-12-05 [2] CRAN (R 4.2.1)
+ lmtest                 0.9-40   2022-03-21 [2] CRAN (R 4.2.1)
+ locfit                 1.5-9.6  2022-07-11 [2] CRAN (R 4.2.1)
+ magick                 2.7.3    2021-08-18 [2] CRAN (R 4.2.1)
+ magrittr               2.0.3    2022-03-30 [2] CRAN (R 4.2.1)
+ MASS                   7.3-58.1 2022-08-03 [3] CRAN (R 4.2.1)
+ Matrix                 1.5-1    2022-09-13 [1] CRAN (R 4.2.1)
+ MatrixGenerics       * 1.8.1    2022-06-26 [2] Bioconductor
+ matrixStats          * 0.62.0   2022-04-19 [2] CRAN (R 4.2.1)
+ mclust                 5.4.10   2022-05-20 [2] CRAN (R 4.2.1)
+ mime                   0.12     2021-09-28 [2] CRAN (R 4.2.1)
+ miniUI                 0.1.1.1  2018-05-18 [2] CRAN (R 4.2.1)
+ munsell                0.5.0    2018-06-12 [2] CRAN (R 4.2.1)
+ nlme                   3.1-158  2022-06-15 [3] CRAN (R 4.2.1)
+ parallelly             1.32.1   2022-07-21 [2] CRAN (R 4.2.1)
+ patchwork              1.1.2    2022-08-19 [2] CRAN (R 4.2.1)
+ pbapply                1.5-0    2021-09-16 [2] CRAN (R 4.2.1)
+ pillar                 1.8.1    2022-08-19 [2] CRAN (R 4.2.1)
+ pkgconfig              2.0.3    2019-09-22 [2] CRAN (R 4.2.1)
+ plotly                 4.10.0   2021-10-09 [2] CRAN (R 4.2.1)
+ plyr                   1.8.7    2022-03-24 [2] CRAN (R 4.2.1)
+ png                    0.1-7    2013-12-03 [2] CRAN (R 4.2.1)
+ polyclip               1.10-4   2022-10-20 [1] CRAN (R 4.2.1)
+ PRECAST              * 1.3      2022-12-12 [1] Github (feiyoung/PRECAST@9611dcf)
+ progressr              0.11.0   2022-09-02 [1] CRAN (R 4.2.1)
+ promises               1.2.0.1  2021-02-11 [2] CRAN (R 4.2.1)
+ purrr                * 0.3.5    2022-10-06 [1] CRAN (R 4.2.1)
+ R.methodsS3            1.8.2    2022-06-13 [2] CRAN (R 4.2.1)
+ R.oo                   1.25.0   2022-06-12 [2] CRAN (R 4.2.1)
+ R.utils                2.12.0   2022-06-28 [2] CRAN (R 4.2.1)
+ R6                     2.5.1    2021-08-19 [2] CRAN (R 4.2.1)
+ RANN                   2.6.1    2019-01-08 [2] CRAN (R 4.2.1)
+ RColorBrewer           1.1-3    2022-04-03 [2] CRAN (R 4.2.1)
+ Rcpp                   1.0.9    2022-07-08 [2] CRAN (R 4.2.1)
+ RcppAnnoy              0.0.19   2021-07-30 [2] CRAN (R 4.2.1)
+ RCurl                  1.98-1.8 2022-07-30 [2] CRAN (R 4.2.1)
+ reshape2               1.4.4    2020-04-09 [2] CRAN (R 4.2.1)
+ reticulate             1.25     2022-05-11 [2] CRAN (R 4.2.1)
+ rhdf5                  2.40.0   2022-04-26 [2] Bioconductor
+ rhdf5filters           1.8.0    2022-04-26 [2] Bioconductor
+ Rhdf5lib               1.18.2   2022-05-15 [2] Bioconductor
+ rjson                  0.2.21   2022-01-09 [2] CRAN (R 4.2.1)
+ rlang                  1.0.6    2022-09-24 [1] CRAN (R 4.2.1)
+ ROCR                   1.0-11   2020-05-02 [2] CRAN (R 4.2.1)
+ rprojroot              2.0.3    2022-04-02 [2] CRAN (R 4.2.1)
+ rsvd                   1.0.5    2021-04-16 [2] CRAN (R 4.2.1)
+ Rtsne                  0.16     2022-04-17 [2] CRAN (R 4.2.1)
+ S4Vectors            * 0.34.0   2022-04-26 [2] Bioconductor
+ ScaledMatrix           1.4.0    2022-04-26 [2] Bioconductor
+ scales                 1.2.1    2022-08-20 [2] CRAN (R 4.2.1)
+ scater                 1.24.0   2022-04-26 [2] Bioconductor
+ scattermore            0.8      2022-02-14 [1] CRAN (R 4.2.1)
+ sctransform            0.3.5    2022-09-21 [1] CRAN (R 4.2.1)
+ scuttle                1.6.3    2022-08-23 [2] Bioconductor
+ sessioninfo          * 1.2.2    2021-12-06 [2] CRAN (R 4.2.1)
+ Seurat               * 4.3.0    2022-11-18 [1] CRAN (R 4.2.1)
+ SeuratObject         * 4.1.3    2022-11-07 [1] CRAN (R 4.2.1)
+ shiny                  1.7.2    2022-07-19 [2] CRAN (R 4.2.1)
+ SingleCellExperiment * 1.18.0   2022-04-26 [2] Bioconductor
+ sp                     1.5-1    2022-11-07 [1] CRAN (R 4.2.1)
+ sparseMatrixStats      1.8.0    2022-04-26 [2] Bioconductor
+ SpatialExperiment    * 1.6.1    2022-08-09 [2] Bioconductor
+ spatstat.data          3.0-0    2022-10-21 [1] CRAN (R 4.2.1)
+ spatstat.explore       3.0-5    2022-11-10 [1] CRAN (R 4.2.1)
+ spatstat.geom          3.0-3    2022-10-25 [1] CRAN (R 4.2.1)
+ spatstat.random        3.0-1    2022-11-03 [1] CRAN (R 4.2.1)
+ spatstat.sparse        3.0-0    2022-10-21 [1] CRAN (R 4.2.1)
+ spatstat.utils         3.0-1    2022-10-19 [1] CRAN (R 4.2.1)
+ stringi                1.7.8    2022-07-11 [2] CRAN (R 4.2.1)
+ stringr                1.4.1    2022-08-20 [2] CRAN (R 4.2.1)
+ SummarizedExperiment * 1.26.1   2022-04-29 [2] Bioconductor
+ survival               3.4-0    2022-08-09 [3] CRAN (R 4.2.1)
+ tensor                 1.5      2012-05-05 [1] CRAN (R 4.2.1)
+ tibble                 3.1.8    2022-07-22 [2] CRAN (R 4.2.1)
+ tictoc               * 1.1      2022-09-03 [1] CRAN (R 4.2.1)
+ tidyr                  1.2.1    2022-09-08 [1] CRAN (R 4.2.1)
+ tidyselect             1.2.0    2022-10-10 [1] CRAN (R 4.2.1)
+ utf8                   1.2.2    2021-07-24 [2] CRAN (R 4.2.1)
+ uwot                   0.1.14   2022-08-22 [2] CRAN (R 4.2.1)
+ vctrs                  0.5.0    2022-10-22 [1] CRAN (R 4.2.1)
+ vipor                  0.4.5    2017-03-22 [2] CRAN (R 4.2.1)
+ viridis                0.6.2    2021-10-13 [2] CRAN (R 4.2.1)
+ viridisLite            0.4.1    2022-08-22 [2] CRAN (R 4.2.1)
+ xtable                 1.8-4    2019-04-21 [2] CRAN (R 4.2.1)
+ XVector                0.36.0   2022-04-26 [2] Bioconductor
+ zlibbioc               1.42.0   2022-04-26 [2] Bioconductor
+ zoo                    1.8-10   2022-04-15 [2] CRAN (R 4.2.1)
+
+ [1] /users/aramnaut/R/4.2
+ [2] /jhpce/shared/jhpce/core/conda/miniconda3-4.11.0/envs/svnR-4.2/R/4.2/lib64/R/site-library
+ [3] /jhpce/shared/jhpce/core/conda/miniconda3-4.11.0/envs/svnR-4.2/R/4.2/lib64/R/library
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+**** Job ends ****
+Mon Apr  3 01:19:43 EDT 2023

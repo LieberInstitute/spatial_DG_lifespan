@@ -1,10 +1,10 @@
-############################################
+#################################
 # spatial_DG_lifespan project
-# BayesSpace Spatial Clustering for only k=8
-# Anthony Ramnauth, March 28 2023
-############################################
+# BayesSpace Spatial Clustering
+# Anthony Ramnauth, March 30 2023
+#################################
 
-setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+# Set up SGE array job to run k=11 to k = 15
 
 suppressPackageStartupMessages({
     library(here)
@@ -16,9 +16,16 @@ suppressPackageStartupMessages({
     library(Polychrome)
 })
 
+# Create directory for BayesSpace plots
+dir_plots <- here::here("plots", "BayesSpace_plots")
+dir.create(dir_plots, showWarnings = FALSE, recursive = TRUE)
+
 # Load SPE
 spe <-
     readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
+
+# Choose k
+k <- as.numeric(Sys.getenv("SGE_TASK_ID"))
 
 ## Set the BayesSpace metadata using code from
 ## https://github.com/edward130603/BayesSpace/blob/master/R/spatialPreprocess.R#L43-L46
@@ -42,19 +49,21 @@ spe <-
     spatialCluster(
         spe,
         use.dimred = "HARMONY",
-        q = 8,
+        q = k,
         platform = "Visium",
         nrep = 50000
     )
 Sys.time()
 
+
 spe$bayesSpace_temp <- spe$spatial.cluster
-bayesSpace_name <- paste0("bayesSpace_harmony_", 8)
+bayesSpace_name <- paste0("bayesSpace_harmony_", k)
 colnames(colData(spe))[ncol(colData(spe))] <- bayesSpace_name
 
 cluster_export(spe,
     bayesSpace_name,
-    cluster_dir = here::here("processed-data", "k8_clustering_results"))
+    cluster_dir = here::here("processed-data", "k11_15clustering_results"))
+
 
 ## Reproducibility information
 print("Reproducibility information:")

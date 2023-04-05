@@ -1,10 +1,13 @@
 #!/bin/bash
 #$ -cwd
-#$ -l bluejay,mem_free=200G,h_vmem=200G,h_fsize=200G
-#$ -N bayesSpace_k_8
-#$ -o logs/bayesSpace_k_8.txt
-#$ -e logs/bayesSpace_k_8.txt
+#$ -l bluejay,mem_free=10G,h_vmem=10G,h_fsize=80G
+#$ -pe local 8
+#$ -N PRECAST_k5-15
+#$ -o logs/PRECAST_k.$TASK_ID.txt
+#$ -e logs/PRECAST_k.$TASK_ID.txt
 #$ -m e
+#$ -t 5-15
+#$ -tc 5
 
 echo "**** Job starts ****"
 date
@@ -23,7 +26,10 @@ module load conda_R/4.2
 module list
 
 ## Edit with your job command
-Rscript 08_BayesSpace.R
+Rscript 01_PRECAST.R
 
 echo "**** Job ends ****"
 date
+
+## This script was made using sgejobs version 0.99.1
+## available from http://research.libd.org/sgejobs/

@@ -1,10 +1,12 @@
 #!/bin/bash
 #$ -cwd
-#$ -l mem_free=200G,h_vmem=200G,h_fsize=200G
-#$ -N CARD_deconvolution
-#$ -o logs/CARD_deconvolution.txt
-#$ -e logs/CARD_deconvolution.txt
+#$ -l bluejay,mem_free=200G,h_vmem=200G,h_fsize=200G
+#$ -N bayesSpace_k_search
+#$ -o logs/bayesSpace_k_search.$TASK_ID.txt
+#$ -e logs/bayesSpace_k_search.$TASK_ID.txt
 #$ -m e
+#$ -t 11-15
+#$ -tc 20
 
 echo "**** Job starts ****"
 date
@@ -16,14 +18,14 @@ echo "Job name: ${JOB_NAME}"
 echo "Hostname: ${HOSTNAME}"
 echo "Task id: ${SGE_TASK_ID}"
 
-## Load the R module
+## Load the R module (absent since the JHPCE upgrade to CentOS v7)
 module load conda_R/4.2
 
 ## List current modules for reproducibility
 module list
 
 ## Edit with your job command
-Rscript CARD_deconvolution_01.R
+Rscript 11_15_BayesSpace.R
 
 echo "**** Job ends ****"
 date

@@ -1325,3 +1325,204 @@ There were 19 warnings (use warnings() to see them)
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 **** Job ends ****
 Wed Dec 21 14:43:36 EST 2022
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Apr  4 14:39:34 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3097662
+Job name: CARD_deconvolution
+Hostname: compute-093.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Warning message:
+replacing previous import ‘RcppML::nmf’ by ‘NMF::nmf’ when loading ‘CARD’ 
+## QC on scRNASeq dataset! ...
+## QC on spatially-resolved dataset! ...
+Error: There are no common gene names in spatial count data and single cell RNAseq count data
+Execution halted
+**** Job ends ****
+Tue Apr  4 14:44:42 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Apr  4 16:08:02 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3097853
+Job name: CARD_deconvolution
+Hostname: compute-093.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Warning message:
+replacing previous import ‘RcppML::nmf’ by ‘NMF::nmf’ when loading ‘CARD’ 
+## QC on scRNASeq dataset! ...
+## QC on spatially-resolved dataset! ...
+Error in validObject(.Object) : 
+  invalid class “CARD” object: invalid object for slot "spatial_location" in class "CARD": got class "DFrame", should be or extend class "data.frame"
+Calls: createCARDObject -> new -> initialize -> initialize -> validObject
+Execution halted
+**** Job ends ****
+Tue Apr  4 16:12:58 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Apr  4 19:31:56 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3097886
+Job name: CARD_deconvolution
+Hostname: compute-093.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Warning message:
+replacing previous import ‘RcppML::nmf’ by ‘NMF::nmf’ when loading ‘CARD’ 
+Error in data.frame(x = colData(spe)$col, y = colData(spe)$row, row.names = rownames(colData(spe))) : 
+  duplicate row.names: AAACAAGTATCTCCCA-1, AAACACCAATAACTGC-1, AAACAGCTTTCAGAAG-1, AAACAGGGTCTATATT-1, AAACAGTGTTCCTGGG-1, AAACATGGTGAGAGGA-1, AAACATTTCCCGGATT-1, AAACCCGAACGAAATC-1, AAACCGGAAATGTTAA-1, AAACCGGGTAGGTACC-1, AAACCGTTCGTCCAGG-1, AAACCTAAGCAGCCGG-1, AAACCTCATGAAGTTG-1, AAACGAAGATGGAGTA-1, AAACGAGACGGTTGAT-1, AAACGGGCGTACGGGT-1, AAACGGTTGCGAACTG-1, AAACTCGGTTCGCAAT-1, AAACTCGTGATATAAG-1, AAACTGCTGGCTCCAA-1, AAACTTAATTGCACGC-1, AAACTTGCAAACGTAT-1, AAAGAATGACCTTAGA-1, AAAGAATGTGGACTAA-1, AAAGGCCCTATAATAC-1, AAAGGCTACGGACCAT-1, AAAGGCTCTCGCGCCG-1, AAAGGGATGTAGCAAG-1, AAAGTAGCATTGCTCA-1, AAAGTCGACCCTCAGT-1, AAAGTGTGATTTATCT-1, AAAGTTGACTCCCGTA-1, AAATAAGGTAGTGCCC-1, AAATACCTATAAGCAT-1, AAATAGGGTGCTATTG-1, AAATCCGATACACGCC-1, AAATCGCGGAAGGAGT-1, AAATCGTGTACCACAA-1, AAATCTAGCCCTGCTA-1, AAATCTGCCCGCGTCC-1, AAATGACTGATCAAAC-1, AAATGGCCCGTGCCCT-1, AAATGGTCAATGTGCC-1, AAATTAACGGGTAGCT-1, AAATTAATAAGCGCGA-1, AAATTACCTATCGATG-1, AAATTCCAGGTCCAAA-1, AAATTGATAGTCCTTT-1, AAATTTGCGG
+Execution halted
+**** Job ends ****
+Tue Apr  4 19:35:38 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Tue Apr  4 21:03:10 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3098306
+Job name: CARD_deconvolution
+Hostname: compute-093.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Warning message:
+replacing previous import ‘RcppML::nmf’ by ‘NMF::nmf’ when loading ‘CARD’ 
+## QC on scRNASeq dataset! ...
+## QC on spatially-resolved dataset! ...
+## create reference matrix from scRNASeq...
+
+Attaching package: ‘wrMisc’
+
+The following objects are masked from ‘package:MatrixGenerics’:
+
+    colSds, rowSds
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colSds, rowSds
+
+## Select Informative Genes! ...
+## Deconvolution Starts! ...
+Error: cannot allocate vector of size 35.1 Gb
+In addition: There were 14 warnings (use warnings() to see them)
+Execution halted
+**** Job ends ****
+Tue Apr  4 21:24:16 EDT 2023
+Adding LIBD modules
+Loading git
+Loading LIBD module for git-status-size/github
+Loading LIBD module for git-lfs/2.8.0
+Loading LIBD module for rmate/1.5.9
+Loading LIBD module for ruby/2.6.4p104
+Loading conda_R/4.2
+**** Job starts ****
+Wed Apr  5 06:56:30 EDT 2023
+**** JHPCE info ****
+User: aramnaut
+Job id: 3098321
+Job name: CARD_deconvolution
+Hostname: compute-099.cm.cluster
+Task id: undefined
+Unloading conda_R/4.2
+Loading conda_R/4.2
+
+Currently Loaded Modules:
+  1) matlab/R2019a     6) COMMUNITY_CENTOS7_DEFAULT_ENV  11) ruby/2.6.4p104
+  2) stata/17          7) JHPCE_CENTOS7_DEFAULT_ENV      12) rmate/1.5.9
+  3) JHPCE_tools/1.0   8) git-status-size/github         13) conda/3-4.11.0
+  4) sge/8.1.9         9) git/2.28.0                     14) conda_R/4.2
+  5) gcc/4.4.7        10) git-lfs/2.8.0
+
+ 
+
+Warning message:
+replacing previous import ‘RcppML::nmf’ by ‘NMF::nmf’ when loading ‘CARD’ 
+## QC on scRNASeq dataset! ...
+## QC on spatially-resolved dataset! ...
+## create reference matrix from scRNASeq...
+
+Attaching package: ‘wrMisc’
+
+The following objects are masked from ‘package:MatrixGenerics’:
+
+    colSds, rowSds
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colSds, rowSds
+
+## Select Informative Genes! ...
+## Deconvolution Starts! ...

@@ -23,36 +23,36 @@ suppressPackageStartupMessages({
 
 
 # Load SCE
-sce <- readRDS(file = here::here("processed-data", "sce", "sce_sestan_DG_final2.rds"))
+sce <- readRDS(file = here::here("processed-data", "sce", "sce_sestan_DG_final.rds"))
 
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-# Load BayesSpace clusters onto spe object
-spe <- cluster_import(
-    spe,
-    cluster_dir = here::here("processed-data", "clustering_results"),
-    prefix = ""
-)
-
-# Remove CP cluster
-spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
-
-# Set gene names as row names for easier plotting
+# Set gene names as row names for common gene ID with snRNAseq data
 rownames(spe) <- rowData(spe)$gene_name
 
 # Create martix and df for createCARDObject arguments
 
 spatial_cou <- assays(spe)$counts
 
-spatial_loc <- spatialCoords(spe)
+stopifnot(colnames(spatial_cou) == rownames(colData(spe)))
+stopifnot(spe$key == colData(spe)$key)
+colnames(spatial_cou) <- spe$key
+
+# The spatial locations for each sample might need to be offset for proper spatial auto-correlation
+auto_offset_row <- as.numeric(factor(unique(spe$sample_id))) * 100
+names(auto_offset_row) <- unique(spe$sample_id)
+colData(spe)$row <-
+    colData(spe)$array_row + auto_offset_row[spe$sample_id]
+colData(spe)$col <- colData(spe)$array_col
+
+spatial_loc <- data.frame(
+    x = colData(spe)$col,
+    y = colData(spe)$row,
+    row.names = spe$key
+)
 
 stopifnot(colnames(spatial_cou) == rownames(spatial_loc))
-
-spatial_loc <- data.frame(spatial_loc)
-colnames(spatial_cou) <- rownames(spatial_loc)
-
-colnames(spatial_loc) <- c("x", "y")
 
 # Create CARD object
 
@@ -71,7 +71,7 @@ CARD_obj <- createCARDObject(
 
 CARD_obj <- CARD_deconvolution(CARD_obj)
 
-saveRDS(CARD_obj, file = here::here("processed-data", "Cell_Type_Deconvolution", "CARD_obj_sestan2.rds"))
+saveRDS(CARD_obj, file = here::here("processed-data", "Cell_Type_Deconvolution", "CARD_obj_sestan.rds"))
 
 ## Reproducibility information
 print("Reproducibility information:")

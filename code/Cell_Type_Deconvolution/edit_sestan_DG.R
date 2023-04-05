@@ -25,11 +25,9 @@ df <- df %>%
   mutate(Cell_Type = case_when(
     grepl("CA3", cluster) ~ "CA3_N",
     grepl("DG MC", cluster) ~ "Mossy",
-    grepl("CA1 d", cluster) ~ "CA1_d_N",
-    grepl("CA1 v", cluster) ~ "CA1_v_N",
+    grepl("CA1", cluster) ~ "CA1_N",
     grepl("CA2", cluster) ~ "CA2_N",
-    grepl("SGCZ", cluster) ~ "GC_1",
-    grepl("PDLIM5", cluster) ~ "GC_2",
+    grepl("PROX1", cluster) ~ "GC",
     grepl("InN LAMP5", cluster) ~ "InN_LAMP5",
     grepl("InN VIP", cluster) ~ "InN_VIP",
     grepl("OTOF", cluster) ~ "InN_SST",
@@ -40,31 +38,25 @@ df <- df %>%
     grepl("InN NR2F2", cluster) ~ "InN_NR2F2",
     grepl("InN LHX6", cluster) ~ "InN_LHX6",
     grepl("InN MEIS2", cluster) ~ "InN_MEIS2",
-    grepl("CR RELN NDNF", cluster) ~ "Cajal_Ret",
-    grepl("VLMC", cluster) ~ "Mural",
-    grepl("GRIA4", cluster) ~ "OPC_1",
-    grepl("EGR1", cluster) ~ "OPC_2",
-    grepl("aSMC", cluster) ~ "Mural",
-    grepl("CPXM2", cluster) ~ "Oligo_2",
-    grepl("OPALIN", cluster) ~ "Oligo_1",
+    grepl("CR RELN NDNF", cluster) ~ "Cajal_Retz",
+    grepl("VLMC", cluster) ~ "VLMC",
+    grepl("PDGFRA", cluster) ~ "OPC",
+    grepl("aSMC", cluster) ~ "aSMC",
+    grepl("CPXM2", cluster) ~ "Oligo",
+    grepl("OPALIN", cluster) ~ "Oligo",
     grepl("Micro", cluster) ~ "Microglia",
-    grepl("PC CLDN5", cluster) ~ "Mural",
+    grepl("PC CLDN5", cluster) ~ "Pericyte",
     grepl("Endo", cluster) ~ "Endoth",
-    grepl("vSMC", cluster) ~ "Mural",
-    grepl("Macro", cluster) ~ "Immune",
-    grepl("aEndo", cluster) ~ "Endo",
+    grepl("vSMC", cluster) ~ "vSMC",
+    grepl("Macro", cluster) ~ "Macro",
+    grepl("aEndo", cluster) ~ "aEndo",
     grepl("COP GPR17", cluster) ~ "COP",
-    grepl("T SKAP1", cluster) ~ "Immune",
+    grepl("T SKAP1", cluster) ~ "T_Cell",
     grepl("GFAP", cluster) ~ "Astro_1",
     grepl("CHRDL1", cluster) ~ "Astro_2",
-    grepl("Myeloid", cluster) ~ "Immune",
+    grepl("Myeloid", cluster) ~ "Myeloid",
   ))
 
 colData(sce)$Cell_Type <- df$Cell_Type
 
-# Remove cell types not in DG
-sce <- sce[, !sce$Cell_Type %in% c("CA1_d_N")]
-sce <- sce[, !sce$Cell_Type %in% c("CA1_v_N")]
-sce <- sce[, !sce$Cell_Type %in% c("CA2_N")]
-
-saveRDS(sce, file = here::here("processed-data","sce", "sce_sestan_DG_final2.rds"))
+saveRDS(sce, file = here::here("processed-data","sce", "sce_sestan_DG_final.rds"))
