@@ -19,7 +19,7 @@ suppressPackageStartupMessages({
 
 load(file = here::here("processed-data", "Seurat", "seuList.Rdata"))
 
-preobj = CreatePRECASTObject(seuList = seuList, selectGenesMethod="HVGs")
+preobj = CreatePRECASTObject(seuList = seuList)
 preobj@seulist
 
 PRECASTObj <- AddAdjList(preobj, platform = "Visium")

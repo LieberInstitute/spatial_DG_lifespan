@@ -4,6 +4,8 @@
 # Anthony Ramnauth, May 09 2022
 ##########################################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(here)
     library(sessioninfo)
@@ -13,7 +15,6 @@ suppressPackageStartupMessages({
     library(scran)
     library(scater)
     library(dplyr)
-    library(pheatmap)
     library(ComplexHeatmap)
     library(circlize)
 })
@@ -28,12 +29,13 @@ spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_sp
 # Load BayesSpace clusters onto spe object
 spe <- cluster_import(
     spe,
-    cluster_dir = here::here("processed-data", "clustering_results"),
+    cluster_dir = here::here("processed-data", "k8_clustering_results"),
     prefix = ""
 )
 
-# Remove CP cluster
-spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
+# Remove Visium spots contaminated with Thalamus using
+# gene marker TCF7L2 ENSG00000148737
+spe <- spe[, which(logcounts(spe)["ENSG00000148737",] <= 1)]
 
 spe$bayesSpace_harmony_8 <- as.factor(spe$bayesSpace_harmony_8)
 

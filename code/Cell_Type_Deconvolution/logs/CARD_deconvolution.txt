@@ -1526,3 +1526,10 @@ The following objects are masked from ‘package:matrixStats’:
 
 ## Select Informative Genes! ...
 ## Deconvolution Starts! ...
+Error in CARDref(XinputIn = as.matrix(Xinput_norm), UIn = as.matrix(B),  : 
+  std::bad_alloc
+Calls: CARD_deconvolution -> CARDref
+In addition: There were 17 warnings (use warnings() to see them)
+Execution halted
+**** Job ends ****
+Wed Apr  5 17:03:54 EDT 2023

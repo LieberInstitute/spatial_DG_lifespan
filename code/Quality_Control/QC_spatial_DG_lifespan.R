@@ -229,6 +229,18 @@ spe <- logNormCounts(spe)
 # check
 assayNames(spe)
 
+# Upload manual annotations
+ManualA <- read.csv(file = here("processed-data","spatialLIBD_manual_annotations",
+    "HPC annotations Lex033023.csv"))
+
+stopifnot(ManualA$spot_name == colnames(spe))
+
+ManualA <- as.vector(ManualA$ManualAnnotation)
+
+spe$ManualAnnotation <- ManualA
+
+spe$ManualAnnotation <- as.factor(spe$ManualAnnotation)
+
 # Drop Br3874 as it has no identifiable dentate gyrus
 spe <- spe[, !spe$sample_id %in% c("Br3874")]
 

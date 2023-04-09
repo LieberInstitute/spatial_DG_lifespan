@@ -27,6 +27,15 @@ dir.create(dir_plots, showWarnings = FALSE, recursive = TRUE)
 spe <-
     readRDS(here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
+# Load BayesSpace k=8 clusters onto spe object
+spe <- cluster_import(
+    spe,
+    cluster_dir = here::here("processed-data", "k10_clustering_results"),
+    prefix = ""
+)
+
+spe$bayesSpace_harmony_10 <- as.factor(spe$bayesSpace_harmony_10)
+
 # Feature selection
 dec <- modelGeneVar(spe, block = spe$sample_id)
 top_hvgs <- getTopHVGs(dec, prop = 0.1)

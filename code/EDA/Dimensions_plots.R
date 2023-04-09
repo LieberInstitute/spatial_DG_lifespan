@@ -15,6 +15,7 @@ suppressPackageStartupMessages({
     library(PCAtools)
     library(ggnewscale)
     library(spatialLIBD)
+    library(schex)
     library(sessioninfo)
 })
 
@@ -26,26 +27,34 @@ dir.create(dir_plots, showWarnings = FALSE, recursive = TRUE)
 spe <-
     readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-# Load BayesSpace clusters onto spe object
+# Load BayesSpace clusters onto spe object if not already loaded
 spe <- cluster_import(
     spe,
-    cluster_dir = here::here("processed-data", "clustering_results"),
+    cluster_dir = here::here("processed-data", "k10_clustering_results"),
     prefix = ""
 )
 
-# Percentage of variance explained is in the attributes.
+spe$bayesSpace_harmony_10 <- as.factor(spe$bayesSpace_harmony_10)
+
 percent.var <- attr(reducedDim(spe), "percentVar")
 
 chosen.elbow <- findElbowPoint(percent.var)
 chosen.elbow
-
-spe$bayesSpace_harmony_8 <- as.factor(spe$bayesSpace_harmony_8)
 
 # Elbow plot of PCs & plot Reduced Dimensions
 pdf(file = here::here("plots", "Dimensions_plots", "Elbow_plot_spe.pdf"))
 plot(percent.var, xlab = "PC", ylab = "Variance explained (%)")
 abline(v = chosen.elbow, col = "red")
 dev.off()
+
+# Use schex to circumvent overplotting of spots
+
+hex2v1 <- make_hexbin(spe, nbins = 100,
+                   dimension_reduction = "PCA", use_dims=c(1,2))
+
+cols <- as.vector(Polychrome::palette36.colors(10))
+
+label_df <- make_hexbin_label(hex2v1, col="bayesSpace_harmony_10")
 
 pdf(file = here::here("plots", "Dimensions_plots", "PC2vs1_plot_spe.pdf"))
 
@@ -62,10 +71,16 @@ plotReducedDim(
     spe,
     dimred = "PCA",
     ncomponents = 2,
-    colour_by = "bayesSpace_harmony_8",
+    colour_by = "bayesSpace_harmony_10",
     point_size = 0.2,
     point_alpha = 0.5
 )
+
+plot_hexbin_meta(hex2v1, col = "bayesSpace_harmony_10", action = "majority",
+                xlab = "PC1", ylab = "PC2", color = cols) +
+    labs(fill = "BayesSpace") +
+    theme_bw() +
+    theme_classic()
 
 plotReducedDim(
     spe,
@@ -129,7 +144,7 @@ plotReducedDim(
     spe,
     dimred = "PCA",
     ncomponents = c(1, 3),
-    colour_by = "bayesSpace_harmony_8",
+    colour_by = "bayesSpace_harmony_10",
     point_size = 0.2,
     point_alpha = 0.5
 )
@@ -181,6 +196,13 @@ plotReducedDim(
 
 dev.off()
 
+# Use schex to circumvent overplotting of spots
+
+hex4v1 <- make_hexbin(spe, nbins = 100,
+                   dimension_reduction = "PCA", use_dims=c(1,4))
+
+label_df4 <- make_hexbin_label(hex4v1, col="bayesSpace_harmony_10")
+
 pdf(file = here::here("plots", "Dimensions_plots", "PCA4vs1_plot_spe.pdf"))
 
 plotReducedDim(
@@ -196,10 +218,16 @@ plotReducedDim(
     spe,
     dimred = "PCA",
     ncomponents = c(1, 4),
-    colour_by = "bayesSpace_harmony_8",
+    colour_by = "bayesSpace_harmony_10",
     point_size = 0.2,
     point_alpha = 0.5
 )
+
+plot_hexbin_meta(hex4v1, col = "bayesSpace_harmony_10", action = "majority",
+                xlab = "PC1", ylab = "PC4", color = cols) +
+    labs(fill = "BayesSpace") +
+    theme_bw() +
+    theme_classic()
 
 plotReducedDim(
     spe,
@@ -263,7 +291,7 @@ plotReducedDim(
     spe,
     dimred = "HARMONY",
     ncomponents = 2,
-    colour_by = "bayesSpace_harmony_8",
+    colour_by = "bayesSpace_harmony_10",
     point_size = 0.2,
     point_alpha = 0.5
 )
@@ -330,7 +358,7 @@ plotReducedDim(
     spe,
     dimred = "HARMONY",
     ncomponents = c(1, 3),
-    colour_by = "bayesSpace_harmony_8",
+    colour_by = "bayesSpace_harmony_10",
     point_size = 0.2,
     point_alpha = 0.5
 )
@@ -397,7 +425,7 @@ plotReducedDim(
     spe,
     dimred = "HARMONY",
     ncomponents = c(1, 4),
-    colour_by = "bayesSpace_harmony_8",
+    colour_by = "bayesSpace_harmony_10",
     point_size = 0.2,
     point_alpha = 0.5
 )

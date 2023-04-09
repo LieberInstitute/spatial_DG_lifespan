@@ -1,10 +1,10 @@
 #!/bin/bash
 #$ -cwd
 #$ -l mem_free=50G,h_vmem=50G,h_fsize=100G
-#$ -pe local 4
+#$ -pe local 10
 #$ -N nnSVG
-#$ -o logs/nnSVG_manual_annotation.txt
-#$ -e logs/nnSVG_manual_annotation.txt
+#$ -o logs/nnSVG.txt
+#$ -e logs/nnSVG.txt
 #$ -m e
 
 echo "**** Job starts ****"

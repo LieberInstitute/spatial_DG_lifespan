@@ -53,7 +53,11 @@ human_markers <-
         "SYT4",
         "APOC1",
         "WIF1",
-        "MTRNR2L10"
+        "MTRNR2L10",
+        "TCF7L2",
+        "RORA",
+        "LEF1",
+        "ZMAT4"
     )
 
 # Locate the marker genes

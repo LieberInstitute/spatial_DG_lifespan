@@ -19,28 +19,26 @@ suppressPackageStartupMessages({
     library(sessioninfo)
 })
 
-spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
-
-# Load BayesSpace clusters onto spe object
-spe <- cluster_import(
-    spe,
-    cluster_dir = here::here("processed-data", "clustering_results"),
-    prefix = ""
-)
-
-# Remove CP cluster
-spe = spe[, which(spe$bayesSpace_harmony_8 != "5")]
+spe <- readRDS(here::here("processed-data", "QC_processed_spe", "QCed_spe.rds"))
 
 # Create vector of samples for nnSVG on whole tissue
 sample_ids <- c(
     "Br1412",
     "Br2706",
+    "Br2720",
     "Br3942",
     "Br5242",
+    "Br5699_new",
     "Br6023",
+    "Br6129_new",
+    "Br6299_new",
+    "Br6522",
+    "Br8181",
     "Br8195",
+    "Br8533",
     "Br8667",
-    "Br8686"
+    "Br8686",
+    "Br8700"
 )
 
 # Run nnSVG once per sample whole tissue and store lists of top SVGs
@@ -56,7 +54,7 @@ for (s in seq_along(sample_ids)) {
 
     # run nnSVG filtering for mitochondrial gene and low-expressed genes
     spe_sub <- filter_genes(spe_sub)
-	
+
 	# re-calculate library size factors
 	spe_sub <- computeLibraryFactors(spe_sub)
 
@@ -65,7 +63,7 @@ for (s in seq_along(sample_ids)) {
 
     # run nnSVG
     set.seed(12345)
-    spe_sub <- nnSVG(spe_sub, n_threads = 4)
+    spe_sub <- nnSVG(spe_sub, n_threads = 10)
 
     # store whole tissue results
     res_list[[s]] <- rowData(spe_sub)
@@ -78,50 +76,6 @@ dir_outputs <- here("processed-data", "nnSVG", "whole_tissue")
 fn_out <- file.path(dir_outputs, "DG_nnSVG_results")
 saveRDS(res_list, paste0(fn_out, ".rds"))
 save(res_list, file = paste0(fn_out, ".RData"))
-
-
-# Run nnSVG once per sample whole tissue with BayesSpace covariates
-
-bayes_res_list <- as.list(rep(NA, length(sample_ids)))
-names(bayes_res_list) <- sample_ids
-
-for (s in seq_along(sample_ids)) {
-
-    # select sample_id
-    ix <- colData(spe)$sample_id == sample_ids[s]
-    spe_subS <- spe[, ix]
-
-    # run nnSVG filtering for mitochondrial gene and low-expressed genes
-    spe_subS <- filter_genes(spe_subS)
-	
-	# re-calculate library size factors
-	spe_sub <- computeLibraryFactors(spe_sub)
-
-    # re-calculate logcounts after filtering
-    spe_subS <- logNormCounts(spe_subS)
-
-    # create model matrix for BayesSpace clusters covariates
-    X <- model.matrix(~ colData(spe_subS)$bayesSpace_harmony_8)
-    dim(X)
-    head(X)
-    stopifnot(nrow(X) == ncol(spe_subS))
-
-    # run nnSVG
-    set.seed(12345)
-    spe_subS <- nnSVG(spe_subS, X = X, n_threads = 4)
-
-    # store whole tissue results
-    bayes_res_list[[s]] <- rowData(spe_subS)
-}
-
-
-# directory to save bayesspace informed results
-dir_outputs <- here("processed-data", "nnSVG", "BayesSpace")
-
-# save bayesspace nnSVG results
-fn_out <- file.path(dir_outputs, "DG_BayesSpace_nnSVG_results")
-saveRDS(bayes_res_list, paste0(fn_out, ".rds"))
-save(bayes_res_list, file = paste0(fn_out, ".RData"))
 
 
 ## Reproducibility information
