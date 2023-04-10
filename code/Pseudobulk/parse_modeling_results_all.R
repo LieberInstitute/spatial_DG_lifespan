@@ -4,11 +4,12 @@
 # Anthony Ramnauth, May 12 2022
 ###############################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
     library(SingleCellExperiment)
-    library(vioplot)
     library(scater)
     library(sessioninfo)
 })
@@ -32,10 +33,18 @@ t0_contrasts <- sapply(eb0_list, function(x) {
 })
 rownames(t0_contrasts) <- rownames(eb_contrasts)
 summary(fdrs0_contrasts < 0.05)
-#     1               2               3               4               6               7               8
-# Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical
-# FALSE:11528     FALSE:7878      FALSE:10316     FALSE:7266      FALSE:6002      FALSE:10784     FALSE:11531
-# TRUE :75        TRUE :3725      TRUE :1287      TRUE :4337      TRUE :5601      TRUE :819       TRUE :72
+#     1               2               3               4
+# Mode :logical   Mode :logical   Mode :logical   Mode :logical
+# FALSE:10532     FALSE:12864     FALSE:5019      FALSE:7961
+# TRUE :2823      TRUE :491       TRUE :8336      TRUE :5394
+#     5               6               7               8
+# Mode :logical   Mode :logical   Mode :logical   Mode :logical
+# FALSE:12640     FALSE:12922     FALSE:6279      FALSE:12979
+# TRUE :715       TRUE :433       TRUE :7076      TRUE :376
+#     9               10
+# Mode :logical   Mode :logical
+# FALSE:9825      FALSE:7708
+# TRUE :3530      TRUE :5647
 
 # Merge statistics
 f_merge <- function(p, fdr, t) {
@@ -59,7 +68,7 @@ head(results_specificity)
 pvals_contrasts <- eb_contrasts$p.value
 fdrs_contrasts <- apply(pvals_contrasts, 2, p.adjust, "fdr")
 dim(pvals_contrasts)
-# [1] 11603    36
+# [1] 13355    66
 summary(fdrs_contrasts < 0.05)
 
 results_pairwise <-
@@ -74,6 +83,10 @@ f_sig <- function(type, cut = 0.05) {
     )
 }
 f_sig("full_fdr")
+#          n        ratio
+#FALSE     7 0.0005241483
+#TRUE  13348 0.9994758517
+#Sum   13355 1.0000000000
 
 # Match the colnames to the new style
 f_rename <- function(x, old, new = old) {
@@ -90,13 +103,13 @@ results_anova <-
         f_rename(f_stats, "f", "f_stat"), "p_value"
     ), "fdr"), "Amean")
 head(results_anova)
-#  f_stat_full p_value_full     fdr_full full_AveExpr         ensembl      gene
-#1    14.46728 9.274405e-11 9.400797e-11     2.437106 ENSG00000237491 LINC01409
-#2    81.20002 2.697810e-26 3.827202e-26     4.161927 ENSG00000228794 LINC01128
-#3   332.83319 3.220475e-41 8.858979e-41     5.359479 ENSG00000188976     NOC2L
-#4    20.15705 2.546744e-13 2.643102e-13     2.726867 ENSG00000187961    KLHL17
-#5   267.80964 7.221771e-39 1.695553e-38     5.620692 ENSG00000188290      HES4
-#6   143.60117 3.267569e-32 5.572252e-32     5.485435 ENSG00000187608     ISG15
+#  f_stat_full  p_value_full      fdr_full full_AveExpr         ensembl      gene
+#1   19.660516  1.288494e-23  1.476181e-23     2.278726 ENSG00000237491 LINC01409
+#2  122.918068  3.779667e-67  6.958567e-67     4.021929 ENSG00000228794 LINC01128
+#3    8.775102  8.781450e-12  9.045604e-12     1.190339 ENSG00000187634    SAMD11
+#4  693.711329 3.107382e-118 1.361072e-117     5.239307 ENSG00000188976     NOC2L
+#5   20.666296  1.603342e-24  1.851343e-24     2.411745 ENSG00000187961    KLHL17
+#6  366.775717  5.827790e-99  1.781418e-98     5.686110 ENSG00000188290      HES4
 
 modeling_results <- list(
     "anova" = results_anova,
@@ -108,23 +121,26 @@ modeling_results <- list(
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "modeling_results.rds"))
 
 length(which(modeling_results$enrichment$fdr_1 < 0.05))
-# [1] 75
+# [1] 2823
 length(which(modeling_results$enrichment$fdr_2 < 0.05))
-# [1] 3725
+# [1] 491
 length(which(modeling_results$enrichment$fdr_3 < 0.05))
-# [1] 1287
+# [1] 8336
 length(which(modeling_results$enrichment$fdr_4 < 0.05))
-# [1] 4337
+# [1] 5394
 length(which(modeling_results$enrichment$fdr_6 < 0.05))
-# [1] 5601
+# [1] 433
 length(which(modeling_results$enrichment$fdr_7 < 0.05))
-# [1] 819
+# [1] 7076
 length(which(modeling_results$enrichment$fdr_8 < 0.05))
-# [1] 72
+# [1] 376
+length(which(modeling_results$enrichment$fdr_9 < 0.05))
+# [1] 3530
+length(which(modeling_results$enrichment$fdr_10 < 0.05))
+# [1] 5647
 
-
-cluster <- c(1, 2, 3, 4, 6, 7, 8)
-genes <- c(75, 3725, 1287, 4337, 5601, 819, 72)
+cluster <- c(1, 2, 3, 4, 6, 7, 8, 9, 10)
+genes <- c(2823, 491, 8336, 5394, 433, 7076, 376, 3530, 5647)
 df <- data.frame(cluster, genes)
 pdf(file = here::here("plots", "pseudobulked", "plot_enrichment_DEGs.pdf"))
 plot(df$genes ~ df$cluster)

@@ -1,6 +1,6 @@
 #!/bin/bash
 #$ -cwd
-#$ -l mem_free=300G,h_vmem=300G,h_fsize=100G
+#$ -l mem_free=250G,h_vmem=250G,h_fsize=100G
 #$ -N CARD_deconvolution
 #$ -o logs/CARD_deconvolution.txt
 #$ -e logs/CARD_deconvolution.txt

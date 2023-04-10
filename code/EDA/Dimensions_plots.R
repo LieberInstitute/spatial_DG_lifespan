@@ -27,15 +27,6 @@ dir.create(dir_plots, showWarnings = FALSE, recursive = TRUE)
 spe <-
     readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-# Load BayesSpace clusters onto spe object if not already loaded
-spe <- cluster_import(
-    spe,
-    cluster_dir = here::here("processed-data", "k10_clustering_results"),
-    prefix = ""
-)
-
-spe$bayesSpace_harmony_10 <- as.factor(spe$bayesSpace_harmony_10)
-
 percent.var <- attr(reducedDim(spe), "percentVar")
 
 chosen.elbow <- findElbowPoint(percent.var)
@@ -52,7 +43,9 @@ dev.off()
 hex2v1 <- make_hexbin(spe, nbins = 100,
                    dimension_reduction = "PCA", use_dims=c(1,2))
 
-cols <- as.vector(Polychrome::palette36.colors(10))
+cols <- c("1" = "#5A5156", "2" = "#E4E1E3", "3" = "#DEA0FD", "4" = "#FEAF16",
+    "5" = "#FE00FA", "6" = "#1CFFCE", "7" = "#B00068", "8" = "#90AD1C", "9" = "#16FF32",
+    "10" = "#2ED9FF")
 
 label_df <- make_hexbin_label(hex2v1, col="bayesSpace_harmony_10")
 

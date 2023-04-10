@@ -4,11 +4,14 @@
 # Anthony Ramnauth, May 12 2022
 ###################################################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
     library(sessioninfo)
     library(SingleCellExperiment)
+    library(spatialLIBD)
     library(rafalib)
     library(limma)
 })
