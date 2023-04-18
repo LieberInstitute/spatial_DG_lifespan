@@ -24,7 +24,18 @@ suppressPackageStartupMessages({
 spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))
 
 ## subset spe data based on BayesSpace clusters for DG
-spe_pseudo <- spe_pseudo[, spe_pseudo$BayesSpace %in% c("1", "2", "4", "8")]
+spe_pseudo <- spe_pseudo[, spe_pseudo$BayesSpace %in% c("2", "4", "6", "7")]
+
+bayes_df <- data.frame(spe_pseudo$BayesSpace)
+bayes_df <- bayes_df %>%
+    mutate(DG_layer = case_when(
+        grepl("2", spe_pseudo.BayesSpace) ~ "ML",
+        grepl("4", spe_pseudo.BayesSpace) ~ "CA3&4",
+        grepl("6", spe_pseudo.BayesSpace) ~ "SGZ",
+        grepl("7", spe_pseudo.BayesSpace) ~ "GCL"
+    ))
+
+colData(spe_pseudo)$BayesSpace <- factor(bayes_df$DG_layer, levels = c("ML", "CA3&4", "SGZ", "GCL"))
 
 # Set gene names as row names for easier plotting
 rownames(spe_pseudo) <- rowData(spe_pseudo)$gene_name
@@ -43,49 +54,125 @@ CC_list <- CC_parent_GO$parent_term
 MF_list <- MF_parent_GO$parent_term
 BP_list <- BP_parent_GO$parent_term
 
-pdf(file = here::here("plots", "pseudobulked", "Age_group_DG_parent_GO.pdf"), width = 28, height = 21)
+# Truncate the BP_list, it is too large for plotting
+trunc_BP_list <- c("regulation of neuron projection development",
+    "regulation of cell development",
+    "regulation of neurogenesis",
+    "regulation of cell morphogenesis",
+    "macroautophagy",
+    "oxidative phosphorylation",
+    "chromatin remodeling",
+    "cell junction assembly",
+    "synapse organization",
+    "histone modification",
+    "gliogenesis",
+    "neuron migration",
+    "mitochondrion disassembly",
+    "stem cell differentiation",
+    "glycerophospholipid metabolic process",
+    "neural precursor cell proliferation",
+    "response to transforming growth factor beta",
+    "proteasomal protein catabolic process",
+    "actin cytoskeleton reorganization",
+    "regulation of nuclear-transcribed mRNA catabolic process, deadenylation-dependent decay",
+    "pyruvate metabolic process",
+    "endosome to lysosome transport",
+    "establishment of organelle localization",
+    "ATP metabolic process",
+    "developmental cell growth",
+    "protein targeting",
+    "leukocyte migration",
+    "negative regulation of immune system process",
+    "miRNA metabolic process",
+    "myeloid leukocyte activation",
+    "regulation of immune effector process",
+    "regulation of chemokine production",
+    "actin polymerization or depolymerization",
+    "regulation of MAP kinase activity",
+    "vasculogenesis",
+    "immune response-regulating signaling pathway",
+    "maintenance of blood-brain barrier",
+    "positive regulation of T cell activation",
+    "regulation of microtubule polymerization",
+    "cellular amino acid metabolic process",
+    "lymphocyte proliferation",
+    "carbohydrate derivative catabolic process",
+    "regulation of trans-synaptic signaling",
+    "extracellular matrix organization",
+    "regulation of DNA binding",
+    "response to steroid hormone",
+    "regulation of myeloid leukocyte differentiation",
+    "lipid droplet formation",
+    "regulation of gene expression, epigenetic",
+    "regulation of DNA-templated transcription in response to stress",
+    "non-motile cilium assembly",
+    "positive regulation of neuron death",
+    "positive regulation of protein transport",
+    "carbohydrate catabolic process",
+    "regulation of cytokine production involved in immune response",
+    "regulation of cell size",
+    "regulation of apoptotic cell clearance",
+    "cellular lipid catabolic process",
+    "negative regulation of execution phase of apoptosis",
+    "plasma membrane repair",
+    "positive regulation of calcium ion transport",
+    "'de novo' post-translational protein folding",
+    "macromolecule deacylation",
+    "peptidyl−lysine modification",
+    "postsynapse assembly",
+    "exocytosis",
+   "translational initiation")
 
-dotplot(comp_CC, showCategory = CC_list, label_format = 90, font.size = 26) +
+pdf(file = here::here("plots", "pseudobulked", "Age_group_DG_parent_GO.pdf"), width = 18, height = 14)
+
+dotplot(comp_CC, showCategory = CC_list, label_format = 90) +
     ggtitle("Parent GO terms for Cellular Compartment for Age groups in Dentate Gyrus") +
-    theme(plot.title = element_text(size = 26),
-        axis.text.x = element_text(angle = -45))
+    theme(plot.title = element_text(size = 14),
+        axis.text.x = element_text(angle = -70, size = 14),
+        axis.text.y = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14))
 
-dotplot(comp_MF, showCategory = MF_list, label_format = 90, font.size = 26) +
+dotplot(comp_MF, showCategory = MF_list, label_format = 90) +
     ggtitle("Parent GO terms for Molecular Function for Age groups in Dentate Gyrus") +
-    theme(plot.title = element_text(size = 26),
-        axis.text.x = element_text(angle = -45))
+    theme(plot.title = element_text(size = 14),
+        axis.text.x = element_text(angle = -70),
+        axis.text.y = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14))
 
-dotplot(comp_BP, showCategory = BP_list, label_format = 90, font.size = 26) +
-    ggtitle("Parent GO terms for Biological Process for Age groups in Dentate Gyrus")+
-    theme(plot.title = element_text(size = 26),
-        axis.text.x = element_text(angle = -45))
-
-comp_CC <- pairwise_termsim(comp_CC)
-emapplot(comp_CC,
-    showCategory = CC_list, color = "p.adjust",
-    pie = "count", cex_category = 3, label_format = 20
-) +
-    ggtitle("Parent GO terms for Cellular Compartment for Age groups in Dentate Gyrus")
-
-comp_MF <- pairwise_termsim(comp_MF)
-emapplot(comp_MF,
-    showCategory = MF_list, color = "p.adjust",
-    pie = "count", cex_category = 3, label_format = 20
-) +
-    ggtitle("Parent GO terms for Molecular Function for Age groups in Dentate Gyrus")
-
-comp_BP <- pairwise_termsim(comp_BP)
-emapplot(comp_BP,
-    showCategory = BP_list, color = "p.adjust",
-    pie = "count", cex_category = 3, label_format = 20
-) +
-    ggtitle("Parent GO terms for Biological Process for Age groups in Dentate Gyrus")
+dotplot(comp_BP, showCategory = trunc_BP_list, label_format = 90) +
+    ggtitle("Select Parent GO terms for Biological Process for Age groups in Dentate Gyrus")+
+    theme(plot.title = element_text(size = 14),
+        axis.text.x = element_text(angle = -70),
+        axis.text.y = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14))
 
 dev.off()
 
+pdf(file = here::here("plots", "pseudobulked", "Age_group_DG_parent_GOBP_separate.pdf"), width = 20, height = 22)
+
+dotplot(comp_BP, showCategory = BP_list, label_format = 300) +
+    ggtitle("Parent GO terms for Biological Process for Age groups in Dentate Gyrus")+
+    theme(plot.title = element_text(size = 12),
+        axis.text.x = element_text(angle = -70, size = 12),
+        axis.text.y = element_text(size = 12))
+
+dev.off()
 #######################################################
 # Plot the GO parent genes for pseudobulk spe logcounts
 #######################################################
+
+# Make function for heatmaps of all GO terms
+
+# Configure column order to match age groups per BayesSpace cluster
+Bayes_age_order <- c(
+    16, 12, 13, 15, 8, 1, 11, 2, 9, 10, 14, 4, 3, 5, 7, 6,
+    32, 28, 29, 31, 24, 17, 27, 18, 25, 26, 30, 20, 19, 21, 23, 22,
+    48, 44, 45, 47, 40, 33, 43, 34, 41, 42, 46, 36, 35, 37, 39, 38,
+    64, 60, 61, 63, 56, 49, 59, 50, 57, 58, 62, 52, 51, 53, 55, 54
+)
 
 # Make function for heatmaps of all GO terms
 
@@ -93,10 +180,12 @@ heat<- function(x, y){
 
 Heatmap(x,
     name = "logcounts",
-    top_annotation = HeatmapAnnotation(age = spe_pseudo$age_bin, cluster = spe_pseudo$BayesSpace,
-    col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen"),
-        cluster = c("1" = "red4", "2" = "orange", "4" = "cyan", "8" = "springgreen3"))),
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
     column_title = y,
+    column_order = Bayes_age_order,
     show_column_names = FALSE,
     show_row_names = TRUE
     )
@@ -116,20 +205,11 @@ findGOs <- function(x){
 
 # findGOs did not work for last GO term so remove and re-run
 
-CC_GOs <- CC_GOs[-3]
-CC_GOs <- CC_GOs[-4]
-CC_GOs <- CC_GOs[-22]
-CC_GOs <- CC_GOs[-22]
-
 CC_GOs <- lapply(CC_GOs, findGOs)
 
 # Add names to list
 
 CC_names <- CC_parent_GO$parent_term
-CC_names <- CC_names[-3]
-CC_names <- CC_names[-4]
-CC_names <- CC_names[-22]
-CC_names <- CC_names[-22]
 names(CC_GOs) <- CC_names
 
 CC_GOs <- lapply(CC_GOs, function(x) x%>% select(SYMBOL))
@@ -148,8 +228,9 @@ CC_gene_list <- lapply(CC_gene_list, function(x) {
 
 })
 
-# Remove GO terms that have errors in spe matrices (found by str(CC_gene_list))
-CC_gene_list <- CC_gene_list[-1]
+# If needed, remove GO terms that have errors in spe matrices (found by str(CC_gene_list))
+CC_gene_list <- CC_gene_list[-8]
+CC_gene_list <- CC_gene_list[-11]
 
 # Plot
 
@@ -165,13 +246,18 @@ MF_GOs <- MF_parent_GO$parent_GO
 
 # findGOs did not work for last GO term so remove and re-run
 
-MF_GOs <- MF_GOs[-15]
+MF_GOs <- MF_GOs[-2]
+MF_GOs <- MF_GOs[-5]
+MF_GOs <- MF_GOs[-19]
 
 MF_GOs <- lapply(MF_GOs, findGOs)
 
-# Add names to list
+# Add names to list (make sure to remove the same entries that failed earlier)
 
-MF_parent_names <- MF_parent_GO$parent_term[-15]
+MF_parent_names <- MF_parent_GO$parent_term[-2]
+MF_parent_names <- MF_parent_names[-5]
+MF_parent_names <- MF_parent_names[-19]
+
 names(MF_GOs) <- MF_parent_names
 
 MF_GOs <- lapply(MF_GOs, function(x) x%>% select(SYMBOL))
@@ -204,39 +290,56 @@ BP_GOs <- BP_parent_GO$parent_GO
 
 # findGOs did not work for last GO term so remove and re-run
 
-BP_GOs <- BP_GOs[-15]
-BP_GOs <- BP_GOs[-20]
-BP_GOs <- BP_GOs[-32]
-BP_GOs <- BP_GOs[-36]
-BP_GOs <- BP_GOs[-36]
-BP_GOs <- BP_GOs[-41]
-BP_GOs <- BP_GOs[-41]
-BP_GOs <- BP_GOs[-46]
-BP_GOs <- BP_GOs[-46]
-BP_GOs <- BP_GOs[-46]
-BP_GOs <- BP_GOs[-49]
-BP_GOs <- BP_GOs[-51]
-BP_GOs <- BP_GOs[-53]
+BP_GOs <- BP_GOs[-3]
+BP_GOs <- BP_GOs[-8]
+BP_GOs <- BP_GOs[-30]
+BP_GOs <- BP_GOs[-43]
+BP_GOs <- BP_GOs[-64]
+BP_GOs <- BP_GOs[-78]
+BP_GOs <- BP_GOs[-79]
+BP_GOs <- BP_GOs[-92]
+BP_GOs <- BP_GOs[-92]
+BP_GOs <- BP_GOs[-102]
+BP_GOs <- BP_GOs[-102]
+BP_GOs <- BP_GOs[-104]
+BP_GOs <- BP_GOs[-105]
+BP_GOs <- BP_GOs[-106]
+BP_GOs <- BP_GOs[-106]
+BP_GOs <- BP_GOs[-116]
+BP_GOs <- BP_GOs[-122]
+BP_GOs <- BP_GOs[-128]
+BP_GOs <- BP_GOs[-128]
+BP_GOs <- BP_GOs[-134]
+BP_GOs <- BP_GOs[-141]
+BP_GOs <- BP_GOs[-150]
 
 BP_GOs <- lapply(BP_GOs, findGOs)
 
 # Add names to list
 
 BP_names <- BP_parent_GO$parent_term
-BP_names <- BP_names[-15]
-BP_names <- BP_names[-20]
-BP_names <- BP_names[-32]
-BP_names <- BP_names[-36]
-BP_names <- BP_names[-36]
-BP_names <- BP_names[-41]
-BP_names <- BP_names[-41]
-BP_names <- BP_names[-46]
-BP_names <- BP_names[-46]
-BP_names <- BP_names[-46]
-BP_names <- BP_names[-49]
-BP_names <- BP_names[-51]
-BP_names <- BP_names[-53]
-
+BP_names <- BP_names[-3]
+BP_names <- BP_names[-8]
+BP_names <- BP_names[-30]
+BP_names <- BP_names[-43]
+BP_names <- BP_names[-64]
+BP_names <- BP_names[-78]
+BP_names <- BP_names[-79]
+BP_names <- BP_names[-92]
+BP_names <- BP_names[-92]
+BP_names <- BP_names[-102]
+BP_names <- BP_names[-102]
+BP_names <- BP_names[-104]
+BP_names <- BP_names[-105]
+BP_names <- BP_names[-106]
+BP_names <- BP_names[-106]
+BP_names <- BP_names[-116]
+BP_names <- BP_names[-122]
+BP_names <- BP_names[-128]
+BP_names <- BP_names[-128]
+BP_names <- BP_names[-134]
+BP_names <- BP_names[-141]
+BP_names <- BP_names[-150]
 
 BP_parent_names <- BP_names
 names(BP_GOs) <- BP_parent_names
@@ -256,14 +359,28 @@ BP_gene_list <- lapply(BP_gene_list, function(x) {
 
 })
 
-# Remove GO terms that have errors in spe matrices (found by str(BP_gene_list))
+# Remove GO terms that have errors in spe matrices size (found by str(BP_gene_list))
 
-BP_gene_list <- BP_gene_list[-41]
-BP_gene_list <- BP_gene_list[-30]
-BP_gene_list <- BP_gene_list[-39]
-BP_gene_list <- BP_gene_list[-39]
-BP_gene_list <- BP_gene_list[-41]
-BP_gene_list <- BP_gene_list[-42]
+BP_gene_list <- BP_gene_list[-4]
+BP_gene_list <- BP_gene_list[-9]
+BP_gene_list <- BP_gene_list[-46]
+BP_gene_list <- BP_gene_list[-52]
+BP_gene_list <- BP_gene_list[-52]
+BP_gene_list <- BP_gene_list[-65]
+BP_gene_list <- BP_gene_list[-70]
+BP_gene_list <- BP_gene_list[-81]
+BP_gene_list <- BP_gene_list[-81]
+BP_gene_list <- BP_gene_list[-92]
+BP_gene_list <- BP_gene_list[-97]
+BP_gene_list <- BP_gene_list[-3]
+BP_gene_list <- BP_gene_list[-23]
+BP_gene_list <- BP_gene_list[-60]
+BP_gene_list <- BP_gene_list[-110]
+BP_gene_list <- BP_gene_list[-118]
+BP_gene_list <- BP_gene_list[-118]
+BP_gene_list <- BP_gene_list[-127]
+BP_gene_list <- BP_gene_list[-131]
+
 
 pdf(file = here::here("plots", "pseudobulked", "Parent_BP_GO_genes_DentateGyrus.pdf"), width = 14, height = 14)
 

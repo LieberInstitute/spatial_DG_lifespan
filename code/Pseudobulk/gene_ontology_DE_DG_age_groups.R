@@ -33,89 +33,105 @@ Adult_DG_DE_age_results <- read.csv(file = here::here("processed-data", "pseudob
 Elderly_DG_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
     "pseudoBulkDGE_results", "ElderlyvsNonElderly_DentateGyrus_DE.csv"))
 
-############################################################
-# Make dataframes of ENTREZIDs and logFCs for each age group
-############################################################
-
+###############################################################################################
+# Make dataframes of ENTREZIDs and logFCs for each age group (ENTREZID seems to work better...)
+###############################################################################################
+#############################################################################################################
 infant <- Infant_DG_DE_age_results %>%
+    dplyr::filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(desc(logFC)) %>%
-    dplyr::select(gene_name, logFC)
+    dplyr::select(gene_id, gene_name, logFC)
 
-infant_entrez <- bitr(infant$gene_name, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+infant_entrez <- bitr(infant$gene_id, fromType = "ENSEMBL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
 
-infant <- infant[infant$gene_name %in% infant_entrez$SYMBOL,]
+# 1:many mapping so remove duplicated ENSEMBL mappings
+infant_entrez <- infant_entrez %>%
+    distinct(ENSEMBL, .keep_all = TRUE)
 
-stopifnot(infant$gene_name == infant_entrez$SYMBOL)
+infant <- infant[infant$gene_id %in% infant_entrez$ENSEMBL,]
 
-infant <- data.frame(
-    ENTREZID = infant_entrez$ENTREZID,
-    logFC = infant$logFC
-    )
+stopifnot(infant$gene_id == infant_entrez$ENSEMBL)
+
+infant$ENTREZID <- infant_entrez$ENTREZID
 
 up_infant <- infant[infant$logFC > 0, ]
 down_infant <- infant[infant$logFC < 0, ]
 
+###########################################################################################################
+
 teen <- Teen_DG_DE_age_results %>%
+    dplyr::filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(desc(logFC)) %>%
-    dplyr::select(gene_name, logFC)
+    dplyr::select(gene_id, gene_name, logFC)
 
-teen_entrez <- bitr(teen$gene_name, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+teen_entrez <- bitr(teen$gene_id, fromType = "ENSEMBL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
 
-teen <- teen[teen$gene_name %in% teen_entrez$SYMBOL,]
+# 1:many mapping so remove duplicated ENSEMBL mappings
+teen_entrez <- teen_entrez %>%
+    distinct(ENSEMBL, .keep_all = TRUE)
 
-stopifnot(teen$gene_name == teen_entrez$SYMBOL)
+teen <- teen[teen$gene_id %in% teen_entrez$ENSEMBL,]
 
-teen <- data.frame(
-    ENTREZID = teen_entrez$ENTREZID,
-    logFC = teen$logFC
-    )
+stopifnot(teen$gene_id == teen_entrez$ENSEMBL)
+
+teen$ENTREZID <- teen_entrez$ENTREZID
 
 up_teen <- teen[teen$logFC > 0, ]
 down_teen <- teen[teen$logFC < 0, ]
 
+##########################################################################################################
+
 adult <- Adult_DG_DE_age_results %>%
+    dplyr::filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(desc(logFC)) %>%
-    dplyr::select(gene_name, logFC)
+    dplyr::select(gene_id, gene_name, logFC)
 
-adult_entrez <- bitr(adult$gene_name, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+adult_entrez <- bitr(adult$gene_id, fromType = "ENSEMBL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
 
-adult <- adult[adult$gene_name %in% adult_entrez$SYMBOL,]
+# 1:many mapping so remove duplicated ENSEMBL mappings
+adult_entrez <- adult_entrez %>%
+    distinct(ENSEMBL, .keep_all = TRUE)
 
-stopifnot(adult$gene_name == adult_entrez$SYMBOL)
+adult <- adult[adult$gene_id %in% adult_entrez$ENSEMBL,]
 
-adult <- data.frame(
-    ENTREZID = adult_entrez$ENTREZID,
-    logFC = adult$logFC
-    )
+stopifnot(adult$gene_id == adult_entrez$ENSEMBL)
+
+adult$ENTREZID <- adult_entrez$ENTREZID
 
 up_adult <- adult[adult$logFC > 0, ]
 down_adult <- adult[adult$logFC < 0, ]
 
+##########################################################################################################
+
 elderly <- Elderly_DG_DE_age_results %>%
+    dplyr::filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(desc(logFC)) %>%
-    dplyr::select(gene_name, logFC)
+    dplyr::select(gene_id, gene_name, logFC)
 
-elderly_entrez <- bitr(elderly$gene_name, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
+elderly_entrez <- bitr(elderly$gene_id, fromType = "ENSEMBL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
 
-elderly <- elderly[elderly$gene_name %in% elderly_entrez$SYMBOL,]
+# 1:many mapping so remove duplicated ENSEMBL mappings
+elderly_entrez <- elderly_entrez %>%
+    distinct(ENSEMBL, .keep_all = TRUE)
 
-stopifnot(elderly$gene_name == elderly_entrez$SYMBOL)
+elderly <- elderly[elderly$gene_id %in% elderly_entrez$ENSEMBL,]
 
-elderly <- data.frame(
-    ENTREZID = elderly_entrez$ENTREZID,
-    logFC = elderly$logFC
-    )
+stopifnot(elderly$gene_id == elderly_entrez$ENSEMBL)
+
+elderly$ENTREZID <- elderly_entrez$ENTREZID
 
 up_elderly <- elderly[elderly$logFC > 0, ]
 down_elderly <- elderly[elderly$logFC < 0, ]
+
+##########################################################################################################
 
 clust_compare <- list(
     up_infant$ENTREZID, down_infant$ENTREZID, up_teen$ENTREZID, down_teen$ENTREZID,
     up_adult$ENTREZID, down_adult$ENTREZID, up_elderly$ENTREZID, down_elderly$ENTREZID
 )
 
-names(clust_compare) <- c("Infant_up.reg", "Infant_down.reg", "Teen_up.reg", "Teen_down.reg",
-    "Adult_up.reg", "Adult_down.reg", "Elderly_up.reg", "Elderly_down.reg")
+names(clust_compare) <- c("Infant.up.reg", "Infant.down.reg", "Teen.up.reg", "Teen.down.reg",
+    "Adult.up.reg", "Adult.down.reg", "Elderly.up.reg", "Elderly.down.reg")
 
 # Run compare cluster function
 
@@ -265,19 +281,25 @@ heatmapPlot(CC_simMatrix,
             CC_reduced,
             annotateParent=TRUE,
             annotationLabel="parentTerm",
-            fontsize=12)
+            fontsize=12,
+            show_rownames = FALSE,
+            show_colnames = FALSE)
 
 heatmapPlot(MF_simMatrix,
             MF_reduced,
             annotateParent=TRUE,
             annotationLabel="parentTerm",
-            fontsize=12)
+            fontsize=12,
+            show_rownames = FALSE,
+            show_colnames = FALSE)
 
 heatmapPlot(BP_simMatrix,
             BP_reduced,
             annotateParent=TRUE,
             annotationLabel="parentTerm",
-            fontsize=9)
+            fontsize=9,
+            show_rownames = FALSE,
+            show_colnames = FALSE)
 
 scatterPlot(CC_simMatrix, CC_reduced)
 

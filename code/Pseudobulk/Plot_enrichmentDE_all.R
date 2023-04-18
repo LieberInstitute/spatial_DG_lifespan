@@ -4,6 +4,8 @@
 # Anthony Ramnauth, May 18 2022
 ###############################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
@@ -29,29 +31,7 @@ modeling_results <- readRDS(file = here::here("processed-data", "pseudobulk_spe"
 ################################################################
 
 # Make a data frame summary
-clust_1_enriched_summary <- data.frame(
-    gene_id = modeling_results$enrichment$ensembl,
-    gene_name = modeling_results$enrichment$gene,
-    t_stat = modeling_results$enrichment$t_stat_1,
-    p_val = modeling_results$enrichment$p_value_1,
-    FDR = modeling_results$enrichment$fdr_1
-)
-
-clust_1_enriched_summary <- clust_1_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-clust_1_enriched_summary <- arrange(clust_1_enriched_summary, desc(t_stat))
-
-# directory to save lists
-dir_outputs <- here("processed-data", "BayesSpace")
-fn_out_1 <- file.path(dir_outputs, "Clust_1_enriched_results")
-
-# Export summary as .csv file
-write.csv(clust_1_enriched_summary,fn_out_1, row.names = FALSE)
-
-# Make a data frame summary
-clust_2_enriched_summary <- data.frame(
+clust_ML_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_2,
@@ -59,41 +39,17 @@ clust_2_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_2
 )
 
-clust_2_enriched_summary <- clust_2_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-clust_2_enriched_summary <- arrange(clust_2_enriched_summary, desc(t_stat))
+clust_ML_enriched_summary <- arrange(clust_ML_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_2 <- file.path(dir_outputs, "Clust_2_enriched_results")
+dir_outputs <- here("processed-data", "BayesSpace")
+fn_out_1 <- file.path(dir_outputs, "cluster_ML_enriched_results")
 
 # Export summary as .csv file
-write.csv(clust_2_enriched_summary,fn_out_2, row.names = FALSE)
+write.csv(clust_ML_enriched_summary,fn_out_1, row.names = FALSE)
 
 # Make a data frame summary
-cluster_3_enriched_summary <- data.frame(
-    gene_id = modeling_results$enrichment$ensembl,
-    gene_name = modeling_results$enrichment$gene,
-    t_stat = modeling_results$enrichment$t_stat_3,
-    p_val = modeling_results$enrichment$p_value_3,
-    FDR = modeling_results$enrichment$fdr_3
-)
-
-cluster_3_enriched_summary <- cluster_3_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-cluster_3_enriched_summary <- arrange(cluster_3_enriched_summary, desc(t_stat))
-
-# directory to save lists
-fn_out_3<- file.path(dir_outputs, "cluster_3_enriched_results")
-
-# Export summary as .csv file
-write.csv(cluster_3_enriched_summary,fn_out_3, row.names = FALSE)
-
-# Make a data frame summary
-cluster_4_enriched_summary <- data.frame(
+clust_CA3_4_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_4,
@@ -101,20 +57,17 @@ cluster_4_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_4
 )
 
-cluster_4_enriched_summary <- cluster_4_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-cluster_4_enriched_summary <- arrange(cluster_4_enriched_summary, desc(t_stat))
+clust_CA3_4_enriched_summary <- arrange(clust_CA3_4_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_4<- file.path(dir_outputs, "cluster_4_enriched_results")
+dir_outputs <- here("processed-data", "BayesSpace")
+fn_out_2 <- file.path(dir_outputs, "cluster_CA3&4_enriched_results")
 
 # Export summary as .csv file
-write.csv(cluster_4_enriched_summary,fn_out_4, row.names = FALSE)
+write.csv(clust_CA3_4_enriched_summary,fn_out_2, row.names = FALSE)
 
 # Make a data frame summary
-cluster_6_enriched_summary <- data.frame(
+clust_SGZ_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_6,
@@ -122,20 +75,17 @@ cluster_6_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_6
 )
 
-cluster_6_enriched_summary <- cluster_6_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-cluster_6_enriched_summary <- arrange(cluster_6_enriched_summary, desc(t_stat))
+clust_SGZ_enriched_summary <- arrange(clust_SGZ_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_6<- file.path(dir_outputs, "cluster_6_enriched_results")
+dir_outputs <- here("processed-data", "BayesSpace")
+fn_out_3 <- file.path(dir_outputs, "cluster_SGZ_enriched_results")
 
 # Export summary as .csv file
-write.csv(cluster_6_enriched_summary,fn_out_6, row.names = FALSE)
+write.csv(clust_SGZ_enriched_summary,fn_out_3, row.names = FALSE)
 
 # Make a data frame summary
-cluster_7_enriched_summary <- data.frame(
+clust_GCL_enriched_summary <- data.frame(
     gene_id = modeling_results$enrichment$ensembl,
     gene_name = modeling_results$enrichment$gene,
     t_stat = modeling_results$enrichment$t_stat_7,
@@ -143,38 +93,14 @@ cluster_7_enriched_summary <- data.frame(
     FDR = modeling_results$enrichment$fdr_7
 )
 
-cluster_7_enriched_summary <- cluster_7_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-cluster_7_enriched_summary <- arrange(cluster_7_enriched_summary, desc(t_stat))
+clust_GCL_enriched_summary <- arrange(clust_GCL_enriched_summary, desc(t_stat))
 
 # directory to save lists
-fn_out_7<- file.path(dir_outputs, "cluster_7_enriched_results")
+dir_outputs <- here("processed-data", "BayesSpace")
+fn_out_4 <- file.path(dir_outputs, "cluster_GCL_enriched_results")
 
 # Export summary as .csv file
-write.csv(cluster_7_enriched_summary,fn_out_7, row.names = FALSE)
-
-# Make a data frame summary
-clust_8_enriched_summary <- data.frame(
-    gene_id = modeling_results$enrichment$ensembl,
-    gene_name = modeling_results$enrichment$gene,
-    t_stat = modeling_results$enrichment$t_stat_8,
-    p_val = modeling_results$enrichment$p_value_8,
-    FDR = modeling_results$enrichment$fdr_8
-)
-
-clust_8_enriched_summary <- clust_8_enriched_summary %>%
-    filter(FDR < 0.05) %>%
-    filter(p_val < 0.05)
-
-clust_8_enriched_summary <- arrange(clust_8_enriched_summary, desc(t_stat))
-
-# directory to save lists
-fn_out_8<- file.path(dir_outputs, "Clust_8_enriched_results")
-
-# Export summary as .csv file
-write.csv(clust_8_enriched_summary,fn_out_8, row.names = FALSE)
+write.csv(clust_GCL_enriched_summary,fn_out_4, row.names = FALSE)
 
 ################################################
 # Plot top enriched genes per BayesSpace Cluster
@@ -184,20 +110,20 @@ write.csv(clust_8_enriched_summary,fn_out_8, row.names = FALSE)
 mat <- assays(spe_pseudo)$logcounts
 
 # filter
-gIndex <- rowMeans(mat) > 0.2 # find the genes for which the mean expression is greater than 0.2
-mat_filter <- mat[gIndex, ] # subset matrix on just those genes.  want to remove lowly expressed genes.
+#gIndex <- rowMeans(mat) > 0.2 # find the genes for which the mean expression is greater than 0.2
+#mat_filter <- mat[gIndex, ] # subset matrix on just those genes.  want to remove lowly expressed genes.
 
 # Extract the p-values
-pvals <- modeling_results$enrichment[, 8:14]
-rownames(pvals) <- rownames(mat_filter)
+pvals <- modeling_results$enrichment[, 10:18]
+rownames(pvals) <- rownames(mat)
 
 # Extract the t-statistics
-t_stat <- modeling_results$enrichment[, 1:7]
-rownames(t_stat) <- rownames(mat_filter)
+t_stat <- modeling_results$enrichment[, 1:9]
+rownames(t_stat) <- rownames(mat)
 
 # Extract the FDRs
-fdrs <- modeling_results$enrichment[, 15:21]
-rownames(fdrs) <- rownames(mat_filter)
+fdrs <- modeling_results$enrichment[, 19:27]
+rownames(fdrs) <- rownames(mat)
 
 ### pick top 10 genes per cluster:sample
 cluster_specific_indices <- mapply(
@@ -213,17 +139,19 @@ cluster_ind <- unique(as.numeric(cluster_specific_indices))
 # Add logcounts from indexed from top genes
 exprs_heatmap <- assays(spe_pseudo)[[2]][cluster_ind, ]
 rownames(exprs_heatmap) <- rowData(spe_pseudo)$gene_name[cluster_ind]
-colnames(exprs_heatmap) <- paste("logcount", 1:56, sep = "")
+colnames(exprs_heatmap) <- paste("logcount", 1:142, sep = "")
 
 # Configure column order to match age groups per BayesSpace cluster
 Bayes_age_order <- c(
-6, 8, 1, 2, 7, 3, 4, 5,
-14, 16, 9, 10, 15, 11, 12, 13,
-22, 24, 17, 18, 23, 19, 20, 21,
-30, 32, 25, 26, 31, 27, 28, 29,
-38, 40, 33, 34, 39, 35, 36, 37,
-46, 48, 41, 42, 47, 43, 44, 45,
-54, 56, 49, 50, 55, 51, 52, 53
+    16, 12, 13, 15, 8, 1, 2, 11, 9, 10, 14, 4, 3, 5, 7, 6,
+    32, 28, 29, 31, 24, 17, 18, 27, 25, 26, 30, 20, 19, 21, 23, 22,
+    48, 44, 45, 47, 40, 33, 34, 43, 41, 42, 46, 36, 35, 37, 39, 38,
+    64, 60, 61, 63, 56, 49, 50, 59, 57, 58, 62, 52, 51, 53, 55, 54,
+    80, 76, 77, 79, 72, 65, 66, 75, 73, 74, 78, 68, 67, 69, 71, 70,
+    96, 92, 93, 95, 88, 81, 82, 91, 89, 90, 94, 84, 83, 85, 87, 86,
+    112, 108, 109, 111, 104, 97, 98, 107, 105, 106, 110, 100, 99, 101, 103, 102,
+    126, 124, 123, 119, 113, 122, 114, 120, 121, 116, 125, 115, 117, 118,
+    142, 138, 139, 141, 134, 127, 128, 137, 135, 136, 140, 130, 129, 131, 133, 132
     )
 
 # convert to z-scores
@@ -241,8 +169,9 @@ Heatmap(exprs_heatmap,
     name = "z-score",
     top_annotation = HeatmapAnnotation(BayesSpace_cluster = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
     col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen"),
-        BayesSpace_cluster = c("1" = "orangered", "2" = "orange", "3" = "cyan", "4" = "springgreen3",
-            "5" = "brown", "6" = "pink", "7" = "yellow", "8" = "slategrey"))),
+        BayesSpace_cluster = c("1" = "#5A5156", "2" = "#E4E1E3", "4" = "#FEAF16",
+    "5" = "#FE00FA", "6" = "#1CFFCE", "7" = "#B00068", "8" = "#90AD1C", "9" = "#16FF32",
+    "10" = "#2ED9FF"))),
     column_title = "Top 10 transcripts from Differential Enrichment of BayesSpace Clusters",
     show_column_names = FALSE,
     cluster_columns = FALSE,

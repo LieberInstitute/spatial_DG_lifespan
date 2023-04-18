@@ -1,7 +1,7 @@
 #!/bin/bash
 #$ -cwd
-#$ -l mem_free=50G,h_vmem=50G,h_fsize=100G
-#$ -pe local 10
+#$ -l mem_free=15G,h_vmem=15G,h_fsize=100G
+#$ -pe local 16
 #$ -N nnSVG
 #$ -o logs/nnSVG.txt
 #$ -e logs/nnSVG.txt

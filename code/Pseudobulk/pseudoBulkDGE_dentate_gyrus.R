@@ -4,6 +4,8 @@
 # Anthony Ramnauth, Sept 26 2022
 ###########################################################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
@@ -22,10 +24,10 @@ spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk
 
 # Add colData() for Dentate Gyrus
 spe_pseudo$dentate_gyrus <- 0
-spe_pseudo$dentate_gyrus[spe_pseudo$BayesSpace == "1" |
-        spe_pseudo$BayesSpace == "2"|
+spe_pseudo$dentate_gyrus[spe_pseudo$BayesSpace == "2" |
         spe_pseudo$BayesSpace == "4"|
-        spe_pseudo$BayesSpace == "8"] <- 1
+        spe_pseudo$BayesSpace == "6"|
+        spe_pseudo$BayesSpace == "7"] <- 1
 
 # Format spe object for DE models
 colData(spe_pseudo) <- colData(spe_pseudo)[, sort(c(
@@ -149,9 +151,7 @@ EnhancedVolcano(dentate0infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Non-Dentate Gyrus",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(dentate1infant,
@@ -164,9 +164,7 @@ EnhancedVolcano(dentate1infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 dev.off()
@@ -200,9 +198,7 @@ EnhancedVolcano(dentate0teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Non-Dentate Gyrus",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 EnhancedVolcano(dentate1teen,
@@ -215,9 +211,7 @@ EnhancedVolcano(dentate1teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
         'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 dev.off()
@@ -251,9 +245,7 @@ EnhancedVolcano(dentate0adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Non-Dentate Gyrus",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 EnhancedVolcano(dentate1adult,
@@ -266,9 +258,7 @@ EnhancedVolcano(dentate1adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 dev.off()
@@ -302,9 +292,7 @@ EnhancedVolcano(dentate0elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Non-Dentate Gyrus",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 EnhancedVolcano(dentate1elderly,
@@ -317,9 +305,7 @@ EnhancedVolcano(dentate1elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 dev.off()
@@ -341,7 +327,6 @@ infant_dg0 <- data.frame(
 )
 
 infant_dg0 <- infant_dg0 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out1 <- file.path(dir_outputs, "InfantvsNonInfant_NonDentateGyrus_DE")
@@ -359,7 +344,6 @@ infant_dg1 <- data.frame(
 )
 
 infant_dg1 <- infant_dg1 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out2 <- file.path(dir_outputs, "InfantvsNonInfant_DentateGyrus_DE")
@@ -377,7 +361,6 @@ teen_dg0 <- data.frame(
 )
 
 teen_dg0 <- teen_dg0 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out3 <- file.path(dir_outputs, "TeenvsNonTeen_NonDentateGyrus_DE")
@@ -395,7 +378,6 @@ teen_dg1 <- data.frame(
 )
 
 teen_dg1 <- teen_dg1 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out4 <- file.path(dir_outputs, "TeenvsNonTeen_DentateGyrus_DE")
@@ -413,7 +395,6 @@ adult_dg0 <- data.frame(
 )
 
 adult_dg0 <- adult_dg0 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out5 <- file.path(dir_outputs, "AdultvsNonAdult_NonDentateGyrus_DE")
@@ -431,7 +412,6 @@ adult_dg1 <- data.frame(
 )
 
 adult_dg1 <- adult_dg1 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out6 <- file.path(dir_outputs, "AdultvsNonAdult_DentateGyrus_DE")
@@ -449,7 +429,6 @@ elderly_dg0 <- data.frame(
 )
 
 elderly_dg0 <- elderly_dg0 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out7 <- file.path(dir_outputs, "ElderlyvsNonElderly_NonDentateGyrus_DE")
@@ -467,7 +446,6 @@ elderly_dg1 <- data.frame(
 )
 
 elderly_dg1 <- elderly_dg1 %>%
-    filter(adj.P.Val < 0.05) %>%
     dplyr::arrange(pvalue)
 
 fn_out8 <- file.path(dir_outputs, "ElderlyvsNonElderly_DentateGyrus_DE")

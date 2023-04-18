@@ -4,6 +4,8 @@
 # Anthony Ramnauth, Feb 02 2023
 #########################################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(here)
     library(sessioninfo)
@@ -19,53 +21,41 @@ options(stringsAsFactors = FALSE)
 spe <-
     readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-# Load BayesSpace clusters onto spe object
-spe <- cluster_import(
-    spe,
-    cluster_dir = here::here("processed-data", "clustering_results"),
-    prefix = ""
-)
-
 # Ensure that each barcode is unique use spe$key for colnames
 colnames(spe) <- spe$key
 
 # Add variable of age_bin to colData(spe)
 age_df <- data.frame(spe$key, spe$sample_id, spe$age)
 age_df <- age_df %>%
-    mutate(
-        age_bin = case_when(
-            grepl("Br1412", age_df$spe.sample_id) ~ "Teen",
-            grepl("Br2706", age_df$spe.sample_id) ~ "Teen",
-            grepl("Br3942", age_df$spe.sample_id) ~ "Adult",
-            grepl("Br5242", age_df$spe.sample_id) ~ "Elderly",
-            grepl("Br6023", age_df$spe.sample_id) ~ "Elderly",
-            grepl("Br8195", age_df$spe.sample_id) ~ "Infant",
-            grepl("Br8667", age_df$spe.sample_id) ~ "Adult",
-            grepl("Br8686", age_df$spe.sample_id) ~ "Infant"
-        )
-    )
+    mutate(age_bin = case_when(
+        between(spe.age, 0, 3) ~ "Infant",
+        between(spe.age, 13, 19) ~ "Teen",
+        between(spe.age, 20, 50) ~ "Adult",
+        between(spe.age, 60, 100) ~ "Elderly"
+    ))
 
-colData(spe)$age_bin <-
-    factor(age_df$age_bin, levels = c("Infant", "Teen", "Adult", "Elderly"))
+stopifnot(age_df$spe.key == spe$key)
+
+colData(spe)$age_bin <- factor(age_df$age_bin, levels = c("Infant", "Teen", "Adult", "Elderly"))
 
 # Set rownames as gene names since ensemble IDs seem not to work
 rownames(spe) <- rowData(spe)$gene_name
 
 # For ease of referencing, use DG region names instead of BayesSpace cluster #
 Bayes_df <-
-    data.frame(spe$key, spe$sample_id, spe$bayesSpace_harmony_8)
+    data.frame(spe$key, spe$sample_id, spe$bayesSpace_harmony_10)
 Bayes_df <- Bayes_df %>%
     mutate(
         BayesSpace = case_when(
-            spe.bayesSpace_harmony_8 == 1 ~ "ML",
-            spe.bayesSpace_harmony_8 == 2 ~ "CA4",
-            spe.bayesSpace_harmony_8 == 4 ~ "GCL",
-            spe.bayesSpace_harmony_8 == 8 ~ "SGZ",
+            spe.bayesSpace_harmony_10 == 2 ~ "ML",
+            spe.bayesSpace_harmony_10 == 4 ~ "CA3&4",
+            spe.bayesSpace_harmony_10 == 6 ~ "SGZ",
+            spe.bayesSpace_harmony_10 == 7 ~ "GCL",
         )
     )
 
 colData(spe)$BayesSpace <-
-    factor(Bayes_df$BayesSpace, levels = c("ML", "CA4", "GCL", "SGZ"))
+    factor(Bayes_df$BayesSpace, levels = c("ML", "CA3&4", "SGZ", "GCL"))
 
 # Subset for age bin
 spe_infant <- spe[, spe$age_bin == "Infant"]
@@ -78,45 +68,45 @@ spe_elderly <- spe[, spe$age_bin == "Elderly"]
 spe_not_elderly <- spe[, !spe$age_bin == "Elderly"]
 
 # Subset for Dentate Gyrus BayesSpace clusters
-spe_infant <- spe_infant[, spe_infant$bayesSpace_harmony_8 == "1" |
-        spe_infant$bayesSpace_harmony_8 == "2" |
-        spe_infant$bayesSpace_harmony_8 == "4" |
-        spe_infant$bayesSpace_harmony_8 == "8"]
+spe_infant <- spe_infant[, spe_infant$bayesSpace_harmony_10 == "2" |
+        spe_infant$bayesSpace_harmony_10 == "4" |
+        spe_infant$bayesSpace_harmony_10 == "6" |
+        spe_infant$bayesSpace_harmony_10 == "87"]
 
-spe_not_infant <- spe_not_infant[, spe_not_infant$bayesSpace_harmony_8 == "1" |
-        spe_not_infant$bayesSpace_harmony_8 == "2" |
-        spe_not_infant$bayesSpace_harmony_8 == "4" |
-        spe_not_infant$bayesSpace_harmony_8 == "8"]
+spe_not_infant <- spe_not_infant[, spe_not_infant$bayesSpace_harmony_10 == "2" |
+        spe_not_infant$bayesSpace_harmony_10 == "4" |
+        spe_not_infant$bayesSpace_harmony_10 == "6" |
+        spe_not_infant$bayesSpace_harmony_10 == "7"]
 
-spe_teen <- spe_teen[, spe_teen$bayesSpace_harmony_8 == "1" |
-        spe_teen$bayesSpace_harmony_8 == "2" |
-        spe_teen$bayesSpace_harmony_8 == "4" |
-        spe_teen$bayesSpace_harmony_8 == "8"]
+spe_teen <- spe_teen[, spe_teen$bayesSpace_harmony_10 == "2" |
+        spe_teen$bayesSpace_harmony_10 == "4" |
+        spe_teen$bayesSpace_harmony_10 == "6" |
+        spe_teen$bayesSpace_harmony_10 == "7"]
 
-spe_not_teen <- spe_not_teen[, spe_not_teen$bayesSpace_harmony_8 == "1" |
-        spe_not_teen$bayesSpace_harmony_8 == "2" |
-        spe_not_teen$bayesSpace_harmony_8 == "4" |
-        spe_not_teen$bayesSpace_harmony_8 == "8"]
+spe_not_teen <- spe_not_teen[, spe_not_teen$bayesSpace_harmony_10 == "2" |
+        spe_not_teen$bayesSpace_harmony_10 == "4" |
+        spe_not_teen$bayesSpace_harmony_10 == "6" |
+        spe_not_teen$bayesSpace_harmony_10 == "7"]
 
-spe_adult <- spe_adult[, spe_adult$bayesSpace_harmony_8 == "1" |
-        spe_adult$bayesSpace_harmony_8 == "2" |
-        spe_adult$bayesSpace_harmony_8 == "4" |
-        spe_adult$bayesSpace_harmony_8 == "8"]
+spe_adult <- spe_adult[, spe_adult$bayesSpace_harmony_10 == "2" |
+        spe_adult$bayesSpace_harmony_10 == "4" |
+        spe_adult$bayesSpace_harmony_10 == "6" |
+        spe_adult$bayesSpace_harmony_10 == "7"]
 
-spe_not_adult <- spe_not_adult[, spe_not_adult$bayesSpace_harmony_8 == "1" |
-        spe_not_adult$bayesSpace_harmony_8 == "2" |
-        spe_not_adult$bayesSpace_harmony_8 == "4" |
-        spe_not_adult$bayesSpace_harmony_8 == "8"]
+spe_not_adult <- spe_not_adult[, spe_not_adult$bayesSpace_harmony_10 == "2" |
+        spe_not_adult$bayesSpace_harmony_10 == "4" |
+        spe_not_adult$bayesSpace_harmony_10 == "6" |
+        spe_not_adult$bayesSpace_harmony_10 == "7"]
 
-spe_elderly <- spe_elderly[, spe_elderly$bayesSpace_harmony_8 == "1" |
-            spe_elderly$bayesSpace_harmony_8 == "2" |
-            spe_elderly$bayesSpace_harmony_8 == "4" |
-            spe_elderly$bayesSpace_harmony_8 == "8"]
+spe_elderly <- spe_elderly[, spe_elderly$bayesSpace_harmony_10 == "2" |
+            spe_elderly$bayesSpace_harmony_10 == "4" |
+            spe_elderly$bayesSpace_harmony_10 == "6" |
+            spe_elderly$bayesSpace_harmony_10 == "7"]
 
-spe_not_elderly <- spe_not_elderly[, spe_not_elderly$bayesSpace_harmony_8 == "1" |
-            spe_not_elderly$bayesSpace_harmony_8 == "2" |
-            spe_not_elderly$bayesSpace_harmony_8 == "4" |
-            spe_not_elderly$bayesSpace_harmony_8 == "8"]
+spe_not_elderly <- spe_not_elderly[, spe_not_elderly$bayesSpace_harmony_10 == "2" |
+            spe_not_elderly$bayesSpace_harmony_10 == "4" |
+            spe_not_elderly$bayesSpace_harmony_10 == "6" |
+            spe_not_elderly$bayesSpace_harmony_10 == "7"]
 
 # Create cellchat object for age binned spe objects
 cellchat_infant <- createCellChat(object = spe_infant,
@@ -169,7 +159,7 @@ cellchat_not_adult <- subsetData(cellchat_not_adult)
 cellchat_elderly <- subsetData(cellchat_elderly)
 cellchat_not_elderly <- subsetData(cellchat_not_elderly)
 
-future::plan("multiprocess", workers = 4) # do parallel (optional?)
+#future::plan("multiprocess", workers = 4) # do parallel (optional?)
 
 cellchat_infant <- identifyOverExpressedGenes(cellchat_infant)
 cellchat_not_infant <- identifyOverExpressedGenes(cellchat_not_infant)

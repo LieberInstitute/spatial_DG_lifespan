@@ -113,7 +113,7 @@ chosen.elbow <- findElbowPoint(percent.var)
 chosen.elbow
 
 # Elbow plot of PCs & plot Reduced Dimensions
-pdf(file = here::here("plots", "pseudobulked", "Elbow_plot_spe.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "Elbow_plot_spe_wCP.pdf"))
 plot(percent.var, xlab = "PC", ylab = "Variance explained (%)")
 abline(v = chosen.elbow, col = "red")
 dev.off()
@@ -123,7 +123,7 @@ bay_colors <- c("1" = "#5A5156", "2" = "#E4E1E3", "3" = "#DEA0FD", "4" = "#FEAF1
     "10" = "#2ED9FF")
 
 # Plot PCA
-pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA_wCP.pdf"))
 plotPCA(spe_pseudo, colour_by = "sex", ncomponents = 6)
 plotPCA(spe_pseudo, colour_by = "age", ncomponents = 6)
 plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 6)
@@ -137,7 +137,7 @@ plotPCA(spe_pseudo, colour_by = "sample_id", ncomponents = 6)
 plotPCA(spe_pseudo, colour_by = "ncells", ncomponents = 6)
 dev.off()
 
-pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA2vs1.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA2vs1_wCP.pdf"))
 plotPCA(spe_pseudo, colour_by = "sex", ncomponents = 2, point_size = 10)
 plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 2, point_size = 10)
 plotPCA(spe_pseudo, colour_by = "age", ncomponents = 2, point_size = 10)
@@ -163,12 +163,12 @@ head(vars)
 #ENSG00000187961 0.55803110  2.4566959   12.06991  13.69959
 #ENSG00000188290 0.02689731 16.7268561   33.60743  39.98516
 
-pdf(file = here::here("plots", "pseudobulked", "plot_explanatory_vars.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "plot_explanatory_vars_wCP.pdf"))
 plotExplanatoryVariables(vars)
 dev.off()
 
 # save RDS file
-saveRDS(spe_pseudo, file = here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))
+saveRDS(spe_pseudo, file = here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe_wCP.rds"))
 
 
 ## Reproducibility information
