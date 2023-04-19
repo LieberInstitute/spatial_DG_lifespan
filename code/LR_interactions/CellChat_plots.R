@@ -4,6 +4,8 @@
 # Anthony Ramnauth, Feb 08 2023
 ##################################################
 
+setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
+
 suppressPackageStartupMessages({
     library(here)
     library(sessioninfo)
@@ -601,59 +603,59 @@ rankNet(cellchat, comparison = c(7, 8), mode = "comparison",
 
 dev.off()
 
-#################################
-# Visualization of merged dataset
-#################################
+#########################################################################
+# Make separate plots for adjusting fonts and enriched signaling pathways
+#########################################################################
 
-## Infant to Teen
+# Infant
 
 pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "Interation_changes_InfanttoTeen.pdf"
+        "Info_flow_Infant.pdf"
     ),
     width = 8,
-    height = 6
+    height = 9
 )
 
-netVisual_heatmap(cellchat, comparison = c(1, 2),
-    title.name = "Change in number of interactions from Infant to Teen")
+rankNet(cellchat, comparison = c(1, 2), mode = "comparison",
+    stacked = T, do.stat = TRUE)
 
-netVisual_heatmap(
-    cellchat,
-    comparison = c(1, 2),
-    measure = "weight",
-    title.name = "Change in strength of  interactions from Infant to Teen"
+dev.off()
+
+infant.signalp <- c(
+    "MHC-I", "GAS", "GP1BA", "IL1", "CD86", "PRL", "CSF3", "PERIOSTIN", "PDGF",
+    "AGRN", "PTN", "NOTCH"
 )
 
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(1, 2),
-    weight.scale = T,
-    title.name = "Change in number of interactions from Infant to Teen"
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "In_Out_signals_Infant.pdf"
+    ),
+    width = 10,
+    height = 5
 )
 
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(1, 2),
-    weight.scale = T,
-    measure = "weight",
-    title.name = "Change in strength of interactions from Infant to Teen"
-)
-
-infant_teen_count <-
-    compareInteractions(cellchat, show.legend = F, group = c(1, 2))
-
-infant_teen_strength <-
-    compareInteractions(
-        cellchat,
-        show.legend = F,
-        group = c(1, 2),
-        measure = "weight"
+infant_out1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_infant,
+        signaling = infant.signalp,
+        pattern = "outgoing",
+        title = "Infant"
     )
 
-infant_teen_count + infant_teen_strength
+infant_in1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_infant,
+        signaling = infant.signalp,
+        pattern = "incoming",
+        title = "Infant"
+    )
+
+infant_out1 + infant_in1
 
 dev.off()
 
@@ -661,132 +663,75 @@ pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "Pathway_changes_InfanttoTeen.pdf"
+        "LR_bubbleplot_Infant.pdf"
     ),
-    width = 8,
-    height = 10
-)
-
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(1, 2),
-    stacked = T,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Infant to Teen"
-)
-
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(1, 2),
-    stacked = F,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Infant to Teen"
-)
-
-dev.off()
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "LR_changes_InfanttoTeen.pdf"
-    ),
-    width = 12,
-    height = 12
+    width = 6,
+    height = 5
 )
 
 netVisual_bubble(
-    cellchat,
+    cellchat_infant,
+    signaling = infant.signalp,
     sources.use = c(1:4),
     targets.use = c(1:4),
-    comparison = c(1, 2),
-    font.size = 6,
+    remove.isolate = FALSE,
     angle.x = 45
 )
 
 dev.off()
 
-## Infant to Adult
+# Teen
 
 pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "Interation_changes_InfanttoAdult.pdf"
-    ),
-    width = 8,
-    height = 6
-)
-
-netVisual_heatmap(cellchat, comparison = c(1, 3),
-    title.name = "Change in number of interactions from Infant to Adult")
-
-netVisual_heatmap(
-    cellchat,
-    comparison = c(1, 3),
-    measure = "weight",
-    title.name = "Change in strength of  interactions from Infant to Adult"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(1, 3),
-    weight.scale = T,
-    title.name = "Change in number of interactions from Infant to Adult"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(1, 3),
-    weight.scale = T,
-    measure = "weight",
-    title.name = "Change in strength of interactions from Infant to Adult"
-)
-
-infant_adult_count <-
-    compareInteractions(cellchat, show.legend = F, group = c(1, 3))
-
-infant_adult_strength <-
-    compareInteractions(
-        cellchat,
-        show.legend = F,
-        group = c(1, 3),
-        measure = "weight"
-    )
-
-infant_adult_count + infant_adult_strength
-
-dev.off()
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "Pathway_changes_InfanttoAdult.pdf"
+        "Info_flow_Teen.pdf"
     ),
     width = 8,
     height = 10
 )
 
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(1, 3),
-    stacked = T,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Infant to Adult"
+rankNet(cellchat, comparison = c(3, 4), mode = "comparison",
+    stacked = T, do.stat = TRUE)
+
+dev.off()
+
+teen.signalp <- c(
+    "LIFR", "OSM", "MK", "PACAP", "IFN-II", "IFN-I", "CHEMERIN", "CCL", "IL6",
+    "IL1", "GH", "IL2", "VIP", "ACTIVIN", "THBS", "NPR2", "GDNF", "NTS", "ANGPTL",
+    "OPIOID", "BMP10", "NECTIN", "NT", "NEGR", "NGL", "CDH", "SOMATOSTATIN", "BAFF",
+    "SEMA6", "EPHA", "NPY", "AGT", "SEMA7", "NRG", "EPHB", "CADM", "SPP1", "KIT",
+    "EGF", "TENASCIN", "NCAM"
 )
 
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(1, 3),
-    stacked = F,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Infant to Adult"
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "In_Out_signals_Teen.pdf"
+    ),
+    width = 11,
+    height = 7
 )
+
+teen_out1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_teen,
+        signaling = teen.signalp,
+        pattern = "outgoing",
+        title = "Teen"
+    )
+
+teen_in1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_teen,
+        signaling = teen.signalp,
+        pattern = "incoming",
+        title = "Teen"
+    )
+
+teen_out1 + teen_in1
 
 dev.off()
 
@@ -794,102 +739,74 @@ pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "LR_changes_InfanttoAdult.pdf"
+        "LR_bubbleplot_Teen.pdf"
     ),
-    width = 12,
-    height = 12
+    width = 6,
+    height = 14
 )
 
 netVisual_bubble(
-    cellchat,
+    cellchat_teen,
+    signaling = teen.signalp,
     sources.use = c(1:4),
     targets.use = c(1:4),
-    comparison = c(1, 3),
-    font.size = 6,
+    remove.isolate = FALSE,
     angle.x = 45
 )
 
 dev.off()
 
-## Infant to Elderly
+# Adult
 
 pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "Interation_changes_InfanttoElderly.pdf"
-    ),
-    width = 8,
-    height = 6
-)
-
-netVisual_heatmap(cellchat, comparison = c(1, 4),
-    title.name = "Change in number of interactions from Infant to Elderly")
-
-netVisual_heatmap(
-    cellchat,
-    comparison = c(1, 4),
-    measure = "weight",
-    title.name = "Change in strength of  interactions from Infant to Elderly"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(1, 4),
-    weight.scale = T,
-    title.name = "Change in number of interactions from Infant to Elderly"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(1, 4),
-    weight.scale = T,
-    measure = "weight",
-    title.name = "Change in strength of interactions from Infant to Elderly"
-)
-
-infant_elderly_count <-
-    compareInteractions(cellchat, show.legend = F, group = c(1, 4))
-
-infant_elderly_strength <-
-    compareInteractions(
-        cellchat,
-        show.legend = F,
-        group = c(1, 4),
-        measure = "weight"
-    )
-
-infant_elderly_count + infant_elderly_strength
-
-dev.off()
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "Pathway_changes_InfanttoElderly.pdf"
+        "Info_flow_Adult.pdf"
     ),
     width = 8,
     height = 10
 )
 
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(1, 4),
-    stacked = T,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Infant to Elderly"
+rankNet(cellchat, comparison = c(5, 6), mode = "comparison",
+    stacked = T, do.stat = TRUE)
+
+dev.off()
+
+adult.signalp <- c(
+    "MK", "IL6", "ANGPTL", "ENHO", "VISTA", "IL1", "LIGHT", "MELANOCORTIN", "VIP",
+    "THBS", "ANGPT", "OCLN", "MHC-II", "CXCL", "COMPLEMENT", "UCN", "CD6", "ALCAM",
+    "TAC", "BTLA", "MIF", "CD23", "CD99", "SPP1", "PARs", "KIT", "VTN", "PSAP",
+    "NCAM", "AGT"
 )
 
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(1, 4),
-    stacked = F,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Infant to Elderly"
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "In_Out_signals_Adult.pdf"
+    ),
+    width = 11,
+    height = 5
 )
+
+adult_out1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_adult,
+        signaling = adult.signalp,
+        pattern = "outgoing",
+        title = "Adult"
+    )
+
+adult_in1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_adult,
+        signaling = adult.signalp,
+        pattern = "incoming",
+        title = "Adult"
+    )
+
+adult_out1 + adult_in1
 
 dev.off()
 
@@ -897,278 +814,73 @@ pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "LR_changes_InfanttoElderly.pdf"
+        "LR_bubbleplot_Adult.pdf"
     ),
-    width = 12,
-    height = 12
+    width = 6,
+    height = 10
 )
 
 netVisual_bubble(
-    cellchat,
+    cellchat_adult,
+    signaling = adult.signalp,
     sources.use = c(1:4),
     targets.use = c(1:4),
-    comparison = c(1, 4),
-    font.size = 6,
+    remove.isolate = FALSE,
     angle.x = 45
 )
 
 dev.off()
 
-## Teen to Adult
+# Elderly
 
 pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "Interation_changes_TeentoAdult.pdf"
-    ),
-    width = 8,
-    height = 6
-)
-
-netVisual_heatmap(cellchat, comparison = c(2, 3),
-    title.name = "Change in number of interactions from Teen to Adult")
-
-netVisual_heatmap(
-    cellchat,
-    comparison = c(2, 3),
-    measure = "weight",
-    title.name = "Change in strength of  interactions from Teen to Adult"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(2, 3),
-    weight.scale = T,
-    title.name = "Change in number of interactions from Teen to Adult"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(2, 3),
-    weight.scale = T,
-    measure = "weight",
-    title.name = "Change in strength of interactions from Teen to Adult"
-)
-
-teen_adult_count <-
-    compareInteractions(cellchat, show.legend = F, group = c(2, 3))
-
-teen_adult_strength <-
-    compareInteractions(
-        cellchat,
-        show.legend = F,
-        group = c(2, 3),
-        measure = "weight"
-    )
-
-teen_adult_count + teen_adult_strength
-
-dev.off()
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "Pathway_changes_TeentoAdult.pdf"
+        "Info_flow_Elderly.pdf"
     ),
     width = 8,
     height = 10
 )
 
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(2, 3),
-    stacked = T,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Teen to Adult"
-)
-
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(2, 3),
-    stacked = F,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Teen to Adult"
-)
+rankNet(cellchat, comparison = c(7, 8), mode = "comparison",
+    stacked = T, do.stat = TRUE)
 
 dev.off()
+
+elderly.signalp <- c(
+    "NTS", "PACAP", "NGF", "MHC-II", "CLDN", "APP", "CD99", "CSF", "UCN",
+    "VEGI", "MIF", "CD46", "VISTA", "OCLN", "SEMA3", "TENASCIN", "JAM", "MHC-I",
+    "FGF", "NPY", "SPP1", "GRN", "PSAP", "LAMININ"
+)
 
 pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "LR_changes_TeentoAdult.pdf"
+        "In_Out_signals_Elderly.pdf"
     ),
-    width = 12,
-    height = 12
+    width = 11,
+    height = 5
 )
 
-netVisual_bubble(
-    cellchat,
-    sources.use = c(1:4),
-    targets.use = c(1:4),
-    comparison = c(2, 3),
-    font.size = 6,
-    angle.x = 45
-)
-
-dev.off()
-
-## Teen to Elderly
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "Interation_changes_TeentoElderly.pdf"
-    ),
-    width = 8,
-    height = 6
-)
-
-netVisual_heatmap(cellchat, comparison = c(2, 4),
-    title.name = "Change in number of interactions from Teen to Elderly")
-
-netVisual_heatmap(
-    cellchat,
-    comparison = c(2, 4),
-    measure = "weight",
-    title.name = "Change in strength of  interactions from Teen to Elderly"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(2, 4),
-    weight.scale = T,
-    title.name = "Change in number of interactions from Teen to Elderly"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(2, 4),
-    weight.scale = T,
-    measure = "weight",
-    title.name = "Change in strength of interactions from Teen to Elderly"
-)
-
-teen_elderly_count <-
-    compareInteractions(cellchat, show.legend = F, group = c(2, 4))
-
-teen_elderly_strength <-
-    compareInteractions(
-        cellchat,
-        show.legend = F,
-        group = c(2, 4),
-        measure = "weight"
+elderly_out1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_elderly,
+        signaling = elderly.signalp,
+        pattern = "outgoing",
+        title = "Elderly"
     )
 
-teen_elderly_count + teen_elderly_strength
-
-dev.off()
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "Pathway_changes_TeentoElderly.pdf"
-    ),
-    width = 8,
-    height = 10
-)
-
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(2, 4),
-    stacked = T,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Teen to Elderly"
-)
-
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(2, 4),
-    stacked = F,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Teen to Elderly"
-)
-
-dev.off()
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "LR_changes_TeentoElderly.pdf"
-    ),
-    width = 12,
-    height = 12
-)
-
-netVisual_bubble(
-    cellchat,
-    sources.use = c(1:4),
-    targets.use = c(1:4),
-    comparison = c(2, 4),
-    font.size = 6,
-    angle.x = 45
-)
-
-dev.off()
-
-## Adult to Elderly
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "Interation_changes_AdulttoElderly.pdf"
-    ),
-    width = 8,
-    height = 6
-)
-
-netVisual_heatmap(cellchat, comparison = c(3, 4),
-    title.name = "Change in number of interactions from Adult to Elderly")
-
-netVisual_heatmap(
-    cellchat,
-    comparison = c(3, 4),
-    measure = "weight",
-    title.name = "Change in strength of  interactions from Adult to Elderly"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(3, 4),
-    weight.scale = T,
-    title.name = "Change in number of interactions from Adult to Elderly"
-)
-
-netVisual_diffInteraction(
-    cellchat,
-    comparison = c(3, 4),
-    weight.scale = T,
-    measure = "weight",
-    title.name = "Change in strength of interactions from Adult to Elderly"
-)
-
-adult_elderly_count <-
-    compareInteractions(cellchat, show.legend = F, group = c(3, 4))
-
-adult_elderly_strength <-
-    compareInteractions(
-        cellchat,
-        show.legend = F,
-        group = c(3, 4),
-        measure = "weight"
+elderly_in1 <-
+    netAnalysis_signalingRole_heatmap(
+        cellchat_elderly,
+        signaling = elderly.signalp,
+        pattern = "incoming",
+        title = "Elderly"
     )
 
-adult_elderly_count + adult_elderly_strength
+elderly_out1 + elderly_in1
 
 dev.off()
 
@@ -1176,48 +888,18 @@ pdf(
     file = here::here(
         "plots",
         "LR_interactions",
-        "Pathway_changes_AdulttoElderly.pdf"
+        "LR_bubbleplot_Elderly.pdf"
     ),
-    width = 8,
-    height = 10
-)
-
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(3, 4),
-    stacked = T,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Adult to Elderly"
-)
-
-rankNet(
-    cellchat,
-    mode = "comparison",
-    comparison = c(3, 4),
-    stacked = F,
-    do.stat = TRUE,
-    title = "Changed or conserved pathways from Adult to Elderly"
-)
-
-dev.off()
-
-pdf(
-    file = here::here(
-        "plots",
-        "LR_interactions",
-        "LR_changes_AdulttoElderly.pdf"
-    ),
-    width = 12,
-    height = 12
+    width = 6,
+    height = 11
 )
 
 netVisual_bubble(
-    cellchat,
+    cellchat_elderly,
+    signaling = elderly.signalp,
     sources.use = c(1:4),
     targets.use = c(1:4),
-    comparison = c(3, 4),
-    font.size = 6,
+    remove.isolate = FALSE,
     angle.x = 45
 )
 

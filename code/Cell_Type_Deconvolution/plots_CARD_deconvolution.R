@@ -21,47 +21,71 @@ suppressPackageStartupMessages({
 })
 
 # Load SPE
-spe <- readRDS(here::here("processed-data", "Cell_Type_Deconvolution", "harmony_spe_CARD.rds"))
+spe <- readRDS(here::here("processed-data", "Cell_Type_Deconvolution", "harmony_spe_CARD_sestan.rds"))
 
 #############################################################
 # Scatterpie plots for deconvoluted cell types of Visium data
 #############################################################
 
 Br1412 <- spe[, spe$sample_id == "Br1412"]
-Br1412y <- as.matrix(colData(Br1412)[, c(53:83)])
+Br1412y <- as.matrix(colData(Br1412)[, c(44:70)])
 
 Br2706 <- spe[, spe$sample_id == "Br2706"]
-Br2706y <- as.matrix(colData(Br2706)[, c(53:83)])
+Br2706y <- as.matrix(colData(Br2706)[, c(44:70)])
+
+Br2720 <- spe[, spe$sample_id == "Br2720"]
+Br2720y <- as.matrix(colData(Br2720)[, c(44:70)])
 
 Br3942 <- spe[, spe$sample_id == "Br3942"]
-Br3942y <- as.matrix(colData(Br3942)[, c(53:83)])
+Br3942y <- as.matrix(colData(Br3942)[, c(44:70)])
 
 Br5242 <- spe[, spe$sample_id == "Br5242"]
-Br5242y <- as.matrix(colData(Br5242)[, c(53:83)])
+Br5242y <- as.matrix(colData(Br5242)[, c(44:70)])
+
+Br5699_new <- spe[, spe$sample_id == "Br5699_new"]
+Br5699_newy <- as.matrix(colData(Br5699_new)[, c(44:70)])
 
 Br6023 <- spe[, spe$sample_id == "Br6023"]
-Br6023y <- as.matrix(colData(Br6023)[, c(53:83)])
+Br6023y <- as.matrix(colData(Br6023)[, c(44:70)])
+
+Br6129_new <- spe[, spe$sample_id == "Br6129_new"]
+Br6129_newy <- as.matrix(colData(Br6129_new)[, c(44:70)])
+
+Br6299_new <- spe[, spe$sample_id == "Br6299_new"]
+Br6299_newy <- as.matrix(colData(Br6299_new)[, c(44:70)])
+
+Br6522 <- spe[, spe$sample_id == "Br6522"]
+Br6522y <- as.matrix(colData(Br6522)[, c(44:70)])
+
+Br8181 <- spe[, spe$sample_id == "Br8181"]
+Br8181y <- as.matrix(colData(Br8181)[, c(44:70)])
 
 Br8195 <- spe[, spe$sample_id == "Br8195"]
-Br8195y <- as.matrix(colData(Br8195)[, c(53:83)])
+Br8195y <- as.matrix(colData(Br8195)[, c(44:70)])
+
+Br8533 <- spe[, spe$sample_id == "Br8533"]
+Br8533y <- as.matrix(colData(Br8533)[, c(44:70)])
 
 Br8667 <- spe[, spe$sample_id == "Br8667"]
-Br8667y <- as.matrix(colData(Br8667)[, c(53:83)])
+Br8667y <- as.matrix(colData(Br8667)[, c(44:70)])
 
 Br8686 <- spe[, spe$sample_id == "Br8686"]
-Br8686y <- as.matrix(colData(Br8686)[, c(53:83)])
+Br8686y <- as.matrix(colData(Br8686)[, c(44:70)])
 
-cell_colors <- c("Oligo_1" = "plum", "Oligo_2" = "plum4", "Microglia" = "tan3", "Macrophage" = "tan4",
-    "OPC_1" = "goldenrod", "OPC_2" = "goldenrod3", "InN_LAMP5" = "springgreen", "InN_VIP" = "green1",
-    "InN_SST" = "springgreen2", "InN_PV" = "green", "InN_NR2F2" = "green2", "InN_LHX6" = "springgreen",
-    "InN_MEIS2" = "springgreen3", "InN_NPY" = "green3", "Cajal_Ret" = "black", "Vasc_LM" = "firebrick1",
-    "Artl_S_Muscle" = "red1","Pericyte" = "red2", "Endoth" = "red", "Vasc_S_Muscle" = "firebrick",
-    "T_cell" = "brown1", "Myeloid" = "tan", "COP" = "goldenrod4", "GC_1" = "blue2", "GC_2" = "deepskyblue3",
-    "CA3_N" = "deepskyblue", "Mossy" = "blue1", "CA1_d_N" = "blue", "CA1_v_N" = "deepskyblue1",
-    "SUB_N" = "blue3", "CA2_N" = "deepskyblue2", "Astro_1" = "yellow", "Astro_2" = "yellow3")
+Br8700 <- spe[, spe$sample_id == "Br8700"]
+Br8700y <- as.matrix(colData(Br8700)[, c(44:70)])
+
+
+cell_colors <- c("Oligo" = "plum4","Microglia" = "tan3", "Macro" = "tan4","OPC" = "goldenrod",
+    "InN_LAMP5" = "springgreen", "InN_VIP" = "green1", "InN_SST" = "springgreen2", "InN_PV" = "green",
+    "InN_NR2F2" = "green2", "InN_LHX6" = "springgreen", "InN_MEIS2" = "springgreen3", "InN_NPY" = "green3",
+    "VLMC" = "firebrick1", "aSMC" = "red1","Pericyte" = "red2", "Endoth" = "red", "vSMC" = "firebrick",
+    "T_Cell" = "brown1", "Myeloid" = "tan", "COP" = "goldenrod4", "GC" = "blue2","CA3_N" = "navy",
+    "Mossy" = "blue1", "CA1_N" = "blue3","CA2_N" = "blue4", "Astro_1" = "yellow", "Astro_2" = "yellow3")
 
 
 pdf(file = here::here("plots", "Cell_Type_Deconvolution", "Scatterpie_plots.pdf"), width = 12, height = 8)
+
 plotSpatialScatterpie(
     x = Br1412,
     y = Br1412y,
@@ -76,6 +100,14 @@ plotSpatialScatterpie(
 ) +
     scale_fill_manual(values = cell_colors) +
     labs(title = "Br2706 cell-type deconvolution") +
+    scale_y_reverse()
+
+plotSpatialScatterpie(
+    x = Br2720,
+    y = Br2720y,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br2720 cell-type deconvolution") +
     scale_y_reverse()
 
 plotSpatialScatterpie(
@@ -95,6 +127,14 @@ plotSpatialScatterpie(
     scale_y_reverse()
 
 plotSpatialScatterpie(
+    x = Br5699_new,
+    y = Br5699_newy,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br5699_new cell-type deconvolution") +
+    scale_y_reverse()
+
+plotSpatialScatterpie(
     x = Br6023,
     y = Br6023y,
 ) +
@@ -103,11 +143,51 @@ plotSpatialScatterpie(
     scale_y_reverse()
 
 plotSpatialScatterpie(
+    x = Br6129_new,
+    y = Br6129_newy,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br6129_new cell-type deconvolution") +
+    scale_y_reverse()
+
+plotSpatialScatterpie(
+    x = Br6299_new,
+    y = Br6299_newy,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br6299_new cell-type deconvolution") +
+    scale_y_reverse()
+
+plotSpatialScatterpie(
+    x = Br6522,
+    y = Br6522y,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br6522 cell-type deconvolution") +
+    scale_y_reverse()
+
+plotSpatialScatterpie(
+    x = Br8181,
+    y = Br8181y,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br8181 cell-type deconvolution") +
+    scale_y_reverse()
+
+plotSpatialScatterpie(
     x = Br8195,
     y = Br8195y,
 ) +
     scale_fill_manual(values = cell_colors) +
     labs(title = "Br8195 cell-type deconvolution") +
+    scale_y_reverse()
+
+plotSpatialScatterpie(
+    x = Br8533,
+    y = Br8533y,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br8533 cell-type deconvolution") +
     scale_y_reverse()
 
 plotSpatialScatterpie(
@@ -126,20 +206,28 @@ plotSpatialScatterpie(
     labs(title = "Br8686 cell-type deconvolution") +
     scale_y_reverse()
 
+plotSpatialScatterpie(
+    x = Br8700,
+    y = Br8700y,
+) +
+    scale_fill_manual(values = cell_colors) +
+    labs(title = "Br8700 cell-type deconvolution") +
+    scale_y_reverse()
+
 dev.off()
 
 #############################################################
 # Plot cell-type proportions separately for each capture area
 #############################################################
 
-spe_cells <- as.data.frame(cbind(colData(spe)$sample_id, colData(spe)[, c(53:83)], spatialCoords(spe)))
+spe_cells <- as.data.frame(cbind(colData(spe)$sample_id, colData(spe)[, c(44:70)], spatialCoords(spe)))
 spe_cells <- rename(spe_cells, "sample_id" = "colData.spe..sample_id")
 
 pdf(file = here::here("plots", "Cell_Type_Deconvolution", "Cell_type_full_scale_proportions.pdf"))
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA3_N), size = 0.09) +
+        color = CA3_N), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "CA3_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -154,9 +242,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA1_d_N), size = 0.09) +
+        color = CA1_N), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "CA1_d_N_cell_type__proportions") +
+    labs(title = "CA1_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -169,22 +257,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA1_v_N), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "CA1_v_N_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Mossy), size = 0.09) +
+        color = Mossy), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "Mossy_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -199,7 +272,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA2_N), size = 0.09) +
+        color = CA2_N), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "CA2_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -214,9 +287,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = GC_1), size = 0.09) +
+        color = GC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "GC_1_cell_type__proportions") +
+    labs(title = "GC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -229,22 +302,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = GC_2), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "GC_2_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_LAMP5), size = 0.09) +
+        color = InN_LAMP5), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_LAMP5_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -259,7 +317,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_PV), size = 0.09) +
+        color = InN_PV), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_PV_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -274,7 +332,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_LHX6), size = 0.09) +
+        color = InN_LHX6), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_LHX6_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -289,7 +347,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_VIP), size = 0.09) +
+        color = InN_VIP), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_VIP_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -304,7 +362,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_SST), size = 0.09) +
+        color = InN_SST), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_SST_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -319,7 +377,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_NR2F2), size = 0.09) +
+        color = InN_NR2F2), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_NR2F2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -334,7 +392,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_MEIS2), size = 0.09) +
+        color = InN_MEIS2), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_MEIS2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -349,7 +407,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_NPY), size = 0.09) +
+        color = InN_NPY), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "InN_NPY_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -364,9 +422,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Oligo_1), size = 0.09) +
+        color = Oligo), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "Oligo_1_cell_type__proportions") +
+    labs(title = "Oligo_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -379,22 +437,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Oligo_2), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "Oligo_2_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Microglia), size = 0.09) +
+        color = Microglia), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "Microglia_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -409,9 +452,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = OPC_1), size = 0.09) +
+        color = OPC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "OPC_1_cell_type__proportions") +
+    labs(title = "OPC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -424,22 +467,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = OPC_2), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "OPC_2_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Endoth), size = 0.09) +
+        color = Endoth), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "Endoth_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -454,9 +482,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Vasc_S_Muscle), size = 0.09) +
+        color = vSMC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "Vasc_S_Muscle_cell_type__proportions") +
+    labs(title = "vSMC_Muscle_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -469,9 +497,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Artl_S_Muscle), size = 0.09) +
+        color = aSMC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "Artl_S_Muscle_cell_type__proportions") +
+    labs(title = "aSMC_Muscle_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -484,9 +512,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Vasc_LM), size = 0.09) +
+        color = VLMC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "Vasc_LM_cell_type__proportions") +
+    labs(title = "VLMC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -499,9 +527,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Macrophage), size = 0.09) +
+        color = Macro), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "Macrophage_cell_type__proportions") +
+    labs(title = "Macro_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -514,7 +542,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = COP), size = 0.09) +
+        color = COP), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "COP_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -529,9 +557,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = T_cell), size = 0.09) +
+        color = T_Cell), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
-    labs(title = "T_cell_type__proportions") +
+    labs(title = "T_Cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -544,7 +572,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Pericyte), size = 0.09) +
+        color = Pericyte), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "Pericyte_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -559,7 +587,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Myeloid), size = 0.09) +
+        color = Myeloid), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "Myeloid_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -574,7 +602,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Astro_1), size = 0.09) +
+        color = Astro_1), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "Astro_1_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -589,7 +617,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Astro_2), size = 0.09) +
+        color = Astro_2), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion", limits = c(0, 1)) +
     labs(title = "Astro_2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -612,7 +640,7 @@ pdf(file = here::here("plots", "Cell_Type_Deconvolution", "Cell_type_relative_sc
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA3_N), size = 0.09) +
+        color = CA3_N), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "CA3_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -627,9 +655,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA1_d_N), size = 0.09) +
+        color = CA1_N), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "CA1_d_N_cell_type__proportions") +
+    labs(title = "CA1_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -642,22 +670,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA1_v_N), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "CA1_v_N_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Mossy), size = 0.09) +
+        color = Mossy), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "Mossy_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -672,7 +685,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = CA2_N), size = 0.09) +
+        color = CA2_N), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "CA2_N_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -687,9 +700,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = GC_1), size = 0.09) +
+        color = GC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "GC_1_cell_type__proportions") +
+    labs(title = "GC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -702,22 +715,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = GC_2), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "GC_2_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_LAMP5), size = 0.09) +
+        color = InN_LAMP5), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_LAMP5_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -732,7 +730,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_PV), size = 0.09) +
+        color = InN_PV), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_PV_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -747,7 +745,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_LHX6), size = 0.09) +
+        color = InN_LHX6), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_LHX6_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -762,7 +760,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_VIP), size = 0.09) +
+        color = InN_VIP), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_VIP_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -777,7 +775,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_SST), size = 0.09) +
+        color = InN_SST), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_SST_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -792,7 +790,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_NR2F2), size = 0.09) +
+        color = InN_NR2F2), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_NR2F2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -807,7 +805,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_MEIS2), size = 0.09) +
+        color = InN_MEIS2), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_MEIS2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -822,7 +820,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = InN_NPY), size = 0.09) +
+        color = InN_NPY), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "InN_NPY_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -837,9 +835,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Oligo_1), size = 0.09) +
+        color = Oligo), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Oligo_1_cell_type__proportions") +
+    labs(title = "Oligo_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -852,23 +850,8 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Oligo_2), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Oligo_2_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Microglia), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion") +
+        color = Microglia), size = 0.095) +
+    scale_color_viridis(option = "turbo", name = "proportion",) +
     labs(title = "Microglia_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
@@ -882,9 +865,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = OPC_1), size = 0.09) +
+        color = OPC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "OPC_1_cell_type__proportions") +
+    labs(title = "OPC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -897,22 +880,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = OPC_2), size = 0.09) +
-    scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "OPC_2_cell_type__proportions") +
-    facet_wrap(vars(sample_id)) +
-    coord_fixed() +
-    scale_y_reverse() +
-    theme_bw() +
-    theme(panel.background = element_rect(fill = "white"),
-        panel.grid = element_line(color = "white"),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-
-ggplot(spe_cells) +
-    geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Endoth), size = 0.09) +
+        color = Endoth), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "Endoth_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -927,9 +895,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Vasc_S_Muscle), size = 0.09) +
+        color = vSMC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Vasc_S_Muscle_cell_type__proportions") +
+    labs(title = "vSMC_Muscle_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -942,9 +910,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Artl_S_Muscle), size = 0.09) +
+        color = aSMC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Artl_S_Muscle_cell_type__proportions") +
+    labs(title = "aSMC_Muscle_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -957,9 +925,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Vasc_LM), size = 0.09) +
+        color = VLMC), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Vasc_LM_cell_type__proportions") +
+    labs(title = "VLMC_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -972,9 +940,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Macrophage), size = 0.09) +
+        color = Macro), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "Macrophage_cell_type__proportions") +
+    labs(title = "Macro_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -987,7 +955,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = COP), size = 0.09) +
+        color = COP), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "COP_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -1002,9 +970,9 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = T_cell), size = 0.09) +
+        color = T_Cell), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
-    labs(title = "T_cell_type__proportions") +
+    labs(title = "T_Cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
     coord_fixed() +
     scale_y_reverse() +
@@ -1017,7 +985,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Pericyte), size = 0.09) +
+        color = Pericyte), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "Pericyte_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -1032,7 +1000,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Myeloid), size = 0.09) +
+        color = Myeloid), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "Myeloid_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -1047,7 +1015,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Astro_1), size = 0.09) +
+        color = Astro_1), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "Astro_1_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -1062,7 +1030,7 @@ ggplot(spe_cells) +
 
 ggplot(spe_cells) +
     geom_point(aes(x = pxl_col_in_fullres, y = pxl_row_in_fullres,
-        color = Astro_2), size = 0.09) +
+        color = Astro_2), size = 0.095) +
     scale_color_viridis(option = "turbo", name = "proportion") +
     labs(title = "Astro_2_cell_type__proportions") +
     facet_wrap(vars(sample_id)) +
@@ -1076,811 +1044,6 @@ ggplot(spe_cells) +
         axis.ticks = element_blank())
 
 dev.off()
-
-############################################################################
-# Plot correlation matrix for cell-type proportions across spatial locations
-############################################################################
-
-# Load BayesSpace clusters onto spe object
-spe <- cluster_import(
-    spe,
-    cluster_dir = here::here("processed-data", "clustering_results"),
-    prefix = ""
-)
-
-# Add variable of age_bin to colData(spe)
-age_df <- data.frame(spe$key, spe$sample_id, spe$age)
-age_df <- age_df %>%
-    mutate(age_bin = case_when(
-        grepl("Br1412", age_df$spe.sample_id) ~ "Teen",
-        grepl("Br2706", age_df$spe.sample_id) ~ "Teen",
-        grepl("Br3942", age_df$spe.sample_id) ~ "Adult",
-        grepl("Br5242", age_df$spe.sample_id) ~ "Elderly",
-        grepl("Br6023", age_df$spe.sample_id) ~ "Elderly",
-        grepl("Br8195", age_df$spe.sample_id) ~ "Infant",
-        grepl("Br8667", age_df$spe.sample_id) ~ "Adult",
-        grepl("Br8686", age_df$spe.sample_id) ~ "Infant"
-    ))
-
-colData(spe)$age_bin <- factor(age_df$age_bin, levels = c("Infant", "Teen", "Adult", "Elderly"))
-
-# All Visium spots
-
-all_spe_cells <- spe_cells
-all_spe_cells$sample_id <- NULL
-all_spe_cells$pxl_col_in_fullres <- NULL
-all_spe_cells$pxl_row_in_fullres <- NULL
-
-#reorder correlation by column index
-all_spe_cells <- all_spe_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-
-cor_all_spe_cells = cor(as.matrix(all_spe_cells))
-
-# Age groups for all Visium spots
-infant_spe <- spe[, spe$age_bin == "Infant"]
-infant_cells <- as.data.frame(colData(infant_spe)[, c(44:66)])
-infant_cells <- infant_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_infant_cells = cor(as.matrix(infant_cells))
-
-teen_spe <- spe[, spe$age_bin == "Teen"]
-teen_cells <- as.data.frame(colData(teen_spe)[, c(44:66)])
-teen_cells <- teen_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_teen_cells = cor(as.matrix(teen_cells))
-
-adult_spe <- spe[, spe$age_bin == "Adult"]
-adult_cells <- as.data.frame(colData(adult_spe)[, c(44:66)])
-adult_cells <- adult_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_adult_cells = cor(as.matrix(adult_cells))
-
-elderly_spe <- spe[, spe$age_bin == "Elderly"]
-elderly_cells <- as.data.frame(colData(elderly_spe)[, c(44:66)])
-elderly_cells <- elderly_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_elderly_cells = cor(as.matrix(elderly_cells))
-
-
-pdf(file = here::here("plots", "Cell_Type_Deconvolution", "cell_type_correlation_matrix_all_spots.pdf"),
-    width = 12, height = 8)
-ggcorrplot(cor_all_spe_cells, hc.order = F,
-    outline.color = "white",
-    tl.srt = 60,
-    tl.cex = 18,
-    lab_size = 7,
-    colors = c("#91a28c","white","#8f2c37"))+
-    theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-        panel.background = element_blank(),
-        plot.background = element_blank(),
-        panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-        axis.text = element_text(size = 12),
-        axis.ticks =element_blank(),
-        axis.title =element_blank(),
-        legend.title=element_text(size = 16,face="bold"),
-        legend.text=element_text(size = 16),
-        legend.key = element_rect(colour = "transparent", fill = "white"),
-        legend.key.size = unit(0.45, 'cm')) +
-    coord_fixed()+
-    ggtitle("Correlations in cell-type proportion across all Visium spatial locations") +
-    theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_infant_cells, hc.order = F,
-    outline.color = "white",
-    tl.srt = 60,
-    tl.cex = 18,
-    lab_size = 7,
-    colors = c("#91a28c","white","#8f2c37"))+
-    theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-        panel.background = element_blank(),
-        plot.background = element_blank(),
-        panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-        axis.text = element_text(size = 12),
-        axis.ticks =element_blank(),
-        axis.title =element_blank(),
-        legend.title=element_text(size = 16,face="bold"),
-        legend.text=element_text(size = 16),
-        legend.key = element_rect(colour = "transparent", fill = "white"),
-        legend.key.size = unit(0.45, 'cm')) +
-    coord_fixed()+
-    ggtitle("Correlations in cell-type proportion across Infant Visium spatial locations") +
-    theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_teen_cells, hc.order = F,
-    outline.color = "white",
-    tl.srt = 60,
-    tl.cex = 18,
-    lab_size = 7,
-    colors = c("#91a28c","white","#8f2c37"))+
-    theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-        panel.background = element_blank(),
-        plot.background = element_blank(),
-        panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-        axis.text = element_text(size = 12),
-        axis.ticks =element_blank(),
-        axis.title =element_blank(),
-        legend.title=element_text(size = 16,face="bold"),
-        legend.text=element_text(size = 16),
-        legend.key = element_rect(colour = "transparent", fill = "white"),
-        legend.key.size = unit(0.45, 'cm')) +
-    coord_fixed()+
-    ggtitle("Correlations in cell-type proportion across Teen Visium spatial locations") +
-    theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_adult_cells, hc.order = F,
-    outline.color = "white",
-    tl.srt = 60,
-    tl.cex = 18,
-    lab_size = 7,
-    colors = c("#91a28c","white","#8f2c37"))+
-    theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-        panel.background = element_blank(),
-        plot.background = element_blank(),
-        panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-        axis.text = element_text(size = 12),
-        axis.ticks =element_blank(),
-        axis.title =element_blank(),
-        legend.title=element_text(size = 16,face="bold"),
-        legend.text=element_text(size = 16),
-        legend.key = element_rect(colour = "transparent", fill = "white"),
-        legend.key.size = unit(0.45, 'cm')) +
-    coord_fixed()+
-    ggtitle("Correlations in cell-type proportion across Adult Visium spatial locations") +
-    theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_elderly_cells, hc.order = F,
-    outline.color = "white",
-    tl.srt = 60,
-    tl.cex = 18,
-    lab_size = 7,
-    colors = c("#91a28c","white","#8f2c37"))+
-    theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-        panel.background = element_blank(),
-        plot.background = element_blank(),
-        panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-        axis.text = element_text(size = 12),
-        axis.ticks =element_blank(),
-        axis.title =element_blank(),
-        legend.title=element_text(size = 16,face="bold"),
-        legend.text=element_text(size = 16),
-        legend.key = element_rect(colour = "transparent", fill = "white"),
-        legend.key.size = unit(0.45, 'cm')) +
-    coord_fixed()+
-    ggtitle("Correlations in cell-type proportion across Elderly Visium spatial locations") +
-    theme(plot.title = element_text(size=14,face="bold"))
-dev.off()
-
-##############################################
-# subset spe data based on BayesSpace clusters
-##############################################
-
-###########
-# Cluster 4
-###########
-
-spe_cluster4 <- spe[, spe$bayesSpace_harmony_8 == 4]
-cluster4_cells <- as.data.frame(colData(spe_cluster4)[, c(44:66)])
-cluster4_cells <- cluster4_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster4_cells = cor(as.matrix(cluster4_cells))
-
-# Age groups for cluster 4
-infant_cluster4 <- spe_cluster4[, spe_cluster4$age_bin == "Infant"]
-cluster4_infant_cells <- as.data.frame(colData(infant_cluster4)[, c(44:66)])
-cluster4_infant_cells <- cluster4_infant_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster4_infant_cells = cor(as.matrix(cluster4_infant_cells))
-
-teen_cluster4 <- spe_cluster4[, spe_cluster4$age_bin == "Teen"]
-cluster4_teen_cells <- as.data.frame(colData(teen_cluster4)[, c(44:66)])
-cluster4_teen_cells <- cluster4_teen_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster4_teen_cells = cor(as.matrix(cluster4_teen_cells))
-
-adult_cluster4 <- spe_cluster4[, spe_cluster4$age_bin == "Adult"]
-cluster4_adult_cells <- as.data.frame(colData(adult_cluster4)[, c(44:66)])
-cluster4_adult_cells <- cluster4_adult_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster4_adult_cells = cor(as.matrix(cluster4_adult_cells))
-
-elderly_cluster4 <- spe_cluster4[, spe_cluster4$age_bin == "Elderly"]
-cluster4_elderly_cells <- as.data.frame(colData(elderly_cluster4)[, c(44:66)])
-cluster4_elderly_cells <- cluster4_elderly_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster4_elderly_cells = cor(as.matrix(cluster4_elderly_cells))
-
-
-pdf(file = here::here("plots", "Cell_Type_Deconvolution", "cell_type_correlation_matrix_cluster4_spots.pdf"),
-    width = 12, height = 8)
-ggcorrplot(cor_cluster4_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across All BayesSpace cluster_4 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster4_infant_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Infant BayesSpace cluster_4 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster4_teen_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Teen BayesSpace cluster_4 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster4_adult_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Adult BayesSpace cluster_4 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster4_elderly_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Elderly BayesSpace cluster_4 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-dev.off()
-
-############
-# Cluster 1
-###########
-
-spe_cluster1 <- spe[, spe$bayesSpace_harmony_8 == 1]
-cluster1_cells <- as.data.frame(colData(spe_cluster1)[, c(44:66)])
-cluster1_cells <- cluster1_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster1_cells = cor(as.matrix(cluster1_cells))
-
-# Age groups for cluster 1
-infant_cluster1 <- spe_cluster1[, spe_cluster1$age_bin == "Infant"]
-cluster1_infant_cells <- as.data.frame(colData(infant_cluster1)[, c(44:66)])
-cluster1_infant_cells <- cluster1_infant_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster1_infant_cells = cor(as.matrix(cluster1_infant_cells))
-
-teen_cluster1 <- spe_cluster1[, spe_cluster1$age_bin == "Teen"]
-cluster1_teen_cells <- as.data.frame(colData(teen_cluster1)[, c(44:66)])
-cluster1_teen_cells <- cluster1_teen_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster1_teen_cells = cor(as.matrix(cluster1_teen_cells))
-
-adult_cluster1 <- spe_cluster1[, spe_cluster1$age_bin == "Adult"]
-cluster1_adult_cells <- as.data.frame(colData(adult_cluster1)[, c(44:66)])
-cluster1_adult_cells <- cluster1_adult_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster1_adult_cells = cor(as.matrix(cluster1_adult_cells))
-
-elderly_cluster1 <- spe_cluster1[, spe_cluster1$age_bin == "Elderly"]
-cluster1_elderly_cells <- as.data.frame(colData(elderly_cluster1)[, c(44:66)])
-cluster1_elderly_cells <- cluster1_elderly_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster1_elderly_cells = cor(as.matrix(cluster1_elderly_cells))
-
-
-pdf(file = here::here("plots", "Cell_Type_Deconvolution", "cell_type_correlation_matrix_cluster1_spots.pdf"),
-    width = 12, height = 8)
-ggcorrplot(cor_cluster1_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across All BayesSpace cluster_1 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster1_infant_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Infant BayesSpace cluster_1 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster1_teen_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Teen BayesSpace cluster_1 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster1_adult_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Adult BayesSpace cluster_1 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster1_elderly_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Elderly BayesSpace cluster_1 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-dev.off()
-
-###########
-# Cluster 2
-###########
-
-spe_cluster2 <- spe[, spe$bayesSpace_harmony_8 == 2]
-cluster2_cells <- as.data.frame(colData(spe_cluster2)[, c(44:66)])
-cluster2_cells <- cluster2_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster2_cells = cor(as.matrix(cluster2_cells))
-
-# Age groups for cluster 2
-infant_cluster2 <- spe_cluster2[, spe_cluster2$age_bin == "Infant"]
-cluster2_infant_cells <- as.data.frame(colData(infant_cluster2)[, c(44:66)])
-cluster2_infant_cells <- cluster2_infant_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster2_infant_cells = cor(as.matrix(cluster2_infant_cells))
-
-teen_cluster2 <- spe_cluster2[, spe_cluster2$age_bin == "Teen"]
-cluster2_teen_cells <- as.data.frame(colData(teen_cluster2)[, c(44:66)])
-cluster2_teen_cells <- cluster2_teen_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster2_teen_cells = cor(as.matrix(cluster2_teen_cells))
-
-adult_cluster2 <- spe_cluster2[, spe_cluster2$age_bin == "Adult"]
-cluster2_adult_cells <- as.data.frame(colData(adult_cluster2)[, c(44:66)])
-cluster2_adult_cells <- cluster2_adult_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster2_adult_cells = cor(as.matrix(cluster2_adult_cells))
-
-elderly_cluster2 <- spe_cluster2[, spe_cluster2$age_bin == "Elderly"]
-cluster2_elderly_cells <- as.data.frame(colData(elderly_cluster2)[, c(44:66)])
-cluster2_elderly_cells <- cluster2_elderly_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster2_elderly_cells = cor(as.matrix(cluster2_elderly_cells))
-
-
-pdf(file = here::here("plots", "Cell_Type_Deconvolution", "cell_type_correlation_matrix_cluster2_spots.pdf"),
-    width = 12, height = 8)
-ggcorrplot(cor_cluster2_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across All BayesSpace cluster_2 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster2_infant_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Infant BayesSpace cluster_2 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster2_teen_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Teen BayesSpace cluster_2 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster2_adult_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Adult BayesSpace cluster_2 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster2_elderly_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Elderly BayesSpace cluster_2 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-dev.off()
-
-###########
-# Cluster 8
-###########
-
-spe_cluster8 <- spe[, spe$bayesSpace_harmony_8 == 8]
-cluster8_cells <- as.data.frame(colData(spe_cluster8)[, c(44:66)])
-cluster8_cells <- cluster8_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster8_cells = cor(as.matrix(cluster8_cells))
-
-# Age groups for cluster 8
-infant_cluster8 <- spe_cluster8[, spe_cluster8$age_bin == "Infant"]
-cluster8_infant_cells <- as.data.frame(colData(infant_cluster8)[, c(44:66)])
-cluster8_infant_cells <- cluster8_infant_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster8_infant_cells = cor(as.matrix(cluster8_infant_cells))
-
-teen_cluster8 <- spe_cluster8[, spe_cluster8$age_bin == "Teen"]
-cluster8_teen_cells <- as.data.frame(colData(teen_cluster8)[, c(44:66)])
-cluster8_teen_cells <- cluster8_teen_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster8_teen_cells = cor(as.matrix(cluster8_teen_cells))
-
-adult_cluster8 <- spe_cluster8[, spe_cluster8$age_bin == "Adult"]
-cluster8_adult_cells <- as.data.frame(colData(adult_cluster8)[, c(44:66)])
-cluster8_adult_cells <- cluster8_adult_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster8_adult_cells = cor(as.matrix(cluster8_adult_cells))
-
-elderly_cluster8 <- spe_cluster8[, spe_cluster8$age_bin == "Elderly"]
-cluster8_elderly_cells <- as.data.frame(colData(elderly_cluster8)[, c(44:66)])
-cluster8_elderly_cells <- cluster8_elderly_cells[, c("Oligo", "OPC", "OPC_COP", "Astro_A", "Astro_B", "Micro",
-    "Tcell", "Mural", "Excit_A", "Excit_B", "Excit_C", "Excit_D", "Excit_E", "Excit_F",
-    "Excit_G", "Excit_H", "Inhib_A", "Inhib_B", "Inhib_C", "Inhib_D", "drop.lowNTx_A",
-    "drop.lowNTx_B", "drop.doublet")]
-cor_cluster8_elderly_cells = cor(as.matrix(cluster8_elderly_cells))
-
-
-pdf(file = here::here("plots", "Cell_Type_Deconvolution", "cell_type_correlation_matrix_cluster8_spots.pdf"),
-    width = 12, height = 8)
-ggcorrplot(cor_cluster8_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across All BayesSpace cluster_8 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster8_infant_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Infant BayesSpace cluster_8 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster8_teen_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Teen BayesSpace cluster_8 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster8_adult_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Adult BayesSpace cluster_8 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-
-ggcorrplot(cor_cluster8_elderly_cells, hc.order = F,
-   outline.color = "white",
-   tl.srt = 60,
-   tl.cex = 18,
-   lab_size = 7,
-   colors = c("#91a28c","white","#8f2c37"))+
- theme(plot.margin = margin(0.1, 0.1, 0.1, 0.1, "cm"),
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_rect(colour = "grey89", fill=NA, size=0.5),
-     axis.text = element_text(size = 12),
-    axis.ticks =element_blank(),
-    axis.title =element_blank(),
-    legend.title=element_text(size = 16,face="bold"),
-    legend.text=element_text(size = 16),
-    legend.key = element_rect(colour = "transparent", fill = "white"),
-    legend.key.size = unit(0.45, 'cm')) +
- coord_fixed()+
- ggtitle("Correlations in cell-type proportion across Elderly BayesSpace cluster_8 spatial locations") +
- theme(plot.title = element_text(size=14,face="bold"))
-dev.off()
-
 
 
 ## Reproducibility information
