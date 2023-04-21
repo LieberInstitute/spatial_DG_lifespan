@@ -40,8 +40,9 @@
 setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
 suppressPackageStartupMessages({
-library(here)
-library(SpatialExperiment)
+    library(here)
+    library(SpatialExperiment)
+    library(org.Hs.eg.db)
 })
 
 # Load SPE
@@ -207,14 +208,14 @@ mod = RegressionModel(adata_ref)
 mod.view_anndata_setup()
 
 # use all data for training (validation not implemented yet, train_size=1)
-mod.train(max_epochs=250, batch_size=2500, train_size=1, lr=0.002, use_gpu=False)
+mod.train(max_epochs=250, batch_size=2500, train_size=1, lr=0.002, use_gpu=True)
 
 # plot ELBO loss history during training, removing first 20 epochs from the plot
-mod.plot_history(20)
+#mod.plot_history(20)
 
 # in this section, we export the estimated cell abundance (summary of the posterior distribution)
 adata_ref = mod.export_posterior(
-    adata_ref, sample_kwargs={'num_samples': 1000, 'batch_size': 2500, 'use_gpu': False}
+    adata_ref, sample_kwargs={'num_samples': 1000, 'batch_size': 2500, 'use_gpu': True}
 )
 
 # save model
@@ -228,7 +229,7 @@ adata_file
 
 
 # examine QC plots
-mod.plot_QC()
+#mod.plot_QC()
 
 # the model and output h5ad can be loaded later like this:
 # mod = cell2location.models.RegressionModel.load(f"{ref_run_name}", adata_ref)
@@ -249,13 +250,13 @@ inf_aver.iloc[0:5, 0:5]
 # Cell2location: spatial mapping
 # ------------------------------
 
-# find shared genes and subset both AnnData and reference signatures
+# find shared genes and subset both anndata and reference signatures
 intersect = np.intersect1d(adata_vis.var_names, inf_aver.index)
 adata_vis = adata_vis[:, intersect].copy()
 inf_aver = inf_aver.loc[intersect, :].copy()
 
 # prepare AnnData for Cell2location model
-cell2location.models.Cell2location.setup_anndata(adata=adata_vis, batch_key="sample_id")
+cell2location.models.Cell2location.setup_anndata(adata=adata_vis, batch_key="sample")
 
 
 # parameter values:
@@ -286,7 +287,7 @@ mod.train(max_epochs=30000,
           # use all data points in training because
           # we need to estimate cell abundance at all locations
           train_size=1,
-          use_gpu=False)
+          use_gpu=True)
 
 # plot ELBO loss history during training, removing first 100 epochs from the plot
 mod.plot_history(1000)
@@ -294,7 +295,7 @@ plt.legend(labels=['full data training'])
 
 # in this section, we export the estimated cell abundance (summary of the posterior distribution)
 adata_vis = mod.export_posterior(
-    adata_vis, sample_kwargs={'num_samples': 1000, 'batch_size': mod.adata.n_obs, 'use_gpu': False}
+    adata_vis, sample_kwargs={'num_samples': 1000, 'batch_size': mod.adata.n_obs, 'use_gpu': True}
 )
 
 # save model
