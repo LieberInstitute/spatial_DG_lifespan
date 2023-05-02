@@ -116,7 +116,7 @@ for (q in seq_along(cols)) {
 
   p <- ggplot(df, aes_string(x = "pxl_col_in_fullres", y = "pxl_row_in_fullres",
                              color = cols[q])) +
-    facet_wrap(~ sample_id, nrow = 2, scales = "free") +
+    facet_wrap(~ sample_id, nrow = 4, scales = "free") +
     geom_point(size = 0.25) +
     scale_y_reverse() +
     scale_color_viridis(option = "magma", name = "abundance", trans = "sqrt",
@@ -130,6 +130,6 @@ for (q in seq_along(cols)) {
           axis.ticks = element_blank())
 
   fn <- here(dir_plots, paste0("cell2location_merged_", gsub("^.*sf_", "", cols[q])))
-  ggsave(paste0(fn, ".pdf"), plot = p, width = 7, height = 4.75)
-  ggsave(paste0(fn, ".png"), plot = p, width = 7, height = 4.75)
+  ggsave(paste0(fn, ".pdf"), plot = p, width = 7, height = 7)
+  ggsave(paste0(fn, ".png"), plot = p, width = 7, height = 7)
 }
