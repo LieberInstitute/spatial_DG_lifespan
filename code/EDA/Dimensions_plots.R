@@ -49,6 +49,11 @@ cols <- c("1" = "#5A5156", "2" = "#E4E1E3", "3" = "#DEA0FD", "4" = "#FEAF16",
 
 label_df <- make_hexbin_label(hex2v1, col="bayesSpace_harmony_10")
 
+scols <- Polychrome::palette36.colors(length(unique(spe$sample_id)))
+names(scols) <- sort(unique(spe$sample_id))
+
+label_sdf <- make_hexbin_label(hex2v1, col="sample_id")
+
 pdf(file = here::here("plots", "Dimensions_plots", "PC2vs1_plot_spe.pdf"))
 
 plotReducedDim(
@@ -59,6 +64,12 @@ plotReducedDim(
     point_size = 0.2,
     point_alpha = 0.5
 )
+
+plot_hexbin_meta(hex2v1, col = "sample_id", action = "majority",
+                xlab = "PC1", ylab = "PC2", color = scols) +
+    labs(fill = "sample_id") +
+    theme_bw() +
+    theme_classic()
 
 plotReducedDim(
     spe,

@@ -365,4 +365,4 @@ sapply(py$obsm['means_cell_abundance_w_sf'], quantile, seq(0, 1, by = 0.1))
 colData(spe) <- cbind(colData(spe), py$obsm['means_cell_abundance_w_sf'])
 
 # save SPE object for further plotting
-saveRDS(spe, file = here::here("processed-data", "Cell_Type_Deconvolution", "spe_cell2loc.rds"))
+saveRDS(spe, file = here::here("processed-data", "Cell_Type_Deconvolution", "harmony_spe_cell2loc.rds"))

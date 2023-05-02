@@ -71,7 +71,7 @@ spe_not_elderly <- spe[, !spe$age_bin == "Elderly"]
 spe_infant <- spe_infant[, spe_infant$bayesSpace_harmony_10 == "2" |
         spe_infant$bayesSpace_harmony_10 == "4" |
         spe_infant$bayesSpace_harmony_10 == "6" |
-        spe_infant$bayesSpace_harmony_10 == "87"]
+        spe_infant$bayesSpace_harmony_10 == "7"]
 
 spe_not_infant <- spe_not_infant[, spe_not_infant$bayesSpace_harmony_10 == "2" |
         spe_not_infant$bayesSpace_harmony_10 == "4" |
