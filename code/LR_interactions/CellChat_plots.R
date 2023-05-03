@@ -680,6 +680,21 @@ netVisual_bubble(
 
 dev.off()
 
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "LR_gene_expression_Infant.pdf"
+    ))
+
+plotGeneExpression(cellchat_infant, signaling = "PTN", enriched.only = TRUE)
+plotGeneExpression(cellchat_infant, signaling = "PERIOSTIN", enriched.only = TRUE)
+plotGeneExpression(cellchat_infant, signaling = "PDGF", enriched.only = TRUE)
+plotGeneExpression(cellchat_infant, signaling = "NOTCH", enriched.only = TRUE)
+plotGeneExpression(cellchat_infant, signaling = "GAS", enriched.only = TRUE)
+
+dev.off()
+
 # Teen
 
 pdf(
@@ -753,6 +768,30 @@ netVisual_bubble(
     remove.isolate = FALSE,
     angle.x = 45
 )
+
+dev.off()
+
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "LR_gene_expression_Teen.pdf"
+    ))
+
+plotGeneExpression(cellchat_teen, signaling = "VIP", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "GDNF", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "NTS", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "ANGPTL", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "OPIOID", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "NT", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "BMP10", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "NECTIN", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "SOMATOSTATIN", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "NPY", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "AGT", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "NRG", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "EGF", enriched.only = TRUE)
+plotGeneExpression(cellchat_teen, signaling = "TENASCIN", enriched.only = TRUE)
 
 dev.off()
 
@@ -831,6 +870,23 @@ netVisual_bubble(
 
 dev.off()
 
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "LR_gene_expression_Adult.pdf"
+    ))
+
+plotGeneExpression(cellchat_adult, signaling = "VIP", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "MHC-II", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "COMPLEMENT", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "TAC", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "MIF", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "AGT", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "UCN", enriched.only = TRUE)
+
+dev.off()
+
 # Elderly
 
 pdf(
@@ -905,7 +961,24 @@ netVisual_bubble(
 
 dev.off()
 
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "LR_gene_expression_Elderly.pdf"
+    ))
 
+plotGeneExpression(cellchat_elderly, signaling = "MHC-II", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "APP", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "UCN", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "MIF", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "CD46", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "TENASCIN", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "JAM", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "MHC-I", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "NPY", enriched.only = TRUE)
+
+dev.off()
 
 ## Reproducibility informationSE)
 print("Reproducibility information:")

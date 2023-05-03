@@ -133,6 +133,13 @@ plotReducedDim(
 
 dev.off()
 
+# Use schex to circumvent overplotting of spots
+
+hex3v1 <- make_hexbin(spe, nbins = 100,
+                   dimension_reduction = "PCA", use_dims=c(1,3))
+
+label_df3 <- make_hexbin_label(hex3v1, col="bayesSpace_harmony_10")
+
 pdf(file = here::here("plots", "Dimensions_plots", "PCA3vs1_plot_spe.pdf"))
 
 plotReducedDim(
@@ -152,6 +159,12 @@ plotReducedDim(
     point_size = 0.2,
     point_alpha = 0.5
 )
+
+plot_hexbin_meta(hex3v1, col = "bayesSpace_harmony_10", action = "majority",
+                xlab = "PC1", ylab = "PC3", color = cols) +
+    labs(fill = "BayesSpace") +
+    theme_bw() +
+    theme_classic()
 
 plotReducedDim(
     spe,

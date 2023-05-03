@@ -17,7 +17,8 @@ suppressPackageStartupMessages({
     library(dplyr)
     library(ComplexHeatmap)
     library(circlize)
-})
+    library(UpSetR)
+    })
 
 # Create directory for Top Marker Genes data
 dir_outputs <- here::here("processed-data", "top_Spearman_rank_genes_age")
@@ -173,7 +174,7 @@ cor_CA3_4df <- read.csv(file = here::here("processed-data", "top_Spearman_rank_g
     "Clust_CA3&4_rho_age_test_results.csv"))
 
 cor_SGZ_df <- read.csv(file = here::here("processed-data", "top_Spearman_rank_genes_age",
-    "Clust_SGZ_rho_age_test_results.csv"))
+   "Clust_SGZ_rho_age_test_results.csv"))
 
 cor_GCL_df <- read.csv(file = here::here("processed-data", "top_Spearman_rank_genes_age",
     "Clust_GCL_rho_age_test_results.csv"))
@@ -316,4 +317,279 @@ Heatmap(GCL_heatmap,
     )
 
 dev.off()
+
+# Upset plot of overlapping and unique genes for each layer
+
+pos_corML <- head(cor__MLdf$gene_id, 100)
+neg_corML <- tail(cor__MLdf$gene_id, 100)
+pos_corCA3_4 <- head(cor_CA3_4df$gene_id, 100)
+neg_corCA3_4 <- tail(cor_CA3_4df$gene_id, 100)
+pos_cor_SGZ <- head(cor_SGZ_df$gene_id, 100)
+neg_cor_SGZ <- tail(cor_SGZ_df$gene_id, 100)
+pos_cor_GCL <- head(cor_GCL_df$gene_id, 100)
+neg_cor_GCL <- tail(cor_GCL_df$gene_id, 100)
+
+pos_neg <- list(
+    pos_rho_ML = pos_corML,
+    neg_rho_ML = neg_corML,
+    pos_rho_CA3_4 = pos_corCA3_4,
+    neg_rho_CA3_4 = neg_corCA3_4,
+    pos_rho_SGZ = pos_cor_SGZ,
+    neg_rho_SGZ = neg_cor_SGZ,
+    pos_rho_GCL = pos_cor_GCL,
+    neg_rho_GCL = neg_cor_GCL
+)
+
+pdf(file = here::here("plots", "top_Spearman_rank_genes_age", "Spearman_rho_upset.pdf"),width = 15, height = 10)
+
+upset(fromList(pos_neg),
+    order.by = "freq",
+    sets = c("pos_rho_ML", "neg_rho_ML", "pos_rho_CA3_4", "neg_rho_CA3_4",
+        "pos_rho_SGZ", "neg_rho_SGZ", "pos_rho_GCL", "neg_rho_GCL"),
+    queries = list(list(query = intersects, params = list("pos_rho_ML",
+    "pos_rho_CA3_4", "pos_rho_SGZ", "pos_rho_GCL"), color = "green", active = T),
+        list(query = intersects, params = list("neg_rho_ML",
+    "neg_rho_CA3_4", "neg_rho_SGZ", "neg_rho_GCL"),
+            color = "red", active = T)),
+    mainbar.y.label = "# genes",
+    sets.x.label = "# genes",
+    text.scale = 3
+    )
+
+dev.off()
+
+# Extract the unique DG layer genes
+pos_genes_ML <- setdiff(pos_neg[[1]], unlist(pos_neg[-1]))
+neg_genes_ML <- setdiff(pos_neg[[2]], unlist(pos_neg[-2]))
+pos_genes_CA3_4 <- setdiff(pos_neg[[3]], unlist(pos_neg[-3]))
+neg_genes_CA3_4 <- setdiff(pos_neg[[4]], unlist(pos_neg[-4]))
+pos_genes_SGZ <- setdiff(pos_neg[[5]], unlist(pos_neg[-5]))
+neg_genes_SGZ <- setdiff(pos_neg[[6]], unlist(pos_neg[-6]))
+pos_genes_GCL <- setdiff(pos_neg[[7]], unlist(pos_neg[-7]))
+neg_genes_GCL <- setdiff(pos_neg[[8]], unlist(pos_neg[-8]))
+
+# Create heatmaps for some of these layer unique genes
+
+# Make a pseudo spe for just DG layers
+
+## subset spe data based on BayesSpace clusters for DG
+spe_pseudo_DG <- spe_pseudo[, spe_pseudo$BayesSpace %in% c("2", "4", "6", "7")]
+
+bayes_df <- data.frame(spe_pseudo_DG$BayesSpace)
+bayes_df <- bayes_df %>%
+    mutate(DG_layer = case_when(
+        grepl("2", spe_pseudo_DG.BayesSpace) ~ "ML",
+        grepl("4", spe_pseudo_DG.BayesSpace) ~ "CA3&4",
+        grepl("6", spe_pseudo_DG.BayesSpace) ~ "SGZ",
+        grepl("7", spe_pseudo_DG.BayesSpace) ~ "GCL"
+    ))
+
+colData(spe_pseudo_DG)$BayesSpace <- factor(bayes_df$DG_layer, levels = c("ML", "CA3&4", "SGZ", "GCL"))
+
+# Configure column order to match age groups per BayesSpace cluster
+Bayes_age_order_DG <- c(
+    16, 12, 13, 15, 8, 1, 11, 2, 9, 10, 14, 4, 3, 5, 7, 6,
+    32, 28, 29, 31, 24, 17, 27, 18, 25, 26, 30, 20, 19, 21, 23, 22,
+    48, 44, 45, 47, 40, 33, 43, 34, 41, 42, 46, 36, 35, 37, 39, 38,
+    64, 60, 61, 63, 56, 49, 59, 50, 57, 58, 62, 52, 51, 53, 55, 54
+)
+
+## Set gene names as row names for easier plotting
+rownames(spe_pseudo_DG) <- rowData(spe_pseudo_DG)$gene_name
+#############################################################################
+pos_genes_GCL <- pos_genes_GCL[! pos_genes_GCL %in% setdiff(pos_genes_GCL, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+pos_genes_GCL_heatmap <- assays(spe_pseudo_DG)[[2]][pos_genes_GCL, ]
+colnames(pos_genes_GCL_heatmap) <- paste("logcount", 1:64, sep = "")
+
+# convert to z-scores
+scale_rows = function(x){
+    m = apply(x, 1, mean, na.rm = T)
+    s = apply(x, 1, sd, na.rm = T)
+    return((x - m) / s)
+}
+
+pos_genes_GCL_heatmap <- scale_rows(pos_genes_GCL_heatmap)
+#############################################################################
+neg_genes_GCL <- neg_genes_GCL[! neg_genes_GCL %in% setdiff(neg_genes_GCL, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+neg_genes_GCL_heatmap <- assays(spe_pseudo_DG)[[2]][neg_genes_GCL, ]
+colnames(neg_genes_GCL_heatmap) <- paste("logcount", 1:64, sep = "")
+
+neg_genes_GCL_heatmap <- scale_rows(neg_genes_GCL_heatmap)
+################################################################################
+
+#############################################################################
+pos_genes_ML <- pos_genes_ML[! pos_genes_ML %in% setdiff(pos_genes_ML, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+pos_genes_ML_heatmap <- assays(spe_pseudo_DG)[[2]][pos_genes_ML, ]
+colnames(pos_genes_ML_heatmap) <- paste("logcount", 1:64, sep = "")
+
+pos_genes_ML_heatmap <- scale_rows(pos_genes_ML_heatmap)
+################################################################################
+
+#############################################################################
+neg_genes_ML <- neg_genes_ML[! neg_genes_ML %in% setdiff(neg_genes_ML, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+neg_genes_ML_heatmap <- assays(spe_pseudo_DG)[[2]][neg_genes_ML, ]
+colnames(neg_genes_ML_heatmap) <- paste("logcount", 1:64, sep = "")
+
+neg_genes_ML_heatmap <- scale_rows(neg_genes_ML_heatmap)
+################################################################################
+
+#############################################################################
+pos_genes_CA3_4 <- pos_genes_CA3_4[! pos_genes_CA3_4 %in% setdiff(pos_genes_CA3_4, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+pos_genes_CA3_4_heatmap <- assays(spe_pseudo_DG)[[2]][pos_genes_CA3_4, ]
+colnames(pos_genes_CA3_4_heatmap) <- paste("logcount", 1:64, sep = "")
+
+pos_genes_CA3_4_heatmap <- scale_rows(pos_genes_CA3_4_heatmap)
+################################################################################
+
+#############################################################################
+neg_genes_CA3_4 <- neg_genes_CA3_4[! neg_genes_CA3_4 %in% setdiff(neg_genes_CA3_4, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+neg_genes_CA3_4_heatmap <- assays(spe_pseudo_DG)[[2]][neg_genes_CA3_4, ]
+colnames(neg_genes_CA3_4_heatmap) <- paste("logcount", 1:64, sep = "")
+
+neg_genes_CA3_4_heatmap <- scale_rows(neg_genes_CA3_4_heatmap)
+################################################################################
+
+#############################################################################
+pos_genes_SGZ <- pos_genes_SGZ[! pos_genes_SGZ %in% setdiff(pos_genes_SGZ, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+pos_genes_SGZ_heatmap <- assays(spe_pseudo_DG)[[2]][pos_genes_SGZ, ]
+colnames(pos_genes_SGZ_heatmap) <- paste("logcount", 1:64, sep = "")
+
+pos_genes_SGZ_heatmap <- scale_rows(pos_genes_SGZ_heatmap)
+################################################################################
+
+#############################################################################
+neg_genes_SGZ <- neg_genes_SGZ[! neg_genes_SGZ %in% setdiff(neg_genes_SGZ, rownames(spe_pseudo_DG))]
+
+# Add logcounts for all clusters from GO term genes
+neg_genes_SGZ_heatmap <- assays(spe_pseudo_DG)[[2]][neg_genes_SGZ, ]
+colnames(neg_genes_SGZ_heatmap) <- paste("logcount", 1:64, sep = "")
+
+neg_genes_SGZ_heatmap <- scale_rows(neg_genes_SGZ_heatmap)
+################################################################################
+
+# Plot heatmap of logcounts for clusters and samples
+pdf(file = here::here("plots", "top_Spearman_rank_genes_age", "DG_rank_cor_unique_genes_heatmap.pdf"),
+    width = 8, height = 10)
+
+Heatmap(pos_genes_GCL_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top GCL unique positve age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+Heatmap(neg_genes_GCL_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top GCL unique negative age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+Heatmap(pos_genes_ML_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top ML unique positive age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+Heatmap(neg_genes_ML_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top ML unique negative age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+Heatmap(pos_genes_CA3_4_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top CA3&4 unique positive age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+Heatmap(neg_genes_CA3_4_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top CA3&4 unique negative age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+Heatmap(pos_genes_SGZ_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top SGZ unique positive age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+Heatmap(neg_genes_SGZ_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(cluster = spe_pseudo_DG$BayesSpace, age = spe_pseudo_DG$age_bin,
+    col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Top SGZ unique negative age rank correlation genes",
+    column_order = Bayes_age_order_DG,
+    show_column_names = FALSE,
+    column_split = spe_pseudo_DG$BayesSpace,
+    show_row_names = TRUE
+    )
+
+dev.off()
+
+
 
