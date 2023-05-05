@@ -884,6 +884,9 @@ plotGeneExpression(cellchat_adult, signaling = "TAC", enriched.only = TRUE)
 plotGeneExpression(cellchat_adult, signaling = "MIF", enriched.only = TRUE)
 plotGeneExpression(cellchat_adult, signaling = "AGT", enriched.only = TRUE)
 plotGeneExpression(cellchat_adult, signaling = "UCN", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "NPY", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "SOMATOSTATIN", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "OPIOID", enriched.only = TRUE)
 
 dev.off()
 
@@ -977,6 +980,8 @@ plotGeneExpression(cellchat_elderly, signaling = "TENASCIN", enriched.only = TRU
 plotGeneExpression(cellchat_elderly, signaling = "JAM", enriched.only = TRUE)
 plotGeneExpression(cellchat_elderly, signaling = "MHC-I", enriched.only = TRUE)
 plotGeneExpression(cellchat_elderly, signaling = "NPY", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "SOMATOSTATIN", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "OPIOID", enriched.only = TRUE)
 
 dev.off()
 

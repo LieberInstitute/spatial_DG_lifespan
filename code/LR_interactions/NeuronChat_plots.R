@@ -124,6 +124,31 @@ lig_tar_heatmap(neuronchat_infant, interaction_name = "Glu_GRIN1", width.vector=
 
 dev.off()
 
+# Separate the info flow for page size
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "Info_flow_Neuron_Infant.pdf"
+    ),
+    width = 8,
+    height = 9
+)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(1,2),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(1,2),
+    stacked = FALSE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(1,2),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(1,2),
+    stacked = FALSE ,do.stat = TRUE)
+
+dev.off()
+
 # Teen
 
 pdf(
@@ -179,6 +204,32 @@ lig_tar_heatmap(neuronchat_teen, interaction_name = "Glu_GRIA4", width.vector=c(
 
 dev.off()
 
+# Separate the info flow for page size
+
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "Info_flow_Neuron_Teen.pdf"
+    ),
+    width = 8,
+    height = 9
+)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(3,4),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(3,4),
+    stacked = FALSE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(3,4),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(3,4),
+    stacked = FALSE ,do.stat = TRUE)
+
+dev.off()
+
 # Adult
 
 pdf(
@@ -226,6 +277,32 @@ lig_tar_heatmap(neuronchat_adult, interaction_name = "Glu_GRIA4", width.vector=c
 
 dev.off()
 
+# Separate the info flow for page size
+
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "Info_flow_Neuron_Adult.pdf"
+    ),
+    width = 8,
+    height = 9
+)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(5,6),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(5,6),
+    stacked = FALSE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(5,6),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(5,6),
+    stacked = FALSE ,do.stat = TRUE)
+
+dev.off()
+
 # Elderly
 
 pdf(
@@ -263,6 +340,32 @@ lig_tar_heatmap(neuronchat_elderly, interaction_name = "NRXN3_NLGN2", width.vect
 lig_tar_heatmap(neuronchat_elderly, interaction_name = "Glu_GRIA4", width.vector=c(0.38,0.35,0.27))
 lig_tar_heatmap(neuronchat_elderly, interaction_name = "Glu_GRM5", width.vector=c(0.38,0.35,0.27))
 lig_tar_heatmap(neuronchat_elderly, interaction_name = "NRXN3_NLGN3", width.vector=c(0.38,0.35,0.27))
+
+dev.off()
+
+# Separate the info flow for page size
+
+pdf(
+    file = here::here(
+        "plots",
+        "LR_interactions",
+        "Info_flow_Neuron_Elderly.pdf"
+    ),
+    width = 8,
+    height = 9
+)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(7,8),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("weight"), comparison = c(7,8),
+    stacked = FALSE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(7,8),
+    stacked = TRUE ,do.stat = TRUE)
+
+rankNet_Neuron(neuronchat, mode = "comparison", measure = c("count"), comparison = c(7,8),
+    stacked = FALSE ,do.stat = TRUE)
 
 dev.off()
 
