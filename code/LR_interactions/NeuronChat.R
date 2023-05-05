@@ -58,6 +58,15 @@ Bayes_df <- Bayes_df %>%
 colData(spe)$BayesSpace <-
     factor(Bayes_df$BayesSpace, levels = c("ML", "CA3&4", "SGZ", "GCL"))
 
+# Isolate the entire DG to plot where cell types are most assigned
+spe_DG <- spe[, spe$bayesSpace_harmony_10 == "2" |
+        spe$bayesSpace_harmony_10 == "4" |
+        spe$bayesSpace_harmony_10 == "6" |
+        spe$bayesSpace_harmony_10 == "7"]
+
+DG_matrix <- as.matrix(assays(spe_DG)$logcounts)
+stopifnot(colnames(DG_matrix) == rownames(colData(spe_DG)))
+
 # Subset for age bin
 spe_infant <- spe[, spe$age_bin == "Infant"]
 spe_not_infant <- spe[, !spe$age_bin == "Infant"]
@@ -138,6 +147,10 @@ non_elderly_matrix <- as.matrix(assays(spe_not_elderly)$logcounts)
 stopifnot(colnames(non_elderly_matrix) == rownames(colData(spe_not_elderly)))
 ###############################################################################
 
+# Create neuronchat object for DG spe object
+neuronchat_DG <- createNeuronChat(object = DG_matrix, DB='human',
+    group.by = spe_DG$BayesSpace)
+
 # Create neuronchat object for age binned spe objects
 neuronchat_infant <- createNeuronChat(object = infant_matrix, DB='human',
     group.by = spe_infant$BayesSpace)
@@ -167,6 +180,8 @@ neuronchat_not_elderly <- createNeuronChat(object = non_elderly_matrix, DB='huma
 # Run NeuronChat
 ############################
 
+neuronchat_DG <- run_NeuronChat(neuronchat_DG,M=100)
+
 neuronchat_infant <- run_NeuronChat(neuronchat_infant,M=100)
 neuronchat_not_infant <- run_NeuronChat(neuronchat_not_infant,M=100)
 neuronchat_teen <- run_NeuronChat(neuronchat_teen,M=100)
@@ -176,9 +191,11 @@ neuronchat_not_adult <- run_NeuronChat(neuronchat_not_adult,M=100)
 neuronchat_elderly <- run_NeuronChat(neuronchat_elderly,M=100)
 neuronchat_not_elderly <- run_NeuronChat(neuronchat_not_elderly,M=100)
 
-################
-# Merge datasets
-################
+##########################
+# Merge datasets (not DG)
+##########################
+
+neuronchat_DG@meta <- as.data.frame(colData(spe_DG), row.names = rownames(colData(spe_DG)))
 
 neuronchat_infant@meta <- as.data.frame(colData(spe_infant), row.names = rownames(colData(spe_infant)))
 neuronchat_not_infant@meta <- as.data.frame(colData(spe_not_infant), row.names = rownames(colData(spe_not_infant)))
@@ -217,6 +234,8 @@ save(
     neuronchat,
     file = here::here("processed-data", "LR_interactions", "NeuronChat.Rdata")
 )
+
+saveRDS(neuronchat_DG, file = here::here("processed-data", "LR_interactions", "NeuronChat_DG.rds"))
 
 
 ## Reproducibility information
