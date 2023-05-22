@@ -61,16 +61,16 @@ dim(spe_GCL)
 # Create vector of ages for correlation test
 
 #ML
-ages_ML <- seq(0, 100, length = 6974)
+ages_ML <- spe_ML$age
 
 #CA3&4
-ages_CA3 <- seq(0, 100, length = 10505)
+ages_CA3 <- spe_CA3_4$age
 
 #SGZ
-ages_SGZ <- seq(0, 100, length = 5771)
+ages_SGZ <- spe_SGZ$age
 
 #GCL
-ages_GCL <- seq(0, 100, length = 5416)
+ages_GCL <- spe_GCL$age
 
 # calculate the Spearman's rank correlation between each row of the sparse matrix and the ages vector
 
