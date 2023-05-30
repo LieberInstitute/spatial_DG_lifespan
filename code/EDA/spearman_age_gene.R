@@ -58,6 +58,9 @@ dim(spe_SGZ)
 spe_GCL <- spe[, which(spe$bayesSpace_harmony_10 == "7")]
 dim(spe_GCL)
 
+spe_SLM <- spe[, which(spe$bayesSpace_harmony_10 == "1")]
+dim(spe_SLM)
+
 # Create vector of ages for correlation test
 
 #ML
@@ -71,6 +74,10 @@ ages_SGZ <- spe_SGZ$age
 
 #GCL
 ages_GCL <- spe_GCL$age
+
+#SLM
+ages_SLM <- spe_SLM$age
+
 
 # calculate the Spearman's rank correlation between each row of the sparse matrix and the ages vector
 
@@ -161,6 +168,28 @@ fn_out_4 <- file.path(dir_outputs, "Clust_GCL_rho_age_test_results")
 
 # Export summary as .csv file
 write.csv(cor_GCLdf,fn_out_4, row.names = TRUE)
+#------------------------------------------------------------------------------------------------------------------------------
+# SLM
+#------------------------------------------------------------------------------------------------------------------------------
+cor_results_SLM <- apply(logcounts(spe_SLM), 1, function(row) cor.test(as.numeric(row), ages_SLM, method = "spearman", adjust = "fdr"))
+
+# extract the correlation coefficients and p-values from the results
+cor_coeffs_SLM <- sapply(cor_results_SLM, function(x) x$estimate)
+p_values_SLM <- sapply(cor_results_SLM, function(x) x$p.value)
+
+# combine the results into a data frame
+cor_SLM_df <- data.frame(gene_id = names(cor_results_SLM), correlation = cor_coeffs_SLM, adj.p.value = p_values_SLM)
+
+# remove the ".rho" characters from the row names
+rownames(cor_SLM_df) <- sub("\\.rho$", "", rownames(cor_SLM_df))
+
+# order the rows based on the correlation values
+cor_SLM_df <- cor_SLM_df[order(cor_SLM_df$correlation, decreasing = TRUE),]
+
+fn_out_5 <- file.path(dir_outputs, "Clust_SLM_rho_age_test_results")
+
+# Export summary as .csv file
+write.csv(cor_SLM_df,fn_out_5, row.names = TRUE)
 
 #################################
 # Plot some interesting top genes
@@ -179,6 +208,9 @@ cor_SGZ_df <- read.csv(file = here::here("processed-data", "top_Spearman_rank_ge
 cor_GCL_df <- read.csv(file = here::here("processed-data", "top_Spearman_rank_genes_age",
     "Clust_GCL_rho_age_test_results.csv"))
 
+cor_SLM_df <- read.csv(file = here::here("processed-data", "top_Spearman_rank_genes_age",
+    "Clust_GCL_rho_age_test_results.csv"))
+
 # Remove adj.p.value > 0.05
 cor__MLdf <- cor__MLdf %>%
     dplyr::filter(adj.p.value < 0.05)
@@ -192,11 +224,15 @@ cor_SGZ_df <- cor_SGZ_df %>%
 cor_GCL_df <- cor_GCL_df %>%
     dplyr::filter(adj.p.value < 0.05)
 
+cor_SLM_df <- cor_SLM_df %>%
+    dplyr::filter(adj.p.value < 0.05)
+
 # Get the head and tail 50 for each list
 top_cor_MLdf <- rbind((head(cor__MLdf, 100)), tail(cor__MLdf, 100))
 top_cor_CA3_4df <- rbind((head(cor_CA3_4df, 100)), tail(cor_CA3_4df, 100))
 top_cor_SGZ_df <- rbind((head(cor_SGZ_df, 100)), tail(cor_SGZ_df, 100))
 top_cor_GCL_df <- rbind((head(cor_GCL_df, 100)), tail(cor_GCL_df, 100))
+top_cor_SLM_df <- rbind((head(cor_SLM_df, 100)), tail(cor_SLM_df, 100))
 
 # Set rownames for ease of plotting
 rownames(spe_pseudo) <- rowData(spe_pseudo)$gene_name
@@ -225,6 +261,12 @@ dim(pseudo_GCL)
 
 topGCL <- top_cor_GCL_df$gene_id
 topGCL <- topGCL[! topGCL %in% setdiff(topGCL, rownames(pseudo_GCL))]
+
+pseudo_SLM <- spe_pseudo[, which(spe_pseudo$bayesSpace_harmony_10 == "1")]
+dim(pseudo_SLM)
+
+topSLM <- top_cor_SLM_df$gene_id
+topSLM <- topSLM[! topSLM %in% setdiff(topSLM, rownames(pseudo_SLM))]
 
 ## Configure column order to match age groups per BayesSpace cluster
 Bayes_age_order <- c(
@@ -263,6 +305,12 @@ GCL_heatmap <- assays(pseudo_GCL)[[2]][topGCL, ]
 colnames(GCL_heatmap) <- paste("logcount", 1:16, sep = "")
 
 GCL_heatmap <- scale_rows(GCL_heatmap)
+
+# Add logcounts for all clusters from rho term genes
+SLM_heatmap <- assays(pseudo_SLM)[[2]][topSLM, ]
+colnames(SLM_heatmap) <- paste("logcount", 1:16, sep = "")
+
+SLM_heatmap <- scale_rows(SLM_heatmap)
 
 # Plot heatmap of logcounts for clusters and samples
 pdf(file = here::here("plots", "top_Spearman_rank_genes_age", "Spearman_rho_heatmap.pdf"),
@@ -310,6 +358,24 @@ Heatmap(GCL_heatmap,
     col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
     column_title = "GCL Top 100 & Bottom 100 Spearman rank correlation heatmap",
+    column_order = Bayes_age_order,
+    show_column_names = FALSE,
+    show_row_names = TRUE,
+    cluster_rows = FALSE
+    )
+
+dev.off()
+
+# Plot heatmap of logcounts for SLM and samples
+pdf(file = here::here("plots", "top_Spearman_rank_genes_age", "SLM_Spearman_rho_heatmap.pdf"),
+    width = 12, height = 22)
+
+Heatmap(SLM_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(age = pseudo_SLM$age_bin,
+    col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "SLM Top 100 & Bottom 100 Spearman rank correlation heatmap",
     column_order = Bayes_age_order,
     show_column_names = FALSE,
     show_row_names = TRUE,
