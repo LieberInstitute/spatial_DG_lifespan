@@ -44,6 +44,17 @@ Stickels_2020 <- read.csv(file = here("processed-data","gene_set_enrichment",
 orthology <- read.csv(file = here("processed-data","gene_set_enrichment",
     "human_mouse_orthologs.csv"))
 
+# Isolated gene set from looking at radial distances from GCL boarder to ML
+combined_gene_set <- c(
+    "CAMK2A", "TUBB2B", "EEF1A1", "TULP4", "LHX2", "NCS1", "NSMF", "GLUD1", "PSD",
+    "RDX", "DDN", "ARHGAP5", "HOMER2", "RPL13", "RPL26", "PPP1R9B", "RPS15", "EEF2",
+    "SLC25A23", "SIRT2", "DACT3", "RPL13A", "CENPB", "CABP7", "RPL22", "MAP4K4",
+    "MAP2", "CCNI", "RPS3A", "RPS14", "RPS24", "DENND5A", "MAPK8IP1", "FTH1", "EEF1G",
+    "COX8A", "PITPNM1", "RPS3", "AGAP2", "RPLP0", "COX6A1", "CEP170B", "RPLP1", "FBXL16",
+    "RPS2", "COX4I1", "RPL23", "ABHD17A", "RPS11", "RPS9", "RPS5", "ITSN1", "GPM6B",
+    "IDS"
+)
+
 # Translate from one species to the other using the orthology
 Dcluster_1 <- orthology[orthology$Column3 %in% Stickels_2020$Cluster.1,]
 Dcluster_2 <- orthology[orthology$Column3 %in% Stickels_2020$Cluster.2,]
@@ -55,11 +66,12 @@ Dcluster_1 <- bitr(Dcluster_1$Column1, fromType="SYMBOL", toType = "ENSEMBL", Or
 Dcluster_2 <- bitr(Dcluster_2$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 Dcluster_3 <- bitr(Dcluster_3$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 Dcluster_4 <- bitr(Dcluster_4$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+Dcluster_c <- bitr(combined_gene_set, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 
 #ML age
 ages_ML <- spe_ML$age
 
-# Subset for Microglia clusters
+# Subset for dendritic clusters
 spe_ML_cl1 <- spe_ML[which((rownames(spe_ML)) %in% Dcluster_1$ENSEMBL)]
 # Set gene names as row names for easier plotting
 rownames(spe_ML_cl1) <- rowData(spe_ML_cl1)$gene_name
@@ -75,6 +87,13 @@ rownames(spe_ML_cl3) <- rowData(spe_ML_cl3)$gene_name
 spe_ML_cl4 <- spe_ML[which((rownames(spe_ML)) %in% Dcluster_4$ENSEMBL)]
 # Set gene names as row names for easier plotting
 rownames(spe_ML_cl4) <- rowData(spe_ML_cl4)$gene_name
+
+# Subset for dendritic clusters
+spe_ML_clc <- spe_ML[which((rownames(spe_ML)) %in% Dcluster_c$ENSEMBL)]
+# Set gene names as row names for easier plotting
+rownames(spe_ML_clc) <- rowData(spe_ML_clc)$gene_name
+
+########################################################################################################################################
 
 #Cluster 1 dendritic gene set
 #Calculat Spearman rank corr
@@ -172,3 +191,29 @@ fn_out_4 <- file.path(dir_outputs, "Dendritic_enriched4_ML_rho_age_test_results"
 # Export summary as .csv file
 write.csv(cor__ML_cl4df,fn_out_4, row.names = TRUE)
 #---------------------------------------------------------------------------------------------------------------------------------------
+
+# Combined radial dist. from GCL verified dendritic gene set
+#Calculat Spearman rank corr
+cor_ML_clc <- apply(logcounts(spe_ML_clc), 1, function(row) cor.test(as.numeric(row), ages_ML, method = "spearman", adjust = "fdr"))
+
+# extract the correlation coefficients and p-values from the results
+cor_coeffs_ML_clc <- sapply(cor_ML_clc, function(x) x$estimate)
+p_values_ML_clc <- sapply(cor_ML_clc, function(x) x$p.value)
+
+# combine the results into a data frame
+cor__ML_clcdf <- data.frame(gene_id = names(cor_ML_clc), correlation = cor_coeffs_ML_clc, adj.p.value = p_values_ML_clc)
+
+# remove the ".rho" characters from the row names
+rownames(cor__ML_clcdf) <- sub("\\.rho$", "", rownames(cor__ML_clcdf))
+
+hist(cor__ML_clcdf$correlation, xlab = "age rho correlation", ylab = "Gene count",
+    main = "Dendritic enriched radial dist. away from GCL gene counts in ML")
+
+# order the rows based on the correlation values
+cor__ML_clcdf <- cor__ML_clcdf[order(cor__ML_clcdf$correlation, decreasing = TRUE),]
+
+fn_out_c <- file.path(dir_outputs, "Dendritic_enriched_radial_dist_GCL_ML_rho_age_test_results")
+
+# Export summary as .csv file
+write.csv(cor__ML_clcdf,fn_out_c, row.names = TRUE)
+

@@ -608,6 +608,87 @@ ggplot(Dcluster_3_df) +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
         title = "Cluster 3 dendritically enriched gene set in GCL & ML")
 
+# Without legend
+
+ggplot(Dcluster_3_df) +
+    geom_smooth(aes(radial_distances, ANAPC13, color = "ANAPC13"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CAMK2A, color = "CAMK2A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, TUBB2B, color = "TUBB2B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1A1, color = "EEF1A1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, TULP4, color = "TULP4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, LHX2, color = "LHX2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, NCS1, color = "NCS1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, NSMF, color = "NSMF"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ZNF365, color = "ZNF365"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GLUD1, color = "GLUD1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PSD, color = "PSD"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EIF3F, color = "EIF3F"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RDX, color = "RDX"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, DDN, color = "DDN"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, KIF5A, color = "KIF5A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ARHGAP5, color = "ARHGAP5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, HOMER2, color = "HOMER2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13, color = "RPL13"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL26, color = "RPL26"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PPP1R9B, color = "PPP1R9B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS15, color = "RPS15"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CSNK1G2, color = "CSNK1G2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF2, color = "EEF2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, SLC25A23, color = "SLC25A23"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, SIRT2, color = "SIRT2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, DACT3, color = "DACT3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13A, color = "RPL13A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CNOT3, color = "CNOT3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CENPB, color = "CENPB"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, NNAT, color = "NNAT"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PHACTR3, color = "PHACTR3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CABP7, color = "CABP7"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, WDR13, color = "WDR13"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GLUD2, color = "GLUD2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_vline(aes(xintercept = 0), linetype = "dashed") +
+    geom_abline(aes(intercept = 0, slope = 0), linetype = "dashed") +
+    xlim(-750, 1000) +
+    facet_wrap(vars(age_bin)) +
+    theme_bw() +
+    theme_classic() +
+    theme(legend.position="none") +
+    labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
+        title = "Cluster 3 dendritically enriched gene set in GCL & ML")
+
 #Plot each individual gene from dendritic cluster 3
 
 ggplot(Dcluster_3_df) +
@@ -1154,6 +1235,131 @@ ggplot(Dcluster_4_df) +
     facet_wrap(vars(age_bin)) +
     theme_bw() +
     theme_classic() +
+    labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
+        title = "Cluster 4 dendritically enriched gene set in GCL & ML")
+
+# Without legend
+
+ggplot(Dcluster_4_df) +
+    geom_smooth(aes(radial_distances, RPL22, color = "RPL22"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CAMK2N1, color = "CAMK2N1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, TRNP1, color = "TRNP1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, HPCAL4, color = "HPCAL4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GAS5, color = "GAS5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, AKT3, color = "AKT3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, UGP2, color = "UGP2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, MAP4K4, color = "MAP4K4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, MAP2, color = "MAP2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ACSL3, color = "ACSL3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CHST2, color = "CHST2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PPP2R2C, color = "PPP2R2C"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CCNI, color = "CCNI"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS3A, color = "RPS3A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, SOWAHA, color = "SOWAHA"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS14, color = "RPS14"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, NRSN1, color = "NRSN1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PURB, color = "PURB"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS24, color = "RPS24"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, DENND5A, color = "DENND5A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, MAPK8IP1, color = "MAPK8IP1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, FTH1, color = "FTH1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1G, color = "EEF1G"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX8A, color = "COX8A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CNIH2, color = "CNIH2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PITPNM1, color = "PITPNM1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS3, color = "RPS3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CACNB3, color = "CACNB3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, AGAP2, color = "AGAP2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, WSB2, color = "WSB2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP0, color = "RPLP0"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX6A1, color = "COX6A1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RNF10, color = "RNF10"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, JPH4, color = "JPH4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CEP170B, color = "CEP170B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ZNF106, color = "ZNF106"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL4, color = "RPL4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP1, color = "RPLP1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, FBXL16, color = "FBXL16"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS2, color = "RPS2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ST3GAL2, color = "ST3GAL2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX4I1, color = "COX4I1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ZBTB4, color = "ZBTB4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GIT1, color = "GIT1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL23, color = "RPL23"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ABHD17A, color = "ABHD17A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ABHD8, color = "ABHD8"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS11, color = "RPS11"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS9, color = "RPS9"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS5, color = "RPS5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, SNPH, color = "SNPH"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ITSN1, color = "ITSN1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, DESI1, color = "DESI1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GPM6B, color = "GPM6B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PCSK1N, color = "PCSK1N"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, IDS, color = "IDS"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_vline(aes(xintercept = 0), linetype = "dashed") +
+    geom_abline(aes(intercept = 0, slope = 0), linetype = "dashed") +
+    xlim(-750, 1000) +
+    facet_wrap(vars(age_bin)) +
+    theme_bw() +
+    theme_classic() +
+    theme(legend.position="none") +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
         title = "Cluster 4 dendritically enriched gene set in GCL & ML")
 
@@ -1976,6 +2182,127 @@ ggplot(combined_dend_df) +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
         title = "Select conserved dendritically enriched gene set in GCL & ML")
 
+# Without legend
+
+ggplot(combined_dend_df) +
+    geom_smooth(aes(radial_distances, RPL22, color = "RPL22"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, MAP4K4, color = "MAP4K4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, MAP2, color = "MAP2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CCNI, color = "CCNI"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS3A, color = "RPS3A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CAMK2A, color = "CAMK2A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS14, color = "RPS14"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, TUBB2B, color = "TUBB2B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1A1, color = "EEF1A1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, TULP4, color = "TULP4"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, LHX2, color = "LHX2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, NCS1, color = "NCS1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, NSMF, color = "NSMF"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS24, color = "RPS24"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GLUD1, color = "GLUD1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PSD, color = "PSD"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, DENND5A, color = "DENND5A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, MAPK8IP1, color = "MAPK8IP1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, FTH1, color = "FTH1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1G, color = "EEF1G"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX8A, color = "COX8A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PITPNM1, color = "PITPNM1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS3, color = "RPS3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RDX, color = "RDX"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, DDN, color = "DDN"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, AGAP2, color = "AGAP2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP0, color = "RPLP0"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX6A1, color = "COX6A1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ARHGAP5, color = "ARHGAP5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CEP170B, color = "CEP170B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP1, color = "RPLP1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, HOMER2, color = "HOMER2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, FBXL16, color = "FBXL16"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS2, color = "RPS2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX4I1, color = "COX4I1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13, color = "RPL13"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL26, color = "RPL26"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL23, color = "RPL23"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, PPP1R9B, color = "PPP1R9B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS15, color = "RPS15"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ABHD17A, color = "ABHD17A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF2, color = "EEF2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, SLC25A23, color = "SLC25A23"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, SIRT2, color = "SIRT2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, DACT3, color = "DACT3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13A, color = "RPL13A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS11, color = "RPS11"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS9, color = "RPS9"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS5, color = "RPS5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CENPB, color = "CENPB"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ITSN1, color = "ITSN1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CABP7, color = "CABP7"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GPM6B, color = "GPM6B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, IDS, color = "IDS"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_vline(aes(xintercept = 0), linetype = "dashed") +
+    geom_abline(aes(intercept = 0, slope = 0), linetype = "dashed") +
+    xlim(-750, 1000) +
+    facet_wrap(vars(age_bin)) +
+    theme_bw() +
+    theme_classic() +
+    theme(legend.position="none") +
+    labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
+        title = "Select conserved dendritically enriched gene set in GCL & ML")
+
 #Plot each individual gene from dendritic cluster 4
 
 ggplot(combined_dend_df) +
@@ -2528,7 +2855,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, RPS11, color = "RPS11"),
@@ -2540,7 +2867,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, RPS9, color = "RPS9"),
@@ -2552,7 +2879,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, RPS5, color = "RPS5"),
@@ -2564,7 +2891,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, CENPB, color = "CENPB"),
@@ -2576,7 +2903,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, ITSN1, color = "ITSN1"),
@@ -2588,7 +2915,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, CABP7, color = "CABP7"),
@@ -2600,7 +2927,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, GPM6B, color = "GPM6B"),
@@ -2612,7 +2939,7 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
 
 ggplot(combined_dend_df) +
     geom_smooth(aes(radial_distances, IDS, color = "IDS"),
@@ -2624,7 +2951,141 @@ ggplot(combined_dend_df) +
     theme_bw() +
     theme_classic() +
     labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
-        title = "Select conserved dendritically enriched gene set in GCL & ML")
+        title = "Select conserved dendritically enriched gene set in GCL to ML")
+
+dev.off()
+
+##################################################################################################################
+
+# Look at elderly depleted genes
+
+# Isolate the dendritic markers that are very enriched from the above plots in ML
+
+depleted_gene_set <- c(
+    "TUBB2B", "EEF1A1", "LHX2", "GLUD1", "ARHGAP5", "RPL13", "RPS15",
+    "RPL13A", "CCNI", "RPS14", "RPS24", "EEF1G", "RPS3", "RPLP0", "RPLP1",
+    "RPS2", "COX4I1", "RPS11", "RPS9", "RPS5", "ITSN1", "GPM6B"
+)
+
+spe_ML_depleted <- spe_ML_GCL[which((rownames(spe_ML_GCL)) %in% depleted_gene_set)]
+df_rad_ML_depleted <- as.data.frame(colData(spe_ML_depleted)[,71:73])
+
+# Make dataframe for all the logcounts and radial distances
+for (g in seq_along(rownames(spe_ML_depleted))) {
+    depleted_dend_df <- cbind(df_rad_ML_depleted, t(as.data.frame(logcounts(spe_ML_depleted))))
+}
+
+# Plot for all the cluster 3 genes faceted by age_bin
+pdf(file = here::here("plots", "spatstats", "Radial_dist_GCL_ML_dendritic_depleted.pdf"))
+
+ggplot(depleted_dend_df) +
+    geom_smooth(aes(radial_distances, TUBB2B, color = "TUBB2B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1A1, color = "EEF1A1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, LHX2, color = "LHX2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GLUD1, color = "GLUD1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ARHGAP5, color = "ARHGAP5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13, color = "RPL13"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS15, color = "RPS15"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13A, color = "RPL13A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CCNI, color = "CCNI"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS14, color = "RPS14"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS24, color = "RPS24"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1G, color = "EEF1G"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS3, color = "RPS3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP0, color = "RPLP0"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP1, color = "RPLP1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS2, color = "RPS2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX4I1, color = "COX4I1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS11, color = "RPS11"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS9, color = "RPS9"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS5, color = "RPS5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ITSN1, color = "ITSN1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GPM6B, color = "GPM6B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_vline(aes(xintercept = 0), linetype = "dashed") +
+    geom_abline(aes(intercept = 0, slope = 0), linetype = "dashed") +
+    xlim(-750, 1000) +
+    facet_wrap(vars(age_bin)) +
+    theme_bw() +
+    theme_classic() +
+    labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
+        title = "Select conserved dendritically age-depleting gene set in GCL to ML")
+
+ggplot(depleted_dend_df) +
+    geom_smooth(aes(radial_distances, TUBB2B, color = "TUBB2B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1A1, color = "EEF1A1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, LHX2, color = "LHX2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GLUD1, color = "GLUD1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ARHGAP5, color = "ARHGAP5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13, color = "RPL13"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS15, color = "RPS15"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPL13A, color = "RPL13A"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, CCNI, color = "CCNI"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS14, color = "RPS14"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS24, color = "RPS24"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, EEF1G, color = "EEF1G"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS3, color = "RPS3"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP0, color = "RPLP0"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPLP1, color = "RPLP1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS2, color = "RPS2"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, COX4I1, color = "COX4I1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS11, color = "RPS11"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS9, color = "RPS9"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, RPS5, color = "RPS5"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, ITSN1, color = "ITSN1"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(aes(radial_distances, GPM6B, color = "GPM6B"),
+        method = "gam", formula = y ~ s(x, bs = "cs")) +
+    geom_vline(aes(xintercept = 0), linetype = "dashed") +
+    geom_abline(aes(intercept = 0, slope = 0), linetype = "dashed") +
+    xlim(-750, 1000) +
+    facet_wrap(vars(age_bin)) +
+    theme_bw() +
+    theme_classic() +
+    theme(legend.position="none") +
+    labs(y = "Mean normalize logcount", x= "Radial distance from GCL boarder",
+        title = "Select conserved dendritically age-depleting gene set in GCL to ML")
 
 dev.off()
 
