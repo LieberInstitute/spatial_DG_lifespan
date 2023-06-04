@@ -27,47 +27,86 @@ names(res_list)
 
 table(res_list$Br1412$padj <= 0.05)
 #FALSE  TRUE
-#  556  4119
+# 4231   448
 
 table(res_list$Br2706$padj <= 0.05)
 #FALSE  TRUE
-#  235  1202
+# 1156   313
+
+table(res_list$Br2720$padj <= 0.05)
+#FALSE  TRUE
+# 4697  1494
 
 table(res_list$Br3942$padj <= 0.05)
 #FALSE  TRUE
-#  313  1400
+# 1291   487
 
 table(res_list$Br5242$padj <= 0.05)
 #FALSE  TRUE
-#  613  1986
+# 2064   603
+
+table(res_list$Br5699_new$padj <= 0.05)
+#FALSE  TRUE
+# 5665  1701
 
 table(res_list$Br6023$padj <= 0.05)
 #FALSE  TRUE
-#  549  1809
+# 1947   347
+
+table(res_list$Br6129_new$padj <= 0.05)
+#FALSE  TRUE
+# 3898  2668
+
+table(res_list$Br6299_new$padj <= 0.05)
+#FALSE  TRUE
+# 5865  1388
+
+table(res_list$Br6522$padj <= 0.05)
+#FALSE  TRUE
+# 5772  1938
+
+table(res_list$Br8181$padj <= 0.05)
+#FALSE  TRUE
+# 4773  1664
 
 table(res_list$Br8195$padj <= 0.05)
 #FALSE  TRUE
-#  569  1759
+# 1860   442
+
+table(res_list$Br8533$padj <= 0.05)
+#FALSE  TRUE
+# 3439  1850
 
 table(res_list$Br8667$padj <= 0.05)
 #FALSE  TRUE
-#  423  1683
+# 1751   359
 
 table(res_list$Br8686$padj <= 0.05)
 #FALSE  TRUE
-#  327   681
+#  821   174
 
+table(res_list$Br8700$padj <= 0.05)
+#FALSE  TRUE
+# 4964  2407
 
 # Create vector of samples for nnSVG on whole tissue
 sample_ids <- c(
     "Br1412",
     "Br2706",
+    "Br2720",
     "Br3942",
     "Br5242",
+    "Br5699_new",
     "Br6023",
+    "Br6129_new",
+    "Br6299_new",
+    "Br6522",
+    "Br8181",
     "Br8195",
+    "Br8533",
     "Br8667",
-    "Br8686"
+    "Br8686",
+    "Br8700"
 )
 
 # ---------------
@@ -116,8 +155,8 @@ fn_out <- file.path(dir_outputs, "DG_BayesSpace_nnSVG_avgrank")
 # Export summary as .csv file
 write.csv(df_summary, fn_out, row.names = FALSE)
 
-# Plot top 20 SVGs
-SVGs <- head(df_summary$gene_name, 20)
+# Plot top 50 SVGs
+SVGs <- head(df_summary$gene_name, 50)
 
 # Locate the marker genes
 SVG_search <- rowData(spe)$gene_search[match(SVGs, rowData(spe)$gene_name)]
