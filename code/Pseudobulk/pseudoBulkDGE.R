@@ -1,7 +1,7 @@
 ##############################################
 # spatial_DG_lifespan project
 # DE analysis of pseudo-bulked across age_bin
-# Anthony Ramnauth, Sept 21 2022
+# Anthony Ramnauth, June 13 2023
 ##############################################
 
 suppressPackageStartupMessages({
@@ -38,6 +38,8 @@ colData(spe_pseudo)$ncells <- as.numeric(colData(spe_pseudo)$ncells)
 colData(spe_pseudo)$race <- as.factor(colData(spe_pseudo)$race)
 colData(spe_pseudo)$sample_id <- as.factor(colData(spe_pseudo)$sample_id)
 colData(spe_pseudo)$sex <- as.factor(colData(spe_pseudo)$sex)
+colData(spe_pseudo)$BayesSpace <- as.factor(colData(spe_pseudo)$BayesSpace)
+
 
 colData(spe_pseudo)
 
@@ -120,13 +122,13 @@ bayes1infant <- data.frame(
     adj.P.Val = infant_de_results[[1]]$adj.P.Val
 )
 
-bayes2infant <- data.frame(
+bayes10infant <- data.frame(
     gene_name = infant_de_results[[2]]$gene_name,
     logFC = infant_de_results[[2]]$logFC,
     adj.P.Val = infant_de_results[[2]]$adj.P.Val
 )
 
-bayes3infant <- data.frame(
+bayes2infant <- data.frame(
     gene_name = infant_de_results[[3]]$gene_name,
     logFC = infant_de_results[[3]]$logFC,
     adj.P.Val = infant_de_results[[3]]$adj.P.Val
@@ -162,6 +164,12 @@ bayes8infant <- data.frame(
     adj.P.Val = infant_de_results[[8]]$adj.P.Val
 )
 
+bayes9infant <- data.frame(
+    gene_name = infant_de_results[[9]]$gene_name,
+    logFC = infant_de_results[[9]]$logFC,
+    adj.P.Val = infant_de_results[[9]]$adj.P.Val
+)
+
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Infant.pdf"),
     width = 8.5, height = 8)
 
@@ -175,9 +183,7 @@ EnhancedVolcano(bayes1infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 1",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(bayes2infant,
@@ -190,24 +196,7 @@ EnhancedVolcano(bayes2infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 2",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
-    )
-
-EnhancedVolcano(bayes3infant,
-    lab = bayes3infant$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "BayesSpace cluster 3",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(bayes4infant,
@@ -220,9 +209,7 @@ EnhancedVolcano(bayes4infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 4",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(bayes5infant,
@@ -235,9 +222,7 @@ EnhancedVolcano(bayes5infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 5",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(bayes6infant,
@@ -250,9 +235,7 @@ EnhancedVolcano(bayes6infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 6",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(bayes7infant,
@@ -265,9 +248,7 @@ EnhancedVolcano(bayes7infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 7",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(bayes8infant,
@@ -280,10 +261,35 @@ EnhancedVolcano(bayes8infant,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 8",
-    subtitle = "Infant vs. non-Infant",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Infant vs. non-Infant"
     )
+
+EnhancedVolcano(bayes9infant,
+    lab = bayes9infant$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 9",
+    subtitle = "Infant vs. non-Infant"
+    )
+
+EnhancedVolcano(bayes10infant,
+    lab = bayes10infant$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 10",
+    subtitle = "Infant vs. non-Infant"
+    )
+
 
 dev.off()
 
@@ -297,13 +303,13 @@ bayes1teen <- data.frame(
     adj.P.Val = teen_de_results[[1]]$adj.P.Val
 )
 
-bayes2teen <- data.frame(
+bayes10teen <- data.frame(
     gene_name = teen_de_results[[2]]$gene_name,
     logFC = teen_de_results[[2]]$logFC,
     adj.P.Val = teen_de_results[[2]]$adj.P.Val
 )
 
-bayes3teen <- data.frame(
+bayes2teen <- data.frame(
     gene_name = teen_de_results[[3]]$gene_name,
     logFC = teen_de_results[[3]]$logFC,
     adj.P.Val = teen_de_results[[3]]$adj.P.Val
@@ -339,6 +345,12 @@ bayes8teen <- data.frame(
     adj.P.Val = teen_de_results[[8]]$adj.P.Val
 )
 
+bayes9teen <- data.frame(
+    gene_name = teen_de_results[[9]]$gene_name,
+    logFC = teen_de_results[[9]]$logFC,
+    adj.P.Val = teen_de_results[[9]]$adj.P.Val
+)
+
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Teen.pdf"),
     width = 8.5, height = 8)
 
@@ -352,9 +364,7 @@ EnhancedVolcano(bayes1teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 1",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 EnhancedVolcano(bayes2teen,
@@ -367,24 +377,7 @@ EnhancedVolcano(bayes2teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
         'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 2",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
-    )
-
-EnhancedVolcano(bayes3teen,
-    lab = bayes3teen$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "BayesSpace cluster 3",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 EnhancedVolcano(bayes4teen,
@@ -397,9 +390,7 @@ EnhancedVolcano(bayes4teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 4",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 EnhancedVolcano(bayes5teen,
@@ -412,9 +403,7 @@ EnhancedVolcano(bayes5teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 5",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 EnhancedVolcano(bayes6teen,
@@ -427,9 +416,7 @@ EnhancedVolcano(bayes6teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 6",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 EnhancedVolcano(bayes7teen,
@@ -442,9 +429,7 @@ EnhancedVolcano(bayes7teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 7",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
     )
 
 EnhancedVolcano(bayes8teen,
@@ -457,9 +442,33 @@ EnhancedVolcano(bayes8teen,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 8",
-    subtitle = "Teen vs. non-Teen",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Teen vs. non-Teen"
+    )
+
+EnhancedVolcano(bayes9teen,
+    lab = bayes9teen$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 9",
+    subtitle = "Teen vs. non-Teen"
+    )
+
+EnhancedVolcano(bayes10teen,
+    lab = bayes10teen$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 10",
+    subtitle = "Teen vs. non-Teen"
     )
 
 dev.off()
@@ -474,13 +483,13 @@ bayes1adult <- data.frame(
     adj.P.Val = adult_de_results[[1]]$adj.P.Val
 )
 
-bayes2adult <- data.frame(
+bayes10adult <- data.frame(
     gene_name = adult_de_results[[2]]$gene_name,
     logFC = adult_de_results[[2]]$logFC,
     adj.P.Val = adult_de_results[[2]]$adj.P.Val
 )
 
-bayes3adult <- data.frame(
+bayes2adult <- data.frame(
     gene_name = adult_de_results[[3]]$gene_name,
     logFC = adult_de_results[[3]]$logFC,
     adj.P.Val = adult_de_results[[3]]$adj.P.Val
@@ -516,6 +525,12 @@ bayes8adult <- data.frame(
     adj.P.Val = adult_de_results[[8]]$adj.P.Val
 )
 
+bayes9adult <- data.frame(
+    gene_name = adult_de_results[[9]]$gene_name,
+    logFC = adult_de_results[[9]]$logFC,
+    adj.P.Val = adult_de_results[[9]]$adj.P.Val
+)
+
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Adult.pdf"),
     width = 8.5, height = 8)
 
@@ -529,9 +544,7 @@ EnhancedVolcano(bayes1adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 1",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 EnhancedVolcano(bayes2adult,
@@ -544,24 +557,7 @@ EnhancedVolcano(bayes2adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 2",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
-    )
-
-EnhancedVolcano(bayes3adult,
-    lab = bayes3adult$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "BayesSpace cluster 3",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 EnhancedVolcano(bayes4adult,
@@ -574,9 +570,7 @@ EnhancedVolcano(bayes4adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 4",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 EnhancedVolcano(bayes5adult,
@@ -589,9 +583,7 @@ EnhancedVolcano(bayes5adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 5",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 EnhancedVolcano(bayes6adult,
@@ -604,9 +596,7 @@ EnhancedVolcano(bayes6adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 6",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 EnhancedVolcano(bayes7adult,
@@ -619,9 +609,7 @@ EnhancedVolcano(bayes7adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 7",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
     )
 
 EnhancedVolcano(bayes8adult,
@@ -634,9 +622,33 @@ EnhancedVolcano(bayes8adult,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 8",
-    subtitle = "Adult vs. non-Adult",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Adult vs. non-Adult"
+    )
+
+EnhancedVolcano(bayes9adult,
+    lab = bayes9adult$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 9",
+    subtitle = "Adult vs. non-Adult"
+    )
+
+EnhancedVolcano(bayes10adult,
+    lab = bayes10adult$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 10",
+    subtitle = "Adult vs. non-Adult"
     )
 
 dev.off()
@@ -651,13 +663,13 @@ bayes1elderly <- data.frame(
     adj.P.Val = elderly_de_results[[1]]$adj.P.Val
 )
 
-bayes2elderly <- data.frame(
+bayes10elderly <- data.frame(
     gene_name = elderly_de_results[[2]]$gene_name,
     logFC = elderly_de_results[[2]]$logFC,
     adj.P.Val = elderly_de_results[[2]]$adj.P.Val
 )
 
-bayes3elderly <- data.frame(
+bayes2elderly <- data.frame(
     gene_name = elderly_de_results[[3]]$gene_name,
     logFC = elderly_de_results[[3]]$logFC,
     adj.P.Val = elderly_de_results[[3]]$adj.P.Val
@@ -693,6 +705,12 @@ bayes8elderly <- data.frame(
     adj.P.Val = elderly_de_results[[8]]$adj.P.Val
 )
 
+bayes9elderly <- data.frame(
+    gene_name = elderly_de_results[[9]]$gene_name,
+    logFC = elderly_de_results[[9]]$logFC,
+    adj.P.Val = elderly_de_results[[9]]$adj.P.Val
+)
+
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Elderly.pdf"),
     width = 8.5, height = 8)
 
@@ -706,9 +724,7 @@ EnhancedVolcano(bayes1elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 1",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 EnhancedVolcano(bayes2elderly,
@@ -721,24 +737,7 @@ EnhancedVolcano(bayes2elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 2",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
-    )
-
-EnhancedVolcano(bayes3elderly,
-    lab = bayes3elderly$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "BayesSpace cluster 3",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 EnhancedVolcano(bayes4elderly,
@@ -751,9 +750,7 @@ EnhancedVolcano(bayes4elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 4",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 EnhancedVolcano(bayes5elderly,
@@ -766,9 +763,7 @@ EnhancedVolcano(bayes5elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 5",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 EnhancedVolcano(bayes6elderly,
@@ -781,9 +776,7 @@ EnhancedVolcano(bayes6elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 6",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 EnhancedVolcano(bayes7elderly,
@@ -796,9 +789,7 @@ EnhancedVolcano(bayes7elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 7",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
 EnhancedVolcano(bayes8elderly,
@@ -811,11 +802,34 @@ EnhancedVolcano(bayes8elderly,
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "BayesSpace cluster 8",
-    subtitle = "Elderly vs. non-Elderly",
-    drawConnectors = TRUE,
-    colConnectors = 'black'
+    subtitle = "Elderly vs. non-Elderly"
     )
 
+EnhancedVolcano(bayes9elderly,
+    lab = bayes9elderly$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 9",
+    subtitle = "Elderly vs. non-Elderly"
+    )
+
+EnhancedVolcano(bayes10elderly,
+    lab = bayes10elderly$gene_name,
+    x = 'logFC',
+    y = 'adj.P.Val',
+    FCcutoff = 1,
+    pCutoff = 0.049,
+    ylab = "-log10 adj.P.Val",
+    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
+      'adj.P.Val & Log (base 2) FC'),
+    title = "BayesSpace cluster 10",
+    subtitle = "Elderly vs. non-Elderly"
+    )
 dev.off()
 
 ######################################
@@ -843,13 +857,31 @@ fn_out1 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace1_DE")
 # Export summary as .csv file
 write.csv(infant_bayes1, fn_out1, row.names = FALSE)
 
-infant_bayes2 <- data.frame(
+infant_bayes10 <- data.frame(
     gene_id = infant_de_results[[2]]$gene_id,
     gene_name = infant_de_results[[2]]$gene_name,
     gene_type = infant_de_results[[2]]$gene_type,
     pvalue = infant_de_results[[2]]$P.Value,
     adj.P.Val = infant_de_results[[2]]$adj.P.Val,
     logFC = infant_de_results[[2]]$logFC
+)
+
+infant_bayes10 <- infant_bayes10 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out10 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace10_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes10, fn_out10, row.names = FALSE)
+
+infant_bayes2 <- data.frame(
+    gene_id = infant_de_results[[3]]$gene_id,
+    gene_name = infant_de_results[[3]]$gene_name,
+    gene_type = infant_de_results[[3]]$gene_type,
+    pvalue = infant_de_results[[3]]$P.Value,
+    adj.P.Val = infant_de_results[[3]]$adj.P.Val,
+    logFC = infant_de_results[[3]]$logFC
 )
 
 infant_bayes2 <- infant_bayes2 %>%
@@ -860,24 +892,6 @@ fn_out2 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace2_DE")
 
 # Export summary as .csv file
 write.csv(infant_bayes2, fn_out2, row.names = FALSE)
-
-infant_bayes3 <- data.frame(
-    gene_id = infant_de_results[[3]]$gene_id,
-    gene_name = infant_de_results[[3]]$gene_name,
-    gene_type = infant_de_results[[3]]$gene_type,
-    pvalue = infant_de_results[[3]]$P.Value,
-    adj.P.Val = infant_de_results[[3]]$adj.P.Val,
-    logFC = infant_de_results[[3]]$logFC
-)
-
-infant_bayes3 <- infant_bayes3 %>%
-    filter(adj.P.Val < 0.05) %>%
-    dplyr::arrange(pvalue)
-
-fn_out3 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace3_DE")
-
-# Export summary as .csv file
-write.csv(infant_bayes3, fn_out3, row.names = FALSE)
 
 infant_bayes4 <- data.frame(
     gene_id = infant_de_results[[4]]$gene_id,
@@ -969,6 +983,24 @@ fn_out8 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace8_DE")
 # Export summary as .csv file
 write.csv(infant_bayes8, fn_out8, row.names = FALSE)
 
+infant_bayes9 <- data.frame(
+    gene_id = infant_de_results[[9]]$gene_id,
+    gene_name = infant_de_results[[9]]$gene_name,
+    gene_type = infant_de_results[[9]]$gene_type,
+    pvalue = infant_de_results[[9]]$P.Value,
+    adj.P.Val = infant_de_results[[9]]$adj.P.Val,
+    logFC = infant_de_results[[9]]$logFC
+)
+
+infant_bayes9 <- infant_bayes9 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out9 <- file.path(dir_outputs, "InfantvsNonInfant_BayesSpace9_DE")
+
+# Export summary as .csv file
+write.csv(infant_bayes9, fn_out9, row.names = FALSE)
+
 teen_bayes1 <- data.frame(
     gene_id = teen_de_results[[1]]$gene_id,
     gene_name = teen_de_results[[1]]$gene_name,
@@ -987,13 +1019,31 @@ fn_out11 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace1_DE")
 # Export summary as .csv file
 write.csv(teen_bayes1, fn_out11, row.names = FALSE)
 
-teen_bayes2 <- data.frame(
+teen_bayes10 <- data.frame(
     gene_id = teen_de_results[[2]]$gene_id,
     gene_name = teen_de_results[[2]]$gene_name,
     gene_type = teen_de_results[[2]]$gene_type,
     pvalue = teen_de_results[[2]]$P.Value,
     adj.P.Val = teen_de_results[[2]]$adj.P.Val,
     logFC = teen_de_results[[2]]$logFC
+)
+
+teen_bayes10 <- teen_bayes10 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out210 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace10_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes10, fn_out210, row.names = FALSE)
+
+teen_bayes2 <- data.frame(
+    gene_id = teen_de_results[[3]]$gene_id,
+    gene_name = teen_de_results[[3]]$gene_name,
+    gene_type = teen_de_results[[3]]$gene_type,
+    pvalue = teen_de_results[[3]]$P.Value,
+    adj.P.Val = teen_de_results[[3]]$adj.P.Val,
+    logFC = teen_de_results[[3]]$logFC
 )
 
 teen_bayes2 <- teen_bayes2 %>%
@@ -1004,24 +1054,6 @@ fn_out22 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace2_DE")
 
 # Export summary as .csv file
 write.csv(teen_bayes2, fn_out22, row.names = FALSE)
-
-teen_bayes3 <- data.frame(
-    gene_id = teen_de_results[[3]]$gene_id,
-    gene_name = teen_de_results[[3]]$gene_name,
-    gene_type = teen_de_results[[3]]$gene_type,
-    pvalue = teen_de_results[[3]]$P.Value,
-    adj.P.Val = teen_de_results[[3]]$adj.P.Val,
-    logFC = teen_de_results[[3]]$logFC
-)
-
-teen_bayes3 <- teen_bayes3 %>%
-    filter(adj.P.Val < 0.05) %>%
-    dplyr::arrange(pvalue)
-
-fn_out33 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace3_DE")
-
-# Export summary as .csv file
-write.csv(teen_bayes3, fn_out33, row.names = FALSE)
 
 teen_bayes4 <- data.frame(
     gene_id = teen_de_results[[4]]$gene_id,
@@ -1113,6 +1145,24 @@ fn_out88 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace8_DE")
 # Export summary as .csv file
 write.csv(teen_bayes8, fn_out88, row.names = FALSE)
 
+teen_bayes9 <- data.frame(
+    gene_id = teen_de_results[[9]]$gene_id,
+    gene_name = teen_de_results[[9]]$gene_name,
+    gene_type = teen_de_results[[9]]$gene_type,
+    pvalue = teen_de_results[[9]]$P.Value,
+    adj.P.Val = teen_de_results[[9]]$adj.P.Val,
+    logFC = teen_de_results[[9]]$logFC
+)
+
+teen_bayes9 <- teen_bayes9 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out99 <- file.path(dir_outputs, "TeenvsNonTeen_BayesSpace9_DE")
+
+# Export summary as .csv file
+write.csv(teen_bayes9, fn_out99, row.names = FALSE)
+
 adult_bayes1 <- data.frame(
     gene_id = adult_de_results[[1]]$gene_id,
     gene_name = adult_de_results[[1]]$gene_name,
@@ -1131,13 +1181,31 @@ fn_out111 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace1_DE")
 # Export summary as .csv file
 write.csv(adult_bayes1, fn_out111, row.names = FALSE)
 
-adult_bayes2 <- data.frame(
+adult_bayes10 <- data.frame(
     gene_id = adult_de_results[[2]]$gene_id,
     gene_name = adult_de_results[[2]]$gene_name,
     gene_type = adult_de_results[[2]]$gene_type,
     pvalue = adult_de_results[[2]]$P.Value,
     adj.P.Val = adult_de_results[[2]]$adj.P.Val,
     logFC = adult_de_results[[2]]$logFC
+)
+
+adult_bayes10 <- adult_bayes10 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out310 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace10_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes10, fn_out310, row.names = FALSE)
+
+adult_bayes2 <- data.frame(
+    gene_id = adult_de_results[[3]]$gene_id,
+    gene_name = adult_de_results[[3]]$gene_name,
+    gene_type = adult_de_results[[3]]$gene_type,
+    pvalue = adult_de_results[[3]]$P.Value,
+    adj.P.Val = adult_de_results[[3]]$adj.P.Val,
+    logFC = adult_de_results[[3]]$logFC
 )
 
 adult_bayes2 <- adult_bayes2 %>%
@@ -1148,24 +1216,6 @@ fn_out222 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace2_DE")
 
 # Export summary as .csv file
 write.csv(adult_bayes2, fn_out222, row.names = FALSE)
-
-adult_bayes3 <- data.frame(
-    gene_id = adult_de_results[[3]]$gene_id,
-    gene_name = adult_de_results[[3]]$gene_name,
-    gene_type = adult_de_results[[3]]$gene_type,
-    pvalue = adult_de_results[[3]]$P.Value,
-    adj.P.Val = adult_de_results[[3]]$adj.P.Val,
-    logFC = adult_de_results[[3]]$logFC
-)
-
-adult_bayes3 <- adult_bayes3 %>%
-    filter(adj.P.Val < 0.05) %>%
-    dplyr::arrange(pvalue)
-
-fn_out333 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace3_DE")
-
-# Export summary as .csv file
-write.csv(adult_bayes3, fn_out333, row.names = FALSE)
 
 adult_bayes4 <- data.frame(
     gene_id = adult_de_results[[4]]$gene_id,
@@ -1257,6 +1307,24 @@ fn_out888 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace8_DE")
 # Export summary as .csv file
 write.csv(adult_bayes8, fn_out888, row.names = FALSE)
 
+adult_bayes9 <- data.frame(
+    gene_id = adult_de_results[[9]]$gene_id,
+    gene_name = adult_de_results[[9]]$gene_name,
+    gene_type = adult_de_results[[9]]$gene_type,
+    pvalue = adult_de_results[[9]]$P.Value,
+    adj.P.Val = adult_de_results[[9]]$adj.P.Val,
+    logFC = adult_de_results[[9]]$logFC
+)
+
+adult_bayes9 <- adult_bayes9 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out999 <- file.path(dir_outputs, "AdultvsNonAdult_BayesSpace9_DE")
+
+# Export summary as .csv file
+write.csv(adult_bayes9, fn_out999, row.names = FALSE)
+
 elderly_bayes1 <- data.frame(
     gene_id = elderly_de_results[[1]]$gene_id,
     gene_name = elderly_de_results[[1]]$gene_name,
@@ -1275,13 +1343,31 @@ fn_out1111 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace1_DE")
 # Export summary as .csv file
 write.csv(elderly_bayes1, fn_out1111, row.names = FALSE)
 
-elderly_bayes2 <- data.frame(
+elderly_bayes10 <- data.frame(
     gene_id = elderly_de_results[[2]]$gene_id,
     gene_name = elderly_de_results[[2]]$gene_name,
     gene_type = elderly_de_results[[2]]$gene_type,
     pvalue = elderly_de_results[[2]]$P.Value,
     adj.P.Val = elderly_de_results[[2]]$adj.P.Val,
     logFC = elderly_de_results[[2]]$logFC
+)
+
+elderly_bayes10 <- elderly_bayes10 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out410 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace10_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes10, fn_out410, row.names = FALSE)
+
+elderly_bayes2 <- data.frame(
+    gene_id = elderly_de_results[[3]]$gene_id,
+    gene_name = elderly_de_results[[3]]$gene_name,
+    gene_type = elderly_de_results[[3]]$gene_type,
+    pvalue = elderly_de_results[[3]]$P.Value,
+    adj.P.Val = elderly_de_results[[3]]$adj.P.Val,
+    logFC = elderly_de_results[[3]]$logFC
 )
 
 elderly_bayes2 <- elderly_bayes2 %>%
@@ -1292,24 +1378,6 @@ fn_out2222 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace2_DE")
 
 # Export summary as .csv file
 write.csv(elderly_bayes2, fn_out2222, row.names = FALSE)
-
-elderly_bayes3 <- data.frame(
-    gene_id = elderly_de_results[[3]]$gene_id,
-    gene_name = elderly_de_results[[3]]$gene_name,
-    gene_type = elderly_de_results[[3]]$gene_type,
-    pvalue = elderly_de_results[[3]]$P.Value,
-    adj.P.Val = elderly_de_results[[3]]$adj.P.Val,
-    logFC = elderly_de_results[[3]]$logFC
-)
-
-elderly_bayes3 <- elderly_bayes3 %>%
-    filter(adj.P.Val < 0.05) %>%
-    dplyr::arrange(pvalue)
-
-fn_out3333 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace3_DE")
-
-# Export summary as .csv file
-write.csv(elderly_bayes3, fn_out3333, row.names = FALSE)
 
 elderly_bayes4 <- data.frame(
     gene_id = elderly_de_results[[4]]$gene_id,
@@ -1401,7 +1469,23 @@ fn_out8888 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace8_DE")
 # Export summary as .csv file
 write.csv(elderly_bayes8, fn_out8888, row.names = FALSE)
 
+elderly_bayes9 <- data.frame(
+    gene_id = elderly_de_results[[9]]$gene_id,
+    gene_name = elderly_de_results[[9]]$gene_name,
+    gene_type = elderly_de_results[[9]]$gene_type,
+    pvalue = elderly_de_results[[9]]$P.Value,
+    adj.P.Val = elderly_de_results[[9]]$adj.P.Val,
+    logFC = elderly_de_results[[9]]$logFC
+)
 
+elderly_bayes9 <- elderly_bayes9 %>%
+    filter(adj.P.Val < 0.05) %>%
+    dplyr::arrange(pvalue)
+
+fn_out9999 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace9_DE")
+
+# Export summary as .csv file
+write.csv(elderly_bayes9, fn_out9999, row.names = FALSE)
 
 ## Reproducibility information
 print("Reproducibility information:")
