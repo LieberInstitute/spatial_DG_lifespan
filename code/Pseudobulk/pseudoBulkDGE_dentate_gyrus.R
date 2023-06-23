@@ -138,21 +138,73 @@ dentate1infant <- data.frame(
     adj.P.Val = infant_de_results[[2]]$adj.P.Val
 )
 
-pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Infant_dentategyrus.pdf"),
-    width = 8.5, height = 8)
+## Colors for the significant and not significant genes
+keyvals_inf <- ifelse(
+    dentate1infant$adj.P.Val < 0.05, "#E2C6A7", "#f0e3d6"
+)
 
-EnhancedVolcano(dentate0infant,
-    lab = dentate0infant$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "Non-Dentate Gyrus",
-    subtitle = "Infant vs. non-Infant"
+# Create groups of genes according to their function
+
+Neurogenic <- c(
+    "SOX11",
+	"NES",
+	"DCX",
+	"DPYSL5",
+	"BHLHE22"
+)
+
+Senescence <- c(
+    "SPX",
+	"CXCL16",
+	"SELPLG",
+	"TNFRSF1B",
+	"SELPLG"
+)
+
+BBB <- c(
+    "WNT7B",
+	"CDH5",
+	"LAMC1",
+	"F11R",
+	"CLDN5"
+)
+
+Activated_microglia <- c(
+    "CD74",
+	"C1QC",
+	"C1QA",
+	"HLA-DQB1",
+	"HLA-DQA1"
+)
+
+Reactive_astro <- c(
+    "GFAP",
+	"CD44",
+	"C3",
+	"CD14",
+	"SERPINA3"
     )
+
+selected <- c(Neurogenic, Senescence, BBB, Activated_microglia, Reactive_astro)
+
+## Assigning colors for each groups of highlited genes
+keyvals_inf[dentate1infant$gene_name %in% Senescence] <- "#FB8500"
+keyvals_inf[dentate1infant$gene_name %in% Activated_microglia] <- "#A5C0DF"
+keyvals_inf[dentate1infant$gene_name %in% Neurogenic] <- "#789C25"
+keyvals_inf[dentate1infant$gene_name %in% Reactive_astro] <- "#006164"
+keyvals_inf[dentate1infant$gene_name %in% BBB] <- "purple"
+
+## Legend names
+names(keyvals_inf)[keyvals_inf == "#E2C6A7"] <- "Adjusted P-value < 0.05"
+names(keyvals_inf)[keyvals_inf == "#f0e3d6"] <- "Not significant"
+names(keyvals_inf)[keyvals_inf == "#FB8500"] <- "Senescence genes"
+names(keyvals_inf)[keyvals_inf == "#789C25"] <- "Neurogenic genes"
+names(keyvals_inf)[keyvals_inf == "#A5C0DF"] <- "Activated microglia genes"
+names(keyvals_inf)[keyvals_inf == "#006164"] <- "Reactive astroglia genes"
+names(keyvals_inf)[keyvals_inf == "purple"] <- "BBB genes"
+
+pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Infant_dentategyrus.pdf"),
+    width = 10.5, height = 8)
 
 EnhancedVolcano(dentate1infant,
     lab = dentate1infant$gene_name,
@@ -160,12 +212,21 @@ EnhancedVolcano(dentate1infant,
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = selected,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    pointSize = c(ifelse(dentate1infant$gene_name %in% selected, 6, 2)),
+    colAlpha = c(ifelse(dentate1infant$gene_name %in% selected, 1, 0.2)),
+    colCustom = keyvals_inf,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Infant vs. non-Infant"
-    )
+    subtitle = "Infant vs. non-Infant",
+    legendPosition = "bottom"
+    ) +
+    xlim(c(-3.5, 3.5)) +
+    ylim(c(0, 14))
 
 dev.off()
 
@@ -185,21 +246,29 @@ dentate1teen <- data.frame(
     adj.P.Val = teen_de_results[[2]]$adj.P.Val
 )
 
-pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Teen_dentategyrus.pdf"),
-    width = 8.5, height = 8)
+## Colors for the significant and not significant genes
+keyvals_teen <- ifelse(
+    dentate1teen$adj.P.Val < 0.05, "#E2C6A7", "#f0e3d6"
+)
 
-EnhancedVolcano(dentate0teen,
-    lab = dentate0teen$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "Non-Dentate Gyrus",
-    subtitle = "Teen vs. non-Teen"
-    )
+## Assigning colors for each groups of highlited genes
+keyvals_teen[dentate1teen$gene_name %in% Senescence] <- "#FB8500"
+keyvals_teen[dentate1teen$gene_name %in% Activated_microglia] <- "#A5C0DF"
+keyvals_teen[dentate1teen$gene_name %in% Neurogenic] <- "#789C25"
+keyvals_teen[dentate1teen$gene_name %in% Reactive_astro] <- "#006164"
+keyvals_teen[dentate1teen$gene_name %in% BBB] <- "purple"
+
+## Legend names
+names(keyvals_teen)[keyvals_teen == "#E2C6A7"] <- "Adjusted P-value < 0.05"
+names(keyvals_teen)[keyvals_teen == "#f0e3d6"] <- "Not significant"
+names(keyvals_teen)[keyvals_teen == "#FB8500"] <- "Senescence genes"
+names(keyvals_teen)[keyvals_teen == "#789C25"] <- "Neurogenic genes"
+names(keyvals_teen)[keyvals_teen == "#A5C0DF"] <- "Activated microglia genes"
+names(keyvals_teen)[keyvals_teen == "#006164"] <- "Reactive astroglia genes"
+names(keyvals_teen)[keyvals_teen == "purple"] <- "BBB genes"
+
+pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Teen_dentategyrus.pdf"),
+    width = 10.5, height = 8)
 
 EnhancedVolcano(dentate1teen,
     lab = dentate1teen$gene_name,
@@ -207,12 +276,21 @@ EnhancedVolcano(dentate1teen,
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = selected,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    pointSize = c(ifelse(dentate1teen$gene_name %in% selected, 6, 2)),
+    colAlpha = c(ifelse(dentate1teen$gene_name %in% selected, 1, 0.2)),
+    colCustom = keyvals_teen,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-        'adj.P.Val & Log (base 2) FC'),
+      'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Teen vs. non-Teen"
-    )
+    subtitle = "Teen vs. non-Teen",
+    legendPosition = "bottom"
+    ) +
+    xlim(c(-2.5, 1)) +
+    ylim(c(0, 2.5))
 
 dev.off()
 
@@ -232,21 +310,30 @@ dentate1adult <- data.frame(
     adj.P.Val = adult_de_results[[2]]$adj.P.Val
 )
 
-pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Adult_dentategyrus.pdf"),
-    width = 8.5, height = 8)
 
-EnhancedVolcano(dentate0adult,
-    lab = dentate0adult$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "Non-Dentate Gyrus",
-    subtitle = "Adult vs. non-Adult"
-    )
+## Colors for the significant and not significant genes
+keyvals_adult <- ifelse(
+    dentate1adult$adj.P.Val < 0.05, "#E2C6A7", "#f0e3d6"
+)
+
+## Assigning colors for each groups of highlited genes
+keyvals_adult[dentate1adult$gene_name %in% Senescence] <- "#FB8500"
+keyvals_adult[dentate1adult$gene_name %in% Activated_microglia] <- "#A5C0DF"
+keyvals_adult[dentate1adult$gene_name %in% Neurogenic] <- "#789C25"
+keyvals_adult[dentate1adult$gene_name %in% Reactive_astro] <- "#006164"
+keyvals_adult[dentate1adult$gene_name %in% BBB] <- "purple"
+
+## Legend names
+names(keyvals_adult)[keyvals_adult == "#E2C6A7"] <- "Adjusted P-value < 0.05"
+names(keyvals_adult)[keyvals_adult == "#f0e3d6"] <- "Not significant"
+names(keyvals_adult)[keyvals_adult == "#FB8500"] <- "Senescence genes"
+names(keyvals_adult)[keyvals_adult == "#789C25"] <- "Neurogenic genes"
+names(keyvals_adult)[keyvals_adult == "#A5C0DF"] <- "Activated microglia genes"
+names(keyvals_adult)[keyvals_adult == "#006164"] <- "Reactive astroglia genes"
+names(keyvals_adult)[keyvals_adult == "purple"] <- "BBB genes"
+
+pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Adult_dentategyrus.pdf"),
+    width = 10.5, height = 8)
 
 EnhancedVolcano(dentate1adult,
     lab = dentate1adult$gene_name,
@@ -254,12 +341,21 @@ EnhancedVolcano(dentate1adult,
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = selected,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    pointSize = c(ifelse(dentate1adult$gene_name %in% selected, 6, 2)),
+    colAlpha = c(ifelse(dentate1adult$gene_name %in% selected, 1, 0.2)),
+    colCustom = keyvals_adult,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Adult vs. non-Adult"
-    )
+    subtitle = "Adult vs. non-Adult",
+    legendPosition = "bottom"
+    ) +
+    xlim(c(-1.5, 1.5)) +
+    ylim(c(0, 3))
 
 dev.off()
 
@@ -279,21 +375,29 @@ dentate1elderly <- data.frame(
     adj.P.Val = elderly_de_results[[2]]$adj.P.Val
 )
 
-pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Elderly_dentategyrus.pdf"),
-    width = 8.5, height = 8)
+## Colors for the significant and not significant genes
+keyvals_elderly <- ifelse(
+    dentate1elderly$adj.P.Val < 0.05, "#E2C6A7", "#f0e3d6"
+)
 
-EnhancedVolcano(dentate0elderly,
-    lab = dentate0elderly$gene_name,
-    x = 'logFC',
-    y = 'adj.P.Val',
-    FCcutoff = 1,
-    pCutoff = 0.049,
-    ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "Non-Dentate Gyrus",
-    subtitle = "Elderly vs. non-Elderly"
-    )
+## Assigning colors for each groups of highlited genes
+keyvals_elderly[dentate1elderly$gene_name %in% Senescence] <- "#FB8500"
+keyvals_elderly[dentate1elderly$gene_name %in% Activated_microglia] <- "#A5C0DF"
+keyvals_elderly[dentate1elderly$gene_name %in% Neurogenic] <- "#789C25"
+keyvals_elderly[dentate1elderly$gene_name %in% Reactive_astro] <- "#006164"
+keyvals_elderly[dentate1elderly$gene_name %in% BBB] <- "purple"
+
+## Legend names
+names(keyvals_elderly)[keyvals_elderly == "#E2C6A7"] <- "Adjusted P-value < 0.05"
+names(keyvals_elderly)[keyvals_elderly == "#f0e3d6"] <- "Not significant"
+names(keyvals_elderly)[keyvals_elderly == "#FB8500"] <- "Senescence genes"
+names(keyvals_elderly)[keyvals_elderly == "#789C25"] <- "Neurogenic genes"
+names(keyvals_elderly)[keyvals_elderly == "#A5C0DF"] <- "Activated microglia genes"
+names(keyvals_elderly)[keyvals_elderly == "#006164"] <- "Reactive astroglia genes"
+names(keyvals_elderly)[keyvals_elderly == "purple"] <- "BBB genes"
+
+pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Elderly_dentategyrus.pdf"),
+    width = 10.5, height = 8)
 
 EnhancedVolcano(dentate1elderly,
     lab = dentate1elderly$gene_name,
@@ -301,12 +405,21 @@ EnhancedVolcano(dentate1elderly,
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = selected,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    pointSize = c(ifelse(dentate1elderly$gene_name %in% selected, 6, 2)),
+    colAlpha = c(ifelse(dentate1elderly$gene_name %in% selected, 1, 0.2)),
+    colCustom = keyvals_elderly,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
     title = "Dentate Gyrus",
-    subtitle = "Elderly vs. non-Elderly"
-    )
+    subtitle = "Elderly vs. non-Elderly",
+    legendPosition = "bottom"
+    ) +
+    xlim(c(-2, 3.5)) +
+    ylim(c(0, 13))
 
 dev.off()
 

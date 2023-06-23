@@ -25,21 +25,33 @@ spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk
 # Load modeling results
 modeling_results <- readRDS(file = here::here("processed-data", "pseudobulk_spe", "modeling_results.rds"))
 
+##########################################################################################################
+
+# Activated Microglia gene sets
+
 # Get list of gene-set from mouse data (Hansruedi Mathys et al., 2017) for microglia states
 
 Mathys_2017 <- read.csv(file = here("processed-data","gene_set_enrichment",
     "Mathys_2017.csv"))
 
+# Get list of gene-set from human data (Yijing Su et al., 2022) for microglia neuroinflammatory cluster
+Su_microg_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Su_microg_2022.csv"))
+
+Su_microg_2022 <- Su_microg_2022[Su_microg_2022$Cluster.ID == "MG1",]
+
 # Convert to Ensembl IDs for gene_set_enrichment funciton to work
 clust_3_list <- bitr(Mathys_2017$Genes.up.regulated.in.Cluster.3, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 clust_7_list <- bitr(Mathys_2017$Genes.up.regulated.in.Cluster.7, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 clust_6_list <- bitr(Mathys_2017$Genes.up.regulated.in.Cluster.6, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+MG1 <- bitr(Su_microg_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 
 ## Format them appropriately
 microglia_geneList <- list(
-    early_activated_1 = clust_3_list$ENSEMBL,
-    early_activated_2 = clust_7_list$ENSEMBL,
-    late_activated = clust_6_list$ENSEMBL
+    Mathys_2017_early_activated_1 = clust_3_list$ENSEMBL,
+    Mathys_2017_early_activated_2 = clust_7_list$ENSEMBL,
+    Mathys_2017_late_activated = clust_6_list$ENSEMBL,
+    Su_2022_MG1 = MG1$ENSEMBL
 )
 
 enriched_microglia <- gene_set_enrichment(
@@ -62,6 +74,8 @@ gene_set_enrichment_plot(
 )
 
 ###############################################################################################################
+
+# Dendritically enriched gene sets
 
 # Get list of gene-set from mouse data (Robert R. Stickels et al., 2020) for dendritically enriched gene sets
 Stickels_2020 <- read.csv(file = here("processed-data","gene_set_enrichment",
@@ -103,6 +117,201 @@ enriched_dendrites <- gene_set_enrichment(
 gene_set_enrichment_plot(
   enriched_dendrites,
   xlabs = unique(enriched_dendrites$ID),
+  PThresh = 12,
+  ORcut = 3,
+  enrichOnly = TRUE,
+  mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
+    "YlOrRd")))(50)),
+  cex = 1.2
+)
+
+###################################################################################
+
+# Senescence gene sets
+
+# Get list of gene-set from for senescence markers (from D. Saul, et al., 2022)
+Saul_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Saul_2022.csv"))
+
+# Translate from one species to the other using the orthology
+sen <- Saul_2022$Gene.human.
+
+#Get the Ensembl IDs
+Sen_cluster <- bitr(sen, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+
+## Format them appropriately
+senescence_geneList <- list(
+    SenMayo = Sen_cluster
+)
+
+enriched_senescence <- gene_set_enrichment(
+  senescence_geneList,
+  fdr_cut = 0.05,
+  modeling_results = modeling_results,
+  model_type = names(modeling_results)[2],
+  reverse = FALSE
+)
+
+gene_set_enrichment_plot(
+  enriched_senescence,
+  xlabs = unique(enriched_senescence$ID),
+  PThresh = 12,
+  ORcut = 3,
+  enrichOnly = TRUE,
+  mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
+    "YlOrRd")))(50)),
+  cex = 1.2
+)
+
+######################################################################################
+# Get genes from GO term maintenance of blood-brain barrier
+BBB <- "GO:0035633"
+BBB <- bitr(BBB, fromType="GO", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+BBB <- BBB$ENSEMBL
+
+## Format them appropriately
+BBB_geneList <- list(
+    BBB_maintenance = BBB
+)
+
+enriched_BBB <- gene_set_enrichment(
+  BBB_geneList,
+  fdr_cut = 0.05,
+  modeling_results = modeling_results,
+  model_type = names(modeling_results)[2],
+  reverse = FALSE
+)
+
+gene_set_enrichment_plot(
+  enriched_BBB,
+  xlabs = unique(enriched_BBB$ID),
+  PThresh = 12,
+  ORcut = 3,
+  enrichOnly = TRUE,
+  mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
+    "YlOrRd")))(50)),
+  cex = 1.2
+)
+
+#######################################################################################
+
+# Reactive Astrocyte gene sets
+
+# Manually input Pan, A1, & A2 gene sets from mouse data (Laura Clarke et al., 2018)
+
+Clarke_2018 <- list(
+    PAN = c("Lcn2", "Steap4", "S1pr3", "Timp1", "Hsbp1", "Cxcl10", "Cd44", "Osmr", "Cp", "Serpina3n", "Aspg", "Vim", "Gfap"),
+    A1 = c("C3", "H2-T23", "Serping1", "H2-D1", "Ggta1", "Ligp1", "Gpp2", "Fbln5", "Fkbp5", "Psmb8", "Srgn", "Amigo2"),
+    A2 = c("Clcf1", "Tgm1", "Ptx3", "S100a10", "Sphk1", "Cd109", "Ptgs2", "Emp1", "Slc10a6", "Tm4sf1", "B3gnt5", "Cd14", "Stat3")
+)
+
+# Translate from one species to the other using the orthology
+PAN <- orthology[orthology$Column3 %in% Clarke_2018$PAN,]
+A1 <- orthology[orthology$Column3 %in% Clarke_2018$A1,]
+A2 <- orthology[orthology$Column3 %in% Clarke_2018$A2,]
+
+# Get list of gene-set from human data (Yijing Su et al., 2022) for microglia neuroinflammatory cluster
+Su_astro_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Su_astro_2022.csv"))
+
+Su_astro1_2022 <- Su_astro_2022[Su_astro_2022$Cluster.ID == "AST1",]
+Su_astro6_2022 <- Su_astro_2022[Su_astro_2022$Cluster.ID == "AST6",]
+Su_astro_2022 <- rbind(Su_astro1_2022, Su_astro6_2022)
+
+# Convert to Ensembl IDs for gene_set_enrichment funciton to work
+PAN_list <- bitr(PAN$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+A1_list <- bitr(A1$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+A2_list <- bitr(A2$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+Su_2022_AST1_6 <- bitr(Su_astro_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+
+## Format them appropriately
+astro_geneList <- list(
+    Clarke_2018_PAN = PAN_list$ENSEMBL,
+    Clarke_2018_A1 = A1_list$ENSEMBL,
+    Clarke_2018_A2 = clust_6_list$ENSEMBL,
+    Su_2022_AST1_AST6 = Su_2022_AST1_6$ENSEMBL
+)
+
+enriched_astroglia <- gene_set_enrichment(
+  astro_geneList,
+  fdr_cut = 0.05,
+  modeling_results = modeling_results,
+  model_type = names(modeling_results)[2],
+  reverse = FALSE
+)
+
+gene_set_enrichment_plot(
+  enriched_astroglia,
+  xlabs = unique(enriched_astroglia$ID),
+  PThresh = 12,
+  ORcut = 3,
+  enrichOnly = TRUE,
+  mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
+    "YlOrRd")))(50)),
+  cex = 1.2
+)
+
+#################################################################################################
+
+# Neurogenic gene sets
+
+# Use table from Jax labs for mouse human orthology
+#https://www.informatics.jax.org/downloads/reports/index.html#homology
+orthology <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "human_mouse_orthologs.csv"))
+
+# Get list of neurogenesis gene-set from mouse data (Hochgerner et al., 2018)
+Hochgerner_2018 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Hochgerner_2018.csv"))
+
+# Translate from one species to the other using the orthology
+Hochgerner_2018_nIPC <- orthology[orthology$Column3 %in% Hochgerner_2018$nIPC,]
+Hochgerner_2018_nIPC <- Hochgerner_2018_nIPC$Column1
+Hochgerner_2018_NB1 <- orthology[orthology$Column3 %in% Hochgerner_2018$Neuroblast1,]
+Hochgerner_2018_NB1 <- Hochgerner_2018_NB1$Column1
+Hochgerner_2018_NB2 <- orthology[orthology$Column3 %in% Hochgerner_2018$Neuroblast2,]
+Hochgerner_2018_NB2 <- Hochgerner_2018_NB2$Column1
+
+# List taken from Hao et al 2022 for mouse and macaque
+Hao_2022 <- c(
+    "ID4", "TMEM47", "MLC1", "ALDOC", "SLC1A3", "SLC1A2", "SOX2", "MKI67", "CKS2",
+    "CENPF", "SMC4", "TOP2A", "TMPO", "FXYD6", "NNAT", "SOX4", "DPYSL3", "STMN2",
+    "CALB2", "SEMA3C"
+)
+
+# Get list of imGC gene-set from human-lifespan data (Yi Zhou et al., 2022)
+Zhou_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Zhou_2022.csv"))
+
+# Convert to Ensembl IDs for gene_set_enrichment funciton to work
+nIPC_list <- bitr(Hochgerner_2018_nIPC, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+NB1_list <- bitr(Hochgerner_2018_NB1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+NB2_list <- bitr(Hochgerner_2018_NB2, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+macaque_list <- bitr(Hao_2022, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+imGC_conserved_list <- bitr(Zhou_2022$Common.genes, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+imGC_human_list <- bitr(Zhou_2022$Human.specific.genes, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+
+## Format them appropriately
+neurogenesis_geneList <- list(
+    Hochgerner_2018_nIPC = nIPC_list$ENSEMBL,
+    Hochgerner_2018_NB1 = NB1_list$ENSEMBL,
+    Hochgerner_2018_NB2 = NB2_list$ENSEMBL,
+    Hao_2022_mouse_macaque_NPC = macaque_list$ENSEMBL,
+    Zhou_2022_mouse_human_imGC = imGC_conserved_list$ENSEMBL,
+    Zhou_2022_human_imGC = imGC_conserved_list$ENSEMBL
+)
+
+enriched_neurogenesis <- gene_set_enrichment(
+  neurogenesis_geneList,
+  fdr_cut = 0.05,
+  modeling_results = modeling_results,
+  model_type = names(modeling_results)[2],
+  reverse = FALSE
+)
+
+gene_set_enrichment_plot(
+  enriched_neurogenesis,
+  xlabs = unique(enriched_neurogenesis$ID),
   PThresh = 12,
   ORcut = 3,
   enrichOnly = TRUE,
