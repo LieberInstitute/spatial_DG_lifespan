@@ -55,77 +55,72 @@ MF_list <- MF_parent_GO$parent_term
 BP_list <- BP_parent_GO$parent_term
 
 # Truncate the BP_list, it is too large for plotting
-trunc_BP_list <- c("regulation of neuron projection development",
-    "regulation of cell development",
+
+trunc_CC_list <- c(
+    "adherens junction",
+    "histone methyltransferase complex",
+    "lamellipodium",
+    "apical junction complex",
+    "NuRD complex",
+    "postsynaptic density membrane",
+    "methyltransferase complex",
+    "lysosomal membrane",
+    "transport vesicle",
+    "mitochondrial matrix",
+    "vacuolar proton−transporting V-type ATPase complex",
+    "proteasome complex",
+    "MHC class II protein complex",
+    "endocytic vesicle",
+    "cytoplasmic stress granule",
+    "translation preinitiation complex",
+    "respirasome",
+    "presynapse",
+    "stress fiber"
+)
+
+trunc_MF_list <- c(
+    "transcription coregulator activity",
+    "histone binding",
+    "histone demethylase activity",
+    "ATP-dependent chromatin remodeler activity",
+    "miRNA binding",
+    "lyase activity",
+    "MHC class II protein complex binding",
+    "ATPase−coupled ion transmembrane transporter activity",
+    "electron transfer activity",
+    "translation initiation factor activity",
+    "oxidoreduction−driven active transmembrane transporter activity",
+    "antioxidant activity",
+    "tau-protein kinase activity",
+    "immune receptor activity",
+    "MHC class II receptor activity"
+)
+
+trunc_BP_list <- c(
+    "regulation of neuron projection development",
+    "regulation of nervous system development",
     "regulation of neurogenesis",
-    "regulation of cell morphogenesis",
-    "macroautophagy",
-    "oxidative phosphorylation",
-    "chromatin remodeling",
-    "cell junction assembly",
     "synapse organization",
     "histone modification",
     "gliogenesis",
-    "neuron migration",
-    "mitochondrion disassembly",
-    "stem cell differentiation",
-    "glycerophospholipid metabolic process",
     "neural precursor cell proliferation",
-    "response to transforming growth factor beta",
-    "proteasomal protein catabolic process",
-    "actin cytoskeleton reorganization",
-    "regulation of nuclear-transcribed mRNA catabolic process, deadenylation-dependent decay",
-    "pyruvate metabolic process",
-    "endosome to lysosome transport",
-    "establishment of organelle localization",
-    "ATP metabolic process",
-    "developmental cell growth",
-    "protein targeting",
-    "leukocyte migration",
-    "negative regulation of immune system process",
-    "miRNA metabolic process",
-    "myeloid leukocyte activation",
-    "regulation of immune effector process",
-    "regulation of chemokine production",
-    "actin polymerization or depolymerization",
-    "regulation of MAP kinase activity",
-    "vasculogenesis",
-    "immune response-regulating signaling pathway",
-    "maintenance of blood-brain barrier",
-    "positive regulation of T cell activation",
-    "regulation of microtubule polymerization",
-    "cellular amino acid metabolic process",
-    "lymphocyte proliferation",
-    "carbohydrate derivative catabolic process",
-    "regulation of trans-synaptic signaling",
-    "extracellular matrix organization",
-    "regulation of DNA binding",
-    "response to steroid hormone",
-    "regulation of myeloid leukocyte differentiation",
-    "lipid droplet formation",
-    "regulation of gene expression, epigenetic",
-    "regulation of DNA-templated transcription in response to stress",
-    "non-motile cilium assembly",
-    "positive regulation of neuron death",
-    "positive regulation of protein transport",
-    "carbohydrate catabolic process",
-    "regulation of cytokine production involved in immune response",
-    "regulation of cell size",
-    "regulation of apoptotic cell clearance",
-    "cellular lipid catabolic process",
-    "negative regulation of execution phase of apoptosis",
-    "plasma membrane repair",
-    "positive regulation of calcium ion transport",
+    "axon development",
+    "dendrite development",
+    "dendritic spine development",
+    "antigen processing and presentation of peptide or polysaccharide antigen via MHC class II",
+    "aerobic respiration",
+    "myeloid cell activation involved in immune response",
+    "regulation of translation",
+    "cellular respiration",
+    "leukocyte mediated immunity",
+    "fear response",
     "'de novo' post-translational protein folding",
-    "macromolecule deacylation",
-    "peptidyl−lysine modification",
-    "postsynapse assembly",
-    "exocytosis",
-   "translational initiation")
+    "maintenance of blood-brain barrier"
+)
 
-pdf(file = here::here("plots", "pseudobulked", "Age_group_DG_parent_GO.pdf"), width = 18, height = 14)
+pdf(file = here::here("plots", "pseudobulked", "Select_Age_group_DG_parent_GO.pdf"), width = 8, height = 9)
 
-dotplot(comp_CC, showCategory = CC_list, label_format = 90) +
+dotplot(comp_CC, showCategory = trunc_CC_list, label_format = 90) +
     ggtitle("Parent GO terms for Cellular Compartment for Age groups in Dentate Gyrus") +
     theme(plot.title = element_text(size = 14),
         axis.text.x = element_text(angle = -70, size = 14),
@@ -133,7 +128,7 @@ dotplot(comp_CC, showCategory = CC_list, label_format = 90) +
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14))
 
-dotplot(comp_MF, showCategory = MF_list, label_format = 90) +
+dotplot(comp_MF, showCategory = trunc_MF_list, label_format = 90) +
     ggtitle("Parent GO terms for Molecular Function for Age groups in Dentate Gyrus") +
     theme(plot.title = element_text(size = 14),
         axis.text.x = element_text(angle = -70),
@@ -141,25 +136,29 @@ dotplot(comp_MF, showCategory = MF_list, label_format = 90) +
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14))
 
-dotplot(comp_BP, showCategory = trunc_BP_list, label_format = 90) +
+dotplot(comp_BP, showCategory = trunc_BP_list) +
     ggtitle("Select Parent GO terms for Biological Process for Age groups in Dentate Gyrus")+
-    theme(plot.title = element_text(size = 14),
+    theme(plot.title = element_text(size = 12),
         axis.text.x = element_text(angle = -70),
-        axis.text.y = element_text(size = 14),
+        axis.text.y = element_text(size = 12),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14))
 
 dev.off()
 
-pdf(file = here::here("plots", "pseudobulked", "Age_group_DG_parent_GOBP_separate.pdf"), width = 20, height = 22)
+# Plot dotplots separately to format sizes
+
+pdf(file = here::here("plots", "pseudobulked", "blah_Age_group_DG_parent_GOBP_separate.pdf"), width = 20, height = 32)
 
 dotplot(comp_BP, showCategory = BP_list, label_format = 300) +
-    ggtitle("Parent GO terms for Biological Process for Age groups in Dentate Gyrus")+
+    ggtitle("GO terms for CC for Age groups in Dentate Gyrus")+
     theme(plot.title = element_text(size = 12),
-        axis.text.x = element_text(angle = -70, size = 12),
-        axis.text.y = element_text(size = 12))
+        axis.text.x = element_text(angle = -70, size = 16),
+        axis.text.y = element_text(size = 16, face = "bold"))
 
 dev.off()
+
+
 #######################################################
 # Plot the GO parent genes for pseudobulk spe logcounts
 #######################################################

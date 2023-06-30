@@ -1,6 +1,6 @@
 #############################################
 # spatial_DG_lifespan project
-# Gene-set enrichment of microglia activation
+# Gene-set enrichment
 # Anthony Ramnauth, May 22 2023
 #############################################
 
@@ -66,7 +66,7 @@ gene_set_enrichment_plot(
   enriched_microglia,
   xlabs = unique(enriched_microglia$ID),
   PThresh = 12,
-  ORcut = 3,
+  ORcut = 2,
   enrichOnly = TRUE,
   mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
     "YlOrRd")))(50)),
@@ -118,7 +118,7 @@ gene_set_enrichment_plot(
   enriched_dendrites,
   xlabs = unique(enriched_dendrites$ID),
   PThresh = 12,
-  ORcut = 3,
+  ORcut = 2,
   enrichOnly = TRUE,
   mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
     "YlOrRd")))(50)),
@@ -139,9 +139,33 @@ sen <- Saul_2022$Gene.human.
 #Get the Ensembl IDs
 Sen_cluster <- bitr(sen, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 
+# Get list of gene-set from for senescence markers (from G. Casella et al., 2019)
+Casella_2019_up <- c(
+    "TMEM159", "CHPF2", "SLC9A7", "PLOD1", "FAM234B", "DHRS7", "SRPX", "SRPX2", "TNFSF13B", "PDLIM1",
+    "ELMOD1", "CCND3", "TMEM30A", "STAT1", "RND3", "TMEM59", "SARAF", "SLCO2B1", "ARRDC4", "PAM",
+    "WDR78", "CLSTN2", "WDR63", "NCSTN", "SLC16A14", "GPR155", "CLDN1", "JCAD", "BLCAP", "FILIP1L",
+    "TAP1", "TNFRSF10C", "SAMD9L", "SMCO3", "POFUT2", "KIAA1671", "LRP10", "BMS1P9", "MT-TA", "MT-TN",
+    "MT-TC", "MT-TY", "DIO2", "MAP4K3-DT", "AC002480.1", "LINC02154", "TM4SF1-AS1", "PTCHD4", "H2AFJ",
+    "PURPL"
+)
+
+Casella_2019_down <- c(
+    "MCUB", "FBL", "HIST1H1D", "HIST1H1A", "FAM129A", "ANP32B", "PARP1", "LBR", "SSRP1", "TMSB15A", "CBS",
+    "CDCA7L", "HIST1H1E", "CBX2", "HIST2H2AB", "PTMA", "ITPRIPL1", "AC074135.1", "P16", "P21", "TP53"
+)
+
+#Get the Ensembl IDs
+Casella_2019_up_cluster <- bitr(Casella_2019_up, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+Casella_2019_down_cluster <- bitr(Casella_2019_down, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+
 ## Format them appropriately
 senescence_geneList <- list(
-    SenMayo = Sen_cluster
+    Saul_2022_SenMayo = Sen_cluster,
+    Casella_2019_up = Casella_2019_up_cluster
+)
+
+senescence_down_geneList <- list(
+    Casella_2019_down = Casella_2019_down_cluster
 )
 
 enriched_senescence <- gene_set_enrichment(
@@ -156,7 +180,39 @@ gene_set_enrichment_plot(
   enriched_senescence,
   xlabs = unique(enriched_senescence$ID),
   PThresh = 12,
-  ORcut = 3,
+  ORcut = 2,
+  enrichOnly = TRUE,
+  mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
+    "YlOrRd")))(50)),
+  cex = 1.2
+)
+
+depleted_senescence <- gene_set_enrichment(
+  senescence_down_geneList,
+  fdr_cut = 0.05,
+  modeling_results = modeling_results,
+  model_type = names(modeling_results)[2],
+  reverse = TRUE
+)
+
+gene_set_enrichment_plot(
+  depleted_senescence,
+  xlabs = unique(depleted_senescence$ID),
+  PThresh = 12,
+  ORcut = 2,
+  enrichOnly = TRUE,
+  mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
+    "YlOrRd")))(50)),
+  cex = 1.2
+)
+
+senescence_all <- rbind(enriched_senescence, depleted_senescence)
+
+gene_set_enrichment_plot(
+  senescence_all,
+  xlabs = unique(senescence_all$ID),
+  PThresh = 12,
+  ORcut = 2,
   enrichOnly = TRUE,
   mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
     "YlOrRd")))(50)),
@@ -179,14 +235,14 @@ enriched_BBB <- gene_set_enrichment(
   fdr_cut = 0.05,
   modeling_results = modeling_results,
   model_type = names(modeling_results)[2],
-  reverse = FALSE
+  reverse = TRUE
 )
 
 gene_set_enrichment_plot(
   enriched_BBB,
   xlabs = unique(enriched_BBB$ID),
   PThresh = 12,
-  ORcut = 3,
+  ORcut = 2,
   enrichOnly = TRUE,
   mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
     "YlOrRd")))(50)),
@@ -228,7 +284,7 @@ Su_2022_AST1_6 <- bitr(Su_astro_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL"
 astro_geneList <- list(
     Clarke_2018_PAN = PAN_list$ENSEMBL,
     Clarke_2018_A1 = A1_list$ENSEMBL,
-    Clarke_2018_A2 = clust_6_list$ENSEMBL,
+    Clarke_2018_A2 = A2_list$ENSEMBL,
     Su_2022_AST1_AST6 = Su_2022_AST1_6$ENSEMBL
 )
 
@@ -244,7 +300,7 @@ gene_set_enrichment_plot(
   enriched_astroglia,
   xlabs = unique(enriched_astroglia$ID),
   PThresh = 12,
-  ORcut = 3,
+  ORcut = 2,
   enrichOnly = TRUE,
   mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
     "YlOrRd")))(50)),
@@ -313,7 +369,7 @@ gene_set_enrichment_plot(
   enriched_neurogenesis,
   xlabs = unique(enriched_neurogenesis$ID),
   PThresh = 12,
-  ORcut = 3,
+  ORcut = 2,
   enrichOnly = TRUE,
   mypal = c("white", (grDevices::colorRampPalette(RColorBrewer::brewer.pal(9,
     "YlOrRd")))(50)),

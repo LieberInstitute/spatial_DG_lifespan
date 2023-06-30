@@ -55,10 +55,16 @@ dim(spe_GCL)
 Mathys_2017 <- read.csv(file = here("processed-data","gene_set_enrichment",
     "Mathys_2017.csv"))
 
+Su_microg_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Su_microg_2022.csv"))
+
+Su_microg_2022 <- Su_microg_2022[Su_microg_2022$Cluster.ID == "MG1",]
+
 # Convert to Ensembl IDs for gene_set_enrichment funciton to work
 clust_3_list <- bitr(Mathys_2017$Genes.up.regulated.in.Cluster.3, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 clust_7_list <- bitr(Mathys_2017$Genes.up.regulated.in.Cluster.7, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 clust_6_list <- bitr(Mathys_2017$Genes.up.regulated.in.Cluster.6, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+Su_list <- bitr(Su_microg_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 
 #SLM
 ages_SLM <- spe_SLM$age
@@ -114,6 +120,10 @@ rownames(spe_ML_cl6) <- rowData(spe_ML_cl6)$gene_name
 spe_ML_cl7 <- spe_ML[which((rownames(spe_ML)) %in% clust_7_list$ENSEMBL)]
 # Set gene names as row names for easier plotting
 rownames(spe_ML_cl7) <- rowData(spe_ML_cl7)$gene_name
+
+spe_ML_Su <- spe_ML[which((rownames(spe_ML)) %in% Su_list$ENSEMBL)]
+# Set gene names as row names for easier plotting
+rownames(spe_ML_Su) <- rowData(spe_ML_Su)$gene_name
 
 spe_CA3_cl3 <- spe_CA3_4[which((rownames(spe_CA3_4)) %in% clust_3_list$ENSEMBL)]
 # Set gene names as row names for easier plotting
@@ -367,6 +377,31 @@ fn_out_9 <- file.path(dir_outputs, "Late_Activated_Microglia_ML_rho_age_test_res
 # Export summary as .csv file
 write.csv(cor__ML_cl6df,fn_out_9, row.names = TRUE)
 #---------------------------------------------------------------------------------------------------------------------------------------
+#Su_2022 microglia
+#Calculate Spearman rank corr
+cor_ML_Su <- apply(logcounts(spe_ML_Su), 1, function(row) cor.test(as.numeric(row), ages_ML, method = "spearman", adjust = "fdr"))
+
+# extract the correlation coefficients and p-values from the results
+cor_coeffs_ML_Su <- sapply(cor_ML_Su, function(x) x$estimate)
+p_values_ML_Su <- sapply(cor_ML_Su, function(x) x$p.value)
+
+# combine the results into a data frame
+cor__ML_Sudf <- data.frame(gene_id = names(cor_ML_Su), correlation = cor_coeffs_ML_Su, adj.p.value = p_values_ML_Su)
+
+# remove the ".rho" characters from the row names
+rownames(cor__ML_Sudf) <- sub("\\.rho$", "", rownames(cor__ML_Sudf))
+
+hist(cor__ML_Sudf$correlation, xlab = "age rho correlation", ylab = "Gene count", main = "Su et al., 2022 MG1 gene counts in ML")
+
+# order the rows based on the correlation values
+cor__ML_Sudf <- cor__ML_Sudf[order(cor__ML_Sudf$correlation, decreasing = TRUE),]
+
+fn_out_Su <- file.path(dir_outputs, "Su_2022_Microglia_ML_rho_age_test_results")
+
+# Export summary as .csv file
+write.csv(cor__ML_Sudf,fn_out_Su, row.names = TRUE)
+#---------------------------------------------------------------------------------------------------------------------------------------
+
 #Cluster 3 microglia
 #Calculat Spearman rank corr
 cor_CA3_cl3 <- apply(logcounts(spe_CA3_cl3), 1, function(row) cor.test(as.numeric(row), ages_CA3, method = "spearman", adjust = "fdr"))
@@ -582,3 +617,4 @@ fn_out_18 <- file.path(dir_outputs, "Late_Activated_Microglia_GCL_rho_age_test_r
 
 # Export summary as .csv file
 write.csv(cor__GCL_cl6df,fn_out_18, row.names = TRUE)
+########################################################################################################################################

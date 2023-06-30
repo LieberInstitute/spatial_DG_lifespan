@@ -42,6 +42,29 @@ spe_DG <- spe[, spe$bayesSpace_harmony_10 == "2" |
         spe$bayesSpace_harmony_10 == "6" |
         spe$bayesSpace_harmony_10 == "7"]
 
+# Isolate SLM (absent cluster 10 WM) for cell type abundance
+
+spe_SLM <- spe[, spe$bayesSpace_harmony_10 == "1"]
+
+spe_SLM$bayesSpace_harmony_10 <- as.numeric(spe_SLM$bayesSpace_harmony_10)
+spe_SLM$bayesSpace_harmony_10 <- as.factor(spe_SLM$bayesSpace_harmony_10)
+
+SLM_df <-
+    data.frame(spe_SLM$key, spe_SLM$sample_id, spe_SLM$bayesSpace_harmony_10)
+SLM_df <- SLM_df %>%
+    mutate(
+        BayesSpace = case_when(
+            spe_SLM.bayesSpace_harmony_10 == 1 ~ "SLM"
+        )
+    )
+
+colData(spe_SLM)$BayesSpace <-
+    factor(SLM_df$BayesSpace, levels = c("SLM"))
+
+# Create datafame of cell proportions and DG layer
+cell_SLMdf <- as.data.frame(colData(spe_SLM)[, c(44:70)],
+    row.names = spe_SLM$key)
+
 ######################################
 # Let's start with the DG locations
 ######################################
@@ -76,28 +99,30 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
     geom_violin(aes(fill = age_bin)) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 4) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 4) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE,  y_position = 4) +
     labs(x = "age", y = "Astro_1 mean abundance") +
     ggtitle("Mean abundance of Astro_1") +
     theme_classic() +
+    ylim(0, 5) +
     facet_wrap(vars(BayesSpace))
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Astro_2)) +
     geom_violin(aes(fill = age_bin)) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 6) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 6) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 6) +
     labs(x = "age", y = "Astro_2 mean abundance") +
     ggtitle("Mean abundance of Astro_2") +
     theme_classic() +
+    ylim(0, 7) +
     facet_wrap(vars(BayesSpace))
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_CA1_N)) +
@@ -422,6 +447,341 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
     ggtitle("Mean abundance of VLMC") +
     theme_classic() +
     facet_wrap(vars(BayesSpace))
+
+dev.off()
+
+##################################################################################################
+
+# Plot for SLM only
+
+pdf(file = here::here("plots", "Cell_Type_Deconvolution", "SLM_age_cell2loc.pdf"), width = 8, height = 8)
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Astro_1)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Astro_1 mean abundance") +
+    ggtitle("Mean abundance of Astro_1") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Astro_2)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Astro_2 mean abundance") +
+    ggtitle("Mean abundance of Astro_2") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_CA1_N)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "CA1_N mean abundance") +
+    ggtitle("Mean abundance of CA1_N") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_CA2_N)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "CA2_N mean abundance") +
+    ggtitle("Mean abundance of CA2_N") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_CA3_N)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "CA3_N mean abundance") +
+    ggtitle("Mean abundance of CA3_N") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_COP)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "COP mean abundance") +
+    ggtitle("Mean abundance of COP") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Endoth)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Endoth mean abundance") +
+    ggtitle("Mean abundance of Endoth") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_GC)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "GC mean abundance") +
+    ggtitle("Mean abundance of GC") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_InN_LAMP5)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "InN_LAMP5 mean abundance") +
+    ggtitle("Mean abundance of InN_LAMP5") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_InN_LHX6)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "InN_LHX6 mean abundance") +
+    ggtitle("Mean abundance of InN_LHX6") +
+    theme_classic()
+
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_InN_MEIS2)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "InN_MEIS2 mean abundance") +
+    ggtitle("Mean abundance of InN_MEIS2") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_InN_NR2F2)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "InN_NR2F2 mean abundance") +
+    ggtitle("Mean abundance of InN_NR2F2") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_InN_PV)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "InN_PV mean abundance") +
+    ggtitle("Mean abundance of InN_PV") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_InN_SST)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "InN_SST mean abundance") +
+    ggtitle("Mean abundance of InN_SST") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_InN_VIP)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "InN_VIP mean abundance") +
+    ggtitle("Mean abundance of InN_VIP") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Macro)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Macro mean abundance") +
+    ggtitle("Mean abundance of Macro") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Microglia)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Microglia mean abundance") +
+    ggtitle("Mean abundance of Microglia") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Mossy)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Mossy mean abundance") +
+    ggtitle("Mean abundance of Mossy") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Myeloid)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Myeloid mean abundance") +
+    ggtitle("Mean abundance of Myeloid") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_OPC)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "OPC mean abundance") +
+    ggtitle("Mean abundance of OPC") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Oligo)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Oligo mean abundance") +
+    ggtitle("Mean abundance of Oligo") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Pericyte)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "Pericyte mean abundance") +
+    ggtitle("Mean abundance of Pericyte") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_SMC)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "SMC mean abundance") +
+    ggtitle("Mean abundance of SMC") +
+    theme_classic() +
+    facet_wrap(vars(BayesSpace))
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_T_Cell)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "T_Cell mean abundance") +
+    ggtitle("Mean abundance of T_Cell") +
+    theme_classic()
+
+ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_VLMC)) +
+    geom_violin(aes(fill = age_bin)) +
+    geom_boxplot(width=0.1) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
+              map_signif_level=TRUE) +
+    geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
+              map_signif_level=TRUE) +
+    labs(x = "age", y = "VLMC mean abundance") +
+    ggtitle("Mean abundance of VLMC") +
+    theme_classic()
 
 dev.off()
 
