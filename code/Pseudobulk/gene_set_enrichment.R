@@ -75,16 +75,26 @@ gene_set_enrichment_plot(
 
 ###############################################################################################################
 
-# Dendritically enriched gene sets
-
-# Get list of gene-set from mouse data (Robert R. Stickels et al., 2020) for dendritically enriched gene sets
-Stickels_2020 <- read.csv(file = here("processed-data","gene_set_enrichment",
-    "Stickels_2020.csv"))
+# Neuropil enriched gene sets
 
 # Use table from Jax labs for mouse human orthology
 #https://www.informatics.jax.org/downloads/reports/index.html#homology
 orthology <- read.csv(file = here("processed-data","gene_set_enrichment",
     "human_mouse_orthologs.csv"))
+
+# Get list of gene-set from mouse data (Iván J. Cajigas et al., 2012) for synaptically enriched gene sets
+Cajigas_2012 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Cajigas_2012.csv"))
+
+# Translate from one species to the other using the orthology
+Cajigas_2012_rat <- orthology[orthology$Column3 %in% Cajigas_2012$Gene.Symbol,]
+
+#Get the Ensembl IDs
+Cajigas_2012_rat <- bitr(Cajigas_2012_rat$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+
+# Get list of gene-set from mouse data (Robert R. Stickels et al., 2020) for dendritically enriched gene sets
+Stickels_2020 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Stickels_2020.csv"))
 
 # Translate from one species to the other using the orthology
 Dcluster_1 <- orthology[orthology$Column3 %in% Stickels_2020$Cluster.1,]
@@ -98,16 +108,31 @@ Dcluster_2 <- bitr(Dcluster_2$Column1, fromType="SYMBOL", toType = "ENSEMBL", Or
 Dcluster_3 <- bitr(Dcluster_3$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 Dcluster_4 <- bitr(Dcluster_4$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 
+# Get list of gene-set from mouse data (Muchun Niu et al., 2023) for synaptically enriched gene sets
+Niu_2023 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Niu_2023.csv"))
+
+# Subset for Synapse_ExDG and Synapse_In
+Niu_2023_ExDG <- Niu_2023[Niu_2023$cluster == "Synapse_ExDG",]
+Niu_2023_InN <- Niu_2023[Niu_2023$cluster == "Synapse_In",]
+
+#Get the Ensembl IDs
+Niu_2023_ExDG <- bitr(Niu_2023_ExDG$gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+Niu_2023_InN <- bitr(Niu_2023_InN$gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+
 ## Format them appropriately
-dendritic_geneList <- list(
-    dendritic_enriched_1 = Dcluster_1$ENSEMBL,
-    dendritic_enriched_2 = Dcluster_2$ENSEMBL,
-    dendritic_enriched_3 = Dcluster_3$ENSEMBL,
-    dendritic_enriched_4 = Dcluster_4$ENSEMBL
+neuropil_geneList <- list(
+    Cajigas_2012_rat = Cajigas_2012_rat$ENSEMBL,
+    Stickels_2020_cluster_1 = Dcluster_1$ENSEMBL,
+    Stickels_2020_cluster_2 = Dcluster_2$ENSEMBL,
+    Stickels_2020_cluster_3 = Dcluster_3$ENSEMBL,
+    Stickels_2020_cluster_4 = Dcluster_4$ENSEMBL,
+    Niu_2023_ExDG = Niu_2023_ExDG$ENSEMBL,
+    Niu_2023_InN = Niu_2023_InN$ENSEMBL
 )
 
-enriched_dendrites <- gene_set_enrichment(
-  dendritic_geneList,
+enriched_neuropil <- gene_set_enrichment(
+  neuropil_geneList,
   fdr_cut = 0.05,
   modeling_results = modeling_results,
   model_type = names(modeling_results)[2],
@@ -115,8 +140,8 @@ enriched_dendrites <- gene_set_enrichment(
 )
 
 gene_set_enrichment_plot(
-  enriched_dendrites,
-  xlabs = unique(enriched_dendrites$ID),
+  enriched_neuropil,
+  xlabs = unique(enriched_neuropil$ID),
   PThresh = 12,
   ORcut = 2,
   enrichOnly = TRUE,
