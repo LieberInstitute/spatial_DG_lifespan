@@ -284,14 +284,15 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
     geom_violin(aes(fill = age_bin)) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 3) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 3) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 3) +
     labs(x = "age", y = "InN_SST mean abundance") +
     ggtitle("Mean abundance of InN_SST") +
     theme_classic() +
+    ylim(0, 4) +
     facet_wrap(vars(BayesSpace))
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_InN_VIP)) +
