@@ -27,51 +27,38 @@ spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_sp
 rownames(spe) <- rowData(spe)$gene_name
 
 features = c(## Neurons
-    "RBFOX3", "SNAP25", "SYT1",
+    "RBFOX3", "SNAP25",
     ## Excitatory Neurons
     "SLC17A7",
+    # CA3 PNs
+    "NECAB1", "KIT", "CCK",
     # GC
     "PROX1", "CALB1",
-    # Mossy Cells
-    "ARHGAP24", "DLC1",
-    # CA3 PNs
-    "CFAP299", "SYN3",
-    # CA2 PNs
-    "HGF",
     # CA1 PNs
-    "ACVR1C", "SYT13",
+    "MPPED1", "CLMP",
     # Sub PNs
-    "ROBO1", "COL5A2",
-    # Cajal-Retzius
-    "RELN",
+    "COL5A2", "ROBO1",
     ## Inhibitory Neurons
     "GAD1", "GAD2",
     # inhibitory subpopulations (Some from Lukas LC & Keri Martinowich 2022-07-22)
-    "SST", "KIT", "CALB2", "TAC1", "CNR1", "PVALB", "CORT", "VIP", "NPY",
-    "CRHBP", "CCK", "HTR3A", "NR2F2", "LAMP5",
-    # Neuropil (Taken from Stickels et al., 2021 & Cajigas et al., 2012, & Muchun Niu et al., 2023)
-    "MAP1A", "CAMK2A", "SEMA5A", "SYP",
-    # Astrocytes
-    "AQP4", "GFAP", "CHRDL1",
+    "SST",
     # Oligodendrocytes
-    "MOBP",
-    # macrophages / microglia
-    "CD163", "C3", "PTPRC", "C1QB",
-    # OPCs
-    "PDGFRA", "VCAN",
-    # COP
-    "GPR17", "ADAM33",
+    "MOBP", "MBP",
+    # Astrocytes
+    "GFAP", "AQP4",
+    # Neuropil (Taken from Stickels et al., 2021 & Cajigas et al., 2012, & Muchun Niu et al., 2023)
+    "CAMK2A", "MT-ND6",
     # endothelial / mural (RBPMS)
-    "CLDN5", "FLT1", "RBPMS", "TTR",
-    # T cells
-    "SKAP1", "CD247"
-)
+    "CLDN5", "TTR"
+    )
+
 
 pdf(file = here::here("plots","BayesSpace_plots", "dotplot_genemarkers.pdf"),
     width = 12, height = 4)
 
 plotDots(spe, group = "bayesSpace_harmony_10", features = features, exprs_values = "logcounts", color = c("blue", "grey", "red"),
     block = "sample_id", center=TRUE, scale=TRUE) +
+    scale_x_discrete(limits = c( "3", "8", "5", "2", "1", "10", "6", "9", "7", "4")) +
     scale_y_discrete(limits = features) +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.95, hjust = 1)) +
     labs(x = "BayesSpace Clusters", y = "Genes", color = "z-score", size = "Proportion of spots") +

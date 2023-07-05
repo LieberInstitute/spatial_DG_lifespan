@@ -81,10 +81,10 @@ A2$label <- rep("A2", 13)
 Clarke_2018_all <- rbind(PAN, A1, A2)
 Clarke_2018_all <- unique(Clarke_2018_all)
 
-Clarke_2018_all <- Clarke_2018_all[! Clarke_2018_all$gene_name %in%
+Clarke_2018_all1 <- Clarke_2018_all[! Clarke_2018_all$gene_name %in%
         setdiff(Clarke_2018_all$gene_name, rownames(spe_pseudo)),]
 
-Clarke_heatmap <- assays(spe_pseudo)[[2]][Clarke_2018_all$gene_name, ]
+Clarke_heatmap <- assays(spe_pseudo)[[2]][Clarke_2018_all1$gene_name, ]
 colnames(Clarke_heatmap) <- paste("logcount", 1:64, sep = "")
 
 # convert to z-scores
@@ -162,3 +162,80 @@ right_annotation = rowAnnotation(foo = anno_mark(at = c(1, 4, 73, 194, 213, 114,
     )
 
 dev.off()
+
+######################################################################################################################
+
+# Plot heatmap separately for SLM
+# Relead the spe_pseudo or rename them in above code, since previously limited to DG
+
+spe_SLM <- spe_pseudo[, which(spe_pseudo$bayesSpace_harmony_10 == "1")]
+dim(spe_SLM)
+
+## Configure column order to match age groups per BayesSpace cluster
+Bayes_age_order_SLM <- c(
+    16, 12, 13, 15, 8, 1, 11, 2, 9, 10, 14, 4, 3, 5, 7, 6
+)
+
+## Set gene names as row names for easier plotting
+rownames(spe_SLM) <- rowData(spe_SLM)$gene_name
+
+Clarke_2018_SLM <- Clarke_2018_all[! Clarke_2018_all$gene_name %in%
+        setdiff(Clarke_2018_all$gene_name, rownames(spe_SLM)),]
+
+Clarke_SLM_heatmap <- assays(spe_SLM)[[2]][Clarke_2018_SLM$gene_name, ]
+colnames(spe_SLM) <- paste("logcount", 1:16, sep = "")
+
+Clarke_SLM_heatmap <- scale_rows(Clarke_SLM_heatmap)
+
+# Plot heatmap of logcounts for clusters and samples
+pdf(file = here::here("plots", "pseudobulked", "SLM_Clarke_astrocytes_genemarkers_heatmap.pdf"))
+
+Heatmap(Clarke_SLM_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(age = spe_SLM$age_bin,
+    col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    left_annotation = rowAnnotation(sub_type = Clarke_2018_SLM$label,
+        col = list(sub_type = c("PAN" = "lightblue", "A1" = "dodgerblue", "A2" = "midnightblue"))),
+    column_title = "Clarke et al., 2018 Gene markers for reactive astrocytes",
+    column_order = Bayes_age_order_SLM,
+    show_column_names = FALSE,
+    row_split = Clarke_2018_SLM$label,
+    show_row_names = TRUE,
+    cluster_rows = TRUE,
+    )
+
+dev.off()
+
+Su_astro_2022_SLM <- Su_astro_2022[! Su_astro_2022$gene_name %in%
+        setdiff(Su_astro_2022$gene_name, rownames(spe_SLM)),]
+
+Su_SLM_heatmap <- assays(spe_SLM)[[2]][Su_astro_2022_SLM$gene_name, ]
+colnames(spe_SLM) <- paste("logcount", 1:16, sep = "")
+
+Su_SLM_heatmap <- scale_rows(Su_SLM_heatmap)
+
+# Plot heatmap of logcounts for clusters and samples
+pdf(file = here::here("plots", "pseudobulked", "SLM_Su_astrocytes_genemarkers_heatmap.pdf"))
+
+Heatmap(Su_SLM_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(age = spe_SLM$age_bin,
+    col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    left_annotation = rowAnnotation(sub_type = Su_astro_2022_SLM$label,
+        col = list(sub_type = c("AST1" = "lightblue", "AST6" = "midnightblue"))),
+    right_annotation = rowAnnotation(foo = anno_mark(at = c(1, 4, 73, 194, 213, 114, 212, 14, 25, 91, 112, 204, 234,
+    255, 308, 669, 691, 704),
+        labels = c("CD44", "GFAP", "C3", "VIM", "FKBP5", "CD109", "STAT3", "VCAN", "MALAT1",
+            "MAOB", "CD38", "S100B", "AQP4", "AHDC1", "ALDH1A1", "CD81", "ILF3", "SOX9"))),
+    column_title = "Su et al., 2022 Gene markers for reactive astrocytes",
+    column_order = Bayes_age_order_SLM,
+    show_column_names = FALSE,
+    row_split = Su_astro_2022_SLM$label,
+    show_row_names = FALSE,
+    cluster_rows = TRUE,
+    )
+
+dev.off()
+

@@ -720,12 +720,18 @@ EnhancedVolcano(bayes1elderly,
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = c("HLA-DQA1", "HLA-DMA", "HLA-DMB", "HLA-DPB1", "CD14", "C1QC",
+        "C1QB", "CHI3L1", "CCL2", "C1QA", "CHI3L2", "HCK", "CD68"),
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
-    title = "BayesSpace cluster 1",
+    title = "BayesSpace cluster 1 ~ SLM",
     subtitle = "Elderly vs. non-Elderly"
-    )
+    ) +
+    xlim(c(-5, 5)) +
+    ylim(c(0, 5))
 
 EnhancedVolcano(bayes2elderly,
     lab = bayes2elderly$gene_name,

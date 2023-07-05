@@ -461,27 +461,29 @@ ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundanc
     geom_violin(aes(fill = age_bin)) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 5) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 5) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 5) +
     labs(x = "age", y = "Astro_1 mean abundance") +
     ggtitle("Mean abundance of Astro_1") +
-    theme_classic()
+    theme_classic() +
+    ylim(0, 6)
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Astro_2)) +
     geom_violin(aes(fill = age_bin)) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 7) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 7) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 7) +
     labs(x = "age", y = "Astro_2 mean abundance") +
     ggtitle("Mean abundance of Astro_2") +
-    theme_classic()
+    theme_classic() +
+    ylim(0, 8)
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_CA1_N)) +
     geom_violin(aes(fill = age_bin)) +
@@ -670,14 +672,15 @@ ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundanc
     geom_violin(aes(fill = age_bin)) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.85) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.85) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.85) +
     labs(x = "age", y = "Microglia mean abundance") +
     ggtitle("Mean abundance of Microglia") +
-    theme_classic()
+    theme_classic() +
+    ylim(0, 1)
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Mossy)) +
     geom_violin(aes(fill = age_bin)) +
