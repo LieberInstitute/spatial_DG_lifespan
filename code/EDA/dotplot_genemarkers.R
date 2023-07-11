@@ -60,7 +60,7 @@ plotDots(spe, group = "bayesSpace_harmony_10", features = features, exprs_values
     block = "sample_id", center=TRUE, scale=TRUE) +
     scale_x_discrete(limits = c( "3", "8", "5", "2", "1", "10", "6", "9", "7", "4")) +
     scale_y_discrete(limits = features) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 0.95, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.95, hjust = 1, face = "italic")) +
     labs(x = "BayesSpace Clusters", y = "Genes", color = "z-score", size = "Proportion of spots") +
     coord_flip()
 

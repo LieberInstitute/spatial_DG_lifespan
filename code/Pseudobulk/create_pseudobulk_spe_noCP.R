@@ -144,11 +144,18 @@ plotPCA(spe_pseudo, colour_by = "sample_id", ncomponents = 6)
 plotPCA(spe_pseudo, colour_by = "ncells", ncomponents = 6)
 dev.off()
 
-pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA2vs1.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "pseudobulked_PCA2vs1.pdf"),
+    width = 12, height = 8)
 plotPCA(spe_pseudo, colour_by = "sex", ncomponents = 2, point_size = 10)
-plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 2, point_size = 10)
-plotPCA(spe_pseudo, colour_by = "age", ncomponents = 2, point_size = 10)
+plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 2, point_size = 10) +
+    theme(text = element_text(size = 20),
+        axis.text = element_text(size = 20))
+plotPCA(spe_pseudo, colour_by = "age", ncomponents = 2, point_size = 10) +
+    theme(text = element_text(size = 20),
+        axis.text = element_text(size = 20))
 plotPCA(spe_pseudo, colour_by = "BayesSpace", ncomponents = 2, point_size = 10) +
+    theme(text = element_text(size = 20),
+        axis.text = element_text(size = 20)) +
     scale_color_manual(values = bay_colors) +
     labs(color = "BayesSpace")
 plotPCA(spe_pseudo, colour_by = "sample_id", ncomponents = 2, point_size = 10)
