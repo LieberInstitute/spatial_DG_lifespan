@@ -182,12 +182,12 @@ Zhou_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
     "Zhou_2022.csv"))
 Zhou_2022$Number <- NULL
 
-common_imGC <- as.data.frame(Zhou_2022$Common.genes[1:84],
+common_imGC <- data.frame(Zhou_2022$Common.genes[1:84],
     gene_names = Zhou_2022$Common.genes[1:84])
 common_imGC$label <- rep("Common", 84)
 common_imGC$Zhou_2022.Common.genes.1.84. <- NULL
 
-human_specific_imGC <- as.data.frame(Zhou_2022$Human.specific.genes[1:76],
+human_specific_imGC <- data.frame(Zhou_2022$Human.specific.genes[1:76],
     gene_names = Zhou_2022$Human.specific.genes[1:76])
 human_specific_imGC$label <- rep("Human.Specific", 76)
 human_specific_imGC$Zhou_2022.Human.specific.genes.1.76. <- NULL
@@ -214,7 +214,8 @@ Heatmap(total_imGC_heatmap,
         )),
     left_annotation = rowAnnotation(species = total_imGC_final$label,
         col = list(species = c("Common" = "lightblue", "Human.Specific" = "midnightblue"))),
-    right_annotation = rowAnnotation(foo = anno_mark(at = c(1, 3, 17, 21, 24, 25, 43, 48, 49, 50, 57, 61, 72, 73, 79, 115, 125, 136, 142),
+    right_annotation =
+        rowAnnotation(foo = anno_mark(at = c(1, 3, 17, 21, 24, 25, 43, 48, 49, 50, 57, 61, 72, 73, 79, 115, 125, 136, 142),
         labels = c("ATP11C", "BHLHE22", "DPYSL5", "FGF13", "FXYD6", "FXYD7", "MARCKSL1", "NEUROD1", "NEUROD2", "NEUROD6", "PPP1R14C",
             "PROX1", "STMN3", "STMN4", "TUBA1A", "KCNQ5", "PCDH20", "ROBO2", "SOX5"))),
     column_title = "Zhou et al., 2022 imGC markers shared with mouse or unique in human",
@@ -228,4 +229,47 @@ Heatmap(total_imGC_heatmap,
     )
 
 dev.off()
+
+#############################################################################################################
+# Combine all gene markers for one big heatmap
+
+all_neurogenic <- unique(c(Hochgerner_2018_all$gene_names, total_mouse_macaque$gene_name, total_imGC_final$gene_names))
+
+
+all_neurogenic_heatmap <- assays(spe_pseudo)[[2]][all_neurogenic, ]
+colnames(all_neurogenic_heatmap) <- paste("logcount", 1:64, sep = "")
+
+all_neurogenic_heatmap <- scale_rows(all_neurogenic_heatmap)
+
+# Plot heatmap of logcounts for clusters and samples
+pdf(file = here::here("plots", "pseudobulked", "BLAH_Combined_neurogenic_heatmap.pdf"),
+    width = 8.5, height = 9)
+
+Heatmap(all_neurogenic_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(BayesSpace = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(BayesSpace = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    right_annotation =
+        rowAnnotation(foo = anno_mark(at = c(101, 346, 303, 139, 203, 282, 126, 189, 185, 242,
+            30, 238, 201, 195, 57, 138, 23, 89, 243, 323, 15, 233, 245, 322, 90, 326, 263, 261,
+            266, 222, 170, 314, 299, 325, 12, 275, 210, 329, 140, 254, 224, 274, 273, 316, 225, 330, 309),
+        labels = c("ARHGAP15", "WIPF3", "HPCA", "KLHDC8A", "IGFBP2", "ASIC2", "FRMD3", "SOX4", "SMC4",
+            "LRRN3", "NEUROG2", "IVNS1ABP", "FNBP1L", "WIF1", "VCAN", "KIF26B", "LIMD1", "SOX11", "MARCKSL1",
+            "PDZRN3", "DLL3", "HEG1", "NCAN", "PDLIM5", "SOX5", "PTPRD", "SCRN1", "RPS2", "SMARCD3",
+            "EEF2", "SSTR2", "MGAT5", "GFRA1", "PMEPA1", "CKS2", "TUBB2A", "BZW1", "RASGRF1",
+            "LIN7A", "PPP1R14C", "FGF13", "TUBA1A", "TSPAN18", "NCALD", "FGFR1", "RGS8", "KCNAB1"))),
+    column_title = "Combined neurogenic markers",
+    column_order = Bayes_age_order,
+    show_column_names = FALSE,
+    column_split = spe_pseudo$BayesSpace,
+    show_row_names = FALSE,
+    cluster_rows = TRUE
+    )
+
+dev.off()
+
+# Find row indices for genes with which(rownames(data) == "f")
+
 

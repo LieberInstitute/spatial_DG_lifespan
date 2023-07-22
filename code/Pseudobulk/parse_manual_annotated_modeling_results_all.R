@@ -33,14 +33,18 @@ t0_contrasts <- sapply(eb0_list, function(x) {
 })
 rownames(t0_contrasts) <- rownames(eb_contrasts)
 summary(fdrs0_contrasts < 0.05)
-#    CA4              CP             GCL              ML           PCL_CA1         PCL_CA3           SGZ
-# Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical
-# FALSE:14557     FALSE:8925      FALSE:10708     FALSE:14591     FALSE:14468     FALSE:13708     FALSE:14591
-# TRUE :34        TRUE :5666      TRUE :3883                      TRUE :123       TRUE :883
-#     SL             SLM              SO              SR             SUB              WM
+#    CA4              CP             GCL              ML           PCL_CA1         PCL_CA3
 # Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical
-# FALSE:14393     FALSE:14580     FALSE:14063     FALSE:14583     FALSE:14591     FALSE:12916
-# TRUE :198       TRUE :11        TRUE :528       TRUE :8                         TRUE :1675
+# FALSE:16835     FALSE:9185      FALSE:9916      FALSE:16659     FALSE:16517     FALSE:14373
+# TRUE :144       TRUE :7794      TRUE :7063      TRUE :320       TRUE :462       TRUE :2606
+#    SGZ              SL             SLM              SO              SR             SUB
+# Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical
+# FALSE:16927     FALSE:15782     FALSE:14707     FALSE:15795     FALSE:16751     FALSE:11212
+# TRUE :52        TRUE :1197      TRUE :2272      TRUE :1184      TRUE :228       TRUE :5767
+#    THAL             WM
+# Mode :logical   Mode :logical
+# FALSE:16918     FALSE:14057
+# TRUE :61        TRUE :2922
 
 # Merge statistics
 f_merge <- function(p, fdr, t) {
@@ -64,7 +68,8 @@ head(results_specificity)
 pvals_contrasts <- eb_contrasts$p.value
 fdrs_contrasts <- apply(pvals_contrasts, 2, p.adjust, "fdr")
 dim(pvals_contrasts)
-# [1] 14409    66
+# [1] 16979   120
+
 summary(fdrs_contrasts < 0.05)
 
 results_pairwise <-
@@ -95,13 +100,13 @@ results_anova <-
         f_rename(f_stats, "f", "f_stat"), "p_value"
     ), "fdr"), "Amean")
 head(results_anova)
-#  f_stat_full p_value_full     fdr_full full_AveExpr         ensembl      gene
-#1   11.096881 5.450360e-13 6.488228e-13     2.346724 ENSG00000237491 LINC01409
-#2   66.603684 1.332830e-35 2.925289e-35     4.085475 ENSG00000228794 LINC01128
-#3    3.912202 5.989356e-05 6.186952e-05     0.717042 ENSG00000225880 LINC00115
-#4   11.372171 3.100797e-13 3.713373e-13     1.665840 ENSG00000187634    SAMD11
-#5  239.134296 9.000950e-55 4.260971e-54     5.338135 ENSG00000188976     NOC2L
-#6   21.421764 2.587459e-20 3.641359e-20     2.733696 ENSG00000187961    KLHL17
+#  f_stat_full p_value_full     fdr_full full_AveExpr         ensembl       gene
+#1    3.863891 8.511915e-06 9.565412e-06    0.7662687 ENSG00000241860 AL627309.5
+#2   13.580893 5.814901e-21 8.156234e-21    2.1969784 ENSG00000237491  LINC01409
+#3   84.922590 2.693034e-64 6.407654e-64    4.0752877 ENSG00000228794  LINC01128
+#4    1.374014 1.673138e-01 1.694394e-01   -0.2647496 ENSG00000225880  LINC00115
+#5    1.038317 4.197731e-01 4.219600e-01    0.2218960 ENSG00000230368     FAM41C
+#6    8.657303 5.152916e-14 6.658399e-14    1.0334963 ENSG00000187634     SAMD11
 
 modeling_results <- list(
     "anova" = results_anova,
@@ -112,46 +117,6 @@ modeling_results <- list(
 # Save modeling results
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe",
     "manual_annotated_modeling_results.rds"))
-
-length(which(modeling_results$enrichment$fdr_CA4 < 0.05))
-# [1] 34
-length(which(modeling_results$enrichment$fdr_CP < 0.05))
-# [1] 5666
-length(which(modeling_results$enrichment$fdr_GCL < 0.05))
-# [1] 3883
-length(which(modeling_results$enrichment$fdr_ML < 0.05))
-# [1] 0
-length(which(modeling_results$enrichment$fdr_PCL_CA1 < 0.05))
-# [1] 123
-length(which(modeling_results$enrichment$fdr_PCL_CA3 < 0.05))
-# [1] 883
-length(which(modeling_results$enrichment$fdr_SGZ < 0.05))
-# [1] 0
-length(which(modeling_results$enrichment$fdr_SL < 0.05))
-# [1] 198
-length(which(modeling_results$enrichment$fdr_SLM < 0.05))
-# [1] 11
-length(which(modeling_results$enrichment$fdr_SO < 0.05))
-# [1] 528
-length(which(modeling_results$enrichment$fdr_SR < 0.05))
-# [1] 8
-length(which(modeling_results$enrichment$fdr_SUB < 0.05))
-# [1] 0
-length(which(modeling_results$enrichment$fdr_WM < 0.05))
-# [1] 1675
-
-cluster <- c("CA4" = 1, "CP" = 2, "GCL" = 3, "ML" = 4, "PCL_CA1" = 5,
-    "PCL_CA3" = 6, "SGZ" = 7, "SL" = 8, "SLM" = 9, "SO" = 10, "SR" = 11, "SUB" = 12, "WM" = 13)
-genes <- c(34, 5666, 3883, 0, 123, 883, 0, 198, 11, 528, 8, 0, 1675)
-df <- data.frame(cluster, genes)
-pdf(file = here::here("plots", "pseudobulked", "plot_manual_annotated_enrichment_DEGs.pdf"))
-plot(df$genes ~ df$cluster, xaxt = "n")
-axis(1,
-    at = 1:13,
-     labels = c("CA4", "CP", "GCL", "ML", "CA1", "CA3", "SGZ", "SL", "SLM",
-         "SO", "SR", "SUB", "WM"))
-dev.off()
-
 
 ## Reproducibility information
 print("Reproducibility information:")

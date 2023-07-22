@@ -122,23 +122,19 @@ dev.off()
 Su_astro_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
     "Su_astro_2022.csv"))
 
-Su_astro1_2022 <- Su_astro_2022[Su_astro_2022$Cluster.ID == "AST1",]
 Su_astro6_2022 <- Su_astro_2022[Su_astro_2022$Cluster.ID == "AST6",]
-Su_astro_2022 <- rbind(Su_astro1_2022, Su_astro6_2022)
-Su_astro_2022 <- data.frame(gene_name = Su_astro_2022$Gene,
-    label = Su_astro_2022$Cluster.ID)
-Su_astro_2022 <- unique(Su_astro_2022)
 
-Su_astro_2022 <- Su_astro_2022[! Su_astro_2022$gene_name %in%
-        setdiff(Su_astro_2022$gene_name, rownames(spe_pseudo)),]
+Su_astro_2022 <- Su_astro6_2022[! Su_astro6_2022$Gene %in%
+        setdiff(Su_astro6_2022$Gene, rownames(spe_pseudo)),]
 
-Su_heatmap <- assays(spe_pseudo)[[2]][Su_astro_2022$gene_name, ]
+Su_heatmap <- assays(spe_pseudo)[[2]][Su_astro_2022$Gene, ]
 colnames(Su_heatmap) <- paste("logcount", 1:64, sep = "")
 
 Su_heatmap <- scale_rows(Su_heatmap)
 
 # Plot heatmap of logcounts for clusters and samples
-pdf(file = here::here("plots", "pseudobulked", "Su_astrocytes_genemarkers_heatmap.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "Su_astrocytes_genemarkers_heatmap.pdf"),
+    width = 7, height = 9)
 
 Heatmap(Su_heatmap,
     name = "z-score",
@@ -146,17 +142,19 @@ Heatmap(Su_heatmap,
     col = list(BayesSpace = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
         age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
-    left_annotation = rowAnnotation(sub_type = Su_astro_2022$label,
-        col = list(sub_type = c("AST1" = "lightblue", "AST6" = "midnightblue"))),
-right_annotation = rowAnnotation(foo = anno_mark(at = c(1, 4, 73, 194, 213, 114, 212, 14, 25, 91, 112, 204, 234,
-    255, 308, 669, 691, 704),
-        labels = c("CD44", "GFAP", "C3", "VIM", "FKBP5", "CD109", "STAT3", "VCAN", "MALAT1",
-            "MAOB", "CD38", "S100B", "AQP4", "AHDC1", "ALDH1A1", "CD81", "ILF3", "SOX9"))),
-    column_title = "Su et al., 2022 Gene markers for reactive astrocytes",
+right_annotation = rowAnnotation(foo = anno_mark(at = c(213, 362, 225, 143, 369, 43, 44,
+    22, 101, 40, 345, 289, 52, 395, 280, 201, 17, 103, 293, 231, 37, 331, 25, 157, 185,
+    245, 142, 279, 68, 89, 164, 121, 5, 155, 145, 167, 48, 141, 81, 371, 15, 304, 107,
+    133, 188, 83),
+        labels = c("C6orf89", "ICE1", "ZNF106", "FAIM2", "TRIM37", "PPP3R1", "PEA15", "IDS", "ATP1A1",
+            "NCDN", "SMIM14", "CDS2", "PEBP1", "VAPA", "JAK1", "ENO2", "SNAP25", "NAPB", "ATP6V1C1",
+            "ATP6V1E1", "VSNL1", "AGPAT3", "PACSIN1", "ZNF483", "TMX4", "CYFIP2", "PSAP", "FRMPD4",
+            "TPPP", "FRRS1L", "TGOLN2", "TMEM30A", "CREG2", "PREPL", "PJA2", "CLSTN1", "TOMM20",
+            "SERINC3", "DNM1", "ATP6V0A1", "SLC17A7", "CD99L2", "DYNC1H1", "CHN1", "SYNJ1", "MTURN"))),
+    column_title = "Su et al., 2022 Gene markers for AST6 cluster",
     column_order = Bayes_age_order,
     show_column_names = FALSE,
     column_split = spe_pseudo$BayesSpace,
-    row_split = Su_astro_2022$label,
     show_row_names = FALSE,
     cluster_rows = TRUE,
     )
@@ -183,7 +181,7 @@ Clarke_2018_SLM <- Clarke_2018_all[! Clarke_2018_all$gene_name %in%
         setdiff(Clarke_2018_all$gene_name, rownames(spe_SLM)),]
 
 Clarke_SLM_heatmap <- assays(spe_SLM)[[2]][Clarke_2018_SLM$gene_name, ]
-colnames(spe_SLM) <- paste("logcount", 1:16, sep = "")
+colnames(Clarke_SLM_heatmap) <- paste("logcount", 1:16, sep = "")
 
 Clarke_SLM_heatmap <- scale_rows(Clarke_SLM_heatmap)
 
@@ -207,11 +205,13 @@ Heatmap(Clarke_SLM_heatmap,
 
 dev.off()
 
-Su_astro_2022_SLM <- Su_astro_2022[! Su_astro_2022$gene_name %in%
-        setdiff(Su_astro_2022$gene_name, rownames(spe_SLM)),]
+Su_astro1_2022 <- Su_astro_2022[Su_astro_2022$Cluster.ID == "AST1",]
 
-Su_SLM_heatmap <- assays(spe_SLM)[[2]][Su_astro_2022_SLM$gene_name, ]
-colnames(spe_SLM) <- paste("logcount", 1:16, sep = "")
+Su_astro_2022_SLM <- Su_astro1_2022[! Su_astro1_2022$Gene %in%
+        setdiff(Su_astro1_2022$Gene, rownames(spe_SLM)),]
+
+Su_SLM_heatmap <- assays(spe_SLM)[[2]][Su_astro_2022_SLM$Gene, ]
+colnames(Su_SLM_heatmap) <- paste("logcount", 1:16, sep = "")
 
 Su_SLM_heatmap <- scale_rows(Su_SLM_heatmap)
 
@@ -223,16 +223,13 @@ Heatmap(Su_SLM_heatmap,
     top_annotation = HeatmapAnnotation(age = spe_SLM$age_bin,
     col = list(age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
-    left_annotation = rowAnnotation(sub_type = Su_astro_2022_SLM$label,
-        col = list(sub_type = c("AST1" = "lightblue", "AST6" = "midnightblue"))),
-    right_annotation = rowAnnotation(foo = anno_mark(at = c(1, 4, 73, 194, 213, 114, 212, 14, 25, 91, 112, 204, 234,
-    255, 308, 669, 691, 704),
-        labels = c("CD44", "GFAP", "C3", "VIM", "FKBP5", "CD109", "STAT3", "VCAN", "MALAT1",
-            "MAOB", "CD38", "S100B", "AQP4", "AHDC1", "ALDH1A1", "CD81", "ILF3", "SOX9"))),
-    column_title = "Su et al., 2022 Gene markers for reactive astrocytes",
+    right_annotation = rowAnnotation(foo = anno_mark(at = c(49, 44, 91, 187, 4, 34, 242,
+        28, 149, 197, 328, 330, 158, 82, 204, 33),
+        labels = c("ITGB4", "ITPKB", "MAOB", "SOD2", "GFAP", "SPARC", "WDR11", "SNED1", "EFEMP1", "SLC9A9",
+            "GSN", "TRIM2", "AGFG2", "PFKFB2", "S100B", "USH1C"))),
+    column_title = "Su et al., 2022 Gene markers for AST1 cluster",
     column_order = Bayes_age_order_SLM,
     show_column_names = FALSE,
-    row_split = Su_astro_2022_SLM$label,
     show_row_names = FALSE,
     cluster_rows = TRUE,
     )

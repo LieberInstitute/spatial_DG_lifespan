@@ -297,20 +297,21 @@ Su_astro_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
 
 Su_astro1_2022 <- Su_astro_2022[Su_astro_2022$Cluster.ID == "AST1",]
 Su_astro6_2022 <- Su_astro_2022[Su_astro_2022$Cluster.ID == "AST6",]
-Su_astro_2022 <- rbind(Su_astro1_2022, Su_astro6_2022)
 
 # Convert to Ensembl IDs for gene_set_enrichment funciton to work
 PAN_list <- bitr(PAN$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 A1_list <- bitr(A1$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 A2_list <- bitr(A2$Column1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
-Su_2022_AST1_6 <- bitr(Su_astro_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+Su_2022_AST1_list <- bitr(Su_astro1_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+Su_2022_AST6_list <- bitr(Su_astro6_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 
 ## Format them appropriately
 astro_geneList <- list(
     Clarke_2018_PAN = PAN_list$ENSEMBL,
     Clarke_2018_A1 = A1_list$ENSEMBL,
     Clarke_2018_A2 = A2_list$ENSEMBL,
-    Su_2022_AST1_AST6 = Su_2022_AST1_6$ENSEMBL
+    Su_2022_AST1 = Su_2022_AST1_list$ENSEMBL,
+    Su_2022_AST6 = Su_2022_AST6_list$ENSEMBL
 )
 
 enriched_astroglia <- gene_set_enrichment(
