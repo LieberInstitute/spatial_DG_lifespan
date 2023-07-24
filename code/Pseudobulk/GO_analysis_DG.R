@@ -164,6 +164,23 @@ GO_BP <- compareCluster(ENTREZID~group+age,
     readable = TRUE
 )
 
+# Save ontology objects
+
+save(GO_CC, GO_MF, GO_BP,
+    file = here::here("processed-data", "pseudobulk_spe", "gene_ontologies", "DG_comp_enrichedGO.Rdata")
+)
+
+# directory to save lists
+dir_outputs <- here("processed-data", "pseudobulk_spe", "gene_ontologies")
+fn_out_1 <- file.path(dir_outputs, "GO_CC")
+fn_out_2 <- file.path(dir_outputs, "GO_MF")
+fn_out_3 <- file.path(dir_outputs, "GO_BP")
+
+# Export summary as .csv file
+write.csv(GO_CC,fn_out_1, row.names = FALSE)
+write.csv(GO_MF,fn_out_2, row.names = FALSE)
+write.csv(GO_BP,fn_out_3, row.names = FALSE)
+
 #########################################################################################################
 
 # Truncate GO for terms that look interesting
