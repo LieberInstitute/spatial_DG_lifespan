@@ -227,7 +227,8 @@ trunc_BP_list <- c(
     "leukocyte mediated immunity",
     "fear response",
     "'de novo' post-translational protein folding",
-    "maintenance of blood-brain barrier"
+    "maintenance of blood-brain barrier",
+    "response to ischemia"
 )
 
 pdf(file = here::here("plots", "pseudobulked", "Select_Age_group_DG_GO.pdf"), width = 10, height = 8)
