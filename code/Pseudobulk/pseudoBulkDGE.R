@@ -711,19 +711,36 @@ bayes9elderly <- data.frame(
     adj.P.Val = elderly_de_results[[9]]$adj.P.Val
 )
 
+activated_micro1 <- paste0(
+    "italic('",
+    c(
+    "HLA-DQA1", "HLA-DMA", "HLA-DMB", "HLA-DPB1", "CD14", "C1QC",
+        "C1QB", "CHI3L1", "CCL2", "C1QA", "CHI3L2", "HCK", "CD68", "HAMP"),
+    "')")
+
+activated_micro2 <- paste0(
+    "italic('",
+    c(
+    "HLA-DRB1", "CD37", "HLA-DQA1", "CD68", "HLA-DPB1", "HLA-DMB", "CD14", "HLA-DRB5", "C1QB", "HLA-DQB1"),
+    "')")
+
+bayes1elderly_italics <- paste0("italic('", bayes1elderly$gene_name, "')")
+
+bayes2elderly_italics <- paste0("italic('", bayes2elderly$gene_name, "')")
+
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Elderly.pdf"),
     width = 8.5, height = 8)
 
 EnhancedVolcano(bayes1elderly,
-    lab = bayes1elderly$gene_name,
+    lab = bayes1elderly_italics,
     x = 'logFC',
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
-    selectLab = c("HLA-DQA1", "HLA-DMA", "HLA-DMB", "HLA-DPB1", "CD14", "C1QC",
-        "C1QB", "CHI3L1", "CCL2", "C1QA", "CHI3L2", "HCK", "CD68", "HAMP"),
+    selectLab = activated_micro1,
     drawConnectors = TRUE,
     arrowheads = FALSE,
+    parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
@@ -734,15 +751,19 @@ EnhancedVolcano(bayes1elderly,
     ylim(c(0, 5))
 
 EnhancedVolcano(bayes2elderly,
-    lab = bayes2elderly$gene_name,
+    lab = bayes2elderly_italics,
     x = 'logFC',
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = activated_micro2,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
-    title = "BayesSpace cluster 2",
+    title = "BayesSpace cluster 2 ~ ML",
     subtitle = "Elderly vs. non-Elderly"
     )
 

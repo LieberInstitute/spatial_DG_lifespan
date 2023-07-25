@@ -15,6 +15,28 @@ suppressPackageStartupMessages({
 
 load(here::here("processed-data", "LR_interactions", "CellChat.Rdata"))
 
+# Subset to data frame consisting of all the inferred cell-cell communications
+# at the level of ligands/receptors
+Infant_CellChat_LR <- subsetCommunication(cellchat_infant)
+Teen_CellChat_LR <- subsetCommunication(cellchat_teen)
+Adult_CellChat_LR <- subsetCommunication(cellchat_adult)
+Elderly_CellChat_LR <- subsetCommunication(cellchat_elderly)
+
+# Export to .csv files
+
+# directory to save lists
+dir_outputs <- here("processed-data", "LR_interactions")
+fn_out_1 <- file.path(dir_outputs, "Infant_CellChat_LR")
+fn_out_2 <- file.path(dir_outputs, "Teen_CellChat_LR")
+fn_out_3 <- file.path(dir_outputs, "Adult_CellChat_LR")
+fn_out_4 <- file.path(dir_outputs, "Elderly_CellChat_LR")
+
+# Export summary as .csv file
+write.csv(Infant_CellChat_LR,fn_out_1, row.names = FALSE)
+write.csv(Teen_CellChat_LR,fn_out_2, row.names = FALSE)
+write.csv(Adult_CellChat_LR,fn_out_3, row.names = FALSE)
+write.csv(Elderly_CellChat_LR,fn_out_4, row.names = FALSE)
+
 ######################################
 # Visualization of individual age bins
 ######################################
@@ -884,9 +906,7 @@ plotGeneExpression(cellchat_adult, signaling = "TAC", enriched.only = TRUE)
 plotGeneExpression(cellchat_adult, signaling = "MIF", enriched.only = TRUE)
 plotGeneExpression(cellchat_adult, signaling = "AGT", enriched.only = TRUE)
 plotGeneExpression(cellchat_adult, signaling = "UCN", enriched.only = TRUE)
-plotGeneExpression(cellchat_adult, signaling = "NPY", enriched.only = TRUE)
-plotGeneExpression(cellchat_adult, signaling = "SOMATOSTATIN", enriched.only = TRUE)
-plotGeneExpression(cellchat_adult, signaling = "OPIOID", enriched.only = TRUE)
+plotGeneExpression(cellchat_adult, signaling = "MELANOCORTIN", enriched.only = TRUE)
 
 dev.off()
 
@@ -980,8 +1000,7 @@ plotGeneExpression(cellchat_elderly, signaling = "TENASCIN", enriched.only = TRU
 plotGeneExpression(cellchat_elderly, signaling = "JAM", enriched.only = TRUE)
 plotGeneExpression(cellchat_elderly, signaling = "MHC-I", enriched.only = TRUE)
 plotGeneExpression(cellchat_elderly, signaling = "NPY", enriched.only = TRUE)
-plotGeneExpression(cellchat_elderly, signaling = "SOMATOSTATIN", enriched.only = TRUE)
-plotGeneExpression(cellchat_elderly, signaling = "OPIOID", enriched.only = TRUE)
+plotGeneExpression(cellchat_elderly, signaling = "VIP", enriched.only = TRUE)
 
 dev.off()
 
