@@ -31,17 +31,13 @@ features = c(## Neurons
     ## Excitatory Neurons
     "SLC17A7",
     # CA3 PNs
-    "NECAB1", "KIT", "CCK",
-    # GC
-    "PROX1", "CALB1",
+    "KIT", "TRHDE",
     # CA1 PNs
     "MPPED1", "CLMP",
-    # Sub PNs
-    "COL5A2", "ROBO1",
+    # GC
+    "PROX1", "CALB1",
     ## Inhibitory Neurons
-    "GAD1", "GAD2",
-    # inhibitory subpopulations (Some from Lukas LC & Keri Martinowich 2022-07-22)
-    "SST",
+    "GAD1", "GAD2", "SST",
     # Oligodendrocytes
     "MOBP", "MBP",
     # Astrocytes
@@ -52,16 +48,15 @@ features = c(## Neurons
     "CLDN5", "TTR"
     )
 
-
 pdf(file = here::here("plots","BayesSpace_plots", "dotplot_genemarkers.pdf"),
-    width = 12, height = 4)
+    width = 6.5, height = 4)
 
-plotDots(spe, group = "bayesSpace_harmony_10", features = features, exprs_values = "logcounts", color = c("blue", "grey", "red"),
-    block = "sample_id", center=TRUE, scale=TRUE) +
-    scale_x_discrete(limits = c( "3", "8", "5", "2", "1", "10", "6", "9", "7", "4")) +
+plotDots(spe, group = "bayesSpace_harmony_10", features = features, exprs_values = "logcounts", color = c("white", "red", "darkred"),
+    block = "sample_id", zlim = c(0,3)) +
+    scale_x_discrete(limits = c( "3", "8", "5", "2", "1", "10", "6", "7", "9", "4")) +
     scale_y_discrete(limits = features) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 0.95, hjust = 1, face = "italic")) +
-    labs(x = "BayesSpace Clusters", y = "Genes", color = "z-score", size = "Proportion of spots") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, face = "italic")) +
+    labs(x = "BayesSpace Clusters", y = "Genes", color = "mean\nnorm logcounts", size = "Proportion of spots") +
     coord_flip()
 
 dev.off()

@@ -170,6 +170,53 @@ bayes9infant <- data.frame(
     adj.P.Val = infant_de_results[[9]]$adj.P.Val
 )
 
+bayes2infant_italics <- paste0("italic('", bayes2infant$gene_name, "')")
+bayes4infant_italics <- paste0("italic('", bayes4infant$gene_name, "')")
+bayes6infant_italics <- paste0("italic('", bayes6infant$gene_name, "')")
+bayes7infant_italics <- paste0("italic('", bayes7infant$gene_name, "')")
+
+infant_ML_notGCL <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
+    "pseudoBulkDGE_results", "infant_ML_notGCL_DEGs.csv"))
+
+bayes2infant_genes <- paste0(
+    "italic('",infant_ML_notGCL$gene_name,
+    "')")
+
+bayes4infant_genes <- paste0(
+    "italic('",
+    c("PTN", "DCX", "WNT7B", "FOXO6", "SOX4", "NTS", "DMRTA2", "DIO2", "HES5", "DPYSL5", "HES4", "WIF1", "SOX11", "SOX5",
+        "ELAVL3", "HES4", "KIF21B", "TUBB2B",
+        "CAMK2D", "S100A1", "CCK", "AKR1C3", "HHATL", "PTGDS", "SPP1", "GFAP", "CD74", "CACNG3", "CTSH", "CD59",
+        "S100A13", "C1S", "CD53"),
+    "')")
+
+bayes6infant_genes <- paste0(
+    "italic('",
+    c("PTN", "SOX4", "DCX", "SOX11", "DIO2", "DPYSL5", "KLF7", "VIM", "SOX12", "IGFBP4", "SOX2", "FOXO6",
+        "BHLHE22", "HES4", "PDGFRA", "WIF1", "NES", "KLF6", "HES6", "DPYSL3", "APOLD1", "KIF21B", "TUBB2B",
+        "LHX2", "OLIG2", "OLIG2", "EGFR", "SEMA6A",
+        "TMEM176B", "CCK", "S100A1", "KLK6", "SPP1", "ITGB2", "PTGDS", "S100A13", "LAMP5", "MAOB",
+        "CAMKK1", "CAMK1D", "GRIA4"),
+    "')")
+
+bayes7infant_genes <- paste0(
+    "italic('",
+    c("DCX", "SOX11", "SEMA3E", "NELL1", "SOX4", "WNT5A", "DPYSL5", "BHLHE22", "POSTN", "WHRN", "GRB14",
+        "KIF26B", "KIF21B", "FGFR1", "NOG", "PTN", "NES", "DISC1", "IGFBP3", "VCAN", "IGFBP2",
+        "CDK6", "HES6", "FOXJ1", "SOX5", "SOX12", "DCC", "WNT7B", "LHX2", "NCAN", "GRIP1", "PDGFRA",
+        "STMN2", "SEMA6A", "APOLD1", "DSCAM", "HES4", "ELAVL3", "HES5", "SOX8", "SOX21", "DIO2",
+        "GRIA1", "GRIK5", "FN1", "SOX6", "NOTCH3", "WIF1", "NEUROG2", "EMX2", "VIM", "SEMA6D",
+        "TNC", "PDGFRB", "GRIN2D", "DPYSL3", "MDK", "SOX9", "TUBB2B", "FGFR2", "BCAN", "CUX1",
+        "GDF11", "NEUROD6", "NPTXR", "ANOS1", "OLIG1", "DPYSL4", "FOXO6", "CAMK2B", "CD24", "NTF3",
+        "FGFBP3", "TUBB3", "CLDN5", "DSCAML1", "SEMA4F", "NEUROD2", "SOX2", "SOX18", "KLF6", "SEMA6C",
+        "OLIG2", "LIPG", "DMRTA2", "NCALD", "KCNG2", "FOXJ1", "CARTPT", "GCNT2", "SERPINH1", "HAPLN1",
+        "NPNT", "TRIB2", "CCN1", "FZD2", "LTBP1", "ARHGAP15", "TSKU", "MFGE8", "GPR17", "TUBA1C",
+        "MSX1", "FZD8", "COL9A1", "PLPPR3", "NKX2-2", "NKD2", "FLT1",
+        "S100A1", "VAMP1", "OPALIN", "CAMKK1", "S100A13", "LAMP5", "CAMK1D", "MAOB", "GRIA4", "GAD1",
+        "MBP", "CCK", "CAMK2N1", "S100B", "TMEM63A", "NOS1", "SEMA3B", "C1QTNF9B", "GFAP", "S100A6",
+        "GRIN3A", "APP", "CAMKK2", "CD47", "DDO", "HHATL", "C1QTNF9B", "NOS1", "GRIN3A", "PTH2R"),
+    "')")
+
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Infant.pdf"),
     width = 8.5, height = 8)
 
@@ -187,24 +234,33 @@ EnhancedVolcano(bayes1infant,
     )
 
 EnhancedVolcano(bayes2infant,
-    lab = bayes2infant$gene_name,
+    lab = bayes2infant_italics,
     x = 'logFC',
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = bayes2infant_genes,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    parseLabels = TRUE,
+    max.overlaps = 90,
     ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
+    legendLabels = c('Not sig.','Log FC','adj.P.Val',
+      'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 2",
     subtitle = "Infant vs. non-Infant"
     )
 
 EnhancedVolcano(bayes4infant,
-    lab = bayes4infant$gene_name,
+    lab = bayes4infant_italics,
     x = 'logFC',
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = bayes4infant_genes,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
@@ -226,11 +282,15 @@ EnhancedVolcano(bayes5infant,
     )
 
 EnhancedVolcano(bayes6infant,
-    lab = bayes6infant$gene_name,
+    lab = bayes6infant_italics,
     x = 'logFC',
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = bayes6infant_genes,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
@@ -239,14 +299,18 @@ EnhancedVolcano(bayes6infant,
     )
 
 EnhancedVolcano(bayes7infant,
-    lab = bayes7infant$gene_name,
+    lab = bayes7infant_italics,
     x = 'logFC',
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    selectLab = bayes7infant_genes,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
+    legendLabels = c('Not sig.','Log FC','adj.P.Val',
+      'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 7",
     subtitle = "Infant vs. non-Infant"
     )
@@ -728,6 +792,8 @@ bayes1elderly_italics <- paste0("italic('", bayes1elderly$gene_name, "')")
 
 bayes2elderly_italics <- paste0("italic('", bayes2elderly$gene_name, "')")
 
+bayes6elderly_italics <- paste0("italic('", bayes6elderly$gene_name, "')")
+
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Elderly.pdf"),
     width = 8.5, height = 8)
 
@@ -742,8 +808,8 @@ EnhancedVolcano(bayes1elderly,
     arrowheads = FALSE,
     parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
+    legendLabels = c('Not sig.','Log FC','adj.P.Val',
+      'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 1 ~ SLM",
     subtitle = "Elderly vs. non-Elderly"
     ) +
@@ -761,8 +827,8 @@ EnhancedVolcano(bayes2elderly,
     arrowheads = FALSE,
     parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
+    legendLabels = c('Not sig.','Log FC','adj.P.Val',
+      'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 2 ~ ML",
     subtitle = "Elderly vs. non-Elderly"
     )
@@ -773,6 +839,8 @@ EnhancedVolcano(bayes4elderly,
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
       'adj.P.Val & Log (base 2) FC'),
@@ -794,15 +862,18 @@ EnhancedVolcano(bayes5elderly,
     )
 
 EnhancedVolcano(bayes6elderly,
-    lab = bayes6elderly$gene_name,
+    lab = bayes6elderly_italics,
     x = 'logFC',
     y = 'adj.P.Val',
     FCcutoff = 1,
     pCutoff = 0.049,
+    drawConnectors = TRUE,
+    arrowheads = FALSE,
+    parseLabels = TRUE,
     ylab = "-log10 adj.P.Val",
-    legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
-      'adj.P.Val & Log (base 2) FC'),
-    title = "BayesSpace cluster 6",
+    legendLabels = c('Not sig.','Log FC','adj.P.Val',
+      'adj.P.Val & Log FC'),
+    title = "BayesSpace cluster 6 ~ SGZ",
     subtitle = "Elderly vs. non-Elderly"
     )
 

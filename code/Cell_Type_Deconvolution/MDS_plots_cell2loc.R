@@ -139,7 +139,7 @@ pdf(file = here::here("plots", "Cell_Type_Deconvolution", "cell_type_MDS_spots.p
 
 ggplot(cell_sim, aes(x = D1, y = D2, color = type, label = rownames(cell_sim))) +
     geom_point(size = 5) +
-    geom_text(size = 3.5, vjust = -0.8) +
+    geom_text(size = 3.5, vjust = -0.8, color = "black") +
     scale_colour_manual(values = cell_colors) +
     ggtitle("MDS Plot of Spatial Similarity for Cell-types across all Visium spots") +
     labs(x = "MDS1", y = "MDS2") +
