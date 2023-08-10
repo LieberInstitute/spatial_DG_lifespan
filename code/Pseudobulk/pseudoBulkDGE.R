@@ -170,6 +170,24 @@ bayes9infant <- data.frame(
     adj.P.Val = infant_de_results[[9]]$adj.P.Val
 )
 
+## Colors for the significant and not significant genes
+keyvals_inf2 <- ifelse(
+    bayes2infant$adj.P.Val < 0.05, "darksalmon", "#f0e3d6"
+)
+
+## Legend names
+names(keyvals_inf2)[keyvals_inf2 == "darksalmon"] <- "Adjusted P-value < 0.05"
+names(keyvals_inf2)[keyvals_inf2 == "#f0e3d6"] <- "Not significant"
+
+## Colors for the significant and not significant genes
+keyvals_inf7 <- ifelse(
+    bayes7infant$adj.P.Val < 0.05, "darksalmon", "#f0e3d6"
+)
+
+## Legend names
+names(keyvals_inf7)[keyvals_inf7 == "darksalmon"] <- "Adjusted P-value < 0.05"
+names(keyvals_inf7)[keyvals_inf7 == "#f0e3d6"] <- "Not significant"
+
 bayes2infant_italics <- paste0("italic('", bayes2infant$gene_name, "')")
 bayes4infant_italics <- paste0("italic('", bayes4infant$gene_name, "')")
 bayes6infant_italics <- paste0("italic('", bayes6infant$gene_name, "')")
@@ -243,12 +261,14 @@ EnhancedVolcano(bayes2infant,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    colCustom = keyvals_inf2,
     max.overlaps = 90,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log FC','adj.P.Val',
       'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 2",
-    subtitle = "Infant vs. non-Infant"
+    subtitle = "Infant vs. non-Infant",
+    legendPosition = "bottom"
     )
 
 EnhancedVolcano(bayes4infant,
@@ -308,11 +328,13 @@ EnhancedVolcano(bayes7infant,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    colCustom = keyvals_inf7,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log FC','adj.P.Val',
       'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 7",
-    subtitle = "Infant vs. non-Infant"
+    subtitle = "Infant vs. non-Infant",
+    legendPosition = "bottom"
     )
 
 EnhancedVolcano(bayes8infant,
@@ -775,6 +797,24 @@ bayes9elderly <- data.frame(
     adj.P.Val = elderly_de_results[[9]]$adj.P.Val
 )
 
+## Colors for the significant and not significant genes
+keyvals_eld1 <- ifelse(
+    bayes1elderly$adj.P.Val < 0.05, "darksalmon", "#f0e3d6"
+)
+
+## Legend names
+names(keyvals_eld1)[keyvals_eld1 == "darksalmon"] <- "Adjusted P-value < 0.05"
+names(keyvals_eld1)[keyvals_eld1 == "#f0e3d6"] <- "Not significant"
+
+## Colors for the significant and not significant genes
+keyvals_eld2 <- ifelse(
+    bayes2elderly$adj.P.Val < 0.05, "darksalmon", "#f0e3d6"
+)
+
+## Legend names
+names(keyvals_eld2)[keyvals_eld2 == "darksalmon"] <- "Adjusted P-value < 0.05"
+names(keyvals_eld2)[keyvals_eld2 == "#f0e3d6"] <- "Not significant"
+
 activated_micro1 <- paste0(
     "italic('",
     c(
@@ -807,11 +847,13 @@ EnhancedVolcano(bayes1elderly,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    colCustom = keyvals_eld1,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log FC','adj.P.Val',
       'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 1 ~ SLM",
-    subtitle = "Elderly vs. non-Elderly"
+    subtitle = "Elderly vs. others",
+    legendPosition = "bottom"
     ) +
     xlim(c(-5, 5)) +
     ylim(c(0, 5))
@@ -826,11 +868,13 @@ EnhancedVolcano(bayes2elderly,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    colCustom = keyvals_eld2,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log FC','adj.P.Val',
       'adj.P.Val & Log FC'),
     title = "BayesSpace cluster 2 ~ ML",
-    subtitle = "Elderly vs. non-Elderly"
+    subtitle = "Elderly vs. others",
+    legendPosition = "bottom"
     )
 
 EnhancedVolcano(bayes4elderly,

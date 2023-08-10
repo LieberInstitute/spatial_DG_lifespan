@@ -51,13 +51,38 @@ features = c(## Neurons
 pdf(file = here::here("plots","BayesSpace_plots", "dotplot_genemarkers.pdf"),
     width = 6.5, height = 4)
 
-plotDots(spe, group = "bayesSpace_harmony_10", features = features, exprs_values = "logcounts", color = c("white", "red", "darkred"),
-    block = "sample_id", zlim = c(0,3)) +
+plotDots(spe, group = "bayesSpace_harmony_10", features = features, exprs_values = "logcounts", color = c("white", "red"),
+    block = "sample_id") +
     scale_x_discrete(limits = c( "3", "8", "5", "2", "1", "10", "6", "7", "9", "4")) +
     scale_y_discrete(limits = features) +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, face = "italic")) +
     labs(x = "BayesSpace Clusters", y = "Genes", color = "mean\nnorm logcounts", size = "Proportion of spots") +
     coord_flip()
+
+plotDots(spe, group = "bayesSpace_harmony_10", features = features, exprs_values = "logcounts", color = c("blue", "white", "red"),
+    block = "sample_id", center = TRUE, scale = TRUE,) +
+    scale_x_discrete(limits = c( "3", "8", "5", "2", "1", "10", "6", "7", "9", "4")) +
+    scale_y_discrete(limits = features) +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, face = "italic")) +
+    labs(x = "BayesSpace Clusters", y = "Genes", color = "mean\nlog norm counts\n(centered & scaled)",
+        size = "Proportion of spots") +
+    coord_flip()
+
+dev.off()
+
+#######################################################################################################
+
+# Violin plots of markers
+
+bay_colors <- c("1" = "#5A5156", "2" = "#E4E1E3", "3" = "#DEA0FD", "4" = "#FEAF16",
+    "5" = "#FE00FA", "6" = "#1CFFCE", "7" = "#B00068", "8" = "#90AD1C", "9" = "#16FF32",
+    "10" = "#2ED9FF")
+
+pdf(file = here::here("plots","BayesSpace_plots", "violinplot_genemarkers.pdf"))
+
+plotExpression(spe, x = "bayesSpace_harmony_10", features = features, colour_by = "bayesSpace_harmony_10") +
+    scale_color_manual(values  = bay_colors) +
+    theme(plot.title = element_text(face = "italic"))
 
 dev.off()
 

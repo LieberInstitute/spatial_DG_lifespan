@@ -410,7 +410,8 @@ dotplot(GCL_GO_BP, x="group", showCategory = trunc__GCL_BP_list, label_format = 
         axis.text.x = element_text(angle = 70, size = 14, vjust = 0.5, hjust = 0.5),
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
-        legend.title = element_text(size = 14))
+        legend.title = element_text(size = 14)) +
+    scale_color_gradient(low = "grey", high = "black")
 
 dev.off()
 
@@ -516,7 +517,8 @@ dotplot(ML_GO_ALL, x="group", showCategory = trunc__ML_ALL_list, label_format = 
         axis.text.x = element_text(angle = 70, size = 14, vjust = 0.5, hjust = 0.5),
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
-        legend.title = element_text(size = 14))
+        legend.title = element_text(size = 14)) +
+    scale_color_gradient(low = "grey", high = "black")
 
 dev.off()
 
