@@ -17,6 +17,7 @@ suppressPackageStartupMessages({
     library(viridis)
     library(dplyr)
     library(ComplexHeatmap)
+    library(circlize)
     library(sessioninfo)
 })
 
@@ -24,25 +25,27 @@ suppressPackageStartupMessages({
 spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))
 
 ## subset spe data based on BayesSpace clusters for DG
-spe_pseudo <- spe_pseudo[, spe_pseudo$BayesSpace %in% c("2", "4", "6", "7")]
+spe_pseudo <- spe_pseudo[, spe_pseudo$BayesSpace %in% c("1", "2", "4", "6", "7")]
 
 bayes_df <- data.frame(spe_pseudo$BayesSpace)
 bayes_df <- bayes_df %>%
     mutate(DG_layer = case_when(
+        grepl("1", spe_pseudo.BayesSpace) ~ "SLM",
         grepl("2", spe_pseudo.BayesSpace) ~ "ML",
         grepl("4", spe_pseudo.BayesSpace) ~ "CA3&4",
         grepl("6", spe_pseudo.BayesSpace) ~ "SGZ",
         grepl("7", spe_pseudo.BayesSpace) ~ "GCL"
     ))
 
-colData(spe_pseudo)$BayesSpace <- factor(bayes_df$DG_layer, levels = c("ML", "CA3&4", "SGZ", "GCL"))
+colData(spe_pseudo)$BayesSpace <- factor(bayes_df$DG_layer, levels = c("SLM", "ML", "CA3&4", "SGZ", "GCL"))
 
 # Configure column order to match age groups per BayesSpace cluster
 Bayes_age_order <- c(
     16, 12, 13, 15, 8, 1, 11, 2, 9, 10, 14, 4, 3, 5, 7, 6,
     32, 28, 29, 31, 24, 17, 27, 18, 25, 26, 30, 20, 19, 21, 23, 22,
     48, 44, 45, 47, 40, 33, 43, 34, 41, 42, 46, 36, 35, 37, 39, 38,
-    64, 60, 61, 63, 56, 49, 59, 50, 57, 58, 62, 52, 51, 53, 55, 54
+    64, 60, 61, 63, 56, 49, 59, 50, 57, 58, 62, 52, 51, 53, 55, 54,
+    80, 76, 77, 79, 72, 65, 75, 66, 73, 74, 78, 68, 67, 69, 71, 70
 )
 
 ## Set gene names as row names for easier plotting
@@ -85,33 +88,27 @@ Clarke_2018_all1 <- Clarke_2018_all[! Clarke_2018_all$gene_name %in%
         setdiff(Clarke_2018_all$gene_name, rownames(spe_pseudo)),]
 
 Clarke_heatmap <- assays(spe_pseudo)[[2]][Clarke_2018_all1$gene_name, ]
-colnames(Clarke_heatmap) <- paste("logcount", 1:64, sep = "")
-
-# convert to z-scores
-scale_rows = function(x){
-    m = apply(x, 1, mean, na.rm = T)
-    s = apply(x, 1, sd, na.rm = T)
-    return((x - m) / s)
-}
-
-Clarke_heatmap <- scale_rows(Clarke_heatmap)
+colnames(Clarke_heatmap) <- paste("logcount", 1:80, sep = "")
 
 # Plot heatmap of logcounts for clusters and samples
 pdf(file = here::here("plots", "pseudobulked", "Clarke_astrocytes_genemarkers_heatmap.pdf"))
 
+col_fun = colorRamp2(c(0, 5, 10), c("blue", "white", "red"))
+
 Heatmap(Clarke_heatmap,
-    name = "z-score",
+    name = "mean\nnorm logcounts",
     top_annotation = HeatmapAnnotation(BayesSpace = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
-    col = list(BayesSpace = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+    col = list(spatial_domain = c("SLM" = "black", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
         age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
-    left_annotation = rowAnnotation(sub_type = Clarke_2018_all$label,
+    left_annotation = rowAnnotation(sub_type = Clarke_2018_all1$label,
         col = list(sub_type = c("PAN" = "lightblue", "A1" = "dodgerblue", "A2" = "midnightblue"))),
+    col = col_fun,
     column_title = "Clarke et al., 2018 Gene markers for reactive astrocytes",
     column_order = Bayes_age_order,
     show_column_names = FALSE,
     column_split = spe_pseudo$BayesSpace,
-    row_split = Clarke_2018_all$label,
+    row_split = Clarke_2018_all1$label,
     show_row_names = TRUE,
     cluster_rows = TRUE,
     )

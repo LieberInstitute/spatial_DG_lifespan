@@ -17,6 +17,7 @@ suppressPackageStartupMessages({
     library(viridis)
     library(dplyr)
     library(ComplexHeatmap)
+    library(circlize)
     library(sessioninfo)
 })
 
@@ -231,10 +232,11 @@ Bayes_age_order <- c(
 neuropil_heatmap <- assays(pseudo_ML)[[2]][neuropil_ML, ]
 colnames(neuropil_heatmap) <- paste("logcount", 1:16, sep = "")
 
-neuropil_heatmap <- scale_rows(neuropil_heatmap)
 
 # Plot heatmap
 pdf(file = here::here("plots", "pseudobulked", "ML_enriched_synaptome_heatmap.pdf"))
+
+col_fun = colorRamp2(c(0, 5, 15), c("blue", "white", "red"))
 
 Heatmap(neuropil_heatmap,
     name = "z-score",
@@ -246,6 +248,7 @@ Heatmap(neuropil_heatmap,
         labels = c("SNAP25", "SORT1", "CNKSR2", "ATP6V1B2", "PEA15", "SOWAHA", "MAST3", "PSAP", "BMERB1", "AK5", "APP", "RPS3",
             "RPL13", "RPL13A", "EEF1G", "RPLP1", "RPS24", "RPS15", "RPS5", "RPS11", "RPS2", "RPLP0", "ARHGAP5", "NRXN1", "LHX2",
             "PRRC2C", "BCL11B", "RFX3"))),
+    col = col_fun,
     column_title = "Synaptic/dendrtic enriched gene markers in ML",
     column_order = Bayes_age_order,
     show_column_names = FALSE,

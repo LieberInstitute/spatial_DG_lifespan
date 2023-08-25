@@ -16,6 +16,7 @@ suppressPackageStartupMessages({
     library(ggplot2)
     library(ggcorrplot)
     library(ggsignif)
+    library(ggh4x)
     library(sessioninfo)
 })
 
@@ -93,10 +94,13 @@ cell_DGdf <- as.data.frame(colData(spe_DG)[, c(44:70)],
 # Facet to see everything at once.
 ##################################
 
-pdf(file = here::here("plots", "Cell_Type_Deconvolution", "DGlayer_age_facet_cell2loc.pdf"), width = 8, height = 8)
+pdf(file = here::here("plots", "Cell_Type_Deconvolution", "DGlayer_age_facet_cell2loc.pdf"), width = 16, height = 4)
+
+strip <- strip_themed(background_x = elem_list_rect(fill = c("#E4E1E3", "#FEAF16", "#1CFFCE", "#B00068")))
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Astro_1)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
               map_signif_level=TRUE, y_position = 4) +
@@ -108,10 +112,13 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
     ggtitle("Mean abundance of Astro_1") +
     theme_classic() +
     ylim(0, 5) +
-    facet_wrap(vars(BayesSpace))
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Astro_2)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
               map_signif_level=TRUE, y_position = 6) +
@@ -123,7 +130,9 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
     ggtitle("Mean abundance of Astro_2") +
     theme_classic() +
     ylim(0, 7) +
-    facet_wrap(vars(BayesSpace))
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_CA1_N)) +
     geom_violin(aes(fill = age_bin)) +
@@ -211,17 +220,21 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_InN_LAMP5)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.5) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.5) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.5) +
     labs(x = "age", y = "InN_LAMP5 mean abundance") +
     ggtitle("Mean abundance of InN_LAMP5") +
     theme_classic() +
-    facet_wrap(vars(BayesSpace))
+    ylim(0, 1) +
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_InN_LHX6)) +
     geom_violin(aes(fill = age_bin)) +
@@ -282,18 +295,21 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_InN_SST)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE, y_position = 3) +
+              map_signif_level=TRUE, y_position = 4) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE, y_position = 3) +
+              map_signif_level=TRUE, y_position = 4) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE, y_position = 3) +
+              map_signif_level=TRUE, y_position = 4) +
     labs(x = "age", y = "InN_SST mean abundance") +
     ggtitle("Mean abundance of InN_SST") +
     theme_classic() +
-    ylim(0, 4) +
-    facet_wrap(vars(BayesSpace))
+    ylim(0, 5) +
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_InN_VIP)) +
     geom_violin(aes(fill = age_bin)) +
@@ -311,31 +327,39 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Macro)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
-    labs(x = "age", y = "Macro mean abundance") +
-    ggtitle("Mean abundance of Macro") +
+              map_signif_level=TRUE, y_position = 0.8) +
+    labs(x = "age", y = "Macrophage mean abundance") +
+    ggtitle("Mean abundance of Macrophages") +
     theme_classic() +
-    facet_wrap(vars(BayesSpace))
+    ylim(0, 1) +
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Microglia)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     labs(x = "age", y = "Microglia mean abundance") +
     ggtitle("Mean abundance of Microglia") +
     theme_classic() +
-    facet_wrap(vars(BayesSpace))
+    ylim(0, 1) +
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Mossy)) +
     geom_violin(aes(fill = age_bin)) +
@@ -353,17 +377,21 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Myeloid)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     labs(x = "age", y = "Myeloid mean abundance") +
-    ggtitle("Mean abundance of Myeloid") +
+    ggtitle("Mean abundance of Myeloid cells") +
     theme_classic() +
-    facet_wrap(vars(BayesSpace))
+    ylim(0, 1) +
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_OPC)) +
     geom_violin(aes(fill = age_bin)) +
@@ -381,17 +409,21 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Oligo)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 3) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 3) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
-    labs(x = "age", y = "Oligo mean abundance") +
-    ggtitle("Mean abundance of Oligo") +
+              map_signif_level=TRUE, y_position = 3) +
+    labs(x = "age", y = "Oligodendrocyte mean abundance") +
+    ggtitle("Mean abundance of Oligodendrocytes") +
     theme_classic() +
-    facet_wrap(vars(BayesSpace))
+    ylim(0, 4) +
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_Pericyte)) +
     geom_violin(aes(fill = age_bin)) +
@@ -423,17 +455,21 @@ ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_T_Cell)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Teen", "Adult")),
-              map_signif_level=TRUE) +
+              map_signif_level=TRUE, y_position = 0.8) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Adult", "Elderly")),
-              map_signif_level=TRUE) +
-    labs(x = "age", y = "T_Cell mean abundance") +
-    ggtitle("Mean abundance of T_Cell") +
+              map_signif_level=TRUE, y_position = 0.8) +
+    labs(x = "age", y = "T cell mean abundance") +
+    ggtitle("Mean abundance of T cells") +
     theme_classic() +
-    facet_wrap(vars(BayesSpace))
+    ylim(0, 1) +
+    facet_wrap2(~ BayesSpace, nrow = 1, ncol = 4, strip = strip) +
+    theme(text = element_text(size = 16), legend.position = "none", plot.title = element_blank(),
+        axis.title.x = element_blank())
 
 ggplot(cell_DGdf, aes(x = cell_DGdf$age_bin, y = cell_DGdf$meanscell_abundance_w_sf_VLMC)) +
     geom_violin(aes(fill = age_bin)) +
@@ -459,6 +495,7 @@ pdf(file = here::here("plots", "Cell_Type_Deconvolution", "SLM_age_cell2loc.pdf"
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Astro_1)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
               map_signif_level=TRUE, y_position = 5) +
@@ -469,10 +506,12 @@ ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundanc
     labs(x = "age", y = "Astro_1 mean abundance") +
     ggtitle("Mean abundance of Astro_1") +
     theme_classic() +
-    ylim(0, 6)
+    ylim(0, 6) +
+    theme(text = element_text(size = 20))
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Astro_2)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
               map_signif_level=TRUE, y_position = 7) +
@@ -483,7 +522,8 @@ ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundanc
     labs(x = "age", y = "Astro_2 mean abundance") +
     ggtitle("Mean abundance of Astro_2") +
     theme_classic() +
-    ylim(0, 8)
+    ylim(0, 8) +
+    theme(text = element_text(size = 20))
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_CA1_N)) +
     geom_violin(aes(fill = age_bin)) +
@@ -670,6 +710,7 @@ ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundanc
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Microglia)) +
     geom_violin(aes(fill = age_bin)) +
+    scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width=0.1) +
     geom_signif(test = "wilcox.test", comparisons = list(c("Infant", "Teen")),
               map_signif_level=TRUE, y_position = 0.85) +
@@ -680,7 +721,8 @@ ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundanc
     labs(x = "age", y = "Microglia mean abundance") +
     ggtitle("Mean abundance of Microglia") +
     theme_classic() +
-    ylim(0, 1)
+    ylim(0, 1) +
+    theme(text = element_text(size = 20))
 
 ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundance_w_sf_Mossy)) +
     geom_violin(aes(fill = age_bin)) +

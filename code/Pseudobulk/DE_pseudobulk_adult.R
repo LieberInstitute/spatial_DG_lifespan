@@ -150,7 +150,7 @@ rownames(f_stats) <- NULL
 head(f_stats)
 
 save(f_stats, eb0_list, eb_contrasts,
-    file = here::here("processed-data", "pseudobulk_spe", "adult_bayesspace_cluster_modeling_results.Rdata")
+    file = here::here("processed-data", "pseudobulk_spe", "adult_modeling_results.Rdata")
 )
 
 

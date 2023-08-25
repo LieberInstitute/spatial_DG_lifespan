@@ -164,9 +164,20 @@ GO_BP <- compareCluster(ENTREZID~group+age,
     readable = TRUE
 )
 
+GO_ALL <- compareCluster(ENTREZID~group+age,
+    data = clust_compare,
+    OrgDb = org.Hs.eg.db,
+    fun = enrichGO,
+    ont = "ALL",
+    pAdjustMethod = "fdr",
+    pvalueCutoff = 0.05,
+    qvalueCutoff = 0.05,
+    readable = TRUE
+)
+
 # Save ontology objects
 
-save(GO_CC, GO_MF, GO_BP,
+save(GO_CC, GO_MF, GO_BP, GO_ALL,
     file = here::here("processed-data", "pseudobulk_spe", "gene_ontologies", "DG_comp_enrichedGO.Rdata")
 )
 
@@ -248,6 +259,24 @@ trunc_BP_list <- c(
     "response to ischemia"
 )
 
+trunc_ALL_list <- c(
+    "antigen processing and presentation of peptide or polysaccharide antigen via MHC class II",
+    "synapse pruning",
+    "extracellular matrix organization",
+    "response to ischemia",
+    "lysosomal membrane",
+    "gliogenesis",
+    "synapse organization",
+    "dendrite development",
+    "positive regulation of neurogenesis",
+    "translational initiation",
+    "aerobic respiration",
+    "cellular respiration",
+    "myeloid cell activation involved in immune response",
+    "maintenance of blood-brain barrier",
+    "axon development"
+)
+
 pdf(file = here::here("plots", "pseudobulked", "Select_Age_group_DG_GO.pdf"), width = 10, height = 8)
 
 dotplot(GO_CC, x="group", showCategory = trunc_CC_list) +
@@ -256,7 +285,7 @@ dotplot(GO_CC, x="group", showCategory = trunc_CC_list) +
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black") +
+    scale_color_gradient(low = "black", high = "grey") +
     facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
 
 dotplot(GO_MF, x="group", showCategory = trunc_MF_list) +
@@ -265,7 +294,7 @@ dotplot(GO_MF, x="group", showCategory = trunc_MF_list) +
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black") +
+    scale_color_gradient(low = "black", high = "grey") +
     facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
 
 dotplot(GO_BP, x="group", showCategory = trunc_BP_list, label_format = 60) +
@@ -274,7 +303,16 @@ dotplot(GO_BP, x="group", showCategory = trunc_BP_list, label_format = 60) +
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black") +
+    scale_color_gradient(low = "black", high = "grey") +
+    facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
+
+dotplot(GO_ALL, x="group", showCategory = trunc_ALL_list, label_format = 60) +
+    theme(plot.title = element_text(size = 14),
+        axis.text.x = element_text(angle = 70, size = 14, vjust = 0.5, hjust = 0.5),
+        axis.text.y = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14)) +
+    scale_color_gradient(low = "black", high = "grey") +
     facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
 
 dev.off()
@@ -289,7 +327,7 @@ dotplot(GO_BP, x="group", showCategory = trunc_BP_list, label_format = 60) +
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black") +
+    scale_color_gradient(low = "black", high = "grey") +
     facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
 
 dev.off()
@@ -302,7 +340,7 @@ dotplot(GO_CC, x="group", showCategory = trunc_CC_list, label_format = 60) +
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black") +
+    scale_color_gradient(low = "black", high = "grey") +
     facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
 
 dev.off()
@@ -315,7 +353,21 @@ dotplot(GO_MF, x="group", showCategory = trunc_MF_list, label_format = 60) +
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black") +
+    scale_color_gradient(low = "black", high = "grey") +
+    facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
+
+dev.off()
+
+
+pdf(file = here::here("plots", "pseudobulked", "Select_Age_group_DG_ALL_GO.pdf"), width = 10, height = 8)
+
+dotplot(GO_ALL, x="group", showCategory = trunc_ALL_list, label_format = 60) +
+    theme(plot.title = element_text(size = 14),
+        axis.text.x = element_text(angle = 70, size = 14, vjust = 0.5, hjust = 0.5),
+        axis.text.y = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14)) +
+    scale_color_gradient(low = "black", high = "grey") +
     facet_grid(~factor(age, levels=c('infant', 'teen', 'adult', 'elderly')))
 
 dev.off()
@@ -382,6 +434,17 @@ GCL_GO_BP <- compareCluster(ENTREZID~group,
     readable = TRUE
 )
 
+GCL_GO_ALL <- compareCluster(ENTREZID~group,
+    data = infant_GCL,
+    OrgDb = org.Hs.eg.db,
+    fun = enrichGO,
+    ont = "ALL",
+    pAdjustMethod = "fdr",
+    pvalueCutoff = 0.05,
+    qvalueCutoff = 0.05,
+    readable = TRUE
+)
+
 trunc__GCL_BP_list <- c(
     "neural nucleus development",
     "regulation of ion transmembrane transport",
@@ -411,7 +474,7 @@ dotplot(GCL_GO_BP, x="group", showCategory = trunc__GCL_BP_list, label_format = 
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black")
+    scale_color_gradient(low = "black", high = "grey")
 
 dev.off()
 
@@ -518,7 +581,7 @@ dotplot(ML_GO_ALL, x="group", showCategory = trunc__ML_ALL_list, label_format = 
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "grey", high = "black")
+    scale_color_gradient(low = "black", high = "grey")
 
 dev.off()
 

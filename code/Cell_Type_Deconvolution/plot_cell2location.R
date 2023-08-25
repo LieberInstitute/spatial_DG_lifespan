@@ -16,13 +16,15 @@ library(viridis)
 # directory to save plots
 dir_plots <- here("plots", "Cell_Type_Deconvolution", "cell2location")
 
-
 # ---------------
 # load SPE object
 # ---------------
 
 # load SPE object containing cell2location results
 spe <- readRDS(here::here("processed-data", "Cell_Type_Deconvolution", "harmony_spe_cell2loc.rds"))
+
+# order spe observations according to age
+spe <- spe[, order(spe$age)]
 
 # check
 head(colData(spe), 1)

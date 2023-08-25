@@ -62,26 +62,18 @@ sen <- sen[! sen %in%
 sen_heatmap <- assays(spe_pseudo)[[2]][sen, ]
 colnames(sen_heatmap) <- paste("logcount", 1:80, sep = "")
 
-# convert to z-scores
-scale_rows = function(x){
-    m = apply(x, 1, mean, na.rm = T)
-    s = apply(x, 1, sd, na.rm = T)
-    return((x - m) / s)
-}
-
-sen_heatmap <- scale_rows(sen_heatmap)
 
 # Plot heatmap of logcounts for clusters and samples
 pdf(file = here::here("plots", "pseudobulked", "Senescence_genemarkers_heatmap.pdf"),
-    width = 12, height = 14)
+    width = 8, height = 10)
 
 Heatmap(sen_heatmap,
-    name = "z-score",
-    top_annotation = HeatmapAnnotation(cluster = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
-    col = list(cluster = c("SLM" = "black", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+    name = "mean\nnorm logcounts",
+    top_annotation = HeatmapAnnotation(spatial_domain = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(spatial_domain = c("SLM" = "black", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
         age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
-    column_title = "Gene markers for Senescence",
+    column_title = "Markers for Senescence from SenMayo gene set",
     column_order = Bayes_age_order,
     show_column_names = FALSE,
     column_split = spe_pseudo$BayesSpace,

@@ -17,6 +17,7 @@ suppressPackageStartupMessages({
     library(viridis)
     library(dplyr)
     library(ComplexHeatmap)
+    library(circlize)
     library(sessioninfo)
 })
 
@@ -50,7 +51,7 @@ rownames(spe_pseudo) <- rowData(spe_pseudo)$gene_name
 
 # Find relevant GO terms to use
 
-cytotrans <- "GO:0031625"
+cytotrans <- "GO:0019886"
 cytotrans <- bitr(cytotrans, fromType="GO", toType = "SYMBOL", OrgDb=org.Hs.eg.db)
 cytotrans <- cytotrans$SYMBOL
 
@@ -64,26 +65,20 @@ cytotrans <- cytotrans[! cytotrans %in% setdiff(cytotrans, rownames(spe_pseudo))
 cytotrans_heatmap <- assays(spe_pseudo)[[2]][cytotrans, ]
 colnames(cytotrans_heatmap) <- paste("logcount", 1:64, sep = "")
 
-# convert to z-scores
-scale_rows = function(x){
-    m = apply(x, 1, mean, na.rm = T)
-    s = apply(x, 1, sd, na.rm = T)
-    return((x - m) / s)
-}
-
-cytotrans_heatmap <- scale_rows(cytotrans_heatmap)
-
 # Plot heatmap of logcounts for clusters and samples
-pdf(file = here::here("plots", "pseudobulked", "ubiquitin_protein_ligase_binding_enrichment_heatmap.pdf"),
-    width = 12, height = 14)
+pdf(file = here::here("plots", "pseudobulked", "antigen_MHC_class_II_enrichment_heatmap.pdf"))
+
+col_fun = colorRamp2(c(0, 5, 10), c("blue", "white", "red"))
 
 Heatmap(cytotrans_heatmap,
-    name = "z-score",
+    name = "mean\nnorm logcounts",
     top_annotation = HeatmapAnnotation(cluster = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
     col = list(cluster = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
         age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
-    column_title = "ubiquitin protein ligase binding",
+    col = col_fun,
+    column_title = "antigen processing and presentation of exogenous peptide antigen via MHC class II",
+    column_title_gp = gpar(fontsize = 10),
     column_order = Bayes_age_order,
     show_column_names = FALSE,
     column_split = spe_pseudo$BayesSpace,

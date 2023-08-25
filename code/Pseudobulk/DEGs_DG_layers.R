@@ -27,19 +27,21 @@ df <- data.frame(
 df$layer <- factor(df$layer, levels = c("ML", "GCL", "SGZ", "CA3&4"))
 df$age <- factor(df$age, levels = c("infant", "teen", "adult", "elderly"))
 
-pdf(file = here::here("plots", "pseudobulked", "Barplot_DEGs_DG_layers.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "BLAH_Barplot_DEGs_DG_layers.pdf"))
 
 ggplot(df, aes(x = layer, y = DEGs, fill = age)) +
     geom_bar(position = "dodge", stat = "identity") +
+    scale_y_log10() +
     scale_fill_manual("legend", values = c("infant" = "purple", "teen" = "blue", "adult" = "red", "elderly" = "forestgreen")) +
-    ylab("# Differentially Expressed Genes") +
+    ylab("log10 number of Differentially Expressed Genes") +
     theme(text = element_text(size = 20), axis.text = element_text(size = 20)) +
     theme_classic()
 
 ggplot(df, aes(x = layer, y = DEGs, fill = age)) +
     geom_bar(position = "stack", stat = "identity") +
+    scale_y_log10() +
     scale_fill_manual("legend", values = c("infant" = "purple", "teen" = "blue", "adult" = "red", "elderly" = "forestgreen")) +
-    ylab("# Differentially Expressed Genes") +
+    ylab("log10 number of Differentially Expressed Genes") +
     theme(text = element_text(size = 20), axis.text = element_text(size = 20)) +
     theme_classic()
 

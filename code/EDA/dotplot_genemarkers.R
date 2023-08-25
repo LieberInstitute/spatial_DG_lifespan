@@ -14,6 +14,8 @@ suppressPackageStartupMessages({
     library(spatialLIBD)
     library(scater)
     library(scran)
+    library(dplyr)
+    library(ggsignif)
     library(sessioninfo)
 })
 
@@ -82,6 +84,38 @@ pdf(file = here::here("plots","BayesSpace_plots", "violinplot_genemarkers.pdf"))
 
 plotExpression(spe, x = "bayesSpace_harmony_10", features = features, colour_by = "bayesSpace_harmony_10") +
     scale_color_manual(values  = bay_colors) +
+    theme(plot.title = element_text(face = "italic"))
+
+dev.off()
+
+###########################################################################################################
+
+spe_GCL <- spe[, which(spe$bayesSpace_harmony_10 == "7")]
+dim(spe_GCL)
+
+age_df <- data.frame(spe_GCL$key, spe_GCL$sample_id, spe_GCL$age)
+age_df <- age_df %>%
+    mutate(age_bin = case_when(
+        between(spe_GCL.age, 0, 3) ~ "Infant",
+        between(spe_GCL.age, 13, 19) ~ "Teen",
+        between(spe_GCL.age, 20, 50) ~ "Adult",
+        between(spe_GCL.age, 60, 100) ~ "Elderly"
+    ))
+
+stopifnot(age_df$spe_GCL.key == spe_GCL$key)
+
+colData(spe_GCL)$age_bin <- factor(age_df$age_bin, levels = c("Infant", "Teen", "Adult", "Elderly"))
+
+age_colors <- c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+
+features1 <- c("BHLHE22", "NEUROD2")
+
+pdf(file = here::here("plots","BayesSpace_plots", "violinplot_neurogenmarkers_GCL.pdf"))
+
+plotExpression(spe_GCL, x = "age_bin", features = features1, colour_by = "age_bin") +
+    scale_color_manual(values  = age_colors) +
+    theme(text = element_text(size = 20), axis.text = element_text(size = 14),
+        legend.position = "none") +
     theme(plot.title = element_text(face = "italic"))
 
 dev.off()

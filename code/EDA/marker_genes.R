@@ -21,6 +21,9 @@ dir.create(dir_plots, showWarnings = FALSE, recursive = TRUE)
 
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
+# order spe observations according to age
+spe <- spe[, order(spe$age)]
+
 # Find marker genes
 human_markers <-
     c(

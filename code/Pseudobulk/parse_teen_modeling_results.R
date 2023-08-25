@@ -14,7 +14,7 @@ suppressPackageStartupMessages({
 })
 
 # Load modeling results
-load(file = here::here("processed-data", "pseudobulk_spe", "teen_bayesspace_cluster_modeling_results.Rdata"))
+load(file = here::here("processed-data", "pseudobulk_spe", "teen_modeling_results.Rdata"))
 
 # Load SPE
 spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))
@@ -97,31 +97,6 @@ modeling_results <- list(
 
 # Save modeling results
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "teen_modeling_results.rds"))
-
-length(which(modeling_results$enrichment$fdr_1 < 0.05))
-# 0
-length(which(modeling_results$enrichment$fdr_2 < 0.05))
-# 126
-length(which(modeling_results$enrichment$fdr_3 < 0.05))
-# 0
-length(which(modeling_results$enrichment$fdr_4 < 0.05))
-# 0
-length(which(modeling_results$enrichment$fdr_5 < 0.05))
-# 0
-length(which(modeling_results$enrichment$fdr_6 < 0.05))
-# 0
-length(which(modeling_results$enrichment$fdr_7 < 0.05))
-# 0
-length(which(modeling_results$enrichment$fdr_8 < 0.05))
-# 2447
-## Weird that so many are zero!
-
-cluster <- c(1:8)
-genes <- c(0, 0, 3, 0, 0, 0, 0, 2239)
-df <- data.frame(cluster, genes)
-pdf(file = here::here("plots", "pseudobulked", "plot_teen_enrichment_DEGs.pdf"))
-plot(df$genes ~ df$cluster)
-dev.off()
 
 
 ## Reproducibility information
