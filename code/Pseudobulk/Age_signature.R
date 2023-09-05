@@ -17,6 +17,7 @@ suppressPackageStartupMessages({
     library(VISION)
     library(dplyr)
     library(ggh4x)
+    library(ggsignif)
     library(spatialLIBD)
     library(lsmeans)
     library(RColorBrewer)
@@ -479,14 +480,15 @@ CAS_df = CAS_df[which(CAS_df$spatialnum != "3"), ]
 strip <- strip_themed(background_x = elem_list_rect(fill = c("#5A5156", "#E4E1E3", "#FEAF16",
     "#FE00FA", "#1CFFCE", "#B00068", "#90AD1C", "#16FF32", "#2ED9FF")))
 
-bay_colors <- c("#5A5156", "#E4E1E3", "#FEAF16",
-    "#FE00FA", "#1CFFCE", "#B00068", "#90AD1C", "#16FF32", "#2ED9FF")
+bay_colors <- c("SLM" = "#5A5156", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SR" = "#FE00FA",
+    "SGZ" = "#1CFFCE", "GCL" = "#B00068", "SL" = "#90AD1C", "CA1" =  "#16FF32", "WM" = "#2ED9FF")
 
 pdf(file = here::here("plots", "Trajectories", "CAS_vs_age.pdf"), width = 7, height = 5)
 
 ggplot(CAS_df, aes(x = age, y = CAS)) +
     geom_boxplot(width = 10, notch = F, outlier.colour = NA,  mapping = aes(fill = as.factor(age))) +
     geom_smooth(data = CAS_df, mapping = aes(x = age, y = CAS), color='red3', se = F, method = 'loess') +
+    labs(x = "age", y = "CAS (a.u.)") +
     facet_wrap2(~ BayesSpace, nrow = 2, ncol = 5, strip = strip) +
     theme(axis.text.x = element_text(size = 7), legend.position = "none", plot.title = element_blank(),
         axis.title.x = element_blank()) +
@@ -499,7 +501,7 @@ ggplot(CAS_df, aes(x = CAS_df$age_bin, y = CAS_df$CAS)) +
     scale_fill_manual(values=c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")) +
     geom_boxplot(width = 0.1) +
     geom_smooth(data = CAS_df, mapping = aes(x = as.numeric(age_bin), y = CAS), color='red3', se = F, method = 'loess') +
-    labs(x = "age", y = "CAS") +
+    labs(x = "age", y = "CAS (a.u.)") +
     ggtitle("Common Aging Signature") +
     theme_classic() +
     ylim(-2, 1) +
@@ -509,12 +511,14 @@ ggplot(CAS_df, aes(x = CAS_df$age_bin, y = CAS_df$CAS)) +
 
 ggplot(CAS_df, aes(x = age, y = CAS, color = BayesSpace)) +
     geom_smooth(data = CAS_df, mapping = aes(x = age, y = CAS), se = F,  method = 'loess') +
+    labs(y = "CAS (a.u.)") +
     scale_color_manual(values = bay_colors) +
     scale_y_continuous(limits = c(-0.3, 0.5)) +
     theme_classic()
 
 ggplot(CAS_df, aes(x = age, y = CAS, color = BayesSpace)) +
     geom_smooth(data = CAS_df, mapping = aes(x = age, y = CAS), se = F,  method = 'lm') +
+    labs(y = "CAS (a.u.)") +
     scale_color_manual(values = bay_colors) +
     scale_y_continuous(limits = c(-0.3, 0.5)) +
     theme_classic()
@@ -527,7 +531,7 @@ dev.off()
 CAS_df$spatial_domain <- as.character(CAS_df$BayesSpace)
 
 # Calculate a linear model that allows for an interaction between age and spatial domain
-m_interaction <- lm(CAS ~ age*spatial_domain, data = CAS_df)
+m_interaction <- lm(CAS ~ 0 + age*spatial_domain, data = CAS_df)
 
 # Setup a dataframe that contains the intercepts for each tissue for later inspection of the offset
 coefficient_dataframe <- as.data.frame(m_interaction$coefficients)
@@ -543,6 +547,46 @@ m_lst <- lstrends(m_interaction, "spatial_domain", var="age")
 #This lets us know which slopes are statistically significantly different from one another
 slope_pair_wiseTestResults <- as.data.frame(pairs(m_lst))
 
+# contrast         estimate           SE    df t.ratio p.value
+# CA1 - CA3&4  0.0008077513 0.0001574295 66648   5.131  <.0001
+# CA1 - GCL    0.0006834514 0.0001731814 66648   3.946  0.0026
+# CA1 - ML    -0.0008795205 0.0001662767 66648  -5.290  <.0001
+# CA1 - SGZ    0.0007230267 0.0001695391 66648   4.265  0.0007
+# CA1 - SL    -0.0018542611 0.0001744847 66648 -10.627  <.0001
+# CA1 - SLM   -0.0017176177 0.0001579308 66648 -10.876  <.0001
+# CA1 - SR    -0.0012261794 0.0001682222 66648  -7.289  <.0001
+# CA1 - WM    -0.0022558839 0.0001625489 66648 -13.878  <.0001
+# CA3&4 - GCL -0.0001242998 0.0001478969 66648  -0.840  0.9956
+# CA3&4 - ML  -0.0016872717 0.0001397485 66648 -12.074  <.0001
+# CA3&4 - SGZ -0.0000847245 0.0001436149 66648  -0.590  0.9997
+# CA3&4 - SL  -0.0026620123 0.0001494210 66648 -17.816  <.0001
+# CA3&4 - SLM -0.0025253690 0.0001297068 66648 -19.470  <.0001
+# CA3&4 - SR  -0.0020339306 0.0001420578 66648 -14.318  <.0001
+# CA3&4 - WM  -0.0030636352 0.0001352917 66648 -22.645  <.0001
+# GCL - ML    -0.0015629719 0.0001572812 66648  -9.937  <.0001
+# GCL - SGZ    0.0000395753 0.0001607264 66648   0.246  1.0000
+# GCL - SL    -0.0025377125 0.0001659348 66648 -15.293  <.0001
+# GCL - SLM   -0.0024010691 0.0001484305 66648 -16.176  <.0001
+# GCL - SR    -0.0019096308 0.0001593367 66648 -11.985  <.0001
+# GCL - WM    -0.0029393353 0.0001533349 66648 -19.169  <.0001
+# ML - SGZ     0.0016025472 0.0001532616 66648  10.456  <.0001
+# ML - SL     -0.0009747406 0.0001587152 66648  -6.141  <.0001
+# ML - SLM    -0.0008380972 0.0001403130 66648  -5.973  <.0001
+# ML - SR     -0.0003466589 0.0001518035 66648  -2.284  0.3520
+# ML - WM     -0.0013763634 0.0001454914 66648  -9.460  <.0001
+# SGZ - SL    -0.0025772878 0.0001621299 66648 -15.896  <.0001
+# SGZ - SLM   -0.0024406444 0.0001441643 66648 -16.930  <.0001
+# SGZ - SR    -0.0019492061 0.0001553702 66648 -12.546  <.0001
+# SGZ - WM    -0.0029789106 0.0001492090 66648 -19.965  <.0001
+# SL - SLM     0.0001366434 0.0001499491 66648   0.911  0.9924
+# SL - SR      0.0006280817 0.0001607523 66648   3.907  0.0030
+# SL - WM     -0.0004016228 0.0001548054 66648  -2.594  0.1887
+# SLM - SR     0.0004914384 0.0001426132 66648   3.446  0.0166
+# SLM - WM    -0.0005382662 0.0001358748 66648  -3.961  0.0024
+# SR - WM     -0.0010297046 0.0001477109 66648  -6.971  <.0001
+#
+#P value adjustment: tukey method for comparing a family of 9 estimates
+
 # Store it in a separate dataframe to hold the information about the slopes
 Visium_slope_dataframe <- as.data.frame(m_lst)
 
@@ -551,9 +595,6 @@ Visium_coefficient_dataframe <- merge.data.frame(Visium_slope_dataframe, coeffic
 
 # Test correlation between Baseline CAS and slope
 cor.test(Visium_coefficient_dataframe$offset, Visium_coefficient_dataframe$age.trend)
-
-bay_colors_noCA1 <- c("SLM" = "#5A5156", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16",
-   "SR" = "#FE00FA", "SGZ" = "#1CFFCE", "GCL" = "#B00068", "SL" = "#90AD1C", "WM" = "#2ED9FF")
 
 # Fit a linear model to the slope data for plot annotation
 fit_trend <- lm(age.trend ~ offset, data = Visium_coefficient_dataframe)
@@ -566,31 +607,31 @@ r2_trend <- summary(fit_trend)$r.squared
 pdf(file = here::here("plots", "Trajectories", "CAS_slope_vs_baseline.pdf"), width = 7, height = 5)
 
 ggplot(Visium_coefficient_dataframe, aes(x = offset, y = age.trend, color = spatial_domain)) +
-    scale_color_manual(values = bay_colors_noCA1) +
+    scale_color_manual(values = bay_colors) +
     geom_point()  +
     labs(x = "Offset (a.u.)", y = "CAS Slope (a.u.)") +
     geom_smooth(method = 'lm', color='black', linetype = 'dashed', se = F) +
-    scale_y_continuous(limits = c(0,0.01))  +
-    scale_x_continuous(limits = c(-0.1,0.15)) +
+    scale_y_continuous(limits = c(0.004,0.009))  +
+    scale_x_continuous(limits = c(-0.33, -0.1)) +
     theme(
         axis.line = element_line(colour = "black"),
         text = element_text(colour = 'black'),
         axis.text = element_text(size = 20),
         axis.title = element_text(size = 20)) +
-    annotate("text", x = 0.1, y = 0.0095,
+    annotate("text", x = -0.15, y = 0.0088,
         label = sprintf("Equation: y = %.2f + %.2fx", intercept_trend, r2_trend),
         size = 4) +
-    annotate("text", x = 0.1, y = 0.0090,
+    annotate("text", x = -0.15, y = 0.0085,
         label = sprintf("R2 = %.2f", r2_trend), size = 4) +
     theme_classic()
 
 dev.off()
 
-# Compare CAS slope per spatial domain in barplot
+# Compare CAS slope per spatial domain in barplot & add adjusted p-value (above) later
 
-pdf(file = here::here("plots", "Trajectories", "CAS_slope_spatial_domains.pdf"))
+pdf(file = here::here("plots", "Trajectories", "CAS_slope_spatial_domains.pdf"), width = 9, height = 5)
 
-ggplot(Visium_coefficient_dataframe, aes(x = reorder(spatial_domain, -age.trend), y = age.trend, fill = age.trend)) +
+ggplot(Visium_slope_dataframe, aes(x = reorder(spatial_domain, -age.trend), y = age.trend, fill = age.trend)) +
     geom_bar(position = position_dodge(), stat = "identity", mapping = aes(fill = age.trend)) +
      xlab("") +
      ylab("CAS slope")  +
@@ -605,3 +646,4 @@ ggplot(Visium_coefficient_dataframe, aes(x = reorder(spatial_domain, -age.trend)
     theme_classic()
 
 dev.off()
+
