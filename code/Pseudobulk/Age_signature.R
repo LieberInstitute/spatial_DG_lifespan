@@ -205,6 +205,7 @@ EnhancedVolcano(DE_teen,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    max.overlaps = 7,
     colCustom = keyvals_teen,
     ylab = "-log10 Adjusted P-value",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
@@ -227,6 +228,7 @@ EnhancedVolcano(DE_adult,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    max.overlaps = 7,
     colCustom = keyvals_adult,
     ylab = "-log10 Adjusted P-value",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
@@ -249,6 +251,7 @@ EnhancedVolcano(DE_elderly,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    max.overlaps = 7,
     colCustom = keyvals_elderly,
     ylab = "-log10 Adjusted P-value",
     legendLabels = c('Not sig.','Log (base 2) FC','adj.P.Val',
@@ -445,8 +448,8 @@ df <- df %>%
     )
 
 colData(spe)$BayesSpace <-
-    factor(df$BayesSpace, levels = c("SLM", "ML", "CP", "CA3&4", "SR", "SGZ",
-        "GCL", "SL", "CA1", "WM"))
+    factor(df$BayesSpace, levels = c("WM", "SLM", "SL", "ML", "CP", "SR", "SGZ",
+        "CA3&4", "CA1", "GCL"))
 
 # Add variable of age_bin to colData(spe)
 age_df <- data.frame(spe$key, spe$sample_id, spe$age)
@@ -477,19 +480,19 @@ CAS_df$age <- spe$age
 CAS_df$spatialnum <- spe$bayesSpace_harmony_10
 CAS_df = CAS_df[which(CAS_df$spatialnum != "3"), ]
 
-strip <- strip_themed(background_x = elem_list_rect(fill = c("#5A5156", "#E4E1E3", "#FEAF16",
-    "#FE00FA", "#1CFFCE", "#B00068", "#90AD1C", "#16FF32", "#2ED9FF")))
+strip <- strip_themed(background_x = elem_list_rect(fill = c("#2ED9FF", "#5A5156", "#90AD1C", "#E4E1E3",
+    "#FE00FA", "#1CFFCE", "#FEAF16", "#16FF32", "#B00068")))
 
 bay_colors <- c("SLM" = "#5A5156", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SR" = "#FE00FA",
     "SGZ" = "#1CFFCE", "GCL" = "#B00068", "SL" = "#90AD1C", "CA1" =  "#16FF32", "WM" = "#2ED9FF")
 
-pdf(file = here::here("plots", "Trajectories", "CAS_vs_age.pdf"), width = 7, height = 5)
+pdf(file = here::here("plots", "Trajectories", "CAS_vs_age.pdf"), width = 5, height = 5)
 
 ggplot(CAS_df, aes(x = age, y = CAS)) +
     geom_boxplot(width = 10, notch = F, outlier.colour = NA,  mapping = aes(fill = as.factor(age))) +
     geom_smooth(data = CAS_df, mapping = aes(x = age, y = CAS), color='red3', se = F, method = 'loess') +
     labs(x = "age", y = "CAS (a.u.)") +
-    facet_wrap2(~ BayesSpace, nrow = 2, ncol = 5, strip = strip) +
+    facet_wrap2(~ BayesSpace, nrow = 3, ncol = 3, strip = strip) +
     theme(axis.text.x = element_text(size = 7), legend.position = "none", plot.title = element_blank(),
         axis.title.x = element_blank()) +
     guides(fill = FALSE) +
@@ -505,7 +508,7 @@ ggplot(CAS_df, aes(x = CAS_df$age_bin, y = CAS_df$CAS)) +
     ggtitle("Common Aging Signature") +
     theme_classic() +
     ylim(-2, 1) +
-    facet_wrap2(~ BayesSpace, nrow = 2, ncol = 5, strip = strip) +
+    facet_wrap2(~ BayesSpace, nrow = 3, ncol = 3, strip = strip) +
     theme(axis.text.x = element_text(size = 7), legend.position = "none", plot.title = element_blank(),
         axis.title.x = element_blank())
 
@@ -546,6 +549,8 @@ m_lst <- lstrends(m_interaction, "spatial_domain", var="age")
 #Create pairwise comparisons between slopes and test using the pairs function and store that result
 #This lets us know which slopes are statistically significantly different from one another
 slope_pair_wiseTestResults <- as.data.frame(pairs(m_lst))
+
+slope_pair_wiseTestResults
 
 # contrast         estimate           SE    df t.ratio p.value
 # CA1 - CA3&4  0.0008077513 0.0001574295 66648   5.131  <.0001
@@ -608,7 +613,7 @@ pdf(file = here::here("plots", "Trajectories", "CAS_slope_vs_baseline.pdf"), wid
 
 ggplot(Visium_coefficient_dataframe, aes(x = offset, y = age.trend, color = spatial_domain)) +
     scale_color_manual(values = bay_colors) +
-    geom_point()  +
+    geom_point(size = 10)  +
     labs(x = "Offset (a.u.)", y = "CAS Slope (a.u.)") +
     geom_smooth(method = 'lm', color='black', linetype = 'dashed', se = F) +
     scale_y_continuous(limits = c(0.004,0.009))  +
