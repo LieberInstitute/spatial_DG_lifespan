@@ -31,7 +31,7 @@ spe <- spe[, order(spe$age)]
 spe = spe[, which(spe$bayesSpace_harmony_10 != "3")]
 
 spe_sling <- slingshot(spe, cluster = spe$bayesSpace_harmony_10,
-    reducedDim = 'HARMONY', approx_points = 100, omega = TRUE)
+    reducedDim = 'PCA', approx_points = 100, omega = TRUE)
 
 pseudo_paths <- slingPseudotime(spe_sling)
 
