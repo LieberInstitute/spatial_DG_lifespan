@@ -10,3 +10,5 @@ SPATIAL_RNA_COUNTER_CS
 *.rda
 *.Rdata
 *.rds
+*.pt
+*.h5ad
