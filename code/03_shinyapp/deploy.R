@@ -20,7 +20,7 @@ rsconnect::deployApp(
     appDir = app_dir,
     appFiles = c(
         "app.R",
-        "QCed_spe.rds"
+        "spe.rds"
     ),
     appName = "lifespanDG_Ramnauth_2022",
     account = "libd",

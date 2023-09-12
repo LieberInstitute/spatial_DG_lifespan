@@ -47,7 +47,14 @@ cols <- c("1" = "#5A5156", "2" = "#E4E1E3", "3" = "#DEA0FD", "4" = "#FEAF16",
     "5" = "#FE00FA", "6" = "#1CFFCE", "7" = "#B00068", "8" = "#90AD1C", "9" = "#16FF32",
     "10" = "#2ED9FF")
 
+man_colors <- c("SLM" = "#5A5156", "ML" = "#E4E1E3", "SO" = "#F6222E", "SR" = "#FE00FA",
+    "PCL_CA1" = "#16FF32", "PCL_CA3" = "#3283FE", "CA4" = "#FEAF16", "GCL" = "#B00068",
+    "SGZ" = "#1CFFCE", "SL" = "#90AD1C", "WM" = "#2ED9FF", "CP" = "#DEA0FD",
+    "SUB" = "#AA0DFE", "THAL" = "navy")
+
 label_df <- make_hexbin_label(hex2v1, col="bayesSpace_harmony_10")
+
+man_label_df <- make_hexbin_label(hex2v1, col="ManualAnnotation")
 
 scols <- Polychrome::palette36.colors(length(unique(spe$sample_id)))
 names(scols) <- sort(unique(spe$sample_id))
@@ -79,6 +86,12 @@ plotReducedDim(
     point_size = 0.2,
     point_alpha = 0.5
 )
+
+plot_hexbin_meta(hex2v1, col = "ManualAnnotation", action = "majority",
+                xlab = "PC1", ylab = "PC2", color = man_colors) +
+    labs(fill = "Manual\nAnnotations") +
+    theme_bw() +
+    theme_classic()
 
 plot_hexbin_meta(hex2v1, col = "bayesSpace_harmony_10", action = "majority",
                 xlab = "PC1", ylab = "PC2", color = cols) +

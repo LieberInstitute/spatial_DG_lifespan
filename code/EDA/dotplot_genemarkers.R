@@ -82,13 +82,16 @@ bay_colors <- c("1" = "#5A5156", "2" = "#E4E1E3", "3" = "#DEA0FD", "4" = "#FEAF1
 
 pdf(file = here::here("plots","BayesSpace_plots", "violinplot_genemarkers.pdf"))
 
-plotExpression(spe, x = "bayesSpace_harmony_10", features = features, colour_by = "bayesSpace_harmony_10") +
+plotExpression(spe, x = "bayesSpace_harmony_10", features = features, colour_by = "bayesSpace_harmony_10",
+    ncol = 4) +
     scale_color_manual(values  = bay_colors) +
     theme(plot.title = element_text(face = "italic"))
 
 dev.off()
 
 ###########################################################################################################
+
+# looking at NB2 markers that are common
 
 spe_GCL <- spe[, which(spe$bayesSpace_harmony_10 == "7")]
 dim(spe_GCL)

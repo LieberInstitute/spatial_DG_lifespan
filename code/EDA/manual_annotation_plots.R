@@ -19,20 +19,8 @@ suppressPackageStartupMessages({
 # Load SPE
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
 
-# Upload manual annotations if you have not done so already or if there are updates
-
-ManualA <- read.csv(file = here("processed-data","spatialLIBD_manual_annotations",
-    "HPC annotations Lex033023.csv"))
-
-stopifnot(ManualA$spot_name == colnames(spe))
-
-ManualA <- as.vector(ManualA$ManualAnnotation)
-
-spe$ManualAnnotation <- ManualA
-
-spe$ManualAnnotation <- as.factor(spe$ManualAnnotation)
-
-saveRDS(spe, file = here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
+# order spe observations according to age
+spe <- spe[, order(spe$age)]
 
 # Assigning names to the colors
 man_colors <- c("SLM" = "#5A5156", "ML" = "#E4E1E3", "SO" = "#F6222E", "SR" = "#FE00FA",
@@ -53,8 +41,7 @@ vis_grid_clus(
     spatial = TRUE,
     point_size = 2,
     image_id = "lowres",
-    alpha = 0.5
-)
+    alpha = 0.5)
 
 ## Reproducibility information
 print("Reproducibility information:")
