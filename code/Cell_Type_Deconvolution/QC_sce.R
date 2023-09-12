@@ -1,6 +1,6 @@
 ###############################
 # spatial_DG_lifespan project
-# QC  sce object
+# QC sce object
 # Anthony Ramnauth, Nov 05 2022
 ###############################
 
@@ -21,7 +21,7 @@ suppressPackageStartupMessages({
 
 sce <- readRDS(here::here("processed-data", "sce", "sce_sestan_DG.rds"))
 
-dir_plots <- here("sce_plots")
+dir_plots <- here::here("sce_plots")
 
 # ---------------
 # Remove doublets
@@ -64,31 +64,21 @@ sce <- sce[, !ix_dbl]
 
 dim(sce)
 
-rowData(sce)$SYMBOL <- rownames(sce)
-
 # ----------
 # QC metrics
 # ----------
 
 # identify mitochondrial genes
-is_mito <- grepl("(^MT-)|(^mt-)", rowData(sce)$SYMBOL)
+is_mito <- grepl("(^MT-)|(^mt-)", rowData(sce)$gene_name)
 table(is_mito)
-rowData(sce)$SYMBOL[is_mito]
+rowData(sce)$gene_name[is_mito]
 
 # calculate per-spot QC metrics and store in colData
 sce <- addPerCellQC(sce, subsets = list(mito = is_mito))
 head(colData(sce))
 
-colData(sce)$subsets_mito_percent[is.na(colData(sce)$subsets_mito_percent)] = 0
-colData(sce)$sum[is.na(colData(sce)$sum)] = 0
-colData(sce)$detected[is.na(colData(sce)$detected)] = 0
-
 # Create QC Metrics
 qcstats <- perCellQCMetrics(sce, subsets = list(mito = is_mito))
-
-qcstats$subsets_mito_percent[is.na(qcstats$subsets_mito_percent)] = 0
-qcstats$sum[is.na(qcstats$sum)] = 0
-qcstats$detected[is.na(qcstats$detected)] = 0
 
 qcfilter <- DataFrame(
     low_lib_size = isOutlier(qcstats$sum, type = "lower", log = TRUE, batch = sce$sample_ID),
@@ -98,7 +88,7 @@ qcfilter <- DataFrame(
 
 colSums(as.matrix(qcfilter))
 
-qcfilter$discard <- (qcfilter$low_lib_size | qcfilter$low_n_features) | qcfilter$high_subsets_Mito_percent
+qcfilter$discard <- (qcfilter$low_lib_size | qcfilter$low_n_features | qcfilter$high_subsets_Mito_percent)
 
 # Add QC metrics to sce object
 sce$scran_discard <-

@@ -30,10 +30,7 @@ df <- df %>%
     grepl("PROX1", cluster) ~ "GC",
     grepl("InN LAMP5", cluster) ~ "InN_LAMP5",
     grepl("InN VIP", cluster) ~ "InN_VIP",
-    grepl("OTOF", cluster) ~ "InN_SST",
-    grepl("ADAMTS12", cluster) ~ "InN_SST",
-    grepl("EPB41L4A", cluster) ~ "InN_SST",
-    grepl("NPY", cluster) ~ "InN_NPY",
+    grepl("InN SST", cluster) ~ "InN_SST",
     grepl("InN PVALB", cluster) ~ "InN_PV",
     grepl("InN NR2F2", cluster) ~ "InN_NR2F2",
     grepl("InN LHX6", cluster) ~ "InN_LHX6",
@@ -41,15 +38,15 @@ df <- df %>%
     grepl("CR RELN NDNF", cluster) ~ "Cajal_Retz",
     grepl("VLMC", cluster) ~ "VLMC",
     grepl("PDGFRA", cluster) ~ "OPC",
-    grepl("aSMC", cluster) ~ "aSMC",
+    grepl("aSMC", cluster) ~ "SMC",
     grepl("CPXM2", cluster) ~ "Oligo",
     grepl("OPALIN", cluster) ~ "Oligo",
     grepl("Micro", cluster) ~ "Microglia",
     grepl("PC CLDN5", cluster) ~ "Pericyte",
     grepl("Endo", cluster) ~ "Endoth",
-    grepl("vSMC", cluster) ~ "vSMC",
+    grepl("vSMC", cluster) ~ "SMC",
     grepl("Macro", cluster) ~ "Macro",
-    grepl("aEndo", cluster) ~ "aEndo",
+    grepl("aEndo", cluster) ~ "Endoth",
     grepl("COP GPR17", cluster) ~ "COP",
     grepl("T SKAP1", cluster) ~ "T_Cell",
     grepl("GFAP", cluster) ~ "Astro_1",
@@ -58,5 +55,6 @@ df <- df %>%
   ))
 
 colData(sce)$Cell_Type <- df$Cell_Type
+
 
 saveRDS(sce, file = here::here("processed-data","sce", "sce_sestan_DG_final.rds"))
