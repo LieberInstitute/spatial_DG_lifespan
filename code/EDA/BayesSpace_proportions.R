@@ -12,7 +12,6 @@ suppressPackageStartupMessages({
     library(ggplot2)
     library(spatialLIBD)
     library(dplyr)
-    library(sessioninfo)
 })
 
 spe <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_spe.rds"))
@@ -83,4 +82,3 @@ ggplot(age_prop, aes(x = age_bin, y = prop, fill = bayesSpace_harmony_10)) +
     theme_classic()
 
 dev.off()
-

@@ -16,7 +16,6 @@ suppressPackageStartupMessages({
     library(ComplexHeatmap)
     library(org.Hs.eg.db)
     library(clusterProfiler)
-    library(sessioninfo)
 })
 
 # Load modeling results
@@ -158,4 +157,3 @@ gene_set_enrichment_plot(
 )
 
 dev.off()
-

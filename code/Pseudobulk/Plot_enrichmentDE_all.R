@@ -17,7 +17,6 @@ suppressPackageStartupMessages({
     library(viridis)
     library(dplyr)
     library(ComplexHeatmap)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -182,11 +181,3 @@ Heatmap(exprs_heatmap,
     row_names_gp = gpar(fontsize = 7)
     )
 dev.off()
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

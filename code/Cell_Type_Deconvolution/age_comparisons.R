@@ -17,7 +17,6 @@ suppressPackageStartupMessages({
     library(ggcorrplot)
     library(ggsignif)
     library(ggh4x)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -830,6 +829,3 @@ ggplot(cell_SLMdf, aes(x = cell_SLMdf$age_bin, y = cell_SLMdf$meanscell_abundanc
     theme_classic()
 
 dev.off()
-
-
-sessionInfo()

@@ -17,7 +17,6 @@ suppressPackageStartupMessages({
     library(viridis)
     library(dplyr)
     library(ComplexHeatmap)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -187,4 +186,3 @@ Heatmap(common_imGC_heatmap,
     )
 
 dev.off()
-

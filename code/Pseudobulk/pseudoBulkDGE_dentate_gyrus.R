@@ -9,7 +9,6 @@ setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
-    library(sessioninfo)
     library(SingleCellExperiment)
     library(rafalib)
     library(limma)
@@ -591,12 +590,3 @@ fn_out8 <- file.path(dir_outputs, "ElderlyvsNonElderly_DentateGyrus_DE")
 
 # Export summary as .csv file
 write.csv(elderly_dg1, fn_out8, row.names = FALSE)
-
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

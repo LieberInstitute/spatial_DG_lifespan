@@ -12,7 +12,6 @@ suppressPackageStartupMessages({
     library(dplyr)
     library(ComplexHeatmap)
     library(circlize)
-    library(sessioninfo)
 })
 
 # Load SPE

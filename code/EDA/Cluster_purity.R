@@ -16,7 +16,6 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(PCAtools)
   library(viridis)
-  library(sessioninfo)
   library(bluster)
 })
 
@@ -60,12 +59,3 @@ ggplot(pure_data_bayes, aes(x=cluster, y=purity, colour=maximum)) +
 boxplot(split(pure_data_bayes$purity, pure_data_bayes$cluster))
 
 dev.off()
-
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

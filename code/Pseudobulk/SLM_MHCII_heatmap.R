@@ -18,8 +18,7 @@ suppressPackageStartupMessages({
     library(dplyr)
     library(ComplexHeatmap)
     library(circlize)
-    library(sessioninfo)
-})
+\})
 
 # Load SPE
 spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))

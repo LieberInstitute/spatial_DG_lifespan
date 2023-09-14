@@ -16,7 +16,6 @@ suppressPackageStartupMessages({
     library(scran)
     library(dplyr)
     library(PCAtools)
-    library(sessioninfo)
 })
 
 # Create directory for BayesSpace pseudo-bulked spe object
@@ -169,11 +168,3 @@ dev.off()
 
 # save RDS file
 saveRDS(spe_pseudo, file = here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe_wCP.rds"))
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

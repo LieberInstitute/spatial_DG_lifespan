@@ -11,7 +11,6 @@ suppressPackageStartupMessages({
     library(here)
     library(SingleCellExperiment)
     library(scater)
-    library(sessioninfo)
 })
 
 # Load modeling results
@@ -143,11 +142,3 @@ df <- data.frame(cluster, genes)
 pdf(file = here::here("plots", "pseudobulked", "plot_enrichment_DEGs.pdf"))
 plot(df$genes ~ df$cluster)
 dev.off()
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

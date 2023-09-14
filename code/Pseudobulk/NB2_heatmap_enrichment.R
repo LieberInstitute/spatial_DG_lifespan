@@ -17,7 +17,6 @@ suppressPackageStartupMessages({
     library(viridis)
     library(dplyr)
     library(ComplexHeatmap)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -244,5 +243,3 @@ Heatmap(all_neurogenic_heatmap,
 dev.off()
 
 # Find row indices for genes with which(rownames(data) == "f")
-
-

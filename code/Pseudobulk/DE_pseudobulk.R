@@ -9,7 +9,6 @@ setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
-    library(sessioninfo)
     library(SingleCellExperiment)
     library(spatialLIBD)
     library(rafalib)
@@ -162,11 +161,3 @@ head(f_stats)
 save(f_stats, eb0_list, eb_contrasts,
     file = here::here("processed-data", "pseudobulk_spe", "bayesspace_cluster_modeling_results.Rdata")
 )
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

@@ -16,7 +16,6 @@ suppressPackageStartupMessages({
     library(spatialLIBD)
     library(viridis)
     library(ggcorrplot)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -332,4 +331,3 @@ plotSpatialScatterpie(
     scale_y_reverse()
 
 dev.off()
-

@@ -14,7 +14,6 @@ suppressPackageStartupMessages({
     library(ggplot2)
     library(ggnewscale)
     library(spatialLIBD)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -50,11 +49,3 @@ ggplot(
     theme_classic()
 
 dev.off()
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

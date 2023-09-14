@@ -7,7 +7,6 @@
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
-    library(sessioninfo)
     library(SingleCellExperiment)
     library(rafalib)
     library(limma)
@@ -1842,10 +1841,3 @@ fn_out9999 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace9_DE")
 
 # Export summary as .csv file
 write.csv(elderly_bayes9, fn_out9999, row.names = FALSE)
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

@@ -8,7 +8,6 @@ setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
 suppressPackageStartupMessages({
     library(here)
-    library(sessioninfo)
     library(spatialLIBD)
     library(SpatialExperiment)
     library(BayesSpace)
@@ -656,6 +655,3 @@ Heatmap(neg_genes_SGZ_heatmap,
     )
 
 dev.off()
-
-
-

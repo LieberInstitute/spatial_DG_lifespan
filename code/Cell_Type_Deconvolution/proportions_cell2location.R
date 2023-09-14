@@ -18,7 +18,6 @@ suppressPackageStartupMessages({
     library(spatialLIBD)
     library(viridis)
     library(ggcorrplot)
-    library(sessioninfo)
 })
 
 # Load SPE

@@ -9,7 +9,6 @@ suppressPackageStartupMessages({
     library(dplyr)
     library(ggplot2)
     library(ggVennDiagram)
-    library(sessioninfo)
 })
 
 # Make Data frame for age group, cluster, total, DEG
@@ -46,41 +45,3 @@ ggplot(df, aes(x = layer, y = DEGs, fill = age)) +
     theme_classic()
 
 dev.off()
-
-########################################################################################################################
-
-# Check overlap of ML and GCL DEGs (Are most just mRNA trafficking from GCL?)
-
-# Load .csv files with the list of DE genes
-
-Infant_ML_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
-    "pseudoBulkDGE_results", "InfantvsNonInfant_BayesSpace2_DE.csv"))
-
-Infant_GCL_DE_age_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
-    "pseudoBulkDGE_results", "InfantvsNonInfant_BayesSpace7_DE.csv"))
-
-## List for Venn Diagram
-infant_ML_GCL <- list(infant_ML = Infant_ML_DE_age_results$gene_name,
-                   infant_GCL = Infant_GCL_DE_age_results$gene_name
-    )
-
-## Plot Venn Diagram
-
-pdf(file = here::here("plots", "pseudobulked", "Venn_infant_ML_GCL.pdf"))
-
-ggVennDiagram(infant_ML_GCL, label_alpha = 0, set_size = 7, label_size = 6) +
-  scale_x_continuous(expand = expansion(mult = .2)) +
-  ggplot2::scale_fill_gradient(low = "white",high = "red")
-
-dev.off()
-
-# Get gene list non-overlapping DEGs for infant ML
-
-infant_ML_only <- setdiff(Infant_ML_DE_age_results$gene_name, Infant_GCL_DE_age_results$gene_name)
-
-# directory to save non-overlapping DEGs for infant ML
-dir_outputs <- here::here("processed-data", "pseudobulk_spe", "pseudoBulkDGE_results")
-fn_out <- file.path(dir_outputs, "infant_ML_notGCL_DEGs")
-
-# Export summary as .csv file
-write.csv(infant_ML_only, fn_out, row.names = FALSE)

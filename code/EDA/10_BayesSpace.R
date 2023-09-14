@@ -8,7 +8,6 @@ setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
 suppressPackageStartupMessages({
     library(here)
-    library(sessioninfo)
     library(SpatialExperiment)
     library(spatialLIBD)
     library(BayesSpace)
@@ -55,10 +54,3 @@ colnames(colData(spe))[ncol(colData(spe))] <- bayesSpace_name
 cluster_export(spe,
     bayesSpace_name,
     cluster_dir = here::here("processed-data", "k10_clustering_results"))
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

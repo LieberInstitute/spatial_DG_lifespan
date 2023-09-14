@@ -12,7 +12,6 @@ suppressPackageStartupMessages({
     library(ggplot2)
     library(ggnewscale)
     library(spatialLIBD)
-    library(sessioninfo)
 })
 
 # Create directory for QC plots
@@ -130,11 +129,3 @@ for (i in neurogenesis_markers_search) {
         point_size = 2
     )
 }
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

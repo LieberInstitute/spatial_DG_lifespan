@@ -16,7 +16,6 @@ suppressPackageStartupMessages({
     library(scran)
     library(dplyr)
     library(ggsignif)
-    library(sessioninfo)
 })
 
 # Create directory for QC plots
@@ -122,4 +121,3 @@ plotExpression(spe_GCL, x = "age_bin", features = features1, colour_by = "age_bi
     theme(plot.title = element_text(face = "italic"))
 
 dev.off()
-

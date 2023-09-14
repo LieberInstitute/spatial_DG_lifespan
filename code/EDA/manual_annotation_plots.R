@@ -8,7 +8,6 @@ setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
 suppressPackageStartupMessages({
     library(here)
-    library(sessioninfo)
     library(spatialLIBD)
     library(RColorBrewer)
     library(ggplot2)
@@ -42,10 +41,3 @@ vis_grid_clus(
     point_size = 2,
     image_id = "lowres",
     alpha = 0.5)
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

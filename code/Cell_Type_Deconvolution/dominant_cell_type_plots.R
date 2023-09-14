@@ -6,7 +6,6 @@
 
 suppressPackageStartupMessages({
     library(here)
-    library(sessioninfo)
     library(spatialLIBD)
     library(RColorBrewer)
     library(ggplot2)
@@ -185,11 +184,3 @@ vis_clus(
 )
 
 dev.off()
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

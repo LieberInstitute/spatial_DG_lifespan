@@ -42,7 +42,6 @@ setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 suppressPackageStartupMessages({
     library(here)
     library(SpatialExperiment)
-    library(org.Hs.eg.db)
 })
 
 # Load SPE

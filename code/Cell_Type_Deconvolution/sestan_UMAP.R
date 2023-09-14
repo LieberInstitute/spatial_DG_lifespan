@@ -14,7 +14,6 @@ suppressPackageStartupMessages({
     library(ggnewscale)
     library(spatialLIBD)
     library(schex)
-    library(sessioninfo)
 })
 
 # Load SCE

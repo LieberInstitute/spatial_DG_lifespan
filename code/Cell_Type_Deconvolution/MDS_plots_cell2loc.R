@@ -15,7 +15,6 @@ suppressPackageStartupMessages({
     library(spatialLIBD)
     library(smacof)
     library(ggplot2)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -193,11 +192,3 @@ ggplot(elderly_cell_sim, aes(x = D1, y = D2, color = type, label = rownames(elde
         panel.grid = element_line(color = "white"))
 
 dev.off()
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

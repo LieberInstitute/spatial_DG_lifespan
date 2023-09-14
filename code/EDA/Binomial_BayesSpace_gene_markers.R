@@ -8,7 +8,6 @@ setwd("/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/")
 
 suppressPackageStartupMessages({
     library(here)
-    library(sessioninfo)
     library(spatialLIBD)
     library(SpatialExperiment)
     library(BayesSpace)
@@ -174,11 +173,3 @@ Heatmap(logFCs_7,
     column_title = "logFC for top genes of GCL from binomial test"
     )
 dev.off()
-
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

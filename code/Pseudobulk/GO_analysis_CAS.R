@@ -15,7 +15,6 @@ suppressPackageStartupMessages({
     library(org.Hs.eg.db)
     library(ggplot2)
     library(rrvgo)
-    library(sessioninfo)
 })
 
 # Load .csv files with the list of DE genes
@@ -82,4 +81,3 @@ dotplot(GO_ALL, x="group", showCategory = trunc_ALL_list, label_format = 60) +
     scale_color_gradient(low = "black", high = "grey")
 
 dev.off()
-

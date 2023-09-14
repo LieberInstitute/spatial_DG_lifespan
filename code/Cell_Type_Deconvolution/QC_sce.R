@@ -14,7 +14,6 @@ suppressPackageStartupMessages({
     library(scater)
     library(scran)
     library(scDblFinder)
-    library(sessioninfo)
 })
 
 # load saved sce object
@@ -185,11 +184,3 @@ sce <- logNormCounts(sce)
 assayNames(sce)
 
 saveRDS(sce, file = here::here("processed-data", "sce", "QCed_sce_sestan_DG.rds"))
-
-
-## Reproducibility information
-print("Reproducibility information:QC_spatial_DG_lifespan")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

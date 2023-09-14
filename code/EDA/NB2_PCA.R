@@ -15,7 +15,6 @@ suppressPackageStartupMessages({
     library(ggnewscale)
     library(PCAtools)
     library(spatialLIBD)
-    library(sessioninfo)
 })
 
 # Load SPE
@@ -128,4 +127,3 @@ vis_grid_gene(spe = spe,
     alpha = 0.5,
     point_size = 2
 )
-

@@ -12,7 +12,6 @@ suppressPackageStartupMessages({
     library(here)
     library(dplyr)
     library(ComplexHeatmap)
-    library(sessioninfo)
 })
 
 # Load Maunual Annotation modeling results
@@ -70,4 +69,3 @@ Heatmap(cor_layer,
     )
 
 dev.off()
-

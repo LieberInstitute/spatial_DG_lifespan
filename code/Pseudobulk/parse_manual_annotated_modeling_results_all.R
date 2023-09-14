@@ -10,7 +10,6 @@ suppressPackageStartupMessages({
     library(SingleCellExperiment)
     library(vioplot)
     library(scater)
-    library(sessioninfo)
     library(ggplot2)
 })
 
@@ -117,10 +116,3 @@ modeling_results <- list(
 # Save modeling results
 saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe",
     "manual_annotated_modeling_results.rds"))
-
-## Reproducibility information
-print("Reproducibility information:")
-Sys.time()
-proc.time()
-options(width = 120)
-session_info()

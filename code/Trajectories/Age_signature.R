@@ -7,7 +7,6 @@
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
-    library(sessioninfo)
     library(SingleCellExperiment)
     library(rafalib)
     library(limma)
@@ -651,4 +650,3 @@ ggplot(Visium_slope_dataframe, aes(x = reorder(spatial_domain, -age.trend), y = 
     theme_classic()
 
 dev.off()
-

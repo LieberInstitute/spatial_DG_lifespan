@@ -10,7 +10,6 @@ suppressPackageStartupMessages({
     library(SingleCellExperiment)
     library(here)
     library(dplyr)
-    library(sessioninfo)
 })
 
 # load saved sce object

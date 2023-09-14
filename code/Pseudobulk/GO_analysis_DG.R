@@ -16,7 +16,6 @@ suppressPackageStartupMessages({
     library(ggplot2)
     library(rrvgo)
     library(pheatmap)
-    library(sessioninfo)
 })
 
 # Load .csv files with the list of DE genes
@@ -584,4 +583,3 @@ dotplot(ML_GO_ALL, x="group", showCategory = trunc__ML_ALL_list, label_format = 
     scale_color_gradient(low = "black", high = "grey")
 
 dev.off()
-

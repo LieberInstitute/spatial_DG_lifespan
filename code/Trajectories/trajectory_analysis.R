@@ -14,7 +14,6 @@ suppressPackageStartupMessages({
     library(scater)
     library(scran)
     library(spatialLIBD)
-    library(sessioninfo)
 })
 
 # Create directory for  plots

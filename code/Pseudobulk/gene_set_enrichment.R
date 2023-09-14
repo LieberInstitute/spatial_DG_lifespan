@@ -16,7 +16,6 @@ suppressPackageStartupMessages({
     library(ComplexHeatmap)
     library(org.Hs.eg.db)
     library(clusterProfiler)
-    library(sessioninfo)
 })
 
 # Load SPE

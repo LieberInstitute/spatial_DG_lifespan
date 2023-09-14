@@ -8,8 +8,6 @@ suppressPackageStartupMessages({
     library(here)
     library(dplyr)
     library(ggplot2)
-    library(ggVennDiagram)
-    library(sessioninfo)
 })
 
 # Make Data frame for age group, cluster, total, DEG
