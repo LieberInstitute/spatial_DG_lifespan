@@ -38,6 +38,6 @@ vis_grid_clus(
     sort_clust = FALSE,
     colors = man_colors,
     spatial = TRUE,
-    point_size = 2,
+    point_size = 1.5,
     image_id = "lowres",
     alpha = 0.5)

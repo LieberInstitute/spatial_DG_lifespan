@@ -38,6 +38,6 @@ vis_grid_clus(
     ),
     sort_clust = FALSE,
     colors = setNames(Polychrome::palette36.colors(k), 1:k),
-    spatial = FALSE,
-    point_size = 2,
+    spatial = TRUE,
+    point_size = 1.5,
 )
