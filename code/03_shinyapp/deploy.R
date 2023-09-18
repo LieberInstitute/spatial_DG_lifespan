@@ -22,7 +22,8 @@ rsconnect::deployApp(
         "app.R",
         "spe.rds",
 		"pseudobulk_spe.rds",
-		"modeling_results.rds"
+		"modeling_results.rds",
+		"sig_genes_subset.rds"
     ),
     appName = "lifespanDG_Ramnauth_2022",
     account = "libd",
