@@ -1,4 +1,6 @@
 library("rsconnect")
+library("here")
+library("withr")
 
 ## Locate app_dir. Edit as needed
 app_dir <- here::here("code", "03_shinyapp")
@@ -23,7 +25,8 @@ rsconnect::deployApp(
         "spe.rds",
 		"pseudobulk_spe.rds",
 		"modeling_results.rds",
-		"sig_genes_subset.rds"
+		"sig_genes_subset.rds",
+		with_dir(here("code", "03_shinyapp"), dir("www", full.names = TRUE))
     ),
     appName = "Lifespan_DG",
     account = "libd",

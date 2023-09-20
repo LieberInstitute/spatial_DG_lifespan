@@ -23,5 +23,7 @@ spatialLIBD::run_app(
     title = "spatial_DG_lifespan, Visium",
     spe_discrete_vars = c("BayesSpace", "ManualAnnotation"),
     spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio"),
-    default_cluster = "BayesSpace"
+    default_cluster = "BayesSpace",
+    auto_crop_default = FALSE,
+    docs_path = "www"
 )
