@@ -76,11 +76,9 @@ vis_grid_gene(
     pdf = here::here("plots", "Trajectories", "pseudotime_spotplot.pdf"),
     minCount = 0,
     viridis = TRUE,
-    alpha = 0.5,
-    point_size = 2,
+    point_size = 1.5,
     spatial = TRUE,
-    image_id = "lowres",
-    auto_crop = TRUE
+    image_id = "lowres"
     )
 
 # Plot mean pseudotime no background tissue
@@ -90,8 +88,6 @@ vis_grid_gene(
     pdf = here::here("plots", "Trajectories", "pseudotime_spotplot_no_tissue.pdf"),
     minCount = 0,
     viridis = TRUE,
-    alpha = 1,
-    point_size = 2,
-    spatial = FALSE,
-    auto_crop = TRUE
+    point_size = 1.5,
+    spatial = FALSE
     )

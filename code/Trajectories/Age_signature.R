@@ -418,11 +418,9 @@ vis_grid_gene(
     pdf = here::here("plots", "Trajectories", "CAS_spotplot.pdf"),
     minCount = 0,
     viridis = FALSE,
-    alpha = 0.5,
-    point_size = 2,
+    point_size = 1.5,
     spatial = TRUE,
-    image_id = "lowres",
-    auto_crop = TRUE
+    image_id = "lowres"
     )
 
 # Setting up data for violin plots of CAS vs age_bin faceted by spatial domain
@@ -650,3 +648,4 @@ ggplot(Visium_slope_dataframe, aes(x = reorder(spatial_domain, -age.trend), y = 
     theme_classic()
 
 dev.off()
+
