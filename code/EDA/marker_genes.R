@@ -12,6 +12,7 @@ suppressPackageStartupMessages({
     library(ggplot2)
     library(ggnewscale)
     library(spatialLIBD)
+    library(ggspavis)
 })
 
 # Create directory for QC plots
@@ -74,9 +75,7 @@ for (i in human_markers_search) {
         assayname = "logcounts",
         minCount = 0,
         viridis = FALSE,
-        alpha = 0.5,
-        sample_order = unique(spe$sample_id),
-        point_size = 2
+        point_size = 1.5
     )
 }
 
@@ -86,6 +85,7 @@ neurogenesis_markers <-
         "DCX",
         "SOX11",
         "NEUROD1",
+        "NEUROD2",
         "SOX2",
         "NEUROG2",
         "MCM2",
@@ -124,8 +124,87 @@ for (i in neurogenesis_markers_search) {
         assayname = "logcounts",
         minCount = 0,
         viridis = FALSE,
-        alpha = 0.5,
-        sample_order = unique(spe$sample_id),
-        point_size = 2
+        point_size = 1.5
     )
 }
+
+## Trying out custom function for "fluorescent-like" multiple expression labeling of histology
+
+# For each gene of interest you need to create a column in colData(spe) of their logcounts
+# You can use Ensembl IDs or convert the rownames(spe) to
+
+rownames(spe) <- rowData(spe)$gene_name
+
+colData(spe)$GAD2 <- assays(spe)$logcounts["GAD2",]
+colData(spe)$KIT <- assays(spe)$logcounts["KIT",]
+colData(spe)$CALB1 <- assays(spe)$logcounts["CALB1",]
+colData(spe)$TRHDE <- assays(spe)$logcounts["TRHDE",]
+colData(spe)$AATK <- assays(spe)$logcounts["AATK",]
+colData(spe)$SERPINI1 <- assays(spe)$logcounts["SERPINI1",]
+
+# Add column in colData() for neuron
+spe$neuron <- FALSE
+spe$neuron[spe$bayesSpace_harmony_10 == "4" |
+        spe$bayesSpace_harmony_10 == "7"|
+        spe$bayesSpace_harmony_10 == "9"] <- TRUE
+
+plotVisiumRGB <- function(spe, vars, ...) {
+    plt_df <- data.frame(colData(spe), spatialCoords(spe))
+
+    if (any(!vars %in% names(plt_df))) {
+        stop("One or more variables not found in the data.")
+    }
+
+    for (var in vars) {
+        plt_df[[var]] <- scales::rescale(plt_df[[var]], to = c(0, 1))
+    }
+
+    num_vars <- length(vars)
+
+    # Initialize RGB channels based on number of variables
+    if (num_vars >= 3) {
+        plt_df$R <- plt_df[[vars[1]]]
+        plt_df$G <- plt_df[[vars[2]]]
+        plt_df$B <- plt_df[[vars[3]]]
+    } else {
+        plt_df$R <- plt_df[[vars[1]]]
+        plt_df$B <- plt_df[[vars[2]]]
+        plt_df$G <- rep(0, nrow(plt_df))
+    }
+
+    if (num_vars >= 4) {
+        W <- plt_df[[vars[4]]]
+        plt_df$R <- plt_df$R + W * (1 - plt_df$R)
+        plt_df$G <- plt_df$G + W * (1 - plt_df$G)
+        plt_df$B <- plt_df$B + W * (1 - plt_df$B)
+    }
+
+    if (num_vars >= 5) {
+        C <- plt_df[[vars[5]]]
+        plt_df$G <- plt_df$G + C * (1 - plt_df$G)
+        plt_df$B <- plt_df$B + C * (1 - plt_df$B)
+    }
+
+    if (num_vars == 6) {
+        M <- plt_df[[vars[6]]]
+        plt_df$R <- plt_df$R + M * (1 - plt_df$R)
+        plt_df$B <- plt_df$B + M * (1 - plt_df$B)
+    }
+
+    spe$RGB <- rgb(plt_df$R, plt_df$G, plt_df$B, maxColorValue = 1)
+    plotVisium(spe, fill = "RGB", ...)+scale_fill_identity()
+}
+
+# Plot new spot plots with marker genes
+
+plotVisiumRGB(spe, c("PPFIA2", "SPOCK1", "MET", "BACE1", "PTPRT", "GAD2"), highlight = "neuron",
+    image = FALSE, facets = "age")
+
+pdf(file = here::here("plots", "marker_genes", "TEST_coexpression.pdf"), width = 12, height = 12)
+
+plotVisiumRGB(spe, c("GAD2", "CALB1", "KIT"), highlight = "neuron",
+    image = FALSE, facets = "age") +
+    theme(legend.position="none")
+
+dev.off()
+
