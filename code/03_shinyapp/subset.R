@@ -100,7 +100,7 @@ spe_pseudo$bayesSpace_harmony_10 <- NULL
 saveRDS(spe_pseudo, file = here::here("code", "03_shinyapp", "pseudobulk_spe.rds"))
 
 # Load modeling results
-modeling_results <- readRDS(file = here::here("processed-data", "pseudobulk_spe", "spatialLIBD_modeling_results.rds"))
+modeling_results <- readRDS(file = here::here("processed-data", "pseudobulk_spe", "modeling_results.rds"))
 
 lobstr::obj_size(modeling_results)
 # 21.26 MB

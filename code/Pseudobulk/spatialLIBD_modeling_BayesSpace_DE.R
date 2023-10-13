@@ -88,5 +88,5 @@ modeling_results <- list(
 )
 
 # Save modeling results
-saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "spatialLIBD_modeling_results.rds"))
+saveRDS(modeling_results, file = here::here("processed-data", "pseudobulk_spe", "modeling_results.rds"))
 
