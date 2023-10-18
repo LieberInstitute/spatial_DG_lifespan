@@ -46,7 +46,7 @@ cell_colors <- c("Oligo" = "plum4","Microglia" = "tan3", "Macro" = "tan4","OPC" 
     "Mossy" = "blue1", "CA1_N" = "blue3","CA2_N" = "blue4", "Astro_1" = "magenta", "Astro_2" = "yellow3")
 
 # Load SPE with cell type mean abundances
-spe_age <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_CAS_spe.rds"))
+spe_age <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_CAS_BayesSpace_spe.rds"))
 
 # Make data frame with CAS and use key as common rownames
 colnames(spe_age) <- spe_age$key
@@ -262,7 +262,7 @@ ggplot(new_data2,
         )) +
     geom_point(size = 0.5, alpha = 0.3) +
     scale_color_manual(values = cell_colors) +
-    xlab("1st Principal Component of cell-type proportions") +
+    xlab("1st Principal Component of cell-type proportions (13.4%)") +
     ylab("CAS") +
     labs(color = "Dominant cell type") +
     theme_bw() +
@@ -273,10 +273,10 @@ ggplot(new_data2,
         text = element_text(colour = 'black', size = 10),
         axis.text = element_text(size = 20),
         axis.title = element_text(size = 20)) +
-    annotate("text", x = -8, y = 1,
+    annotate("text", x = -8, y = 2,
         label = sprintf("Equation: y = %.2f + %.2fx", intercept_prop_PC1, r2_prop_PC1),
         size = 4) +
-    annotate("text", x = -8, y = .85,
+    annotate("text", x = -8, y = 1.85,
         label = sprintf("R2 = %.2f", r2_prop_PC1), size = 4)
 
 ggplot(new_data2,
@@ -287,7 +287,7 @@ ggplot(new_data2,
         )) +
     geom_point(size = 0.5, alpha = 0.3) +
     scale_color_manual(values = cell_colors) +
-    xlab("2nd Principal Component of cell-type proportions") +
+    xlab("2nd Principal Component of cell-type proportions (8.66%)") +
     ylab("CAS") +
     labs(color = "Dominant cell type") +
     theme_bw() +
@@ -298,10 +298,10 @@ ggplot(new_data2,
         text = element_text(colour = 'black', size = 10),
         axis.text = element_text(size = 20),
         axis.title = element_text(size = 20)) +
-    annotate("text", x = 10, y = 1,
+    annotate("text", x = 10, y = 2,
         label = sprintf("Equation: y = %.2f + %.2fx", intercept_prop_PC2, r2_prop_PC2),
         size = 4) +
-    annotate("text", x = 10, y = .85,
+    annotate("text", x = 10, y = 1.85,
         label = sprintf("R2 = %.2f", r2_prop_PC2), size = 4)
 
 ggplot(new_data2,
@@ -312,7 +312,7 @@ ggplot(new_data2,
         )) +
     geom_point(size = 0.5, alpha = 0.3) +
     scale_color_manual(values = cell_colors) +
-    xlab("3rd Principal Component of cell-type proportions") +
+    xlab("3rd Principal Component of cell-type proportions (8.45%)") +
     ylab("CAS") +
     labs(color = "Dominant cell type") +
     theme_bw() +
@@ -323,10 +323,10 @@ ggplot(new_data2,
         text = element_text(colour = 'black', size = 10),
         axis.text = element_text(size = 20),
         axis.title = element_text(size = 20)) +
-    annotate("text", x = 5, y = 1,
+    annotate("text", x = 5, y = 2,
         label = sprintf("Equation: y = %.2f + %.2fx", intercept_prop_PC3, r2_prop_PC3),
         size = 4) +
-    annotate("text", x = 5, y = .85,
+    annotate("text", x = 5, y = 1.85,
         label = sprintf("R2 = %.2f", r2_prop_PC3), size = 4)
 
 ggplot(new_data2,
@@ -337,7 +337,7 @@ ggplot(new_data2,
         )) +
     geom_point(size = 0.5, alpha = 0.3) +
     scale_color_manual(values = cell_colors) +
-    xlab("4th Principal Component of cell-type proportions") +
+    xlab("4th Principal Component of cell-type proportions (7.21%)") +
     ylab("CAS") +
     labs(color = "Dominant cell type") +
     theme_bw() +
@@ -348,10 +348,10 @@ ggplot(new_data2,
         text = element_text(colour = 'black', size = 10),
         axis.text = element_text(size = 20),
         axis.title = element_text(size = 20)) +
-    annotate("text", x = 9, y = 1,
+    annotate("text", x = 9, y = 2,
         label = sprintf("Equation: y = %.2f + %.2fx", intercept_prop_PC4, r2_prop_PC4),
         size = 4) +
-    annotate("text", x = 9, y = .85,
+    annotate("text", x = 9, y = 1.85,
         label = sprintf("R2 = %.2f", r2_prop_PC4), size = 4)
 
 dev.off()

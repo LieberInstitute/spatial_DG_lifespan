@@ -20,7 +20,7 @@ suppressPackageStartupMessages({
 # Load .csv files with the list of DE genes
 
 CAS_results <- read.csv(file = here::here("processed-data", "pseudobulk_spe",
-    "pseudoBulkDGE_results", "CAS_list.csv"))
+    "pseudoBulkDGE_results", "CAS__BayesSpace_list.csv"))
 
 ###############################################################################################
 # Make dataframes of ENTREZIDs and logFCs for each age group (ENTREZID seems to work better...)
@@ -56,17 +56,18 @@ GO_ALL <- compareCluster(ENTREZID~group,
 # Truncate GO for terms that look interesting
 
 trunc_ALL_list <- c(
-    "extracellular matrix organization",
-    "response to steroid hormone",
-    "cellular response to vascular endothelial growth factor stimulus",
-    "canonical Wnt signaling pathway",
-    "response to transforming growth factor beta",
-    "response to oxidative stress",
+    "positive regulation of neurogenesis",
+    "stem cell differentiation",
+    "neuroblast proliferation",
+    "Wnt-protein binding",
+    "gliogenesis",
+    "oligodendrocyte differentiation",
+    "Wnt signaling pathway",
     "antigen processing and presentation of peptide or polysaccharide antigen via MHC class II",
-    "transport vesicle",
-    "lysosomal membrane",
-    "trans-Golgi network",
-    "intrinsic component of endoplasmic reticulum membrane",
+    "leukocyte mediated immunity",
+    "lymphocyte mediated immunity",
+    "transport vesicle membrane",
+    "myelin sheath",
     "immune receptor activity"
 )
 
@@ -78,6 +79,7 @@ dotplot(GO_ALL, x="group", showCategory = trunc_ALL_list, label_format = 60) +
         axis.text.y = element_text(size = 14),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 14)) +
-    scale_color_gradient(low = "black", high = "grey")
+    scale_fill_gradient(low = "black", high = "grey")
 
 dev.off()
+

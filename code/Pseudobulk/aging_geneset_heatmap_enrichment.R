@@ -12,6 +12,7 @@ suppressPackageStartupMessages({
     library(dplyr)
     library(ComplexHeatmap)
     library(circlize)
+    library(sessioninfo)
 })
 
 # Load SPE
@@ -57,7 +58,7 @@ Bayes_age_order <- c(
 
 # Get list of aging gene-set from DEGs of age_bins vs. infant
 CAS <- read.csv(file = here("processed-data","pseudobulk_spe", "pseudoBulkDGE_results",
-    "CAS_list.csv"))
+    "CAS__BayesSpace_list.csv"))
 
 setdiff(CAS$gene_name, rownames(spe_pseudo))
 
@@ -68,7 +69,7 @@ colnames(aging_heatmap) <- paste("logcount", 1:142, sep = "")
 # Use which(rownames(aging_heatmap) == "gene_name_X") to find which gene names to label in heatmap
 
 # Plot heatmap of logcounts for clusters and samples
-pdf(file = here::here("plots", "pseudobulked", "aging_gene_set_enrichment_heatmap.pdf"))
+pdf(file = here::here("plots", "pseudobulked", "aging_BayesSpace_gene_set_enrichment_heatmap.pdf"), width = 9, height = 8.5)
 
 col_fun = colorRamp2(c(0, 5, 10), c("blue", "white", "red"))
 
@@ -79,20 +80,13 @@ Heatmap(aging_heatmap,
     "SGZ" = "#1CFFCE", "GCL" = "#B00068", "SL" = "#90AD1C", "CA1" =  "#16FF32", "WM" = "#2ED9FF"),
         age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
-    right_annotation =
-        rowAnnotation(foo = anno_mark(at = c(17, 24, 16, 15, 25, 27, 41, 20, 6, 40, 38, 4, 18,
-            30, 31, 8, 7, 5, 2, 33, 32, 9, 34, 36, 14, 45, 11, 46),
-            labels = c("MAL", "ERMN", "OPALIN", "TMEM144", "EVI2A", "ANLN", "SEMA3B", "CAPN3",
-                "CNDP1", "PADI2", "NUPR1", "CNTNAP4", "SLC14A1", "HHATL", "HLA-DRB1", "HLA-DPB1",
-                "HLA-DRA", "HLA-DPA1", "CD74", "S100A1", "LAMP5", "QDPR", "TMEM176B", "TMEM176A",
-                "HLA-DQB1", "SPP1", "TF", "SEPTIN4", "PPP1R14A"))),
     col = col_fun,
     column_title = "Common Aging Signature genes",
     column_title_gp = gpar(fontsize = 10),
     column_order = Bayes_age_order,
     show_column_names = FALSE,
     column_split = spe_pseudo$BayesSpace,
-    show_row_names = FALSE
+    show_row_names = TRUE
     )
 
 dev.off()
