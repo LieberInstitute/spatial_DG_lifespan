@@ -45,7 +45,7 @@ cell_colors <- c("Oligo" = "plum4","Microglia" = "tan3", "Macro" = "tan4","OPC" 
     "T_Cell" = "brown1", "Myeloid" = "tan", "COP" = "goldenrod4", "GC" = "blue2","CA3_N" = "navy",
     "Mossy" = "blue1", "CA1_N" = "blue3","CA2_N" = "blue4", "Astro_1" = "magenta", "Astro_2" = "yellow3")
 
-# Load SPE with cell type mean abundances
+# Load SPE with CAS
 spe_age <- readRDS(here::here("processed-data", "harmony_processed_spe", "harmony_CAS_BayesSpace_spe.rds"))
 
 # Make data frame with CAS and use key as common rownames

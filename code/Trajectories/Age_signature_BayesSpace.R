@@ -472,7 +472,7 @@ colData(spe)$age_bin <- factor(age_df$age_bin, levels = c("Infant", "Teen", "Adu
 saveRDS(spe,
     file = here::here("processed-data", "harmony_processed_spe", "harmony_CAS_BayesSpace_spe.rds"))
 
-# Create datafame of cell proportions and DG layer
+# Create datafame of CAS and DG layer
 CAS_df <- as.data.frame(colData(spe)[, c(44:46)],
     row.names = spe$key)
 
