@@ -91,6 +91,33 @@ Heatmap(Hochgerner_heatmap,
 
 dev.off()
 
+# convert to z-scores
+scale_rows = function(x){
+    m = apply(x, 1, mean, na.rm = T)
+    s = apply(x, 1, sd, na.rm = T)
+    return((x - m) / s)
+}
+
+Hochgerner_heatmap <- scale_rows(Hochgerner_heatmap)
+
+pdf(file = here::here("plots", "pseudobulked", "zscores_NB2_genemarkers_heatmap.pdf"), width = 7, height = 12.5)
+
+Heatmap(Hochgerner_heatmap,
+    name = "mean\nlog norm counts\n(centered & scaled)",
+    top_annotation = HeatmapAnnotation(BayesSpace = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(BayesSpace = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Hochgerner et al., 2018 NB2 markers",
+    column_order = Bayes_age_order,
+    show_column_names = FALSE,
+    column_split = spe_pseudo$BayesSpace,
+    show_row_names = TRUE,
+    cluster_rows = TRUE,
+    )
+
+dev.off()
+
 # List taken from Hao et al 2022 for monkey and macaque
 conserved_macaque_mice_neurogenic <- c(
     "ID4", "TMEM47", "MLC1", "ALDOC", "SLC1A3", "SLC1A2", "SOX2", "MKI67", "CKS2",
@@ -241,5 +268,3 @@ Heatmap(all_neurogenic_heatmap,
     )
 
 dev.off()
-
-# Find row indices for genes with which(rownames(data) == "f")

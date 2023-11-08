@@ -8,8 +8,6 @@ suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
     library(SingleCellExperiment)
-    library(scater)
-    library(scran)
     library(clusterProfiler)
     library(enrichplot)
     library(org.Hs.eg.db)
@@ -18,7 +16,7 @@ suppressPackageStartupMessages({
     library(dplyr)
     library(ComplexHeatmap)
     library(circlize)
-\})
+})
 
 # Load SPE
 spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk_spe.rds"))
@@ -78,6 +76,34 @@ Heatmap(MHCII_heatmap,
         age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
         )),
     col = col_fun,
+    column_title = "antigen processing and presentation of\nexogenous peptide antigen via MHC class II",
+    column_order = Bayes_age_order,
+    column_split = spe_pseudo$BayesSpace,
+    show_column_names = FALSE,
+    show_row_names = TRUE,
+    cluster_rows = TRUE
+    )
+
+dev.off()
+
+# convert to z-scores
+scale_rows = function(x){
+    m = apply(x, 1, mean, na.rm = T)
+    s = apply(x, 1, sd, na.rm = T)
+    return((x - m) / s)
+}
+
+MHCII_heatmap <- scale_rows(MHCII_heatmap)
+
+pdf(file = here::here("plots", "pseudobulked", "zscores_SLM_antigen_MHC_class_II_enrichment_heatmap.pdf"),
+    width = 7, height = 6)
+
+Heatmap(MHCII_heatmap,
+    name = "mean\nlog norm counts\n(centered & scaled)",
+    top_annotation = HeatmapAnnotation(spatial_domain = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(spatial_domain = c("SLM" = "black", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
     column_title = "antigen processing and presentation of\nexogenous peptide antigen via MHC class II",
     column_order = Bayes_age_order,
     column_split = spe_pseudo$BayesSpace,

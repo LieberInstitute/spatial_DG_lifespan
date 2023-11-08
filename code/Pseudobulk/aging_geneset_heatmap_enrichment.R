@@ -90,3 +90,31 @@ Heatmap(aging_heatmap,
     )
 
 dev.off()
+
+# convert to z-scores
+scale_rows = function(x){
+    m = apply(x, 1, mean, na.rm = T)
+    s = apply(x, 1, sd, na.rm = T)
+    return((x - m) / s)
+}
+
+aging_heatmap <- scale_rows(aging_heatmap)
+
+pdf(file = here::here("plots", "pseudobulked", "zscores_aging_BayesSpace_gene_set_enrichment_heatmap.pdf"), width = 9, height = 8.5)
+
+Heatmap(aging_heatmap,
+    name = "mean\nlog norm counts\n(centered & scaled)",
+    top_annotation = HeatmapAnnotation(spatial_domain = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(spatial_domain = c("SLM" = "#5A5156", "ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SR" = "#FE00FA",
+    "SGZ" = "#1CFFCE", "GCL" = "#B00068", "SL" = "#90AD1C", "CA1" =  "#16FF32", "WM" = "#2ED9FF"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Common Aging Signature genes",
+    column_title_gp = gpar(fontsize = 10),
+    column_order = Bayes_age_order,
+    show_column_names = FALSE,
+    column_split = spe_pseudo$BayesSpace,
+    show_row_names = TRUE
+    )
+
+dev.off()
