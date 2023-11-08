@@ -1,0 +1,83 @@
+﻿Gene Symbol,Gene name,# of regions in which a  DEG was detected (Hipp.post. excluded),Signature class
+Gpr17,G protein-coupled receptor 17,14,CAS gene
+Pcdhb9,protocadherin beta 9,14,CAS gene
+C1qa,"complement component 1, q subcomponent, alpha polypeptide",13,CAS gene
+C4b,complement component 4B (Chido blood group),13,CAS gene
+Ctss,cathepsin S,13,CAS gene
+Ctsz,cathepsin Z,13,CAS gene
+H2-Q6,"histocompatibility 2, Q region locus 6",13,CAS gene
+Pcdhb14,protocadherin beta 14,13,CAS gene
+Pcdhb6,protocadherin beta 6,13,CAS gene
+Pcdhb8,protocadherin beta 8,13,CAS gene
+Abca8a,"ATP-binding cassette, sub-family A (ABC1), member 8a",12,CAS gene
+Cirbp,cold inducible RNA binding protein,12,CAS gene
+Ftl1,ferritin light polypeptide 1,12,CAS gene
+H2-K1,"histocompatibility 2, K1, K region",12,CAS gene
+H2-Q7,"histocompatibility 2, Q region locus 7",12,CAS gene
+Hvcn1,hydrogen voltage-gated channel 1,12,CAS gene
+Psmb8,"proteasome (prosome, macropain) subunit, beta type 8 (large multifunctional peptidase 7)",12,CAS gene
+Tipin,timeless interacting protein,12,CAS gene
+Tyrobp,TYRO protein tyrosine kinase binding protein,12,CAS gene
+Aif1,allograft inflammatory factor 1,11,CAS gene
+B2m,beta-2 microglobulin,11,CAS gene
+C1qb,"complement component 1, q subcomponent, beta polypeptide",11,CAS gene
+C1qc,"complement component 1, q subcomponent, C chain",11,CAS gene
+C3ar1,complement component 3a receptor 1,11,CAS gene
+Cd52,CD52 antigen,11,CAS gene
+Cd68,CD68 antigen,11,CAS gene
+Cd84,CD84 antigen,11,CAS gene
+Chordc1,"cysteine and histidine-rich domain (CHORD)-containing, zinc-binding protein 1",11,CAS gene
+Csf3r,colony stimulating factor 3 receptor (granulocyte),11,CAS gene
+Fcer1g,"Fc receptor, IgE, high affinity I, gamma polypeptide",11,CAS gene
+Fcgr2b,"Fc receptor, IgG, low affinity IIb",11,CAS gene
+Gfap,glial fibrillary acidic protein,11,CAS gene
+H2-D1,"histocompatibility 2, D region locus 1",11,CAS gene
+H2-DMb1,"histocompatibility 2, class II, locus Mb1",11,CAS gene
+H2-M3,"histocompatibility 2, M region locus 3",11,CAS gene
+Hsph1,heat shock 105kDa/110kDa protein 1,11,CAS gene
+Itgb2,integrin beta 2,11,CAS gene
+Lag3,lymphocyte-activation gene 3,11,CAS gene
+Laptm5,lysosomal-associated protein transmembrane 5,11,CAS gene
+Lyz2,lysozyme 2,11,CAS gene
+Mboat1,membrane bound O-acyltransferase domain containing 1,11,CAS gene
+Neat1,nuclear paraspeckle assembly transcript 1 (non-protein coding),11,CAS gene
+P4ha1,"procollagen-proline, 2-oxoglutarate 4-dioxygenase (proline 4-hydroxylase), alpha 1 polypeptide",11,CAS gene
+Pcdhb2,protocadherin beta 2,11,CAS gene
+Pld4,"phospholipase D family, member 4",11,CAS gene
+Ptpn6,"protein tyrosine phosphatase, non-receptor type 6",11,CAS gene
+Rbm3,"RNA binding motif (RNP1, RRM) protein 3",11,CAS gene
+Rsrp1,arginine/serine rich protein 1,11,CAS gene
+Slc11a1,"solute carrier family 11 (proton-coupled divalent metal ion transporters), member 1",11,CAS gene
+Slc6a6,"solute carrier family 6 (neurotransmitter transporter, taurine), member 6",11,CAS gene
+Zc3hav1,"zinc finger CCCH type, antiviral 1",11,CAS gene
+Ahsa1,"AHA1, activator of heat shock protein ATPase 1",10,CAS gene
+Apod,apolipoprotein D,10,CAS gene
+Bcl2a1b,B cell leukemia/lymphoma 2 related protein A1b,10,CAS gene
+Ccl6,chemokine (C-C motif) ligand 6,10,CAS gene
+Cd22,CD22 antigen,10,CAS gene
+Cd300c2,CD300C molecule 2,10,CAS gene
+Cd37,CD37 antigen,10,CAS gene
+Cd48,CD48 antigen,10,CAS gene
+Cst7,cystatin F (leukocystatin),10,CAS gene
+Cx3cr1,chemokine (C-X3-C motif) receptor 1,10,CAS gene
+Cyba,"cytochrome b-245, alpha polypeptide",10,CAS gene
+Dnajb1,DnaJ heat shock protein family (Hsp40) member B1,10,CAS gene
+Gfm2,"G elongation factor, mitochondrial 2",10,CAS gene
+Gpnmb,glycoprotein (transmembrane) nmb,10,CAS gene
+Hexb,hexosaminidase B,10,CAS gene
+Hist3h2a,NA,10,CAS gene
+Irf8,interferon regulatory factor 8,10,CAS gene
+Itgax,integrin alpha X,10,CAS gene
+Itgb5,integrin beta 5,10,CAS gene
+Lgals3bp,"lectin, galactoside-binding, soluble, 3 binding protein",10,CAS gene
+Lilrb4a,"leukocyte immunoglobulin-like receptor, subfamily B, member 4A",10,CAS gene
+Lpcat2,lysophosphatidylcholine acyltransferase 2,10,CAS gene
+Lsp1,lymphocyte specific 1,10,CAS gene
+Ly86,lymphocyte antigen 86,10,CAS gene
+Mpeg1,macrophage expressed gene 1,10,CAS gene
+Myo1f,myosin IF,10,CAS gene
+Plek,pleckstrin,10,CAS gene
+Prss50,"protease, serine 50",10,CAS gene
+Slamf9,SLAM family member 9,10,CAS gene
+Trem2,triggering receptor expressed on myeloid cells 2,10,CAS gene
+Unc93b1,"unc-93 homolog B1, TLR signaling regulator",10,CAS gene
