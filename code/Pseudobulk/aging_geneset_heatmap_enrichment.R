@@ -69,7 +69,7 @@ colnames(aging_heatmap) <- paste("logcount", 1:142, sep = "")
 # Use which(rownames(aging_heatmap) == "gene_name_X") to find which gene names to label in heatmap
 
 # Plot heatmap of logcounts for clusters and samples
-pdf(file = here::here("plots", "pseudobulked", "aging_BayesSpace_gene_set_enrichment_heatmap.pdf"), width = 9, height = 8.5)
+pdf(file = here::here("plots", "pseudobulked", "aging_BayesSpace_gene_set_enrichment_heatmap.pdf"), width = 9, height = 9)
 
 col_fun = colorRamp2(c(0, 5, 10), c("blue", "white", "red"))
 
@@ -100,7 +100,7 @@ scale_rows = function(x){
 
 aging_heatmap <- scale_rows(aging_heatmap)
 
-pdf(file = here::here("plots", "pseudobulked", "zscores_aging_BayesSpace_gene_set_enrichment_heatmap.pdf"), width = 9, height = 8.5)
+pdf(file = here::here("plots", "pseudobulked", "zscores_aging_BayesSpace_gene_set_enrichment_heatmap.pdf"), width = 9, height = 9)
 
 Heatmap(aging_heatmap,
     name = "mean\nlog norm counts\n(centered & scaled)",
