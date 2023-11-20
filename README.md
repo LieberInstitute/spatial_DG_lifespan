@@ -24,7 +24,7 @@ Thank you for your interest in our work!
 
 ## Study Design
 
-As a quick overview, the data presented here is from hippocampus (HPC) that spans nine spatial domains plus white matter for a total of sixteen subjects. Each dissection of DLPFC was designed to center the granular cell layer to well represent the DG. Using this web application you can explore the spatial expression of known genes such as NCDN.
+As a quick overview, the data presented here is from hippocampus (HPC) that spans nine spatial domains plus white matter for a total of sixteen subjects. Each dissection of HPC was designed to center the granular cell layer to well represent the DG. Using this web application you can explore the spatial expression of known genes such as NCDN.
 
 <img src="https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/img/study_design.png" width="1000px" align="left" />
 
@@ -257,14 +257,8 @@ p_pathology
 ### Raw data
 
 You can access all the raw data through
-[Globus](http://research.libd.org/globus/)
-([jhpce#Visium_SPG_AD](http://research.libd.org/globus/jhpce_Visium_SPG_AD/index.html)).
-This includes all the input FASTQ files as well as the outputs from
-tools such as
-[`SpaceRanger`](https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger).
-The files are organized following the
-[LieberInstitute/template_project](https://github.com/LieberInstitute/template_project)
-project structure.
+[Zenodo](https://doi.org/10.5281/zenodo.10126688)
+This includes all the input FASTQ files, as well as the raw images and processed spe objects.
 
 ## Internal
 
