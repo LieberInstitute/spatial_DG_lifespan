@@ -10,11 +10,11 @@ spatial_DG_lifespan
 
 ## Overview
 
-<img src="https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/img/study_overview.png" align="left" width="300px" />
+<img src="https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/img/study_overview.png?raw=true" align="left" width="300px" />
 
-Welcome to the Spatial_DG_lifespan project! It is composed of:
-* a shiny web application that we are hosting at [https://libd.shinyapps.io/Lifespan_DG/](https://libd.shinyapps.io/Lifespan_DG/) that can handle a limited set of concurrent users,  
-* and a research article with the scientific knowledge we drew from this dataset. The analysis code for our project is available [here](https://github.com/LieberInstitute/spatial_DG_lifespan) and the high quality figures for the manuscript are available through Figshare. 
+Welcome to the Spatial_DG_lifespan project! It is composed of: <br/>
+&nbsp;1. a shiny web application that we are hosting at [https://libd.shinyapps.io/Lifespan_DG/](https://libd.shinyapps.io/Lifespan_DG/) that can handle a limited set of concurrent users,  
+&nbsp;2. and a research article with the scientific knowledge we drew from this dataset. The analysis code for our project is available [here](https://github.com/LieberInstitute/spatial_DG_lifespan) and the high quality figures for the manuscript are available through Figshare. 
 
 The web application allows you to browse the LIBD human lifespan dentate gyrus (DG) spatial transcriptomics data generated with the 10x Genomics Visium platform. Please check the manuscript or bioRxiv pre-print for more details about this research.
 If you tweet about this website, the data or the R package please use the #spatialLIBD hashtag. You can find previous tweets that way as shown here. Thank you!
@@ -22,11 +22,13 @@ If you tweet about this website, the data or the R package please use the #spati
 
 Thank you for your interest in our work!
 
+<br/>
+
 ## Study Design
 
 As a quick overview, the data presented here is from hippocampus (HPC) that spans nine spatial domains plus white matter for a total of sixteen subjects. Each dissection of HPC was designed to center the granular cell layer to well represent the DG. Using this web application you can explore the spatial expression of known genes such as NCDN.
 
-<img src="https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/img/study_design.png" width="1000px" align="left" />
+<img src="https://github.com/LieberInstitute/spatial_DG_lifespan/blob/main/img/study_design.png?raw=true" width="1000px" align="left" />
 
 This web application was built such that we could annotate the spots to layers as you can see under the spot-level data tab. Both histologically and gene marker driven manual annotations as well as unsupervised spatial clusters with BayesSpace at k=10 are available. Once we annotated each spot to a layer, we compressed the information by a pseudo-bulking approach into layer-level data minus the layer representing choroid plexus to maximize variance between HPC spatial domains. We then analyzed the expression through a set of models whose results you can also explore through this web application. Finally, you can upload your own gene sets of interest as well as layer enrichment statistics and compare them with our LIBD human lifespan DG Visium dataset.
 
