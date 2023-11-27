@@ -1,39 +1,5 @@
-Spot-level `spatialLIBD` documentation
+Spot-level documentation
 ======================================
-
-This document describes the spot-level portion of the shiny web application made by the  [`spatialLIBD`](https://bioconductor.org/packages/spatialLIBD) Bioconductor package. You can either find the documentation about this package through [Bioconductor](https://bioconductor.org/packages/spatialLIBD) or at the [`spatialLIBD` documentation website](http://lieberinstitute.github.io/spatialLIBD). Below we explain the options common across tabs and each of the tabs at the spot-level data.
-
-## Slides and videos
-
-You might find the following slides useful for understanding the features from this part of the web application. 
-
-<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/dde92cd6dfc04f9589770e074915658f" title="BioTuring_spatialLIBD" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
-
-These slides were part of our 2021-04-27 webinar for BioTuring that you can watch on YouTube:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/S8884Kde-1U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-A recording of an earlier version of this talk is also available on YouTube.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/aD2JU-vUv54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-You might also be interested in this video demonstration of `spatialLIBD` for the [LIBD rstats club](http://research.libd.org/rstatsclub/).
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LZ2kvCiRVdM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## Raw summary
-
-Before the documentation, this tab displays the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) object that contains the spot-level data. It's basically useful to know that the data has been loaded and that you can start navigating the app. If you wish to download this data, use the following command.
-
-```{r}
-## Check that you have a recent version of spatialLIBD installed
-stopifnot(packageVersion("spatialLIBD") >= "1.11.12")
-
-## Download spe data
-spe <- spatialLIBD::fetch_data(type = "spatialNAc_spe")
-```
-
-Throughout the rest of this document, we'll refer to this object by the name `spe`.
 
 ## Common options
 
@@ -42,8 +8,8 @@ Throughout the rest of this document, we'll refer to this object by the name `sp
   - `edited_imaged`: shows your edited image from the Edit image tab.
   - `lowres`: shows low resolution images of raw immunofluorescence data before image processing such as spectral unmixing and object segmentation.
 * `Discrete variable to plot`: which discrete variable (typically with the cluster labels) to visualize. We include the clusters:
+  - `BayesSpace`: Unsupervised spatial clustering of the spots.
   - `ManualAnnotation`: your own manual annotation of the spots.
-  - `scran_quick_cluster`: quick clustering results of spots prior to computing sum factors for computing logcounts. See [this](https://github.com/LieberInstitute/spatial_NAc/blob/2a839d5c3254f303f0a961ba9d6930501de36aef/code/05_harmony_BayesSpace/01-build_spe.R#L224-L229) for more details.
 * `Continuous variable to plot`: which gene or continuous variable (such as the cell count, the ratio of the mitochondrial chromosome expression) to visualize in the gene tabs as well as on the `clusters (interactive)` tab. Details:
   - `sum_umi`: sum of UMI counts across a spot.
   - `sum_gene`: number of genes with non-zero counts in a spot.
