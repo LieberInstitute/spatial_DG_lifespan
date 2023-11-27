@@ -14,7 +14,7 @@ spatial_DG_lifespan
 
 Welcome to the Spatial_DG_lifespan project! It is composed of: <br/>
 &nbsp;1. a shiny web application that we are hosting at [https://libd.shinyapps.io/Lifespan_DG/](https://libd.shinyapps.io/Lifespan_DG/) that can handle a limited set of concurrent users,  
-&nbsp;2. and a research article with the scientific knowledge we drew from this dataset. The analysis code for our project is available [here](https://github.com/LieberInstitute/spatial_DG_lifespan) and the high quality figures for the manuscript are available through Figshare. 
+&nbsp;2. and a research article with the scientific knowledge we drew from this dataset. The analysis code for our project is available [here](https://github.com/LieberInstitute/spatial_DG_lifespan). 
 
 The web application allows you to browse the LIBD human lifespan dentate gyrus (DG) spatial transcriptomics data generated with the 10x Genomics Visium platform. Please check the manuscript or bioRxiv pre-print for more details about this research.
 If you tweet about this website, the data or the R package please use the #spatialLIBD hashtag. You can find previous tweets that way as shown here. Thank you!
@@ -39,15 +39,10 @@ First download the processed spe objects and modeling results here:
 
 ## Interactive Websites
 
-All of these interactive websites are powered by open source software,
-namely:
-
-- 🔭 [`spatialLIBD`](https://doi.org/10.1186/s12864-022-08601-w)
-
 We provide the following interactive websites, organized by software
 labeled with emojis:
 
-- 🔭 `spatialLIBD`
+- 🔭 `spatial_DG_lifespan`
   - [https://libd.shinyapps.io/Lifespan_DG/](https://libd.shinyapps.io/Lifespan_DG/):
     This web application was built such that we could annotate the spots to layers as you can see under the spot-level data tab. Both histologically and gene marker driven manual annotations as well as unsupervised spatial clusters with BayesSpace at k=10 are available. Once we annotated each spot to a layer, we compressed the information by a pseudo-bulking approach into layer-level data minus the layer representing choroid plexus to maximize variance between HPC spatial domains. We then analyzed the expression through a set of models whose results you can also explore through this web application.
 
@@ -56,13 +51,14 @@ labeled with emojis:
 If you are interested in running the
 [`spatialLIBD`](https://doi.org/10.1186/s12864-022-08601-w) applications
 locally, you can do so thanks to the
-[`spatialLIBD::run_app()`](http://research.libd.org/spatialLIBD/reference/run_app.html),
-which you can also use with your own data as shown in our [vignette for
-publicly available datasets provided by 10x
-Genomics](http://bioconductor.org/packages/release/data/experiment/vignettes/spatialLIBD/inst/doc/TenX_data_download.html).
+[`spatialLIBD::run_app()`](http://research.libd.org/spatialLIBD/reference/run_app.html).
+First make sure to download the data from [Zenodo](https://doi.org/10.5281/zenodo.10126688).
+Then you can uncompress the files and store the spe object in your chosen directory. Then use readRDS(here::here()) to load the spe object in R.
+For example:
 
 ``` r
 ## Run this web application locally with:
+## spe <- readRDS(here::here("processed-data", "spe.rds"))
 ## Deploy the website
 ###spatialLIBD::run_app(
 ###    spe,
@@ -94,173 +90,35 @@ work!
 
 ## Citing our work
 
-Please cite this manuscript
-if you use data from this project.
+### Pre-print
 
+Anthony D. Ramnauth, Madhavi Tippani, Heena R. Divecha, Alexis R. Papariello, Ryan A. Miller, Elizabeth A. Pattie, Joel E. Kleinman, Kristen R. Maynard, Leonardo Collado-Torres, Thomas M. Hyde, Keri Martinowich, Stephanie C. Hicks, Stephanie C. Page, Spatially-resolved transcriptomics of human dentate gyrus across postnatal lifespan reveals heterogeneity in markers for proliferation, extracellular matrix, and neuroinflammation. _bioRxiv_ 2023.11.20.567883; doi: https://doi.org/10.1101/2023.11.20.567883.
 
-Below is the citation in [`BibTeX`](http://www.bibtex.org/) format.
+Here's the citation information on [BibTeX](https://en.wikipedia.org/wiki/BibTeX) format.
 
-
-### Cite `spatialLIBD`
-
-Below is the citation output from using `citation('spatialLIBD')` in R.
-Please run this yourself to check for any updates on how to cite
-**spatialLIBD**.
-
-``` r
-print(citation("spatialLIBD")[1], bibtex = TRUE)
-#> 
-#> Pardo B, Spangler A, Weber LM, Hicks SC, Jaffe AE, Martinowich K,
-#> Maynard KR, Collado-Torres L (2022). "spatialLIBD: an R/Bioconductor
-#> package to visualize spatially-resolved transcriptomics data." _BMC
-#> Genomics_. doi:10.1186/s12864-022-08601-w
-#> <https://doi.org/10.1186/s12864-022-08601-w>,
-#> <https://doi.org/10.1186/s12864-022-08601-w>.
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Article{,
-#>     title = {spatialLIBD: an R/Bioconductor package to visualize spatially-resolved transcriptomics data},
-#>     author = {Brenda Pardo and Abby Spangler and Lukas M. Weber and Stephanie C. Hicks and Andrew E. Jaffe and Keri Martinowich and Kristen R. Maynard and Leonardo Collado-Torres},
-#>     year = {2022},
-#>     journal = {BMC Genomics},
-#>     doi = {10.1186/s12864-022-08601-w},
-#>     url = {https://doi.org/10.1186/s12864-022-08601-w},
-#>   }
 ```
+@article {Ramnauth2023.11.20.567883,
+	author = {Anthony D. Ramnauth, Madhavi Tippani, Heena R. Divecha, Alexis R. Papariello, Ryan A. Miller, Elizabeth A. Pattie, Joel E. Kleinman, Kristen R. Maynard, Leonardo Collado-Torres, Thomas M. Hyde, Keri Martinowich, Stephanie C. Hicks, Stephanie C. Page},
+	title = {Spatially-resolved transcriptomics of human dentate gyrus across postnatal lifespan reveals heterogeneity in markers for proliferation, extracellular matrix, and neuroinflammation},
+	elocation-id = {2023.11.20.567883},
+	year = {2023},
+	doi = {10.1101/2023.11.20.567883},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/10.1101/2023.11.20.567883},
+	eprint = {https://www.biorxiv.org/content/10.1101/2023.11.20.567883.full.pdf},
+	journal = {bioRxiv}
+}
 
-Please note that the `spatialLIBD` was only made possible thanks to many
-other R and bioinformatics software authors, which are cited either in
-the vignettes and/or the paper(s) describing the package.
-
-### Cite `VistoSeg`
-
-To cite [`VistoSeg`](http://research.libd.org/VistoSeg/) please use:
-
-> VistoSeg: processing utilities for high-resolution Visium/Visium-IF
-> images for spatial transcriptomics data. Madhavi Tippani, Heena R.
-> Divecha, Joseph L. Catallini II, Sang Ho Kwon, Lukas M. Weber, Abby
-> Spangler, Andrew E. Jaffe, Stephanie C. Hicks, Keri Martinowich,
-> Leonardo Collado-Torres, Stephanie C. Page, Kristen R. Maynard bioRxiv
-> 2021.08.04.452489; doi: <https://doi.org/10.1101/2021.08.04.452489>
-
-Below is the citation in [`BibTeX`](http://www.bibtex.org/) format.
-
-    @article {Tippani2021.08.04.452489,
-        author = {Tippani, Madhavi and Divecha, Heena R. and Catallini, Joseph L. and Kwon, Sang Ho and Weber, Lukas M. and Spangler, Abby and Jaffe, Andrew E. and Hicks, Stephanie C. and Martinowich, Keri and Collado-Torres, Leonardo and Page, Stephanie C. and Maynard, Kristen R.},
-        title = {VistoSeg: processing utilities for high-resolution Visium/Visium-IF images for spatial transcriptomics data},
-        elocation-id = {2021.08.04.452489},
-        year = {2022},
-        doi = {10.1101/2021.08.04.452489},
-        publisher = {Cold Spring Harbor Laboratory},
-        URL = {https://www.biorxiv.org/content/early/2022/05/13/2021.08.04.452489},
-        eprint = {https://www.biorxiv.org/content/early/2022/05/13/2021.08.04.452489.full.pdf},
-        journal = {bioRxiv}
-    }
+```
 
 ## Data Access
 
-We highly value open data sharing and believe that doing so accelerates
-science, as was the case between our
-[`HumanPilot`](https://doi.org/10.1038/s41593-020-00787-0) and the
-external [`BayesSpace`](https://doi.org/10.1038/s41587-021-00935-2)
-projects, documented [on this
-slide](https://speakerdeck.com/lcolladotor/hca-la-2022?slide=18).
+### Raw & Processed Data
 
-### Processed Data
-
-[`spatialLIBD`](https://doi.org/10.1186/s12864-022-08601-w) also allows
-you to access the data from this project as ready to use R objects. That
-is, a:
-
-- [`SpatialExperiment`](https://doi.org/10.1093/bioinformatics/btac299)
-  object for the Visium-SPG samples (n = 10)
-
-You can use the
-[`zellkonverter`](https://bioconductor.org/packages/zellkonverter/)
-Bioconductor package to convert any of them into Python
-[`AnnData`](https://anndata.readthedocs.io/en/latest/) objects. If you
-browse our code, you can find examples of such conversions.
-
-If you are unfamiliar with these tools, you might want to check the
-[LIBD rstats club](http://research.libd.org/rstatsclub/#.Y4hWlOzMJUM)
-(check and search keywords on the
-[schedule](https://docs.google.com/spreadsheets/d/1is8dZSd0FZ9Qi1Zvq1uRhm-P1McnJRd_zxdAfCRoMfA/edit?usp=sharing))
-videos and resources.
-
-#### Installing spatialLIBD
-
-Get the latest stable `R` release from
-[CRAN](http://cran.r-project.org/). Then install `spatialLIBD` from
-[Bioconductor](http://bioconductor.org/) with the following code:
-
-``` r
-## Install BiocManager in order to install Bioconductor packages properly
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    install.packages("BiocManager")
-}
-## Check that you have a valid R/Bioconductor installation
-BiocManager::valid()
-## Now install spatialLIBD from Bioconductor
-## (this version has been tested on macOS, winOS, linux)
-BiocManager::install("spatialLIBD")
-## If you need the development version from GitHub you can use the following:
-# BiocManager::install("LieberInstitute/spatialLIBD")
-## Note that this version might include changes that have not been tested
-## properly on all operating systems.
-```
-
-### R objects
-
-Using `spatialLIBD` you can access the spatialDLPFC transcriptomics data
-from the 10x Genomics Visium platform. For example, this is the code you
-can use to access the spatially-resolved data. For more details, check
-the help file for `fetch_data()`.
-
-``` r
-## Check that you have a recent version of spatialLIBD installed
-stopifnot(packageVersion("spatialLIBD") >= "1.11.12")
-## Download the spot-level data
-spe <- spatialLIBD::fetch_data(type = "Visium_SPG_AD_Visium_wholegenome_spe")
-
-## This is a SpatialExperiment object
-spe
-#> class: SpatialExperiment 
-#> dim: 27853 38115 
-#> metadata(0):
-#> assays(2): counts logcounts
-#> rownames(27853): ENSG00000243485 ENSG00000238009 ... ENSG00000278817
-#>   ENSG00000277196
-#> rowData names(7): source type ... gene_type gene_search
-#> colnames(38115): AAACAACGAATAGTTC-1 AAACAAGTATCTCCCA-1 ... TTGTTTGTATTACACG-1
-#>   TTGTTTGTGTAAATTC-1
-#> colData names(113): key sample_id ... APOe path_groups_colors
-#> reducedDimNames(15): 10x_pca 10x_tsne ... TSNE_perplexity50.HARMONY
-#>   TSNE_perplexity80.HARMONY
-#> mainExpName: NULL
-#> altExpNames(0):
-#> spatialCoords names(2) : pxl_col_in_fullres pxl_row_in_fullres
-#> imgData names(4): sample_id image_id data scaleFactor
-lobstr::obj_size(spe)
-#> 2.29 GB
-
-## Remake the logo image
-p_pathology <- spatialLIBD::vis_clus(
-    spe = spe,
-    clustervar = "path_groups",
-    sampleid = "V10A27106_D1_Br3880",
-    colors = spe$path_groups_colors[!duplicated(spe$path_groups_colors)],
-    spatial = FALSE,
-    ... = " Visium SPG AD\nPathology groups -- made with spatialLIBD"
-)
-p_pathology
-```
-
-### Raw data
-
-You can access all the raw data through
-[Zenodo](https://doi.org/10.5281/zenodo.10126688)
-This includes all the input FASTQ files, as well as the raw images and processed spe objects.
+You can access all raw data, that is the [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) files, and processed data through [Zenodo](https://doi.org/10.5281/zenodo.10126688).
+Processed data includes two spe objects and raw images for the haematoxylin and eosin-stained tissue:
+The basic spe object stores the raw counts for all the Visium experiments and metadata.
+The processed spe object is after quality control, batch correction, data integration, unsupervised spatial clustering, cell-type deconvolution, and also contains the metadata.
 
 ## Internal
 
@@ -268,6 +126,7 @@ This includes all the input FASTQ files, as well as the raw images and processed
   `/dcs04/lieber/marmaypag/lifespanDG_LIBD001/spatial_DG_lifespan/`
 - Slack channel:
   [`libd_lifespan_hpc_spatial`](https://jhu-genomics.slack.com/archives/C02TV4F1MCM).
+
 
 ### Files:
 
