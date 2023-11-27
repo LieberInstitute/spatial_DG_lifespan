@@ -62,9 +62,6 @@ For example:
 ## Deploy the website
 ###spatialLIBD::run_app(
 ###    spe,
-###    sce_layer = spe_pseudo,
-###    modeling_results = modeling_results,
-###    sig_genes = NULL,
 ###    title = "spatial_DG_lifespan, Visium",
 ###    spe_discrete_vars = c("BayesSpace", "ManualAnnotation"),
 ###    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio"),
