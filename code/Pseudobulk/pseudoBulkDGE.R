@@ -7,6 +7,7 @@
 suppressPackageStartupMessages({
     library(SpatialExperiment)
     library(here)
+    library(sessioninfo)
     library(SingleCellExperiment)
     library(rafalib)
     library(limma)
@@ -265,22 +266,22 @@ bayes7infant_italics <- paste0("italic('", bayes7infant$gene_name, "')")
 keyvals_inf2[bayes2infant_italics %in% ECM] <- "deepskyblue"
 keyvals_inf2[bayes2infant_italics %in% Neurogenic] <- "#789C25"
 keyvals_inf2[bayes2infant_italics %in% Glial] <- "#006164"
-keyvals_inf2[bayes2infant_italics %in% GABAergic] <- "orange"
+keyvals_inf2[bayes2infant_italics %in% GABAergic] <- "saddlebrown"
 
 keyvals_inf4[bayes4infant_italics %in% ECM] <- "deepskyblue"
 keyvals_inf4[bayes4infant_italics %in% Neurogenic] <- "#789C25"
 keyvals_inf4[bayes4infant_italics %in% Glial] <- "#006164"
-keyvals_inf4[bayes4infant_italics %in% GABAergic] <- "orange"
+keyvals_inf4[bayes4infant_italics %in% GABAergic] <- "saddlebrown"
 
 keyvals_inf6[bayes6infant_italics %in% ECM] <- "deepskyblue"
 keyvals_inf6[bayes6infant_italics %in% Neurogenic] <- "#789C25"
 keyvals_inf6[bayes6infant_italics %in% Glial] <- "#006164"
-keyvals_inf6[bayes6infant_italics %in% GABAergic] <- "orange"
+keyvals_inf6[bayes6infant_italics %in% GABAergic] <- "saddlebrown"
 
 keyvals_inf7[bayes7infant_italics %in% ECM] <- "deepskyblue"
 keyvals_inf7[bayes7infant_italics %in% Neurogenic] <- "#789C25"
 keyvals_inf7[bayes7infant_italics %in% Glial] <- "#006164"
-keyvals_inf7[bayes7infant_italics %in% GABAergic] <- "orange"
+keyvals_inf7[bayes7infant_italics %in% GABAergic] <- "saddlebrown"
 
 ## Legend names
 names(keyvals_inf2)[keyvals_inf2 == "red"] <- "Adjusted P-value < 0.05 & LFC > 1.5"
@@ -288,28 +289,28 @@ names(keyvals_inf2)[keyvals_inf2 == "gray47"] <- "Not significant"
 names(keyvals_inf2)[keyvals_inf2 == "#789C25"] <- "Neurogenic genes"
 names(keyvals_inf2)[keyvals_inf2 == "deepskyblue"] <- "ECM genes"
 names(keyvals_inf2)[keyvals_inf2 == "#006164"] <- "Astro/Oligo genes"
-names(keyvals_inf2)[keyvals_inf2 == "orange"] <- "GABAergic genes"
+names(keyvals_inf2)[keyvals_inf2 == "saddlebrown"] <- "GABAergic genes"
 
 names(keyvals_inf4)[keyvals_inf4 == "red"] <- "Adjusted P-value < 0.05 & LFC > 1.5"
 names(keyvals_inf4)[keyvals_inf4 == "gray47"] <- "Not significant"
 names(keyvals_inf4)[keyvals_inf4 == "#789C25"] <- "Neurogenic genes"
 names(keyvals_inf4)[keyvals_inf4 == "deepskyblue"] <- "ECM genes"
 names(keyvals_inf4)[keyvals_inf4 == "#006164"] <- "Astro/Oligo genes"
-names(keyvals_inf4)[keyvals_inf4 == "orange"] <- "GABAergic genes"
+names(keyvals_inf4)[keyvals_inf4 == "saddlebrown"] <- "GABAergic genes"
 
 names(keyvals_inf6)[keyvals_inf6 == "red"] <- "Adjusted P-value < 0.05 & LFC > 1.5"
 names(keyvals_inf6)[keyvals_inf6 == "gray47"] <- "Not significant"
 names(keyvals_inf6)[keyvals_inf6 == "#789C25"] <- "Neurogenic genes"
 names(keyvals_inf6)[keyvals_inf6 == "deepskyblue"] <- "ECM genes"
 names(keyvals_inf6)[keyvals_inf6 == "#006164"] <- "Astro/Oligo genes"
-names(keyvals_inf6)[keyvals_inf6 == "orange"] <- "GABAergic genes"
+names(keyvals_inf6)[keyvals_inf6 == "saddlebrown"] <- "GABAergic genes"
 
 names(keyvals_inf7)[keyvals_inf7 == "red"] <- "Adjusted P-value < 0.05 & LFC > 1.5"
 names(keyvals_inf7)[keyvals_inf7 == "gray47"] <- "Not significant"
 names(keyvals_inf7)[keyvals_inf7 == "#789C25"] <- "Neurogenic genes"
 names(keyvals_inf7)[keyvals_inf7 == "deepskyblue"] <- "ECM genes"
 names(keyvals_inf7)[keyvals_inf7 == "#006164"] <- "Astro/Oligo genes"
-names(keyvals_inf7)[keyvals_inf7 == "orange"] <- "GABAergic genes"
+names(keyvals_inf7)[keyvals_inf7 == "saddlebrown"] <- "GABAergic genes"
 
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Infant.pdf"),
     width = 8.5, height = 8)
@@ -1093,6 +1094,10 @@ keyvals_eld1[bayes1elderly_italics %in% Microglia] <- "#A5C0DF"
 keyvals_eld1[bayes1elderly_italics %in% Astrocyte] <- "#006164"
 keyvals_eld1[bayes1elderly_italics %in% NK] <- "magenta"
 
+keyvals_eld7[bayes7elderly_italics %in% Microglia] <- "#A5C0DF"
+keyvals_eld7[bayes7elderly_italics %in% Astrocyte] <- "#006164"
+keyvals_eld7[bayes7elderly_italics %in% NK] <- "magenta"
+
 ## Legend names
 names(keyvals_eld2)[keyvals_eld2 == "red"] <- "P-value < 0.05 & LFC > 1.5"
 names(keyvals_eld2)[keyvals_eld2 == "gray47"] <- "Not significant"
@@ -1120,6 +1125,9 @@ names(keyvals_eld1)[keyvals_eld1 == "magenta"] <- "Natural Killer genes"
 
 names(keyvals_eld7)[keyvals_eld7 == "red"] <- "P-value < 0.05 & LFC > 1.5"
 names(keyvals_eld7)[keyvals_eld7 == "gray47"] <- "Not significant"
+names(keyvals_eld7)[keyvals_eld7 == "#A5C0DF"] <- "Activated Microglia genes"
+names(keyvals_eld7)[keyvals_eld7 == "#006164"] <- "Reactive Astrocyte genes"
+names(keyvals_eld7)[keyvals_eld7 == "magenta"] <- "Natural Killer genes"
 
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "pseudoBulkDGE_DE_volcano_Elderly.pdf"),
     width = 8.5, height = 8)
@@ -1243,9 +1251,12 @@ EnhancedVolcano(bayes7elderly,
     y = 'adj.P.Val',
     FCcutoff = 1.5,
     pCutoff = 0.049,
+    selectLab = selected2,
     drawConnectors = TRUE,
     arrowheads = FALSE,
     parseLabels = TRUE,
+    pointSize = c(ifelse(bayes7elderly_italics %in% selected2, 6, 2)),
+    colAlpha = c(ifelse(bayes7elderly_italics %in% selected2, 1, 0.2)),
     colCustom = keyvals_eld7,
     ylab = "-log10 adj.P.Val",
     legendLabels = c('Not sig.','Log FC','adj.P.Val',
@@ -1299,7 +1310,7 @@ EnhancedVolcano(bayes10elderly,
     )
 dev.off()
 
-# printing one separate to capute the entire legend
+# printing one separate to capture the entire legend
 
 pdf(file = here::here("plots", "pseudobulked","pseudoBulkDGE", "BLAH_pseudoBulkDGE_DE_volcano_Elderly.pdf"),
     width = 10, height = 8)
@@ -1985,3 +1996,10 @@ fn_out9999 <- file.path(dir_outputs, "ElderlyvsNonElderly_BayesSpace9_DE")
 
 # Export summary as .csv file
 write.csv(elderly_bayes9, fn_out9999, row.names = FALSE)
+
+## Reproducibility information
+print("Reproducibility information:")
+Sys.time()
+proc.time()
+options(width = 120)
+session_info()

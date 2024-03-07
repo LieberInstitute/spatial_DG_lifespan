@@ -16,6 +16,7 @@ suppressPackageStartupMessages({
     library(ComplexHeatmap)
     library(org.Hs.eg.db)
     library(clusterProfiler)
+    library(sessioninfo)
 })
 
 # Load SPE
@@ -47,9 +48,9 @@ MG1 <- bitr(Su_microg_2022$Gene, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=or
 
 ## Format them appropriately
 microglia_geneList <- list(
-    Mathys_2017_early_activated_1 = clust_3_list$ENSEMBL,
-    Mathys_2017_early_activated_2 = clust_7_list$ENSEMBL,
-    Mathys_2017_late_activated = clust_6_list$ENSEMBL,
+    Mathys_2017_early_1 = clust_3_list$ENSEMBL,
+    Mathys_2017_early_2 = clust_7_list$ENSEMBL,
+    Mathys_2017_late = clust_6_list$ENSEMBL,
     Su_2022_MG1 = MG1$ENSEMBL
 )
 
@@ -360,6 +361,10 @@ Hao_2022 <- c(
     "CALB2", "SEMA3C"
 )
 
+# List for imGCs
+Hao_imGC_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Hao_2022.csv"), header = FALSE)
+
 # Get list of imGC gene-set from human-lifespan data (Yi Zhou et al., 2022)
 Zhou_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
     "Zhou_2022.csv"))
@@ -369,6 +374,7 @@ nIPC_list <- bitr(Hochgerner_2018_nIPC, fromType="SYMBOL", toType = "ENSEMBL", O
 NB1_list <- bitr(Hochgerner_2018_NB1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 NB2_list <- bitr(Hochgerner_2018_NB2, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 macaque_list <- bitr(Hao_2022, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
+macaque_imGC_list <- bitr(Hao_imGC_2022$V1, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 imGC_conserved_list <- bitr(Zhou_2022$Common.genes, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 imGC_human_list <- bitr(Zhou_2022$Human.specific.genes, fromType="SYMBOL", toType = "ENSEMBL", OrgDb=org.Hs.eg.db)
 
@@ -378,6 +384,7 @@ neurogenesis_geneList <- list(
     Hochgerner_2018_NB1 = NB1_list$ENSEMBL,
     Hochgerner_2018_NB2 = NB2_list$ENSEMBL,
     Hao_2022_mouse_macaque_NPC = macaque_list$ENSEMBL,
+    Hao_2022_macaque_imGC = macaque_imGC_list$ENSEMBL,
     Zhou_2022_mouse_human_imGC = imGC_conserved_list$ENSEMBL,
     Zhou_2022_human_imGC = imGC_conserved_list$ENSEMBL
 )
