@@ -152,7 +152,8 @@ plotPCA(spe_pseudo, colour_by = "age_bin", ncomponents = 2, point_size = 10) +
 plotPCA(spe_pseudo, colour_by = "age", ncomponents = 2, point_size = 10) +
     theme(text = element_text(size = 20),
         axis.text = element_text(size = 20))
-plotPCA(spe_pseudo, colour_by = "BayesSpace", ncomponents = 2, point_size = 10) +
+plotPCA(spe_pseudo, colour_by = "BayesSpace", ncomponents = 2, point_size = 10,
+        shape = "age_bin") +
     theme(text = element_text(size = 20),
         axis.text = element_text(size = 20)) +
     scale_color_manual(values = bay_colors) +
