@@ -53,7 +53,36 @@ df <- df %>%
     grepl("Myeloid", cluster) ~ "Myeloid",
   ))
 
+  #as.data.frame(table(df$Cell_Type))
+  #         Var1  Freq
+  # 1    Astro_1  8607
+  # 2    Astro_2  4331
+  # 3      CA1_N    33
+  # 4      CA2_N    25
+  # 5      CA3_N  1403
+  # 6        COP    65
+  # 7     Endoth  1111
+  # 8         GC 24613
+  # 9  InN_LAMP5   789
+  # 10  InN_LHX6    65
+  # 11 InN_MEIS2    25
+  # 12 InN_NR2F2   442
+  # 13    InN_PV   255
+  # 14   InN_SST   469
+  # 15   InN_VIP   990
+  # 16     Macro   108
+  # 17 Microglia  6340
+  # 18     Mossy   280
+  # 19   Myeloid    15
+  # 20     Oligo 41277
+  # 21       OPC 10558
+  # 22  Pericyte   145
+  # 23       SMC   362
+  # 24    T_Cell   147
+  # 25      VLMC   298
+  
 colData(sce)$Cell_Type <- df$Cell_Type
 
 
 saveRDS(sce, file = here::here("processed-data","sce", "sce_sestan_DG_final.rds"))
+
