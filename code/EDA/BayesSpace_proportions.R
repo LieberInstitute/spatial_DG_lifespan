@@ -33,7 +33,11 @@ stopifnot(age_df$spe.key == spe$key)
 
 colData(spe)$age_bin <- factor(age_df$age_bin, levels = c("Infant", "Teen", "Adult", "Elderly"))
 
+rownames(spe) <- rowData(spe)$gene_name
+colData(spe)$TCF7L2 <- assays(spe)$logcounts["TCF7L2",]
+
 df <- as.data.frame(colData(spe))
+df <- df[df$TCF7L2 <= 1, ]
 
 proportions_data_per_sample <- df %>%
   group_by(sample_id) %>%
@@ -60,7 +64,7 @@ level_order <- c("Br8700", "Br8195", "Br8533", "Br8686", "Br6129_new", "Br1412",
 
 age_prop <- as.data.frame(proportions_data_per_age)
 
-pdf(file = here::here("plots", "BayesSpace_plots", "BayesSpace_spot_proportions.pdf"))
+pdf(file = here::here("plots", "BayesSpace_plots", "BayesSpace_spot_proportions_nothalamus.pdf"))
 
 ggplot(sample_prop, aes(x = factor(sample_id, level = level_order), y = prop, fill = bayesSpace_harmony_10)) +
     geom_bar(position = "stack", stat = "identity") +
