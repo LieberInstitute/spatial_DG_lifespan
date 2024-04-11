@@ -268,3 +268,38 @@ Heatmap(all_neurogenic_heatmap,
     )
 
 dev.off()
+
+
+##############################################################
+Hao_macaque_2022 <- read.csv(file = here("processed-data","gene_set_enrichment",
+    "Hao_macaqueimGC_2022.csv"))
+Hao_macaque_2022_imGC = data.frame(gene_names = Hao_macaque_2022$Granule_immature_gene, label = "macaque_imGC")	
+imGC_final <- Hao_macaque_2022_imGC[! Hao_macaque_2022_imGC$gene_names %in%
+        setdiff(Hao_macaque_2022_imGC$gene_names, rownames(spe_pseudo)),]
+
+imGC_heatmap <- assays(spe_pseudo)[[2]][imGC_final$gene_names, ]
+colnames(imGC_heatmap) <- paste("logcount", 1:64, sep = "")
+
+imGC_heatmap <- scale_rows(imGC_heatmap)
+
+# Plot heatmap of logcounts for clusters and samples
+pdf(file = here::here("plots", "pseudobulked", "macaque_imGC_heatmap.pdf"),
+    width = 8.5, height = 9)
+
+Heatmap(imGC_heatmap,
+    name = "z-score",
+    top_annotation = HeatmapAnnotation(BayesSpace = spe_pseudo$BayesSpace, age = spe_pseudo$age_bin,
+    col = list(BayesSpace = c("ML" = "#E4E1E3", "CA3&4" = "#FEAF16", "SGZ" = "#1CFFCE", "GCL" = "#B00068"),
+        age = c("Infant" = "purple", "Teen" = "blue", "Adult" = "red", "Elderly" = "forestgreen")
+        )),
+    column_title = "Hao et al., 2022 imGC markers shared with macaque",
+    column_order = Bayes_age_order,
+    show_column_names = FALSE,
+    column_split = spe_pseudo$BayesSpace,
+    show_row_names = TRUE,
+	row_names_gp = gpar(fontsize = 4),
+    cluster_rows = TRUE,
+    row_split = imGC_final$label
+    )
+
+dev.off()
