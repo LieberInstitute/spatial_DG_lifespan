@@ -22,10 +22,10 @@ rsconnect::deployApp(
     appDir = app_dir,
     appFiles = c(
         "app.R",
-        "spe.rds",
 		"pseudobulk_spe.rds",
 		"modeling_results.rds",
 		"sig_genes_subset.rds",
+		with_dir(here("code", "03_shinyapp"), dir("spe_shiny", full.names = TRUE)),
 		with_dir(here("code", "03_shinyapp"), dir("www", full.names = TRUE))
     ),
     appName = "Lifespan_DG",

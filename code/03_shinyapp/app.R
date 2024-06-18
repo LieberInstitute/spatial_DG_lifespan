@@ -1,4 +1,5 @@
 library("spatialLIBD")
+library("HDF5Array")
 library("markdown") ## due to a shinyapps.io bug
 
 ## spatialLIBD uses golem
@@ -8,7 +9,7 @@ options("golem.app.prod" = TRUE)
 options(repos = BiocManager::repositories())
 
 ## Load the data (all paths are relative to this script's location)
-spe <- readRDS("spe.rds")
+spe <- loadHDF5SummarizedExperiment("spe_shiny")
 spe_pseudo <- readRDS("pseudobulk_spe.rds")
 modeling_results <- readRDS("modeling_results.rds")
 sig_genes <- readRDS("sig_genes_subset.rds")
