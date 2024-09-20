@@ -110,6 +110,9 @@ Here's the citation information on [BibTeX](https://en.wikipedia.org/wiki/BibTeX
 
 ## Data Access
 
+### BioProject
+FASTQ data is available at the [NCBI BioProject](https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA1043093) page for this project. 
+
 ### Raw & Processed Data
 
 You can access all raw data, that is the [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) files, and processed data through [Zenodo](https://doi.org/10.5281/zenodo.10126688).
