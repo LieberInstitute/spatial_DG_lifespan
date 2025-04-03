@@ -87,26 +87,29 @@ work!
 
 ## Citing our work
 
-### Pre-print
+### Cell Reports
 
-Anthony D. Ramnauth, Madhavi Tippani, Heena R. Divecha, Alexis R. Papariello, Ryan A. Miller, Elizabeth A. Pattie, Joel E. Kleinman, Kristen R. Maynard, Leonardo Collado-Torres, Thomas M. Hyde, Keri Martinowich, Stephanie C. Hicks, Stephanie C. Page, Spatially-resolved transcriptomics of human dentate gyrus across postnatal lifespan reveals heterogeneity in markers for proliferation, extracellular matrix, and neuroinflammation. _bioRxiv_ 2023.11.20.567883; doi: https://doi.org/10.1101/2023.11.20.567883.
+Anthony D. Ramnauth, Madhavi Tippani, Heena R. Divecha, Alexis R. Papariello, Ryan A. Miller, Elizabeth A. Pattie, Joel E. Kleinman, Kristen R. Maynard, Leonardo Collado-Torres, Thomas M. Hyde, Keri Martinowich, Stephanie C. Hicks, Stephanie C. Page, Spatially-resolved transcriptomics of human dentate gyrus across postnatal lifespan reveals heterogeneity in markers for proliferation, extracellular matrix, and neuroinflammation. Cell Reports 10.1016/j.celrep.2025.115300; doi: http://dx.doi.org/10.1016/j.celrep.2025.115300.
 
 Here's the citation information on [BibTeX](https://en.wikipedia.org/wiki/BibTeX) format.
 
 ```
-@article {Ramnauth2023.11.20.567883,
-	author = {Anthony D. Ramnauth, Madhavi Tippani, Heena R. Divecha, Alexis R. Papariello, Ryan A. Miller, Elizabeth A. Pattie, Joel E. Kleinman, Kristen R. Maynard, Leonardo Collado-Torres, Thomas M. Hyde, Keri Martinowich, Stephanie C. Hicks, Stephanie C. Page},
-	title = {Spatially-resolved transcriptomics of human dentate gyrus across postnatal lifespan reveals heterogeneity in markers for proliferation, extracellular matrix, and neuroinflammation},
-	elocation-id = {2023.11.20.567883},
-	year = {2023},
-	doi = {10.1101/2023.11.20.567883},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/10.1101/2023.11.20.567883},
-	eprint = {https://www.biorxiv.org/content/10.1101/2023.11.20.567883.full.pdf},
-	journal = {bioRxiv}
+@article{Ramnauth2025,
+  title = {Spatiotemporal analysis of gene expression in the human dentate gyrus reveals age-associated changes in cellular maturation and neuroinflammation},
+  volume = {44},
+  ISSN = {2211-1247},
+  url = {http://dx.doi.org/10.1016/j.celrep.2025.115300},
+  DOI = {10.1016/j.celrep.2025.115300},
+  number = {2},
+  journal = {Cell Reports},
+  publisher = {Elsevier BV},
+  author = {Ramnauth,  Anthony D. and Tippani,  Madhavi and Divecha,  Heena R. and Papariello,  Alexis R. and Miller,  Ryan A. and Nelson,  Erik D. and Thompson,  Jacqueline R. and Pattie,  Elizabeth A. and Kleinman,  Joel E. and Maynard,  Kristen R. and Collado-Torres,  Leonardo and Hyde,  Thomas M. and Martinowich,  Keri and Hicks,  Stephanie C. and Page,  Stephanie C.},
+  year = {2025},
+  month = feb
 }
 
 ```
+
 
 ## Data Access
 
