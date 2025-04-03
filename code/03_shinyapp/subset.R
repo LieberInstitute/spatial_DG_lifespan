@@ -73,6 +73,12 @@ spe_pseudo <- readRDS(here::here("processed-data", "pseudobulk_spe", "pseudobulk
 lobstr::obj_size(spe_pseudo)
 # 1.60 GB
 
+# Remove counts matrix and keep only logcounts matrix
+assays(spe_pseudo)$counts <- NULL
+
+lobstr::obj_size(spe_pseudo)
+# 1.58 GB
+
 # Give BayesSpace clusters anatomically recognized names
 df1 <-
     data.frame(spe_pseudo$key, spe_pseudo$sample_id, spe_pseudo$BayesSpace)
@@ -94,6 +100,12 @@ df1 <- df1 %>%
 
 colData(spe_pseudo)$BayesSpace <- factor(df1$BayesSpace)
 spe_pseudo$bayesSpace_harmony_10 <- NULL
+
+# Remove imgData
+imgData(spe_pseudo) <- NULL
+
+lobstr::obj_size(spe_pseudo)
+# 18.73 MB
 
 ## Save the reduced version of the spe object in the shiny app directory
 ## instead of using soft links.
