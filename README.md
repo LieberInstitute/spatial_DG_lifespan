@@ -59,13 +59,21 @@ For example:
 ``` r
 ## Run this web application locally with:
 ## spe <- readRDS(here::here("processed-data", "spe.rds"))
+## spe_pseudo <- readRDS("pseudobulk_spe.rds")
+## modeling_results <- readRDS("modeling_results.rds")
+## sig_genes <- readRDS("sig_genes_subset.rds")
+## vars <- colnames(colData(spe))
+
 ## Deploy the website
-###spatialLIBD::run_app(
-###    spe,
-###    title = "spatial_DG_lifespan, Visium",
-###    spe_discrete_vars = c("BayesSpace", "ManualAnnotation"),
-###    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio"),
-###    default_cluster = "BayesSpace"
+## spatialLIBD::run_app(
+##    spe,
+##    sce_layer = spe_pseudo,
+##    modeling_results = modeling_results,
+##    sig_genes = sig_genes,
+##    title = "spatial_DG_lifespan, Visium",
+##    spe_discrete_vars = c("BayesSpace", "ManualAnnotation"),
+##    spe_continuous_vars = c("sum_umi", "sum_gene", "expr_chrM", "expr_chrM_ratio"),
+##    default_cluster = "BayesSpace"
 ###)
 ## You will have more control about the length of the
 ## session and memory usage.
